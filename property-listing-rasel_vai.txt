@@ -1,0 +1,227 @@
+
+//======================================================================================
+
+					******	Project Name :  property-listing	*******
+										-- From	 	 : Rasel Vai
+										-- Laravel-8
+						
+//======================================================================================
+
+
+
+
+//-----------------------------------------Serial----------------------------------------------------
+//======================================================================================================================
+		##-->Authentication,//-->
+//======================================================================================================================
+
+
+
+
+
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
+				//-------------- Resources of Owner --------------
+						-- YouTube_playlist : https://www.youtube.com/playlist?list=PLhPBqF--77ImGEZE6xSS62UVegQOIgP4g
+						-- GitHub_Repo: https://github.com/raselupm/civanoglu
+//---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------------
+		-- My_GitHub_repo: https://github.com/Shahed-Chy-Suzan/Blog-Laravel-8
+//---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------------
+			-- Login Creadintial: 
+					-- Email: admin@gmail.com // Password: adminadmin
+					-- Email: user@gmail.com // Password: useruser
+//---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------------
+														//------ New in this project ------//
+//---------------------------------------------------------------------------------------------------------------------------------------------
+		//--amra jodi buildin css e kono edit/customize korte chai taile amader k "resources/css/app.css" e giye CSS-Code likte hobe, "public/css/app.css" e likle hobe na, because ota build howa css, && "resources/css/app.css" e css-code add/customize korar build korar jonno obossoy abar "npm run watch" or "npm run dev" chalate hobe.
+
+		//--amra jodi buildin css e kono edit/customize korte chai taile amader k "resources/css/app.css" e giye CSS-Code likte hobe, "public/css/app.css" e likle hobe na, because ota build howa css, && "resources/css/app.css" e css-code add/customize korar build korar jonno obossoy abar "npm run watch" or "npm run dev" chalate hobe.
+							//------------------------------------- resources/css/app.css -----------------------------------------------
+										@import 'tailwindcss/base';
+										@import 'tailwindcss/components';
+										@import 'tailwindcss/utilities';
+																				
+										.container {
+											margin: 0 auto;
+											max-width: 1200px;
+										}
+					
+
+
+//------------//------------//------------//---------------//---------------//-------------//-----------//------------//--------------//---------
+//------------//------------//------------//---------------//---------------//-------------//-----------//------------//--------------//---------
+
+
+
+
+
+
+//==================================================================================================
+											------------------ Start Project -----------------------
+//==================================================================================================
+		-- 1 --install laravel-8 command : composer create-project laravel/laravel property-listing
+				-- php artisan serve
+				-- php artisan migrate
+		
+		
+//--------------------------------------------------- .ENV -------------------------------------------------------------------------------------------
+				 DB_DATABASE= property-listing
+				 
+
+
+
+//==================================================================================================
+											------------------ Authentication -----------------------
+//==================================================================================================
+//------------------------------------------------- Authentication ----------------------------------------------------------------------------------
+		-- ekhane amra authentication er jonno Laravel-breeze use korbo, Link: ( https://laravel.com/docs/8.x/starter-kits ) ,
+	
+			//--Laravel-breeze Documentation in Laravel_Doc: https://laravel.com/docs/8.x/starter-kits#laravel-breeze
+						//--1-- command: composer require laravel/breeze --dev
+						//--2-- command: php artisan breeze:install
+						//--3-- command: npm install
+						//--4-- command: npm run dev
+						//---- command: php artisan migrate
+						
+			//--laravel-breeze automatically Tilwind-CSS install kore dibe.
+			
+			//--ekhane Laravel-breeze install hole amader project er 'web.php' file ta abar new kore generate hoy, jar karone amader agher code gula sob web.php theke chole jabe, now amader k abar code gula likhe/ante hobe(ekhane amra github theke abar web.php er code gual copy kore niye eshchi). taile abar amra home ta pabo jeheto route add kora hoyeche ekn. Laravel-Breeze install korar por amader project er "Controller" folder er moddhe "Auth" name ekta folder chole asbe jar moddhe breeze er sob controller thakbe, ar "resources/views" er moddheo "auth" name ekta folder chole asbe jar moddhe breeze er sob view blade file gula thakbe. e charao "resources/views" er moddhe 'layouts' name e folder, 'components' name e folder & views er root e "dashboard.blade.php" name e ekta file O chole asbe. But ekhane Laravel-Breeze er sob view file mane design gula Tilwind-CSS e kora. amra jodi bootstrap use korte chai taile amader k esob remove kore scratch theke bootstap likte hobe ei file.
+
+
+		//--ekhane amra jani ekn views/welcome.blade.php tekhe amader project ta ekn run hocche initially, ekhane "dashboard.blade.php" page e code er tag e  ( <x-app-layout></x-app-layout> ) dhara "views/layouts" folder er "app.blade.php" file e run koracche, amra jodi ekhane guest er jonno page/layout ta show korate chai taile amader k likte hobe ( <x-guest-layout> </x-guest-layout> ), taile ekn amra jodi amader welcome page e edit kore new kore body,header,footer diye customize korte chai taile code holo: 
+					
+					//-----------------------------views/welcome.blade.php-----------------------------------------------------------
+									<x-guest-layout>
+										body of code will go here...text-laravel-project...
+									</x-guest-layout>
+									
+					//-----------------------------views/components/header.balde.php-----------------------------------------------------------
+									header of the project...
+
+					//-----------------------------views/components/footer.balde.php-----------------------------------------------------------
+									footer of the project...		
+					
+					//-----------------------------views/layouts/guest.balde.php-----------------------------------------------------------
+								    <body>
+										<div class="font-sans text-gray-900 antialiased">
+											@include('components.header')					//------------------------------
+											{{ $slot }}
+											@include('components.footer')					//------------------------------
+										</div>
+									</body>
+
+				//---------------------- Project run output: ---------------------------------------
+									header of the project...body of code will go here...text-laravel-project...footer of the project...		
+
+
+
+
+		//--amra jodi buildin css e kono edit/customize korte chai taile amader k "resources/css/app.css" e giye CSS-Code likte hobe, "public/css/app.css" e likle hobe na, because ota build howa css, && "resources/css/app.css" e css-code add/customize korar build korar jonno obossoy abar "npm run watch" or "npm run dev" chalate hobe.
+					//------------------------------------- resources/css/app.css -----------------------------------------------
+								@import 'tailwindcss/base';
+								@import 'tailwindcss/components';
+								@import 'tailwindcss/utilities';
+																		
+								.container {
+									margin: 0 auto;
+									max-width: 1200px;
+								}
+								
+								
+								
+//==================================================================================================
+											------------------ Custom Font  || Transfonter -----------------------
+//==================================================================================================
+		//----------------------------------------------- Custom Font || Transfonter -------------------------------------------------------------
+				-- Using custom fonts on a website is one of the easiest ways to drastically change the aesthetics of a website. The only problem is that the boilerplate setup can be tedious when working with multiple fonts. That is where the site Transfonter.org comes in. This site makes converting fonts and setting up the boilerplate CSS incredibly easy. In this video I will be demonstrating how to use Transfonter.org to simplify your custom font process. 
+						-- Link: ( https://transfonter.org/ )
+						-- YT Link: ( https://www.youtube.com/watch?v=T-9yBKX7aEI )
+						-- YT Link: ( https://www.youtube.com/watch?v=1wVU3wylx-0&list=PLhPBqF--77ImGEZE6xSS62UVegQOIgP4g&index=3&t=4s )
+
+				-- amra amader icchamotho Font er file/zip download kore nibo amader PC te, then ( https://transfonter.org/ ) ei link e giye font gula add kore amader web er useable code e ropantor korete parbo(ekane ekta css code file o genereate kore dibe), oi website e new generated font er zip file ta download kore nibo, ekn amader laravel project er use er jonno amader k ei new download kora font tar vitor generate howa CSS code gula amader "resources/css/app.css" e opore(import gular er niche) add kore dibo, because ei font gulao build hobe, && ei font gula tho amader project e must rakte hobe, er jonno new download kora font gular file gula sob amader project er "resources" er vitor "fonts" name e ekta folder kore er vitore rekhe diyechi && "resources/css/app.css" file er oi font er css code gulate path ta thik kore diyechi project onosare
+
+							//--------------------------------- resources/css/fonts -------------------------------------------------------------------
+										-- pasted here all fonts file which is generated form "transfonter.org" website.
+
+							//--------------------------------- resources/css/app.css -------------------------------------------------------------------
+										@font-face {
+											font-family: 'Liberation Serif';
+											src: url('../fonts/LiberationSerif-Bold.woff2') format('woff2'),			//-------------------------
+											url('../fonts/LiberationSerif-Bold.woff') format('woff');					//------------------------
+											font-weight: bold;
+											font-style: normal;
+											font-display: swap;
+										}
+
+										@font-face {
+											font-family: 'Liberation Serif';
+											src: url('../fonts/LiberationSerif.woff2') format('woff2'),
+											url('../fonts/LiberationSerif.woff') format('woff');
+											font-weight: normal;
+											font-style: normal;
+											font-display: swap;
+										}
+
+										@font-face {
+											font-family: 'Studio Sans DEMO';
+											src: url('../fonts/StudioSansDEMO.woff2') format('woff2'),
+											url('../fonts/StudioSansDEMO.woff') format('woff');
+											font-weight: normal;
+											font-style: normal;
+											font-display: swap;
+										}
+										
+										h1,h2,h3,h4,h5,h6 {
+											font-family: "Liberation Serif", sans-serif;
+											font-weight: bold;
+										}
+
+										.section-heading {
+											@apply font-bold text-center text-4xl mb-10;
+										}
+
+										.fullwidth-btn {
+											@apply bg-gray-800 text-white px-6 py-2 rounded w-full inline-block text-center;
+										}
+
+
+			-- tailwind css e ekta body er jonno ekta default font deya thake amra oita use kobo na, tai amara "tailwind.config.js" e giye font/theme er code e j default font tar name mention kora ache amra ota ke delete/moche amara amader website er body te j font ta use korte chai oi font tar name likhe dibo.
+								//--------------------------------------- tailwind.config.js ---------------------------------------------------------------
+									theme: {
+										extend: {
+											fontFamily: {
+											     //sans: ['Nunito', ...defaultTheme.fontFamily.sans],		//default chilo 'Nunito' font ta.
+											     sans: ['Studio Sans DEMO', ...defaultTheme.fontFamily.sans],
+											},
+										},
+									},
+
+			-- ekn " layouts/guest.blade.php" file e giye opore j google font er ekta cdn add kora ache ota k amra comment kore dibo, because amra google font er kono font ekhane use kortechi na.
+			
+			-- amader website e kon likha ta kon font er ta easily check korar jonno amra chaile bowser extention "what font" ta use korte pari, jar maddhome amra kono ekta likha tei hover korlei amader k oi extention ta likha tar font show korbe.
+
+
+
+
+
+
+
+
+
