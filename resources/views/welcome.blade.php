@@ -7,7 +7,7 @@
         </div>
     </div>
 
-    {{-- <div class="py-32 text-center">
+    <div class="py-32 text-center">
         <div class="container">
             <h2 class="font-bold text-4xl mb-6">Lorem ipsum dolor sit amet, consectetur<br/> adipisicing elit. A aut autem dolorum <span class="underline">quis vitae!</span></h2>
             <p class="text-gray-500 text-2xl font-bold mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, voluptatem!</p>
@@ -16,5 +16,5 @@
 
             <h2 class="font-bold text-4xl mb-6 mt-20">Lorem ipsum dolor sit amet adipisicing<br/> adipisicing elit. A aut lorum <span class="underline">quis vitae!</span></h2>
         </div>
-    </div> --}}
+    </div>
 </x-guest-layout>

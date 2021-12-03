@@ -1,56 +1,51 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-/* @font-face {
-    font-family: 'Liberation Serif';
-    src: url('../fonts/LiberationSerif-Bold.woff2') format('woff2'),
-    url('../fonts/LiberationSerif-Bold.woff') format('woff');
+@font-face {
+    font-family: "Liberation Serif";
+    src: url("../fonts/LiberationSerif-Bold.woff2") format("woff2"),
+        url("../fonts/LiberationSerif-Bold.woff") format("woff");
     font-weight: bold;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Liberation Serif';
-    src: url('../fonts/LiberationSerif.woff2') format('woff2'),
-    url('../fonts/LiberationSerif.woff') format('woff');
+    font-family: "Liberation Serif";
+    src: url("../fonts/LiberationSerif.woff2") format("woff2"),
+        url("../fonts/LiberationSerif.woff") format("woff");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Studio Sans DEMO';
-    src: url('../fonts/StudioSansDEMO.woff2') format('woff2'),
-    url('../fonts/StudioSansDEMO.woff') format('woff');
+    font-family: "Studio Sans DEMO";
+    src: url("../fonts/StudioSansDEMO.woff2") format("woff2"),
+        url("../fonts/StudioSansDEMO.woff") format("woff");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
 
-
 body {
-
-} */
-
-
+}
 
 .container {
     margin: 0 auto;
     max-width: 1200px;
 }
 
-
-/* h1, h2, h3, h4, h5, h6 {
-    font-family: 'Liberation Serif', sans-serif;
+h1,h2,h3,h4,h5,h6 {
+    font-family: "Liberation Serif", sans-serif;
     font-weight: bold;
 }
 
 .section-heading {
-    @apply font-bold text-center text-4xl mb-10
+    @apply font-bold text-center text-4xl mb-10;
 }
 
 .fullwidth-btn {
-    @apply bg-gray-800 text-white px-6 py-2 rounded w-full inline-block text-center
-} */
+    @apply bg-gray-800 text-white px-6 py-2 rounded w-full inline-block text-center;
+}

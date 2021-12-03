@@ -1,4 +1,4 @@
-{{-- <div class="container">
+<div class="container">
     <div class="pt-20">
         <h2 class="section-heading">Articles & Advices</h2>
         <div class="flex -mx-4">
@@ -90,4 +90,4 @@
 
 
 </div>
-<img class="w-full" src="/img/footer.jpg" alt=""> --}}
+<img class="w-full" src="/img/footer.jpg" alt="">
