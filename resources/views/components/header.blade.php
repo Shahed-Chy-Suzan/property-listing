@@ -1,4 +1,5 @@
-<div class="fixed w-full py-4 px-12 flex justify-between items-center z-30">
+
+<div class="fixed top-0 w-full py-4 px-12 flex justify-between items-center z-30 sticky-header {{request()->routeIs('home') ? '' : 'general-header'}}">
     <div class="min-w-max">
         <img width="100" src="/img/logo.jpeg" alt="">
     </div>
@@ -16,5 +17,6 @@
     <div class="min-w-max text-3xl">
         <a href="">🏁</a>
         <a href="">🚩</a>
+        {{-- &#127482;&#127480; --}}
     </div>
 </div>
