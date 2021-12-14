@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="relative z-10 pt-48 pb-52 bg-cover bg-center" style="background-image: url(/img/hero-bg.jpg)">
+    <div class="relative z-10 pt-48 pb-52 bg-cover bg-center" style="background-image: url(/img/6.jpg)">
         <div class="absolute h-full w-full bg-black opacity-70 top-0 left-0 z-10"></div>
         <div class="container relative z-20 text-white text-center text-2xl">
             <h2 class="font-bold text-5xl mb-8">Lorem ipsum dolor sit amet,<br/> consectetur adipisicing elit. Fuga, totam.</h2>
@@ -108,7 +108,7 @@
     <div class="container text-center pt-14">
         <h2 class="section-heading">More information about us</h2>
         <div class="relative mt-10 mb-14 bg-cover rounded-xl py-24 bg-center"
-             style="background-image: url('/img/hero-bg.jpg')">
+             style="background-image: url('/img/3.jpg')">
             <div class="absolute w-full h-full rounded-xl opacity-50 bg-black left-0 top-0"></div>
             <div class="relative z-20">
                 <a href="" class="text-white text-xl flex flex-col justify-center items-center"><span class="border-2 border-white w-12 h-12 text-center pt-1 pl-1 leading-10 text-2xl hover:border-yellow-500 duration-200 rounded-full mb-2"><i class="fa fa-play"></i></span>Watch the video</a>
@@ -141,7 +141,7 @@
                     incidunt officiis rem sapiente voluptate</p>
             </div>
             <div class="flex-1 ml-10">
-                <img class="rounded" src="/img/hero-bg.jpg" alt="">
+                <img class="rounded" src="/img/3.jpg" alt="">
             </div>
         </div>
     </div>
