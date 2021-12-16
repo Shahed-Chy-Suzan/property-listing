@@ -61,7 +61,7 @@
                         @endforeach
                     </div>
 
-                    <div class="thumbnail-slider">
+                    <div class="thumbnail-slider mt-4">
                         @foreach($property->gallery as $gallery)
                             <div style="background-image: url({{$gallery->name}})" class="single-thumbnail-item bg-cover bg-center"></div>
                         @endforeach

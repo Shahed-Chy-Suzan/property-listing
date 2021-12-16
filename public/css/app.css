@@ -32362,6 +32362,24 @@ h1, h2, h3, h4, h5, h6 {
   height: 80px;
 }
 
+/* ----- CSS code for slick slider arrow buttons -------- */
+
+.nextArrowBtn{
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  right: 5px;
+  color: #ffffff;
+}
+
+.prevArrowBtn{
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 5px;
+  color: #ffffff;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
