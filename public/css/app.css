@@ -32362,6 +32362,39 @@ h1, h2, h3, h4, h5, h6 {
   height: 80px;
 }
 
+.vertical-search-form > form > div {
+  display: block;
+  min-width: 100%;
+  margin-bottom: 15px;
+}
+
+.vertical-search-form > form {
+  display: block;
+}
+
+.vertical-search-form .border-gray-500 {
+  display: none;
+}
+
+.vertical-search-form select {
+  min-width: 100%;
+}
+
+.vertical-search-form > form > div > div {
+  display: block;
+  min-width: 100%;
+  margin-bottom: 15px;
+}
+
+.vertical-search-form > form > div.ml-5 {
+  margin-left: 12px;
+}
+
+.vertical-search-form button {
+  margin-top: 15px;
+  min-width: 100%;
+}
+
 /* ----- CSS code for slick slider arrow buttons -------- */
 
 .nextArrowBtn{
