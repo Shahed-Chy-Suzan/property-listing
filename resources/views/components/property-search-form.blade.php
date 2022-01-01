@@ -1,16 +1,16 @@
 <form action="{{route('properties')}}" method="GET" class="flex justify-between">
     <div class="flex w-7/12 justify-between items-center">
         <div class="flex flex-col mx-3">
-            {{-- <label for="sale">Buy or Rent</label> --}}
+            <label for="sale">Rent or Sale</label>
             <select id="sale" name="sale" class="border-0 focus:ring-0">
-                <option value="">Buy or Rent</option>
-                <option {{request('sale') == '1' ? 'selected="selected"' : ''}} value="1">Buy</option>
+                <option value="">Rent or Sale</option>
                 <option {{request('sale') == '0' ? 'selected="selected"' : ''}} value="0">Rent</option>
+                <option {{request('sale') == '1' ? 'selected="selected"' : ''}} value="1">Sale</option>
             </select>
         </div>
         <div class="py-3 self-center border-gray-500 border"></div>
         <div class="flex flex-col mx-3">
-            {{-- <label for="type">Type</label> --}}
+            <label for="type">Type</label>
             <select id="type" name="type" class="border-0 focus:ring-0">
                 <option value="">Type</option>
                 <option {{request('type') == '0' ? 'selected="selected"' : ''}} value="0">Land</option>
@@ -20,7 +20,7 @@
         </div>
         <div class="py-3 self-center border-gray-500 border"></div>
         <div class="flex flex-col mx-3">
-            {{-- <label for="price">Price</label> --}}
+            <label for="price">Price</label>
             <select id="price" name="price" class="border-0 focus:ring-0">
                 <option value="">Price</option>
                 <option {{request('price') == '100000' ? 'selected="selected"' : ''}} value="100000">0 - 100000</option>
@@ -33,7 +33,7 @@
         </div>
         <div class="py-3 self-center border-gray-500 border"></div>
         <div class="flex flex-col mx-3">
-            {{-- <label for="bedrooms">Bedrooms</label> --}}
+            <label for="bedrooms">Bedrooms</label>
             <select id="bedrooms" name="bedrooms" class="border-0 focus:ring-0">
                 <option value="">Bedrooms</option>
                 <option {{request('bedrooms') == '1' ? 'selected="selected"' : ''}} value="1">1</option>

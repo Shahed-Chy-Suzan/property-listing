@@ -32362,6 +32362,8 @@ h1, h2, h3, h4, h5, h6 {
   height: 80px;
 }
 
+/* ----- CSS code for search -------- */
+
 .vertical-search-form > form > div {
   display: block;
   min-width: 100%;
@@ -32374,6 +32376,18 @@ h1, h2, h3, h4, h5, h6 {
 
 .vertical-search-form .border-gray-500 {
   display: none;
+}
+
+.home-search label {
+  display: none;
+}
+
+.vertical-search-form label {
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-bottom: 5px;
+  display: block;
+  opacity: .5;
 }
 
 .vertical-search-form select {
