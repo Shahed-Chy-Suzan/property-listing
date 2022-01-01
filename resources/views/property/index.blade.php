@@ -37,7 +37,8 @@
                     @endforeach
                 </div>
 
-                {{$latest_properties->links()}}
+                {{ $latest_properties->withQueryString()->links() }}
+                {{-- {{$latest_properties->links()}} --}}
 
             </div>{{-- Left Content End --}}
 
