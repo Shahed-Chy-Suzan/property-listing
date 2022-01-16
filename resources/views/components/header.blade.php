@@ -9,8 +9,8 @@
             <li><a class="inline-block p-4 text-white" href="{{route('properties')}}?type=0">Land</a></li>
             <li><a class="inline-block p-4 text-white" href="{{route('properties')}}?type=2">Villa</a></li>
             <li><a class="inline-block p-4 text-white" href="{{route('properties')}}?type=1">Apartment</a></li>
-            <li><a class="inline-block p-4 text-white" href="">About Us</a></li>
-            <li><a class="inline-block p-4 text-white" href="">Contact Us</a></li>
+            <li><a class="inline-block p-4 text-white" href="{{route('page', 'about-us')}}">About Us</a></li>
+            <li><a class="inline-block p-4 text-white" href="{{route('page', 'contact-us')}}">Contact Us</a></li>
         </ul>
     </div>
 

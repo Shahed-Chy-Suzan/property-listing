@@ -9,9 +9,9 @@
             <h3 class="text-2xl py-3">{{ number_format($property->price) }} TK</h3>
             <div class="border-t-2">
                 <ul class="flex items-center -mx-1 my-4">
-                    <li class="px-2 py-1 bg-blue-50 rounded-md text-xs mx-1 shadow-sm">{{$property->bedrooms}} bedrooms</li>
-                    <li class="px-2 py-1 bg-blue-50 rounded-md text-xs mx-1 shadow-sm">{{$property->bathrooms}} bathrooms</li>
-                    <li class="px-2 py-1 bg-blue-50 rounded-md text-xs mx-1 shadow-sm">{{$property->gross_sqm}} M<sup>2</sup></li>
+                    <li class="px-2 py-1 bg-gray-200 rounded-md text-xs mx-1 shadow-sm">{{$property->bedrooms}} bedrooms</li>
+                    <li class="px-2 py-1 bg-gray-200 rounded-md text-xs mx-1 shadow-sm">{{$property->bathrooms}} bathrooms</li>
+                    <li class="px-2 py-1 bg-gray-200 rounded-md text-xs mx-1 shadow-sm">{{$property->gross_sqm}} M<sup>2</sup></li>
                 </ul>
                 <a href="{{route('single-property', $property->id)}}" class="btn w-full text-center">More details</a>
             </div>

@@ -11,9 +11,8 @@
     <div class="-mt-10">
         <div class="container">
             <div class="rounded-lg bg-white p-4 relative z-20 shadow-lg home-search">
-                @include('components.property-search-form')
+                @include('components.property-search-form', ['locations' => $locations])
             </div>
-
         </div>
     </div>
 
@@ -101,7 +100,7 @@
                     incidunt officiis rem sapiente voluptate</p>
             </div>
             <div class="flex-1 ml-10">
-                <img class="rounded" src="/img/hero-bg.jpg" alt="">
+                <img class="rounded" src="/img/3.jpg" alt="">
             </div>
         </div>
     </div>
