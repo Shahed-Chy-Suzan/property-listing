@@ -19,13 +19,13 @@ class CreatePropertiesTable extends Migration
             $table->string('featured_image');
             $table->unsignedBigInteger('location_id');
             $table->unsignedBigInteger('price');
-            $table->unsignedBigInteger('sale')->default(1)->comment('0=rent,1=sale');
-            $table->unsignedBigInteger('type')->default(1)->comment('0=land,1=apartment,2=villa');
+            $table->unsignedBigInteger('sale')->default(1)->comment('1=sale,2=rent');
+            $table->unsignedBigInteger('type')->default(1)->comment('1=apartment,2=villa,3=land');
             $table->unsignedBigInteger('bedrooms')->nullable();
             $table->unsignedBigInteger('bathrooms')->nullable();
             $table->unsignedBigInteger('net_sqm')->nullable();
             $table->unsignedBigInteger('gross_sqm')->nullable();
-            $table->unsignedBigInteger('pool')->nullable()->comment('0=no,1=private,2=public,3=both');
+            $table->unsignedBigInteger('pool')->nullable()->comment('1=private,2=public,3=both,4=no');
             $table->string('overview');
             $table->longText('why_buy')->nullable();
             $table->longText('description');

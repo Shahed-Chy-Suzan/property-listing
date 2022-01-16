@@ -14,7 +14,7 @@
     <div class="bg-white py-8">
         <div class="container mx-auto">
             <h2 class="text-3xl text-gray-600">Properties
-                @if(request('type') == '0')
+                @if(request('type') == 3)
                     - Land
                 @elseif(request('type') == 1)
                     - Apartment
@@ -28,13 +28,13 @@
                 <h3 class="text-sm mt-1 font-normal">
 
                     Displaying
-                    @if (request('rent') == '0')
+                    @if (request('sale') == '2')
                         Rentable
                     @elseif (request('sale') == '1')
                         Saleable
                     @endif
 
-                    @if (request('type') == '0')
+                    @if (request('type') == '3')
                         Lands
                     @elseif (request('type') == '1')
                         Appartments
@@ -45,7 +45,7 @@
                     @if ( !empty(request('bedrooms')) )
                         with
                         {{ request('bedrooms') }}
-                            @if( request('bedrooms') ==1 )
+                            @if( request('bedrooms') == 1 )
                                 Bedroom
                             @else
                                 Bedrooms
@@ -77,6 +77,7 @@
                 </h3>
                 <h4 class="text-sm font-normal"><span class="font-bold">{{ $latest_properties->total() }}</span> Property Found</h4>
             @endif
+
 
 
         </div>

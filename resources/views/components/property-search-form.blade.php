@@ -4,7 +4,7 @@
             <label for="sale">Rent or Sale</label>
             <select id="sale" name="sale" class="border-0 focus:ring-0">
                 <option value="">Rent or Sale</option>
-                <option {{request('sale') == '0' ? 'selected="selected"' : ''}} value="0">Rent</option>
+                <option {{request('sale') == '2' ? 'selected="selected"' : ''}} value="2">Rent</option>
                 <option {{request('sale') == '1' ? 'selected="selected"' : ''}} value="1">Sale</option>
             </select>
         </div>
@@ -25,7 +25,7 @@
             <label for="type">Type</label>
             <select id="type" name="type" class="border-0 focus:ring-0">
                 <option value="">Type</option>
-                <option {{request('type') == '0' ? 'selected="selected"' : ''}} value="0">Land</option>
+                <option {{request('type') == '3' ? 'selected="selected"' : ''}} value="3">Land</option>
                 <option {{request('type') == '1' ? 'selected="selected"' : ''}} value="1">Apartment</option>
                 <option {{request('type') == '2' ? 'selected="selected"' : ''}} value="2">Villa</option>
             </select>
