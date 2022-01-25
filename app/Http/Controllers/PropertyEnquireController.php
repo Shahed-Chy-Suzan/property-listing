@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PropertyEnquire;
+use App\Mail\EnquireEmail;
+use Illuminate\Support\Facades\Mail;
 
 class PropertyEnquireController extends Controller
 {
@@ -26,6 +28,10 @@ class PropertyEnquireController extends Controller
         ]);
 
         // Send User & Admin message
+        $data = [$request->all(), 'propertyURL' => route('single-property', $propertyID)];
+
+        Mail::send(new EnquireEmail($data));
+
 
         return redirect()->back()->with(['message'=>'Message sent successfully']);
     }
