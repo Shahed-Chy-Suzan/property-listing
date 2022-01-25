@@ -27,7 +27,7 @@ class PropertyEnquireController extends Controller
             'message'  => $request->message . '\nThis message was sent from '. route('single-property',$propertyID) . ' website.',
         ]);
 
-        // Send User & Admin message
+        // Send User & Admin mail/message
         $data = [$request->all(), 'propertyURL' => route('single-property', $propertyID)];
 
         Mail::send(new EnquireEmail($data));
