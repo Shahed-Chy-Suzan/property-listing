@@ -41,6 +41,12 @@ jQuery(document).ready(function ($) {   //for slick slider
             prevArrow: '<i class="fa fa-angle-left slick-prev prevArrowBtn"></i>',
             nextArrow: '<i class="fa fa-angle-right slick-next nextArrowBtn"></i>'
     });
+
+    // Notice Panel
+    setTimeout(() => {
+        $("#notice").slideUp("slow");
+     }, 2000);
+
 });
 
 

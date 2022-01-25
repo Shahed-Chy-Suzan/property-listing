@@ -5490,7 +5490,11 @@ jQuery(document).ready(function ($) {
     centerPadding: '30px',
     prevArrow: '<i class="fa fa-angle-left slick-prev prevArrowBtn"></i>',
     nextArrow: '<i class="fa fa-angle-right slick-next nextArrowBtn"></i>'
-  });
+  }); // Notice Panel
+
+  setTimeout(function () {
+    $("#notice").slideUp("slow");
+  }, 2000);
 });
 
 /***/ }),
