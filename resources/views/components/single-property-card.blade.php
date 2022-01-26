@@ -6,14 +6,14 @@
         <div class="py-20 bg-center" style="background-image: url({{$property->featured_image}})"></div>
         <div class="p-3">
             <h2 class="leading-0 text-base">{{$property->name}}</h2>
-            <h3 class="text-2xl py-3">{{ number_format($property->price) }} TK</h3>
+            <h3 class="text-2xl py-3">{{ number_format($property->price) }} {{ __('TK') }}</h3>
             <div class="border-t-2">
                 <ul class="flex items-center -mx-1 my-4">
-                    <li class="px-2 py-1 bg-gray-200 rounded-md text-xs mx-1 shadow-sm">{{$property->bedrooms}} bedrooms</li>
-                    <li class="px-2 py-1 bg-gray-200 rounded-md text-xs mx-1 shadow-sm">{{$property->bathrooms}} bathrooms</li>
-                    <li class="px-2 py-1 bg-gray-200 rounded-md text-xs mx-1 shadow-sm">{{$property->gross_sqm}} M<sup>2</sup></li>
+                    <li class="px-2 py-1 bg-gray-200 rounded-md text-xs mx-1 shadow-sm">{{$property->bedrooms}} {{ __('Bedrooms') }}</li>
+                    <li class="px-2 py-1 bg-gray-200 rounded-md text-xs mx-1 shadow-sm">{{$property->bathrooms}} {{ __('Bathrooms') }}</li>
+                    <li class="px-2 py-1 bg-gray-200 rounded-md text-xs mx-1 shadow-sm">{{$property->gross_sqm}} {{ __('ft') }}<sup>2</sup></li>
                 </ul>
-                <a href="{{route('single-property', $property->id)}}" class="btn w-full text-center">More details</a>
+                <a href="{{route('single-property', $property->id)}}" class="btn w-full text-center">{{ __('More details') }}</a>
             </div>
         </div>
     </div>

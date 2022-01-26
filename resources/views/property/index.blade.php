@@ -5,7 +5,7 @@
             <ul class="flex items-center">
                 <li><a class="text-3xl text-red-800" href="{{ url('/') }}"><i class="fa fa-home"></i></a></li>
                 <li class="mx-3"><i class="fa fa-angle-right"></i></li>
-                <li>Properties</li>
+                <li>{{ __('Properties') }}</li>
             </ul>
         </div>
     </div>
@@ -13,13 +13,13 @@
     <!-- Title & Share -->
     <div class="bg-white py-8">
         <div class="container mx-auto">
-            <h2 class="text-3xl text-gray-600">Properties
+            <h2 class="text-3xl text-gray-600">{{ __('Properties') }}
                 @if(request('type') == 3)
-                    - Land
+                    - {{ __('Land') }}
                 @elseif(request('type') == 1)
-                    - Apartment
+                    - {{ __('Apartment') }}
                 @elseif(request('type') == 2)
-                    - Villa
+                    - {{ __('Villa') }}
                 @endif
             </h2>
 
@@ -46,22 +46,22 @@
                         with
                         {{ request('bedrooms') }}
                             @if( request('bedrooms') == 1 )
-                                Bedroom
+                                {{ __('Bedroom') }}
                             @else
-                                Bedrooms
+                            {{ __('Bedrooms') }}
                             @endif
                     @endif
 
                     @if (request('price') == 100000)
-                        within 0 TK - 1,00,000 TK Price Range
+                        within 0 {{ __('Tk') }} - 1,00,000 {{ __('Tk') }} Price Range
                     @elseif (request('price') == 200000)
-                        within 1,00,000 TK - 2,00,000 TK Price Range
+                        within 1,00,000 {{ __('Tk') }} - 2,00,000 {{ __('Tk') }} Price Range
                     @elseif (request('price') == 300000)
-                        within 2,00,000 TK - 3,00,000 TK Price Range
+                        within 2,00,000 {{ __('Tk') }} - 3,00,000 {{ __('Tk') }} Price Range
                     @elseif (request('price') == 400000)
-                        within 3,00,000 TK - 4,00,000 TK Price Range
+                        within 3,00,000 {{ __('Tk') }} - 4,00,000 {{ __('Tk') }} Price Range
                     @elseif (request('price') == 500000)
-                        and More than 5,00,000 TK Price
+                        and More than 5,00,000 {{ __('Tk') }} Price
                     @endif
                     from
                     {{-- {{ request('location') ?? 'all Location' }} --}}
@@ -93,7 +93,7 @@
                     @forelse ($latest_properties as $property)
                         @include('components.single-property-card', ['property' => $property, 'width' => 'w-1/3'])
                     @empty
-                        <div class="text-center">No Property Found</div>
+                        <div class="text-center">{{ __('No Property Found') }}</div>
                     @endforelse
                 </div>
 
@@ -106,6 +106,7 @@
 
             {{-- Sidebar --}}
             <div class="w-3/12 ml-6 vertical-search-form">
+                <h2 class="text-black mb-3 text-center text-lg shadow-sm pb-2">{{ __('More Filter') }}</h2>
                 @include('components.property-search-form')
             </div>
 

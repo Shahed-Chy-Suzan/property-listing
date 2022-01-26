@@ -2,8 +2,8 @@
     <div class="relative z-10 pt-48 pb-52 bg-cover bg-center" style="background-image: url(/img/6.jpg)">
         <div class="absolute h-full w-full bg-black opacity-70 top-0 left-0 z-10"></div>
         <div class="container relative z-20 text-white text-center text-2xl">
-            <h2 class="font-bold text-5xl mb-8">Lorem ipsum dolor sit amet,<br/> consectetur adipisicing elit. Fuga, totam.</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, mollitia.</p>
+            <h2 class="font-bold text-5xl mb-8 langBN">{{__('Guide Property - your guide to the primary real estate market in dubai.')}}</h2>
+            <p class="text-2xl mt-8 langBN">{{ __('The most convenient real estate search portal in Dubai, start searching now!') }}</p>
         </div>
     </div>
 

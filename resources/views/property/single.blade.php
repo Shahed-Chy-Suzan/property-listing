@@ -3,7 +3,7 @@
     <div class="shadow-md border-2 border-gray-300 py-2 bg-white mt-28">
         <div class="container mx-auto">
             <ul class="flex items-center">
-                <li><a class="text-red-800" href="{{ route('properties') }}">Properties</a></li>
+                <li><a class="text-red-800" href="{{ route('properties') }}">{{ __('Properties') }}</a></li>
                 <li class="mx-3"><i class="fa fa-angle-right"></i></li>
                 <li>{{$property->name}}</li>
             </ul>
@@ -16,9 +16,9 @@
             <div class="flex justify-between">
                 <div class="w-8/12">
                     <h2 class="text-3xl text-gray-600">{{$property->name}}</h2>
-                    <h3 class="text-lg mt-2">Price: <span class="text-red-800">
+                    <h3 class="text-lg mt-2">{{ __('Price') }}: <span class="text-red-800">
                         {{-- {{ number_format($property->price, 2, ',', ',') }} TK</span> --}}
-                        {{ number_format($property->price) }} TK</span>
+                        {{ number_format($property->price) }} {{ __('Tk') }}</span>
                     </h3>
                 </div>
                 <div class="w-3/12">
@@ -75,36 +75,36 @@
                 </div>
                 {{-- Overview --}}
                 <div class="flex justify-between items-center bg-white p-8 mt-10 shadow-sm">
-                    <h4 class="text-lg w-2/12">Overview</h4>
+                    <h4 class="text-lg w-2/12 langBN">{{ __('Overview') }}</h4>
                     <div class="border-l-2 border-gray-300 pl-5 ml-5 w-10/12 text-base">
                         <p>{{$property->overview}}</p>
                     </div>
                 </div>
 
                 {{-- Property Featuers --}}
-                <div class="flex justify-between items-center bg-white p-8 mt-10 shadow-sm">
-                    <h4 class="text-lg w-2/12">Property Features</h4>
+                <div class="flex justify-between items-center bg-white p-8 mt-10 shadow-sm langBN">
+                    <h4 class="text-lg w-2/12">{{ __('Property Features') }}</h4>
                     <div class="ml-2 w-10/12 text-base flex justify-between">
                         <div class="flex-1 border-l-2 border-gray-300 ml-3 pl-3 self-center">
                             <ul>
                                 <li class="flex text-sm mb-2">
                                     <div class="flex"><i
                                             class="fa fa-home mr-2 text-red-400 w-5 text-center"></i><span
-                                            class="text-sm">Type:</span></div>
+                                            class="text-sm">{{ __('Type') }}:</span></div>
                                     <span class="ml-2 font-bold">
                                         @if($property->type == 1)
-                                            Apartment
+                                            {{ __('Apartment') }}
                                         @elseif($property->type == 2)
-                                            Villa
+                                            {{ __('Villa') }}
                                         @else
-                                            Land
+                                            {{ __('Land') }}
                                         @endif
                                     </span>
                                 </li>
                                 <li class="flex text-sm">
                                     <div class="flex"><i
                                             class="fa fa-bed mr-2 text-red-400 w-5 text-center"></i><span
-                                            class="text-sm">Bedrooms:</span></div>
+                                            class="text-sm">{{ __('Bedroom') }}:</span></div>
                                     <span class="ml-2 font-bold">{{$property->bedrooms}}</span>
                                 </li>
                             </ul>
@@ -114,14 +114,14 @@
                                 <li class="flex text-sm mb-2">
                                     <div class="flex"><i
                                             class="fa fa-shower mr-2 text-red-400 w-5 text-center"></i><span
-                                            class="text-sm">Bathrooms:</span></div>
+                                            class="text-sm">{{ __('Bathrooms') }}:</span></div>
                                     <span class="ml-2 font-bold">{{$property->bathrooms}}</span>
                                 </li>
                                 <li class="flex text-sm">
                                     <div class="flex"><i
                                             class="fa fa-map-marker mr-2 text-red-400 w-5 text-center"></i><span
-                                            class="text-sm">Location:</span></div>
-                                    <span class="ml-2 font-bold">{{$property->location->name}}</span>
+                                            class="text-sm">{{ __('Location') }}:</span></div>
+                                    <span class="ml-2 font-bold noTranslate">{{$property->location->name}}</span>
                                 </li>
                             </ul>
                         </div>
@@ -130,22 +130,22 @@
                                 <li class="flex text-sm mb-2">
                                     <div class="flex"><i
                                             class="fa fa-gratipay mr-2 text-red-400 w-5 text-center"></i><span
-                                            class="text-sm">Living space sqm:</span></div>
+                                            class="text-sm">{{ __('Living space sqm') }}:</span></div>
                                     <span class="ml-2 font-bold">{{ $property->net_sqm }}</span>
                                 </li>
                                 <li class="flex text-sm">
-                                    <div class="flex"><i
-                                            class="fa fa-low-vision mr-2 text-red-400 w-5 text-center"></i><span
-                                            class="text-sm">Pool</span></div>
+                                    <div class="flex"><i class="fa fa-low-vision mr-2 text-red-400 w-5 text-center"></i>
+                                        <span class="text-sm">{{ __('Pool') }}</span>
+                                    </div>
                                     <span class="ml-2 font-bold">
                                         @if($property->pool == 1)
-                                            Private
+                                            {{ __('Private') }}
                                         @elseif($property->pool == 2)
-                                            Public
+                                            {{ __('Public') }}
                                         @elseif($property->pool == 3)
-                                            Both
+                                            {{ __('Both') }}
                                         @else
-                                            No
+                                            {{ __('No') }}
                                         @endif
                                     </span>
                                 </li>
@@ -156,7 +156,7 @@
 
                 {{-- Overview --}}
                 <div class="flex justify-between items-center bg-white p-8 mt-10 shadow-sm">
-                    <h4 class="text-lg w-2/12">Why buy this Property</h4>
+                    <h4 class="text-lg w-2/12">{{ __('Why buy this Property') }}</h4>
                     <div class="border-l-2 border-gray-300 pl-5 ml-5 w-10/12 text-base">
                         {{$property->why_buy}}
                     </div>
@@ -182,7 +182,7 @@
                 </div>
                 {{-- Form --}}
                 <div class="px-4 py-5 text-left bg-gray-300 my-5">
-                    <h1 class="text-2xl font-normal leading-none mb-5">Enquire about this property</h1>
+                    <h1 class="text-2xl font-normal leading-none mb-5 langBN">{{ __('Enquire about this property') }}</h1>
 
                     <form action="{{ route('enquireform',$property->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -227,7 +227,7 @@
                         </div>
 
                         <div class="mt-5">
-                            <button type="submit" class="w-full border-2 uppercase text-center py-3 font-semibold border-red-800 hover:bg-transparent hover:text-red-800 duration-200  text-white bg-red-800 rounded-none"><i class="fa fa-commenting mr-2"></i>Request Details</button>
+                            <button type="submit" class="w-full border-2 uppercase text-center py-3 font-semibold border-red-800 hover:bg-transparent hover:text-red-800 duration-200  text-white bg-red-800 rounded-none"><i class="fa fa-commenting mr-2"></i>{{__('Request Details')}}</button>
                         </div>
 
                     </form>

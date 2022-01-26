@@ -1,33 +1,86 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import 'font-awesome.min.css';
 
 @font-face {
-    font-family: 'Liberation Serif';
-    src: url('../fonts/LiberationSerif-Bold.woff2') format('woff2'),
-    url('../fonts/LiberationSerif-Bold.woff') format('woff');
+    font-family: "Studio Sans DEMO";
+    src: url("../fonts/StudioSansDEMO.eot");
+    src: url("../fonts/StudioSansDEMO.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/StudioSansDEMO.woff2") format("woff2"),
+        url("../fonts/StudioSansDEMO.woff") format("woff"),
+        url("../fonts/StudioSansDEMO.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Liberation Serif";
+    src: url("../fonts/LiberationSerif-Regular.eot");
+    src: url("../fonts/LiberationSerif-Regular.eot?#iefix")
+            format("embedded-opentype"),
+        url("../fonts/LiberationSerif-Regular.woff2") format("woff2"),
+        url("../fonts/LiberationSerif-Regular.woff") format("woff"),
+        url("../fonts/LiberationSerif-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Liberation Serif";
+    src: url("../fonts/LiberationSerif-Bold.eot");
+    src: url("../fonts/LiberationSerif-Bold.eot?#iefix")
+            format("embedded-opentype"),
+        url("../fonts/LiberationSerif-Bold.woff2") format("woff2"),
+        url("../fonts/LiberationSerif-Bold.woff") format("woff"),
+        url("../fonts/LiberationSerif-Bold.ttf") format("truetype");
     font-weight: bold;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Liberation Serif';
-    src: url('../fonts/LiberationSerif.woff2') format('woff2'),
-    url('../fonts/LiberationSerif.woff') format('woff');
-    font-weight: normal;
+    font-family: "Studio Sans Bold";
+    src: url("../fonts/StudioSans-Bold.eot");
+    src: url("../fonts/StudioSans-Bold.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/StudioSans-Bold.woff2") format("woff2"),
+        url("../fonts/StudioSans-Bold.woff") format("woff"),
+        url("../fonts/StudioSans-Bold.ttf") format("truetype");
+    font-weight: bold;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Studio Sans DEMO';
-    src: url('../fonts/StudioSansDEMO.woff2') format('woff2'),
-    url('../fonts/StudioSansDEMO.woff') format('woff');
+    font-family: 'SutonnyMJ';
+    src: url('../fonts/SutonnyMJ.eot');
+    src: url('../fonts/SutonnyMJ.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/SutonnyMJ.woff2') format('woff2'),
+        url('../fonts/SutonnyMJ.woff') format('woff'),
+        url('../fonts/SutonnyMJ.ttf') format('truetype');
     font-weight: normal;
-    font-style: normal;
+    font-style: italic;
     font-display: swap;
 }
+
+html[lang="bn"] .product_price,
+html[lang="bn"] .page_title,
+html[lang="bn"] .breadcrumb li a,
+html[lang="bn"] .langBN,
+html[lang="bn"] .search-form,
+html[lang="bn"] #header_area a {
+    font-family: 'SutonnyMJ';
+}
+
+
+
+html[lang="bn"] .noTranslate{
+    font-family: "Liberation Serif",
+    sans-serif;
+}
+
 
 .slick-slider{position:relative;display:block;box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none;-khtml-user-select:none;-ms-touch-action:pan-y;touch-action:pan-y;-webkit-tap-highlight-color:transparent}.slick-list{position:relative;display:block;overflow:hidden;margin:0;padding:0}.slick-list:focus{outline:0}.slick-list.dragging{cursor:pointer;cursor:hand}.slick-slider .slick-list,.slick-slider .slick-track{-webkit-transform:translate3d(0,0,0);-moz-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}.slick-track{position:relative;top:0;left:0;display:block;margin-left:auto;margin-right:auto}.slick-track:after,.slick-track:before{display:table;content:''}.slick-track:after{clear:both}.slick-loading .slick-track{visibility:hidden}.slick-slide{display:none;float:left;height:100%;min-height:1px}[dir=rtl] .slick-slide{float:right}.slick-slide img{display:block}.slick-slide.slick-loading img{display:none}.slick-slide.dragging img{pointer-events:none}.slick-initialized .slick-slide{display:block}.slick-loading .slick-slide{visibility:hidden}.slick-vertical .slick-slide{display:block;height:auto;border:1px solid transparent}.slick-arrow.slick-hidden{display:none}
 
