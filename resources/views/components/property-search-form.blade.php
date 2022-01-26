@@ -53,6 +53,7 @@
                 <option {{request('bedrooms') == '3' ? 'selected="selected"' : ''}} value="3">3</option>
                 <option {{request('bedrooms') == '4' ? 'selected="selected"' : ''}} value="4">4</option>
                 <option {{request('bedrooms') == '5' ? 'selected="selected"' : ''}} value="5">5</option>
+                <option {{request('bedrooms') == '6' ? 'selected="selected"' : ''}} value="6">6</option>
             </select>
         </div>
     </div>

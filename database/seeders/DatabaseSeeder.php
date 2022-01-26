@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Page;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,6 +23,14 @@ class DatabaseSeeder extends Seeder
         \App\Models\Media::factory(500)->create();
 
         //-------- for static page ---------------
+            $user = new User();
+            $user->name = 'Admin';
+            $user->email = 'admin@gmail.com';
+            $user->email_verified_at = now();
+            $user->password = Hash::make('admin');
+            $user->remember_token = Str::random(10);
+            $user->save();
+
             $page = new Page();
             $page->name = 'Contact Us';
             $page->slug = 'contact-us';
@@ -32,6 +43,12 @@ class DatabaseSeeder extends Seeder
             $page->content = 'Lorem ipsum dolor, sit amet rem cumque aliquam dolorem veritatis';
             $page->save();
         //------------ or ------------------
+            // User::create([
+            //     'name'  => 'Shadhin Ahmed',
+            //     'email' => 'shadhinplanet@gmail.com',
+            //     'password'=> Hash::make('123'),
+            // ]);
+
             // Page::create([
             //     'name'  => 'Contact Us',
             //     'slug'  => 'contact-us',

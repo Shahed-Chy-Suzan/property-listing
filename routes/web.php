@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PropertyEnquireController;
+use App\Http\Controllers\DashboardController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -36,8 +37,15 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 });
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::prefix('dashboard')->middleware('auth')->group(function () {
+    Route::get('/', [DashboardController::class,'index'])->name('dashboard');
+    Route::get('properties', [DashboardController::class,'properties'])->name('adminProperties');
+    Route::get('properties/addnew', [DashboardController::class,'createProperty'])->name('createProperty');
+    Route::get('properties/edit/{id}', [DashboardController::class, 'editProperty'])->name('editProperty');
+    Route::put('properties/update/{id}', [DashboardController::class, 'updateProperty'])->name('updateProperty');
+    Route::delete('properties/destroy/{id}', [DashboardController::class, 'destroyProperty'])->name('destroyProperty');
+    Route::post('properties/store', [DashboardController::class, 'storeProperty'])->name('storeProperty');
+});
+
 
 require __DIR__.'/auth.php';

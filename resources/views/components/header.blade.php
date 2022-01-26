@@ -27,8 +27,9 @@
     </div>
 
     <div class="min-w-max text-3xl">
-        <a href="{{ LaravelLocalization::getLocalizedURL('en') }}" title="English">🏁</a>
-        <a href="{{ LaravelLocalization::getLocalizedURL('bn') }}" title="Bangla">🚩</a>
+        <a href="{{ LaravelLocalization::getLocalizedURL('en') }}" title="English Language">🏁</a>
+        <a href="{{ LaravelLocalization::getLocalizedURL('bn') }}" title="Bangla Language">🚩</a>
+        <a href="{{ LaravelLocalization::getLocalizedURL('tr') }}" title="Turkish Language">🏳️</a>
         {{-- &#127482;&#127480; --}}
     </div>
 </div>

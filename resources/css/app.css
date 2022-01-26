@@ -3,7 +3,7 @@
 @import 'tailwindcss/utilities';
 @import 'font-awesome.min.css';
 
-@font-face {
+/* @font-face {
     font-family: "Studio Sans DEMO";
     src: url("../fonts/StudioSansDEMO.eot");
     src: url("../fonts/StudioSansDEMO.eot?#iefix") format("embedded-opentype"),
@@ -51,7 +51,11 @@
     font-weight: bold;
     font-style: normal;
     font-display: swap;
-}
+} */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;700&display=swap');
+/*     font-family: 'Nunito', sans-serif; */
 
 @font-face {
     font-family: 'SutonnyMJ';
@@ -74,11 +78,22 @@ html[lang="bn"] #header_area a {
     font-family: 'SutonnyMJ';
 }
 
+html[lang="tr"] .product_price,
+html[lang="tr"] .page_title,
+html[lang="tr"] .breadcrumb li a,
+html[lang="tr"] .langBN,
+html[lang="tr"] .search-form,
+html[lang="tr"] #header_area a {
+    font-family: 'Nunito', sans-serif;
+}
+
 
 
 html[lang="bn"] .noTranslate{
-    font-family: "Liberation Serif",
-    sans-serif;
+    font-family: 'Nunito', sans-serif;
+}
+html[lang="tr"] .noTranslate{
+    font-family: 'Nunito', sans-serif;
 }
 
 
@@ -98,7 +113,7 @@ body {
 
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Liberation Serif', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-weight: bold;
 }
 
@@ -143,6 +158,18 @@ h1, h2, h3, h4, h5, h6 {
     height: 80px;
 }
 
+
+/* property add/edit form from admin/dashboard */
+.civanoglu-label{
+    @apply uppercase text-sm text-gray-600 cursor-pointer block mb-1
+}
+.civanoglu-input{
+    @apply border border-gray-400 w-full px-4 py-2 rounded-md focus:outline-none text-base
+}
+
+.required-text{
+    @apply text-red-800 text-base ml-1
+}
 
 /* ----- CSS code for search -------- */
 .vertical-search-form > form > div {

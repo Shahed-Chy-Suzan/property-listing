@@ -16,7 +16,8 @@ class CreatePropertiesTable extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('featured_image');
+            $table->string('name_tr');
+            $table->string('featured_image')->default('https://picsum.photos/1200/800');
             $table->unsignedBigInteger('location_id');
             $table->unsignedBigInteger('price');
             $table->unsignedBigInteger('sale')->default(1)->comment('1=sale,2=rent');
@@ -27,8 +28,11 @@ class CreatePropertiesTable extends Migration
             $table->unsignedBigInteger('gross_sqm')->nullable();
             $table->unsignedBigInteger('pool')->nullable()->comment('1=private,2=public,3=both,4=no');
             $table->string('overview');
+            $table->string('overview_tr');
             $table->longText('why_buy')->nullable();
+            $table->longText('why_buy_tr')->nullable();
             $table->longText('description');
+            $table->longText('description_tr');
             $table->timestamps();
 
             //$table->foreign('featured_media_id')->references('id')->on('media');
