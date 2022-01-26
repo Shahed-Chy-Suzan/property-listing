@@ -1,0 +1,3945 @@
+
+//======================================================================================
+
+					******	Project Name :  property-listing	*******
+										-- From	 	 : Rasel Vai
+										-- Laravel-8
+						
+//======================================================================================
+
+
+
+
+//-----------------------------------------Serial----------------------------------------------------
+//======================================================================================================================
+		##-->Authentication,//-->
+//======================================================================================================================
+
+
+
+
+
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
+				//-------------- Resources of Owner --------------
+						-- YouTube_playlist : https://www.youtube.com/playlist?list=PLhPBqF--77ImGEZE6xSS62UVegQOIgP4g
+						-- GitHub_Repo: https://github.com/raselupm/civanoglu				
+								-- GitHub_Repo_student: https://github.com/shadhinplanet/civanoglu
+//---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------------
+		-- My_GitHub_repo: https://github.com/Shahed-Chy-Suzan/property-listing
+//---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------------
+			-- Project run korar jonno url holo('php artisan serve' command diye):  " http://127.0.0.1:8000 "
+			-- Dashboad/Admin panel er dhokar jonno url holo: " http://127.0.0.1:8000/dashboard "
+					-- Url: http://127.0.0.1:8000/dashboard
+					-- email: admin@gmail.com
+					-- password: admin
+//---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------------
+														//------ New in this project ------//
+//---------------------------------------------------------------------------------------------------------------------------------------------
+
+			//-- amra jodi buildin css e kono edit/customize korte chai taile amader k "resources/css/app.css" e giye CSS-Code likte hobe, "public/css/app.css" e likle hobe na, because ota build howa css, && "resources/css/app.css" e css-code add/customize korar build korar jonno obossoy abar "npm run watch" or "npm run dev" chalate hobe.
+								//------------------------------------- resources/css/app.css -----------------------------------------------
+											@import 'tailwindcss/base';
+											@import 'tailwindcss/components';
+											@import 'tailwindcss/utilities';
+																					
+											.container {
+												margin: 0 auto;
+												max-width: 1200px;
+											}
+											
+			//-- Using custom fonts on a website is one of the easiest ways to drastically change the aesthetics of a website. The only problem is that the boilerplate setup can be tedious when working with multiple fonts. That is where the site Transfonter.org comes in. This site makes converting fonts and setting up the boilerplate CSS incredibly easy. In this video I will be demonstrating how to use Transfonter.org to simplify your custom font process. 
+									-- Link: ( https://transfonter.org/ )
+									-- YT Link: ( https://www.youtube.com/watch?v=T-9yBKX7aEI )
+									-- YT Link: ( https://www.youtube.com/watch?v=1wVU3wylx-0&list=PLhPBqF--77ImGEZE6xSS62UVegQOIgP4g&index=3&t=4s )
+
+							-- amra amader icchamotho Font er file/zip download kore nibo amader PC te, then ( https://transfonter.org/ ) ei link e giye font gula add kore amader web er useable code e ropantor korte parbo(ekane ekta css code file o genereate kore dibe), oi website e new generated font er zip file ta download kore nibo, ekn amader laravel project er use er jonno amader k ei new download kora font tar vitor generate howa CSS code gula amader "resources/css/app.css" e opore(import gular er niche) add kore dibo, because ei font gulao build hobe, && ei font gula tho amader project e must rakte hobe, er jonno new download kora font gular file gula sob amader project er "resources" er vitor "fonts" name e ekta folder kore er vitore rekhe diyechi && "resources/css/app.css" file er oi font er css code gulate path ta thik kore diyechi project onosare
+
+										//--------------------------------- resources/css/fonts -------------------------------------------------------------------
+													-- pasted here all fonts file which is generated form "transfonter.org" website.
+
+										//--------------------------------- resources/css/app.css -------------------------------------------------------------------
+													@font-face {
+														font-family: 'Liberation Serif';
+														src: url('../fonts/LiberationSerif-Bold.woff2') format('woff2'),			//-------------------------
+														url('../fonts/LiberationSerif-Bold.woff') format('woff');					//------------------------
+														font-weight: bold;
+														font-style: normal;
+														font-display: swap;
+													}
+
+													@font-face {
+														font-family: 'Liberation Serif';
+														src: url('../fonts/LiberationSerif.woff2') format('woff2'),
+														url('../fonts/LiberationSerif.woff') format('woff');
+														font-weight: normal;
+														font-style: normal;
+														font-display: swap;
+													}
+
+													@font-face {
+														font-family: 'Studio Sans DEMO';
+														src: url('../fonts/StudioSansDEMO.woff2') format('woff2'),
+														url('../fonts/StudioSansDEMO.woff') format('woff');
+														font-weight: normal;
+														font-style: normal;
+														font-display: swap;
+													}
+																					
+													h1,h2,h3,h4,h5,h6 {
+														font-family: "Liberation Serif", sans-serif;
+														font-weight: bold;
+													}
+
+													.section-heading {
+														@apply font-bold text-center text-4xl mb-10;
+													}
+
+													.fullwidth-btn {
+														@apply bg-gray-800 text-white px-6 py-2 rounded w-full inline-block text-center;
+													}
+
+						-- tailwind css e ekta body er jonno ekta default font deya thake amra oita use kobo na, tai amara "tailwind.config.js" e giye font/theme er code e j default font tar name mention kora ache amra ota ke delete/moche amara amader website er body te j font ta use korte chai oi font tar name likhe dibo.
+
+			//-- $table->unsignedBigInteger('type')->default(1)->comment('0=land, 1=appertment, 2=villa');
+
+			//---  Table - migration file ---
+									Schema::create('properties', function (Blueprint $table) {
+											$table->unsignedBigInteger('location_id');
+											$table->foreign('location_id')->references('id')->on('locations');
+									});
+
+			//--	--1--	
+						 $latest_properties = Property::all();			//--query
+								return view('welcome',[
+									'latest_properties' => $latest_properties
+								]);
+					//-2- 	return view('welcome')->with(['latest_properties' => $latest_properties]);
+					//-3- 	return view('property.single')->with('latest_properties',$latest_properties);
+					//-4- 	return view('welcome',compact('latest_properties'));
+
+
+			//--- <a href="{{route('page', 'about-us')}}">About Us</a>
+						-->>	Route::get('/page/{slug}', [PageController::class, 'single'])->name('page');
+							-->>		public function single($slug) {
+											$page = Page::where('slug', $slug)->first();
+
+											if(!empty($page)) {
+												return view('pages.index')->with('page',$page);
+											} else {
+												return abort('404');
+											}
+										}
+
+			//-- <div class="fixed top-0 w-full py-4 px-12 flex justify-between items-center z-30 sticky-header {{request()->routeIs('home') ? '' : 'general-header'}}">
+							-- {{request()->routeIs('home') ? '' : 'general-header'}}
+
+			//---- Slick Slider ---
+						-- link: https://kenwheeler.github.io/slick/
+						-- CSS : <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+						-- JS : <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+			//---  Model - in Property Model ---
+							public function gallery() {
+								return $this->hasMany(Media::class, 'property_id');
+							}
+
+			//--- Factory - Seeder
+
+			//---    if(!empty($request->sale)) {
+							$latest_properties = $latest_properties->where('sale', $request->sale);
+						}
+
+			//---    @foreach($latest_properties as $property)
+							@include('components.single-property-card', ['property' => $property, 'width' => 'w-1/4'])
+						@endforeach
+
+			//---  <a class="inline-block p-4 text-white" href="{{route('properties')}}?type=0"> Land </a>
+
+			//---    <h2> Properties
+								@if(request('type') == '0')
+									- Land
+								@elseif(request('type') == 1)
+									- Apartment
+								@endif
+						</h2>
+
+			//---  <option {{request('type') == '0' ? 'selected="selected"' : ''}} value="0">Land</option>
+
+			//--- https://gist.github.com/
+
+			//--- seeder: 
+									public function run()
+										{
+											// \App\Models\User::factory(10)->create();
+											\App\Models\Location::factory(10)->create();
+											\App\Models\Property::factory(50)->create();
+											\App\Models\Media::factory(500)->create();
+
+										//-------- for static page ---------------
+												$page = new Page();
+												$page->name = 'Contact Us';
+												$page->slug = 'contact-us';
+												$page->content = 'Lorem ipsum dolor, sit amet llam quae rem cumque aliquam';
+												$page->save();
+
+												$page = new Page();
+												$page->name = 'About Us';
+												$page->slug = 'about-us';
+												$page->content = 'Lorem ipsum dolor, sit amet rem cumque aliquam dolorem veritatis';
+												$page->save();
+										//------------ or ------------------
+												// Page::create([
+												//     'name'  => 'Contact Us',
+												//     'slug'  => 'contact-us',
+												//     'content'=> 'Lorem ipsum dolor, sit amet llam quae incidunt quos dolor, totam rem cumque aliquam,'
+												// ]);
+												// Page::create([
+												//     'name'  => 'About Us',
+												//     'slug'  => 'about-us',
+												//     'content'=> 'Lorem ipsum dolor, sit possimus assumenda dolorem veritatis aperiam! Necessitatibus.'
+												// ]);
+
+										}
+
+
+			//--- $locations = Location::select(['id', 'name'])->get();
+
+			//---    <div class="rounded-lg bg-white p-4 relative z-20 shadow-lg home-search">
+								@include('components.property-search-form', ['locations' => $locations])
+						</div>
+
+			//--- 'message'  => $request->message . '\nThis message was sent from '. route('single-property',$propertyID) . ' website.',
+
+			//---  <a class="menu-item {{ request()->is('*/properties/?type=land') ? 'active' : '' }}" href="{{ route('properties') }}/?type=land">{{ __('Land') }}</a>
+					  <a class="menu-item {{ request()->is('*/page/contact-us*') ? 'active' : '' }}" href="{{ route('page','contact-us') }}">{{ __('Contact Us') }}</a>
+					  <a class="inline-block p-4 text-white {{request('type') == '3' ? 'bg-gray-50' : ''}}" href="{{route('properties')}}?type=3">{{ __('Land') }}</a>
+
+			//---  <form action="{{ route('destroyProperty', $item->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete property?')">
+
+
+//------------//------------//------------//---------------//---------------//-------------//-----------//------------//--------------//---------
+//------------//------------//------------//---------------//---------------//-------------//-----------//------------//--------------//---------
+
+
+
+
+
+
+
+
+//==================================================================================================
+											------------------ Start Project -----------------------
+//==================================================================================================
+		-- 1 --install laravel-8 command : composer create-project laravel/laravel property-listing
+				-- php artisan serve
+				-- php artisan migrate
+		
+		
+//--------------------------------------------------- .ENV -------------------------------------------------------------------------------------------
+				 DB_DATABASE= property-listing
+				 
+
+
+
+//==================================================================================================
+											------------------ Authentication -----------------------
+//==================================================================================================
+//------------------------------------------------- Authentication ----------------------------------------------------------------------------------
+		-- ekhane amra authentication er jonno Laravel-breeze use korbo, Link: ( https://laravel.com/docs/8.x/starter-kits ) ,
+	
+			//--Laravel-breeze Documentation in Laravel_Doc: https://laravel.com/docs/8.x/starter-kits#laravel-breeze
+						//--1-- command: composer require laravel/breeze --dev
+						//--2-- command: php artisan breeze:install
+						//--3-- command: npm install
+						//--4-- command: npm run dev
+						//---- command: php artisan migrate
+						
+			//--laravel-breeze automatically Tilwind-CSS install kore dibe.
+			
+			//--ekhane Laravel-breeze install hole amader project er 'web.php' file ta abar new kore generate hoy, jar karone amader agher code gula sob web.php theke chole jabe, now amader k abar code gula likhe/ante hobe(ekhane amra github theke abar web.php er code gual copy kore niye eshchi). taile abar amra home ta pabo jeheto route add kora hoyeche ekn. Laravel-Breeze install korar por amader project er "Controller" folder er moddhe "Auth" name ekta folder chole asbe jar moddhe breeze er sob controller thakbe, ar "resources/views" er moddheo "auth" name ekta folder chole asbe jar moddhe breeze er sob view blade file gula thakbe. e charao "resources/views" er moddhe 'layouts' name e folder, 'components' name e folder & views er root e "dashboard.blade.php" name e ekta file O chole asbe. But ekhane Laravel-Breeze er sob view file mane design gula Tilwind-CSS e kora. amra jodi bootstrap use korte chai taile amader k esob remove kore scratch theke bootstap likte hobe ei file.
+
+
+		//--ekhane amra jani ekn views/welcome.blade.php tekhe amader project ta ekn run hocche initially, ekhane "dashboard.blade.php" page e code er tag e  ( <x-app-layout></x-app-layout> ) dhara "views/layouts" folder er "app.blade.php" file e run koracche, amra jodi ekhane guest er jonno page/layout ta show korate chai taile amader k likte hobe ( <x-guest-layout> </x-guest-layout> ), taile ekn amra jodi amader welcome page e edit kore new kore body,header,footer diye customize korte chai taile code holo: 
+					
+					//-----------------------------views/welcome.blade.php-----------------------------------------------------------
+									<x-guest-layout>
+										body of code will go here...text-laravel-project...
+									</x-guest-layout>
+									
+					//-----------------------------views/components/header.balde.php-----------------------------------------------------------
+									header of the project...
+
+					//-----------------------------views/components/footer.balde.php-----------------------------------------------------------
+									footer of the project...		
+					
+					//-----------------------------views/layouts/guest.balde.php-----------------------------------------------------------
+								    <body>
+										<div class="font-sans text-gray-900 antialiased">
+											@include('components.header')					//------------------------------
+											{{ $slot }}
+											@include('components.footer')					//------------------------------
+										</div>
+									</body>
+
+				//---------------------- Project run output: ---------------------------------------
+									header of the project...body of code will go here...text-laravel-project...footer of the project...		
+
+
+
+
+		//--amra jodi buildin css e kono edit/customize korte chai taile amader k "resources/css/app.css" e giye CSS-Code likte hobe, "public/css/app.css" e likle hobe na, because ota build howa css, && "resources/css/app.css" e css-code add/customize korar build korar jonno obossoy abar "npm run watch" or "npm run dev" chalate hobe.
+					//------------------------------------- resources/css/app.css -----------------------------------------------
+								@import 'tailwindcss/base';
+								@import 'tailwindcss/components';
+								@import 'tailwindcss/utilities';
+																		
+								.container {
+									margin: 0 auto;
+									max-width: 1200px;
+								}
+								
+								
+								
+//==================================================================================================
+											------------------ Custom Font  || Transfonter -----------------------
+//==================================================================================================
+		//----------------------------------------------- Custom Font || Transfonter -------------------------------------------------------------
+				-- Using custom fonts on a website is one of the easiest ways to drastically change the aesthetics of a website. The only problem is that the boilerplate setup can be tedious when working with multiple fonts. That is where the site Transfonter.org comes in. This site makes converting fonts and setting up the boilerplate CSS incredibly easy. In this video I will be demonstrating how to use Transfonter.org to simplify your custom font process. 
+						-- Link: ( https://transfonter.org/ )
+						-- YT Link: ( https://www.youtube.com/watch?v=T-9yBKX7aEI )
+						-- YT Link: ( https://www.youtube.com/watch?v=1wVU3wylx-0&list=PLhPBqF--77ImGEZE6xSS62UVegQOIgP4g&index=3&t=4s )
+
+				-- amra amader icchamotho Font er file/zip download kore nibo amader PC te, then ( https://transfonter.org/ ) ei link e giye font gula add kore amader web er useable code e ropantor korete parbo(ekane ekta css code file o genereate kore dibe), oi website e new generated font er zip file ta download kore nibo, ekn amader laravel project er use er jonno amader k ei new download kora font tar vitor generate howa CSS code gula amader "resources/css/app.css" e opore(import gular er niche) add kore dibo, because ei font gulao build hobe, && ei font gula tho amader project e must rakte hobe, er jonno new download kora font gular file gula sob amader project er "resources" er vitor "fonts" name e ekta folder kore er vitore rekhe diyechi && "resources/css/app.css" file er oi font er css code gulate path ta thik kore diyechi project onosare
+
+							//--------------------------------- resources/css/fonts -------------------------------------------------------------------
+										-- pasted here all fonts file which is generated form "transfonter.org" website.
+
+							//--------------------------------- resources/css/app.css -------------------------------------------------------------------
+										@font-face {
+											font-family: 'Liberation Serif';
+											src: url('../fonts/LiberationSerif-Bold.woff2') format('woff2'),			//-------------------------
+											url('../fonts/LiberationSerif-Bold.woff') format('woff');					//------------------------
+											font-weight: bold;
+											font-style: normal;
+											font-display: swap;
+										}
+
+										@font-face {
+											font-family: 'Liberation Serif';
+											src: url('../fonts/LiberationSerif.woff2') format('woff2'),
+											url('../fonts/LiberationSerif.woff') format('woff');
+											font-weight: normal;
+											font-style: normal;
+											font-display: swap;
+										}
+
+										@font-face {
+											font-family: 'Studio Sans DEMO';
+											src: url('../fonts/StudioSansDEMO.woff2') format('woff2'),
+											url('../fonts/StudioSansDEMO.woff') format('woff');
+											font-weight: normal;
+											font-style: normal;
+											font-display: swap;
+										}
+										
+										h1,h2,h3,h4,h5,h6 {
+											font-family: "Liberation Serif", sans-serif;
+											font-weight: bold;
+										}
+
+										.section-heading {
+											@apply font-bold text-center text-4xl mb-10;
+										}
+
+										.fullwidth-btn {
+											@apply bg-gray-800 text-white px-6 py-2 rounded w-full inline-block text-center;
+										}
+
+
+			-- tailwind css e ekta body er jonno ekta default font deya thake amra oita use kobo na, tai amara "tailwind.config.js" e giye font/theme er code e j default font tar name mention kora ache amra ota ke delete/moche amara amader website er body te j font ta use korte chai oi font tar name likhe dibo.
+								//--------------------------------------- tailwind.config.js ---------------------------------------------------------------
+									theme: {
+										extend: {
+											fontFamily: {
+											     //sans: ['Nunito', ...defaultTheme.fontFamily.sans],		//default chilo 'Nunito' font ta.
+											     sans: ['Studio Sans DEMO', ...defaultTheme.fontFamily.sans],
+											},
+										},
+									},
+
+			-- ekn " layouts/guest.blade.php" file e giye opore j google font er ekta cdn add kora ache ota k amra comment kore dibo, because amra google font er kono font ekhane use kortechi na.
+			
+			-- amader website e kon likha ta kon font er ta easily check korar jonno amra chaile bowser extention "what font" ta use korte pari, jar maddhome amra kono ekta likha tei hover korlei amader k oi extention ta likha tar font show korbe.
+
+
+
+//------------------------------------------------- CSS || resources/css/app.css ---------------------------------------------------------
+				.section-heading {
+					@apply font-bold text-center text-4xl mb-10;
+				}
+
+				.fullwidth-btn {
+					@apply bg-gray-800 text-white px-6 py-2 rounded w-full inline-block text-center;
+				}
+
+//---------------------//--------------//--------------//-----------------//----------------//--------------------//----------------------//---------------------//----------
+//---------------------//--------------//--------------//-----------------//----------------//--------------------//----------------------//---------------------//----------
+//---------------------//--------------//--------------//-----------------//----------------//--------------------//----------------------//---------------------//----------
+
+
+
+
+
+//=================================================================================================
+												//-------------------- Class #4 --------------------
+//=================================================================================================
+
+
+		//---------------------------------------------------------- resources/css/app.css -----------------------------------------
+						require('./bootstrap');
+
+						import Alpine from 'alpinejs';
+						import jQuery from './jquery-3.6.0.slim.min';		//-----------------------------------
+
+						window.Alpine = Alpine;
+
+						Alpine.start();
+
+						jQuery(window).scroll(function() {						//--------------------------------
+							const scroll = jQuery(window).scrollTop();
+
+							if (scroll >= 50) {
+								jQuery('.sticky-header').addClass('sticky-header-active');
+							} else {
+								jQuery('.sticky-header').removeClass('sticky-header-active');
+							}
+						});
+
+
+		//----------------------------------------------  resources/views/components/header.blade.php -----------------------------------------
+					<div class="fixed top-0 w-full py-4 px-12 flex justify-between items-center z-30 sticky-header {{request()->routeIs('home') ? '' : 'general-header'}}">			//---------------------- sticky-header
+
+
+		//----------------------------------------------------------  resources/css/app.css ------------------------------------------------
+					.sticky-header-active {
+						background-color: #fff;
+					}
+
+					.sticky-header-active a{color:#333}
+
+
+
+
+		//---- create model,controller,migration table named with "property", Command: php artisan make:model Property -mc
+
+
+
+
+		//----------------------------------------------------------  properties table --------------------------------------------------------------
+							Schema::create('properties', function (Blueprint $table) {
+								$table->id();
+								$table->string('name');
+								$table->string('featured_image');
+								$table->unsignedBigInteger('price');
+								$table->unsignedBigInteger('sale')->default(1)->comment('0=rent, 1=sale');
+								$table->unsignedBigInteger('type')->default(1)->comment('0=land, 1=appertment, 2=villa');
+								$table->string('bedrooms')->nullable();
+								$table->timestamps();
+							});
+							
+					//command: php artisan migrate:fresh
+					
+					
+
+
+
+//=================================================================================================
+												//-------------------- Class #5 --------------------
+//=================================================================================================
+			-- create HomeController --> command: php artisan make:controller HomeController
+
+
+		//--------------------------------------------- HomeController ---------------------------------------------------------------------
+							<?php
+
+							namespace App\Http\Controllers;
+
+							use Illuminate\Http\Request;
+							use App\Models\Property;
+
+							class HomeController extends Controller
+							{
+								public function home()
+								{
+									$property = Property::all();
+									return view('welcome')->with(['properties' => $property]);
+								}
+							}
+
+
+		//--------------------------------------------- web.php ---------------------------------------------------------------------
+				Route::get('/', [HomeController::class, 'home'])->name('home');
+				Route::get('/property/{id}', [PropertyController::class, 'single'])->name('single-property');
+		
+		
+		
+		
+		//--------------------------------------------- HomeController ---------------------------------------------------------------------
+					<?php
+
+						namespace App\Http\Controllers;
+
+						use Illuminate\Http\Request;
+						use App\Models\Property;
+
+						class HomeController extends Controller
+						{
+							public function home()
+							{
+									$latest_properties = Property::all();
+									return view('welcome',[
+										'latest_properties' => $latest_properties
+									]);
+									// return view('welcome')->with(['latest_properties' => $latest_properties]);
+									// return view('welcome',compact('latest_properties'));
+									// return view('property.single')->with('property',$property);
+							}
+					}
+					
+		//--------------------------------------------- resources/views/welcome.blade.php -----------------------------------------------
+					<x-guest-layout>
+						<div class="relative z-10 pt-48 pb-52 bg-cover bg-center" style="background-image: url(/img/hero-bg.jpg)">
+							<div class="absolute h-full w-full bg-black opacity-70 top-0 left-0 z-10"></div>
+							<div class="container relative z-20 text-white text-center text-2xl">
+								<h2 class="font-bold text-5xl mb-8">Lorem ipsum dolor sit amet,<br/> consectetur adipisicing elit. Fuga, totam.</h2>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, mollitia.</p>
+							</div>
+						</div>
+
+						<!-- Search From Area -->
+						<div class="-mt-10">
+							<div class="container">
+								<div class="rounded-lg bg-white p-4 relative z-20 shadow-lg">
+									<form action="#" method="GET" class="flex justify-between">
+										@csrf
+										<div class="flex w-7/12 justify-between items-center">
+											<div class="flex flex-col mx-3">
+												<select name="" id="" class="border-0 focus:ring-0">
+													<option value="#">Buy or Rent</option>
+													<option value="#">Buy</option>
+													<option value="#">Rent</option>
+												</select>
+											</div>
+											<div class="py-3 self-center border-gray-500 border"></div>
+											<div class="flex flex-col mx-3">
+												<select name="" id="" class="border-0 focus:ring-0">
+													<option value="#">Type</option>
+													<option value="#">Buy</option>
+													<option value="#">Rent</option>
+												</select>
+											</div>
+											<div class="py-3 self-center border-gray-500 border"></div>
+											<div class="flex flex-col mx-3">
+												<select name="" id="" class="border-0 focus:ring-0">
+													<option value="#">Price</option>
+													<option value="#">Buy</option>
+													<option value="#">Rent</option>
+												</select>
+											</div>
+											<div class="py-3 self-center border-gray-500 border"></div>
+											<div class="flex flex-col mx-3">
+												<select name="" id="" class="border-0 focus:ring-0">
+													<option value="#">Bedrooms</option>
+													<option value="#">Buy</option>
+													<option value="#">Rent</option>
+												</select>
+											</div>
+										</div>
+										<div class="flex justify-between items-center w-5/12 ml-5">
+											<input type="search" placeholder="Try to search for something" class="rounded-lg px-4 py-2 w-full mr-4 focus:border-gray-700 focus:ring-0">
+											<button type="submit" class="btn">Search</button>
+										</div>
+									</form>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="py-20 text-center">
+							<div class="container">
+								<h2 class="section-heading">Lorem ipsum dolor sit amet, consectetur<br/> adipisicing elit. A aut autem dolorum <span class="underline">quis vitae!</span></h2>
+								<p class="text-gray-500 text-2xl font-bold mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, voluptatem!</p>
+
+								<a class="border-2 border-gray-700 rounded-2xl text-xl px-8 py-3 inline-block" href="">Start The Searching</a>
+
+								<h2 class="section-heading pt-14">Lorem ipsum dolor sit amet adipisicing<br/> adipisicing elit. A aut lorum </h2>
+
+								<div class="w-4/5 mx-auto">
+									<div class="flex -mx-3 flex-wrap justify-between mt-10">
+										<div class="w-3/12  mt-10 mx-3">
+											<h3 class="mb-2 text-xl">Huge selection of real estate</h3>
+											<p class="text-xs text-center mx-auto w-4/6">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+												Dolore</p>
+										</div>
+										<div class="w-3/12  mt-10 mx-3">
+											<h3 class="mb-2 text-xl">Huge selection of real estate</h3>
+											<p class="text-xs text-center mx-auto w-4/6">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+												Dolore</p>
+										</div>
+										<div class="w-3/12  mt-10 mx-3">
+											<h3 class="mb-2 text-xl">Huge selection of real estate</h3>
+											<p class="text-xs text-center mx-auto w-4/6">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+												Dolore</p>
+										</div>
+										<div class="w-3/12  mt-10 mx-3">
+											<h3 class="mb-2 text-xl">Huge selection of real estate</h3>
+											<p class="text-xs text-center mx-auto w-4/6">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+												Dolore</p>
+										</div>
+										<div class="w-3/12  mt-10 mx-3">
+											<h3 class="mb-2 text-xl">Huge selection of real estate</h3>
+											<p class="text-xs text-center mx-auto w-4/6">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+												Dolore</p>
+										</div>
+										<div class="w-3/12  mt-10 mx-3">
+											<h3 class="mb-2 text-xl">Huge selection of real estate</h3>
+											<p class="text-xs text-center mx-auto w-4/6">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+												Dolore</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+
+						<div class="container text-center pt-14">
+							<h2 class="section-heading">More information about us</h2>
+							<div class="relative mt-10 mb-14 bg-cover rounded-xl py-24 bg-center"
+								 style="background-image: url('/img/hero-bg.jpg')">
+								<div class="absolute w-full h-full rounded-xl opacity-50 bg-black left-0 top-0"></div>
+								<div class="relative z-20">
+									<a href="" class="text-white text-xl flex flex-col justify-center items-center"><span class="border-2 border-white w-12 h-12 text-center pt-1 pl-1 leading-10 text-2xl hover:border-yellow-500 duration-200 rounded-full mb-2"><i class="fa fa-play"></i></span>Watch the video</a>
+								</div>
+							</div>
+
+							<div class="text-xl">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam architecto autem corporis debitis
+									dignissimos doloremque eius error explicabo impedit iste libero magnam, natus officiis omnis quasi
+									ratione sequi totam, vero.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam architecto
+									autem corporis debitis
+									dignissimos doloremque eius error explicabo impedit iste libero magnam, natus officiis omnis quasi
+									ratione sequi totam, vero.</p>
+
+							</div>
+						</div>
+
+
+						<div class="container pt-14">
+							<div class="flex justify-between ">
+								<div class="flex-1 mr-10 text-lg leading-normal">
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores deleniti ipsam iure laborum nemo
+										non odit quis quod, sint tempore. Ab culpa cupiditate error, eum incidunt officiis rem sapiente
+										voluptate.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores deleniti ipsam iure
+										laborum nemo non odit quis quod, sint tempore. Ab culpa cupiditate error, eum incidunt officiis rem
+										sapiente voluptate.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores deleniti
+										ipsam iure laborum nemo non odit quis quod, sint tempore. Ab culpa cupiditate error, eum incidunt
+										officiis rem sapiente voluptate.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+										deleniti ipsam iure laborum nemo non odit quis quod, sint tempore. Ab culpa cupiditate error, eum
+										incidunt officiis rem sapiente voluptate</p>
+								</div>
+								<div class="flex-1 ml-10">
+									<img class="rounded" src="/img/hero-bg.jpg" alt="">
+								</div>
+							</div>
+						</div>
+						<div class="container pt-14">
+							<div class="flex justify-center items-center">
+								<a href="" class="btn">Start searching with filters</a>
+								<p class="mx-10">or</p>
+								<a href="" class="btn-outline">Start searching on the map</a>
+							</div>
+						</div>
+
+						<!-- Last Added Objects -->
+						<div class="container py-14">
+							<h2 class="section-heading">Last added objusts</h2>
+							<div class="flex -mx-2 justify-between mt-10">
+
+								@foreach($latest_properties as $property)
+								<div class="flex-1 mx-2 shadow-lg relative rounded-md">
+									<a href=""
+									   class="absolute left-3 w-9 h-9 leading-10 self-center text-base top-3 bg-black text-white bg-opacity-25 text-center hover:bg-yellow-500 hover:text-white duration-200 rounded-full text-base"><i
+											class="fa fa-heart-o"></i></a>
+									<div class="py-20 bg-center" style="background-image: url('/img/hero-bg.jpg')"></div>
+									<div class="p-3">
+										<h2 class="leading-0 text-base">{{$property->name}}</h2>
+										<h3 class="text-2xl py-3">{{$property->price}} TK</h3>
+										<div class="border-t-2">
+											<ul class="flex items-center -mx-1 my-4">
+												<li class="px-2 py-1 bg-blue-50 rounded-md text-xs mx-1 shadow-sm">7 bedrooms</li>
+												<li class="px-2 py-1 bg-blue-50 rounded-md text-xs mx-1 shadow-sm">5 bedrooms</li>
+												<li class="px-2 py-1 bg-blue-50 rounded-md text-xs mx-1 shadow-sm">15000 ft<sup>2</sup></li>
+											</ul>
+											<a href="{{route('single-property', $property->id)}}" class="btn w-full text-center">More details</a>
+										</div>
+									</div>
+								</div>
+								@endforeach
+
+
+							</div>
+						</div>
+
+					</x-guest-layout>
+
+
+
+
+		//--------------------------------------------- web.php ---------------------------------------------------------------------
+					Route::get('/property/{id}', [PropertyController::class, 'single'])->name('single-property');
+		
+
+		
+		//--------------------------------------------- PropertyController ---------------------------------------------------------------------
+							<?php
+
+							namespace App\Http\Controllers;
+
+							use Illuminate\Http\Request;
+							use App\Models\Property;
+
+							class PropertyController extends Controller
+							{
+								public function singleProperty($id)
+								{
+									$property = Property::findOrFail($id);
+									return view('property.single')->with('property',$property);
+								}
+							}
+							
+							
+							
+							
+//=================================================================================================
+												//-------------------- Class #6 --------------------
+//=================================================================================================
+
+		//--------------------------------------------- header.blade.php ---------------------------------------------------------------------
+				//-- <div class="fixed top-0 w-full py-4 px-12 flex justify-between items-center z-30 sticky-header {{request()->routeIs('home') ? '' : 'general-header'}}">
+						-- {{request()->routeIs('home') ? '' : 'general-header'}}
+						
+		//--------------------------------------------- resources/css/app.css ---------------------------------------------------------------------
+						.general-header a {
+							color: #000;
+						}
+						.general-header {
+							background-color: #fff;
+						}
+		
+		//--------------------------------------------- jQuery Deleted ---------------------------------------------------------------------
+				-- slick slider ta use korte gele amader problem hocchilo tai er solution hisebe amra ekn, jQuery cdn file ta remove kore dibo and NPM er maddhome jQuery install korbo ei project e. r er jonno command hocche: ( npm install --save jquery )
+				
+				//-------------------------------------------- resources/js/app.js (jquery applied) --------------------------------------------------
+						window.$ = window.jQuery = require('jquery');
+
+						jQuery(window).scroll(function() {
+							const scroll = jQuery(window).scrollTop();
+
+							if (scroll >= 50) {
+								jQuery('.sticky-header').addClass('sticky-header-active');
+							} else {
+								jQuery('.sticky-header').removeClass('sticky-header-active');
+							}
+						});
+
+
+
+		
+		//--------------------------------------------------------------------------------------------------------------------------------------------
+													//-------------------- Slick Slider -----------------------
+		//---------------------------------------------------------------------------------------------------------------------------------------------
+				-- link: https://kenwheeler.github.io/slick/
+				
+				-- CSS : <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+				-- JS : <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+				
+				-- amader ei project e amra cdn use koretehci na, css & js cdn theke direct code gula download kore file akaare niye & oi file ta project e link/require kore use kortechi, tai ekn css er cdn er code gula minify kore amader project er "resources/css/app.css" e rekehchi, & js er cdn theke code niye file akare save kore oi ta "resources/css/js" folder er vitor rakbo, then "resources/css/app" file e require kore nithe hobe,
+									
+		
+					//-------------------------------------------- resources/js/app.js (jquery applied) --------------------------------------------------
+								require('./bootstrap');
+								import Alpine from 'alpinejs';
+								// import jQuery from './jquery-3.6.0.slim.min';  //deleted later, and installed with NPM
+								window.Alpine = Alpine;
+								Alpine.start();
+
+
+								window.$ = window.jQuery = require('jquery'); //jquery added here after appling npm install --save jquery
+
+								require('./slick-1.8.1.min');       //slick added here
+
+								jQuery(window).scroll(function() {                //for navbar
+									const scroll = jQuery(window).scrollTop();
+
+									if (scroll >= 50) {
+										jQuery('.sticky-header').addClass('sticky-header-active');
+									} else {
+										jQuery('.sticky-header').removeClass('sticky-header-active');
+									}
+								});
+
+								jQuery(document).ready(function ($) {   //for slick slider
+									$('.gallery-slider').slick({
+											asNavFor: '.thumbnail-slider',
+											slidesToShow: 1,
+											slidesToScroll: 1,
+											dots: false,
+											arrows: true,
+											prevArrow: '<svg class="prevArrowBtn" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M20 40C8.9543 40 -2.7141e-06 31.0457 -1.74846e-06 20C-7.8281e-07 8.9543 8.95431 -2.7141e-06 20 -1.74846e-06C31.0457 -7.8281e-07 40 8.9543 40 20C40 31.0457 31.0457 40 20 40ZM16.1206 13.5198C15.7554 13.1055 15.1632 13.1055 14.798 13.5198L9.58704 19.4308C9.22182 19.8451 9.22182 20.5168 9.58704 20.931L14.798 26.8421C15.1632 27.2563 15.7554 27.2563 16.1206 26.8421C16.4858 26.4278 16.4858 25.7561 16.1206 25.3418L12.4912 21.2248L29.6865 21.2248C30.2388 21.2248 30.6865 20.7771 30.6865 20.2248C30.6865 19.6725 30.2388 19.2248 29.6865 19.2248L12.4138 19.2248L16.1206 15.02C16.4858 14.6057 16.4858 13.934 16.1206 13.5198Z" fill="#ffffff"/></svg>',
+											nextArrow: '<svg class="nextArrowBtn" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M20 3.49691e-06C31.0457 5.4282e-06 40 8.95431 40 20C40 31.0457 31.0457 40 20 40C8.9543 40 1.56562e-06 31.0457 3.49691e-06 20C5.4282e-06 8.95431 8.95431 1.56562e-06 20 3.49691e-06ZM23.8794 26.4802C24.2446 26.8945 24.8368 26.8945 25.202 26.4802L30.413 20.5692C30.7782 20.1549 30.7782 19.4833 30.413 19.069L25.202 13.1579C24.8368 12.7437 24.2446 12.7437 23.8794 13.1579C23.5142 13.5722 23.5142 14.2439 23.8794 14.6582L27.5088 18.7752L10.3135 18.7752C9.7612 18.7752 9.31348 19.2229 9.31348 19.7752C9.31348 20.3275 9.76119 20.7752 10.3135 20.7752L27.5862 20.7752L23.8794 24.98C23.5142 25.3943 23.5142 26.066 23.8794 26.4802Z" fill="#ffffff"/></svg>', //fill="7C8B9C"
+									});
+									$('.thumbnail-slider').slick({
+											asNavFor: '.gallery-slider',
+											slidesToShow: 5,
+											slidesToScroll: 1,
+											dots: false,
+											arrows: true,
+											centerMode: true,
+											focusOnSelect: true,
+											centerPadding: '30px',
+											prevArrow: '<i class="fa fa-angle-left slick-prev prevArrowBtn"></i>',
+											nextArrow: '<i class="fa fa-angle-right slick-next nextArrowBtn"></i>'
+									});
+								});
+
+
+
+
+		//--------------------------------------------- resources/css/app.css ---------------------------------------------------------------------
+							.single-gallery-item {
+								height: 600px;
+							}
+
+							.single-thumbnail-item {
+								height: 80px;
+							}
+
+							/* ----- CSS code for slick slider arrow buttons -------- */
+							.nextArrowBtn{
+								position: absolute;
+								z-index: 1;
+								top: 50%;
+								right: 5px;
+								color: #ffffff;
+							}
+							.prevArrowBtn{
+								position: absolute;
+								z-index: 1;
+								top: 50%;
+								left: 5px;
+								color: #ffffff;
+							}
+
+		//--------------------------------------------- views/property/single.blade.php ----------------------------------------------------------------
+					<div id="slider" class="">
+						<div class="gallery-slider">
+							<div style="background-image: url(/img/hero-bg.jpg)" class="single-gallery-item bg-cover bg-center"></div>
+							<div style="background-image: url(/img/hero-bg.jpg)" class="single-gallery-item bg-cover bg-center"></div>
+							<div style="background-image: url(/img/hero-bg.jpg)" class="single-gallery-item bg-cover bg-center"></div>
+								//-------------------or----------------------//
+							@foreach($property->gallery as $gallery)
+								<div style="background-image: url({{$gallery->name}})" class="single-gallery-item bg-cover bg-center"></div>
+							@endforeach
+						</div>
+
+						<div class="thumbnail-slider">
+							<div style="background-image: url(/img/hero-bg.jpg)" class="single-thumbnail-item bg-cover bg-center"></div>
+							<div style="background-image: url(/img/hero-bg.jpg)" class="single-thumbnail-item bg-cover bg-center"></div>
+							<div style="background-image: url(/img/hero-bg.jpg)" class="single-thumbnail-item bg-cover bg-center"></div>
+								//-------------------or----------------------//
+							@foreach($property->gallery as $gallery)
+								<div style="background-image: url({{$gallery->name}})" class="single-thumbnail-item bg-cover bg-center"></div>
+							@endforeach
+						</div>
+					</div>
+		
+		
+							
+							
+							
+							
+//=================================================================================================
+												//-------------------- Class #7 --------------------
+//=================================================================================================
+		-- command: php artisan make:model Media -mc
+		-- command: php artisan make:model Location -mc
+		
+		//--------------------------------------------- database/migration/media table ---------------------------------------------------------------------
+					Schema::create('media', function (Blueprint $table) {
+						$table->id();
+						$table->string('name');
+						$table->unsignedBigInteger('property_id')->nullable();
+						$table->timestamps();
+					});
+		
+		
+		//--------------------------------------------- database/migration/properties table ---------------------------------------------------------------------
+					Schema::create('properties', function (Blueprint $table) {
+							$table->id();
+							$table->string('name');
+							$table->string('featured_image');
+							$table->unsignedBigInteger('location_id');
+							$table->unsignedBigInteger('price');
+							$table->unsignedBigInteger('sale')->default(1)->comment('0=rent,1=sale');
+							$table->unsignedBigInteger('type')->default(1)->comment('0=land,1=apartment,2=villa');
+							$table->unsignedBigInteger('bedrooms')->nullable();
+							$table->unsignedBigInteger('bathrooms')->nullable();
+							$table->unsignedBigInteger('net_sqm')->nullable();
+							$table->unsignedBigInteger('gross_sqm')->nullable();
+							$table->unsignedBigInteger('pool')->nullable()->comment('0=no,1=private,2=public,3=both');
+							$table->string('overview');
+							$table->longText('why_buy')->nullable();
+							$table->longText('description');
+							$table->timestamps();
+
+							//$table->foreign('featured_media_id')->references('id')->on('media');
+							$table->foreign('location_id')->references('id')->on('locations');
+					});
+		
+		
+		//--------------------------------------------- database/migration/media table ---------------------------------------------------------------------
+						Schema::create('locations', function (Blueprint $table) {
+							$table->id();
+							$table->string('name');
+							$table->timestamps();
+						});
+						
+						
+		//-- migration file e mane database table e "properties" e "featured_media_id" && "location_id" foreign_key hisebe thakai amader k obossoy database_table gulate "properties" table ta baki 2ta(medias,locations) table theke niche thakte hobe, So ei jonno amra ekn migrate command(php artisan migrate) chalanor aghe amader database er table gular name rename kore "properties" table ta onno 2ta theke nicher order e niche aschi, then now migrate or onno command chalabo. 
+				--command : php artisan migrate:fresh --seed
+						-- ekhane "'fresh" deowar karone amader agher sob table er data gula chole jabe, tar mane sob agher table gula drop hoye new kore abar sob table migrate hoyeche/hobe.
+		
+				
+		//--------------------------------------------- app/Models/Property.php ---------------------------------------------------------------------
+					<?php
+
+					namespace App\Models;
+
+					use Illuminate\Database\Eloquent\Factories\HasFactory;
+					use Illuminate\Database\Eloquent\Model;
+
+					class Property extends Model
+					{
+						use HasFactory;
+
+					//    public function featured() {
+					//        $this->belongsTo(Media::class, 'featured_media_id');
+					//    }
+
+						public function location() {
+							return $this->belongsTo(Location::class, 'location_id');
+						}
+
+						public function gallery() {
+							return $this->hasMany(Media::class, 'property_id');
+						}
+					}
+
+
+
+
+//=================================================================================================
+												//-------------------- Class #8  ||  Factory --------------------
+//=================================================================================================
+		-- eikhane amra laravel factory R seeder er maddhome database e dummy data insert korbo.
+		
+		-- amader ekhane "PropertyFactory" te 'location_id' lagbe abar "MediaFactory" te 'property_id' lagbe, So ejnno migration/Factory/seeder e jeno jamela na hoy sejonno amara database-migration file gula rename kore sorting kore nibo jathe  opore "LocationFactory" then "PropertyFactory" then "MediaFactory" thake.
+		
+		//-- Command:  php artisan make:factory MediaFactory
+		//-- Command:  php artisan make:factory LocationFactory
+		//-- Command:  php artisan make:factory PropertyFactory
+		
+		//-- Ei link theke amra amader seeder er jonno random image nibo, mane oder url ta use korbo, Link: https://picsum.photos/
+		
+		//-- Sob factory file + DatabaseSeeder file e code likha shesh hole sobar shesh amader k database e data insert/dhokanor jonno ei command chalate hobe, taile oporer file e code e likha 3ta table eei eksathe random/dummy data create/insert hoye jabe,, 
+						-- Now run command: php artisan migrate:fresh --seed
+		
+		
+		//----------------------------------------------------- database/factories/LocationFactory.php ----------------------------------------------------
+							<?php
+
+							namespace Database\Factories;
+
+							use Illuminate\Database\Eloquent\Factories\Factory;
+
+							class LocationFactory extends Factory
+							{
+								/**
+								 * Define the model's default state.
+								 *
+								 * @return array
+								 */
+								public function definition()
+								{
+									return [									//----------------------------------------
+										'name' => $this->faker->word
+									];
+								}
+							}
+
+
+		//----------------------------------------------------- database/factories/PropertyFactory.php ----------------------------------------------------
+									<?php
+
+									namespace Database\Factories;
+
+									use Illuminate\Database\Eloquent\Factories\Factory;
+									use App\Models\Location;											//---------------------------------
+
+									class PropertyFactory extends Factory
+									{
+										/**
+										 * Define the model's default state.
+										 *
+										 * @return array
+										 */
+										public function definition()
+										{
+											return [																		//---------------------------------
+												'name' => $this->faker->sentence,
+												'featured_image' => 'https://picsum.photos/1200/800',
+												'location_id' => Location::all()->random()->id,
+												'price' => rand(100000,500000),
+												'sale' => rand(0,1),
+												'type' => rand(0,2),
+												'bedrooms' => rand(1,6),
+												'bathrooms' => rand(1,5),
+												'net_sqm' => rand(55,300),
+												'gross_sqm' => rand(65,450),
+												'pool' => rand(0,3),
+												'overview' => $this->faker->text(100),
+												'why_buy' => $this->faker->text(1000),
+												'description' => $this->faker->text(500)
+											];
+										}
+									}
+
+
+
+		//----------------------------------------------------- database/factories/MediaFactory.php ----------------------------------------------------
+								<?php
+
+								namespace Database\Factories;
+
+								use Illuminate\Database\Eloquent\Factories\Factory;
+								use App\Models\Property;											//---------------------------------
+
+								class MediaFactory extends Factory
+								{
+									/**
+									 * Define the model's default state.
+									 *
+									 * @return array
+									 */
+									public function definition()
+									{
+										return [															//---------------------------------
+											'name' => 'https://picsum.photos/1200/800',
+											'property_id' => Property::all()->random()->id
+										];
+									}
+								}
+								
+								//---------------------- optional added -----------------------------------
+											public function definition()
+											{
+												$image = ['https://picsum.photos/1200/800','https://source.unsplash.com/random/1200x800'];
+
+												return [
+													'name'  => $image[rand(0,1)],
+													'property_id'   => Property::all()->random()->id
+												];
+											}
+
+
+		//----------------------------------------------------- database/seeders/DatabaseSeeder.php ----------------------------------------------------
+								<?php
+
+								namespace Database\Seeders;
+
+								use Illuminate\Database\Seeder;
+
+								class DatabaseSeeder extends Seeder
+								{
+									/**
+									 * Seed the application's database.
+									 *
+									 * @return void
+									 */
+									public function run()
+									{
+										// \App\Models\User::factory(10)->create();
+										\App\Models\Location::factory(10)->create();
+										\App\Models\Property::factory(50)->create();
+										\App\Models\Media::factory(500)->create();
+									}
+								}
+
+
+		//-- Now run command: php artisan migrate:fresh --seed
+					-- taile oporer file e code e likha 3ta table eei eksathe random/dummy data create/insert hoye jabe,, 
+
+
+
+
+//=================================================================================================
+												//-------------------- Class #9 --------------------
+//=================================================================================================
+		
+		//-- eikhan amra single property page ta thik korbo, slick slider e image gula database theke data(image) ene fix korbo.
+		
+		//------------------------------------------- app/Http/Controllers/HomeController.php -------------------------------------------------------------
+						public function home()
+						{
+							// $latest_properties = Property::all();
+							$latest_properties = Property::latest()->get()->take(4);
+							return view('welcome',[
+								'latest_properties' => $latest_properties
+							]);
+							// return view('welcome')->with(['latest_properties' => $latest_properties]);
+							// return view('property.single')->with('property',$property);
+							// return view('welcome',compact('latest_properties'));
+						}
+						
+		//------------------------------------------- app/Http/Controllers/PropertyController.php -------------------------------------------------------------
+							<?php
+
+							namespace App\Http\Controllers;
+
+							use Illuminate\Http\Request;
+							use App\Models\Property;
+
+							class PropertyController extends Controller
+							{
+								public function singleProperty($id)
+								{
+									$property = Property::findOrFail($id);
+									//dd($property->gallery()->count());
+									return view('property.single')->with('property',$property);
+								}
+							}
+
+		//---------------------------------------------------- resources/views/property/single.blade.php -------------------------------------------------------------------
+					<x-guest-layout>
+						{{-- Breadcrumb --}}
+						<div class="shadow-md border-2 border-gray-300 py-2 bg-white mt-28">
+							<div class="container mx-auto">
+								<ul class="flex items-center">
+									<li><a class="text-base text-red-800" href="#">Property</a></li>
+									<li class="mx-3"><i class="fa fa-angle-right"></i></li>
+									<li>{{$property->name}}</li>
+								</ul>
+							</div>
+						</div>
+
+						<!-- Title & Share -->
+						<div class="bg-white py-8">
+							<div class="container mx-auto">
+								<div class="flex justify-between">
+									<div class="w-8/12">
+										<h2 class="text-3xl text-gray-600">{{$property->name}}</h2>
+										<h3 class="text-lg mt-2">Price: <span class="text-red-800">
+											{{-- {{ number_format($property->price, 2, ',', ',') }} TK</span> --}}
+											{{ number_format($property->price) }} TK</span>
+										</h3>
+									</div>
+									<div class="w-3/12">
+										<ul class="flex justify-end -mr-2">
+											<li>
+												<a class="flex flex-col justify-center items-center mx-2 border-2 border-gray-200 p-3 hover:border-red-400 duration-200"
+												   href="#">
+													<i class="fa fa-print mb-2"></i>
+													<span class="text-md block">Print</span>
+												</a>
+											</li>
+											<li>
+												<a class="flex flex-col justify-center items-center mx-2 border-2 border-gray-200 p-3 hover:border-red-400 duration-200"
+												   href="#">
+													<i class="fa fa-heart-o mb-2"></i>
+													<span class="text-md block">Save</span></a>
+											</li>
+											<li>
+												<a class="flex flex-col justify-center items-center mx-2 border-2 border-gray-200 p-3 hover:border-red-400 duration-200"
+												   href="#">
+													<i class="fa fa-share-alt mb-2"></i>
+													<span class="text-md block">Share</span></a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Content -->
+						<div class="container mx-auto py-10">
+							<div class="flex justify-between">
+
+								{{-- Left Content --}}
+								<div class="w-9/12">
+									<div id="slider" class="">
+										<div class="gallery-slider">
+											@foreach($property->gallery as $gallery)
+												<div style="background-image: url({{$gallery->name}})" class="single-gallery-item bg-cover bg-center"></div>
+											@endforeach
+										</div>
+
+										<div class="thumbnail-slider mt-4">
+											@foreach($property->gallery as $gallery)
+												<div style="background-image: url({{$gallery->name}})" class="single-thumbnail-item bg-cover bg-center"></div>
+											@endforeach
+										</div>
+									</div>
+									{{-- Overview --}}
+									<div class="flex justify-between items-center bg-white p-8 mt-10 shadow-sm">
+										<h4 class="text-lg w-2/12">Overview</h4>
+										<div class="border-l-2 border-gray-300 pl-5 ml-5 w-10/12 text-base">
+											<p>{{$property->overview}}</p>
+										</div>
+									</div>
+
+									{{-- Property Featuers --}}
+									<div class="flex justify-between items-center bg-white p-8 mt-10 shadow-sm">
+										<h4 class="text-lg w-2/12">Property Features</h4>
+										<div class="ml-2 w-10/12 text-base flex justify-between">
+											<div class="flex-1 border-l-2 border-gray-300 ml-3 pl-3 self-center">
+												<ul>
+													<li class="flex text-sm mb-2">
+														<div class="flex"><i
+																class="fa fa-home mr-2 text-red-400 w-5 text-center"></i><span
+																class="text-sm">Type:</span></div>
+														<span class="ml-2 font-bold">
+															@if($property->type == 1)
+																Apartment
+															@elseif($property->type == 2)
+																Villa
+															@else
+																Land
+															@endif
+														</span>
+													</li>
+													<li class="flex text-sm">
+														<div class="flex"><i
+																class="fa fa-bed mr-2 text-red-400 w-5 text-center"></i><span
+																class="text-sm">Bedrooms:</span></div>
+														<span class="ml-2 font-bold">{{$property->bedrooms}}</span>
+													</li>
+												</ul>
+											</div>
+											<div class="flex-1 border-l-2 border-gray-300 ml-3 pl-3 self-center">
+												<ul>
+													<li class="flex text-sm mb-2">
+														<div class="flex"><i
+																class="fa fa-shower mr-2 text-red-400 w-5 text-center"></i><span
+																class="text-sm">Bathrooms:</span></div>
+														<span class="ml-2 font-bold">{{$property->bathrooms}}</span>
+													</li>
+													<li class="flex text-sm">
+														<div class="flex"><i
+																class="fa fa-map-marker mr-2 text-red-400 w-5 text-center"></i><span
+																class="text-sm">Location:</span></div>
+														<span class="ml-2 font-bold">{{$property->location->name}}</span>
+													</li>
+												</ul>
+											</div>
+											<div class="flex-1 border-l-2 border-gray-300 ml-3 pl-3 self-center">
+												<ul>
+													<li class="flex text-sm mb-2">
+														<div class="flex"><i
+																class="fa fa-gratipay mr-2 text-red-400 w-5 text-center"></i><span
+																class="text-sm">Living space sqm:</span></div>
+														<span class="ml-2 font-bold">{{ $property->net_sqm }}</span>
+													</li>
+													<li class="flex text-sm">
+														<div class="flex"><i
+																class="fa fa-low-vision mr-2 text-red-400 w-5 text-center"></i><span
+																class="text-sm">Pool</span></div>
+														<span class="ml-2 font-bold">
+															@if($property->pool == 1)
+																Private
+															@elseif($property->pool == 2)
+																Public
+															@elseif($property->pool == 3)
+																Both
+															@else
+																No
+															@endif
+														</span>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+
+									{{-- Overview --}}
+									<div class="flex justify-between items-center bg-white p-8 mt-10 shadow-sm">
+										<h4 class="text-lg w-2/12">Why buy this Property</h4>
+										<div class="border-l-2 border-gray-300 pl-5 ml-5 w-10/12 text-base">
+											{{$property->why_buy}}
+										</div>
+									</div>
+
+									{{-- Description --}}
+									<div class="bg-white p-8 mt-10 shadow-sm" id="description">
+
+										<h2 class="font-bold mb-5 text-2xl"> FACILITIES &amp; LOCATION</h2>
+
+										{{$property->description}}
+
+									</div>
+
+								</div>{{-- Left Content End --}}
+
+
+
+								{{-- Sidebar --}}
+								<div class="w-3/12 ml-6">
+									<div class="border-2 border-red-800 px-5 py-3 text-center font-light text-base">
+										<p>Subscribe to Property Turkey media for blogs/news/videos</p>
+									</div>
+									{{-- Form --}}
+									<div class="px-4 py-5 text-left bg-gray-300 my-5">
+										<h1 class="text-2xl font-normal leading-none mb-5">Enquire about this property</h1>
+
+										<form action="#" method="POST" enctype="multipart/form-data">
+											@csrf
+
+											<div class="">
+												<label class="inputLabel" for="name">Name <span class="text-red-800 font-serif">*</span></label>
+												<input class="inputField" type="text" id="name" name="name" placeholder="First Name">
+											</div>
+
+											<div class="mt-5">
+												<label class="inputLabel" for="phone">Phone <span class="text-red-800 font-serif">*</span></label>
+												<input class="inputField" type="text" id="phone" name="phone" placeholder="Phone">
+											</div>
+
+											<div class="mt-5">
+												<label class="inputLabel" for="email">Email <span class="text-red-800 font-serif">*</span></label>
+												<input class="inputField" type="email" id="email" name="email" placeholder="E-mail">
+											</div>
+
+											<div class="mt-5">
+												<label class="inputLabel" for="message">Message <span class="text-red-800 font-serif">*</span></label>
+												<textarea class="inputField" id="message" name="message" rows="4" placeholder="I'm interested in this property"></textarea>
+											</div>
+											<div class="mt-5">
+												<button type="submit" class="w-full border-2 uppercase text-center py-3 font-semibold border-red-800 hover:bg-transparent hover:text-red-800 duration-200  text-white bg-red-800 rounded-none"><i class="fa fa-commenting mr-2"></i>Request Details</button>
+											</div>
+
+										</form>
+									</div>
+								</div>
+
+
+							</div>
+
+						</div>
+					</x-guest-layout>
+//-----------------//----------------//-----------------//------------------//-------------------//--------------------//-----------------------//-----------------------//--
+
+
+
+
+
+
+
+
+//=================================================================================================
+												//-------------------- Class #10 + #11 + #12 --------------------
+//=================================================================================================
+		
+		//--------------------------------------------- routes/web.php ---------------------------------------------------------------------
+					Route::get('/properties/', [PropertyController::class, 'index'])->name('properties');
+					
+					
+		//--------------------------------------------- app/Http/Controllers/PropertyController.php ---------------------------------------------------------------------
+					public function index(Request $request) {
+
+						$latest_properties = Property::latest();
+
+						if(!empty($request->sale)) {
+							$latest_properties = $latest_properties->where('sale', $request->sale);
+						}
+
+						if(!empty($request->type)) {
+							$latest_properties = $latest_properties->where('type', $request->type);
+						}
+
+						if(!empty($request->price)) {
+							if($request->price == '500000+') {
+								$latest_properties = $latest_properties->where('price', '>', 500000);
+							}
+							elseif($request->price == '500000') {
+								$latest_properties = $latest_properties->where('price', '>', 400000)->where('price', '<=', 500000);
+							}
+							elseif($request->price == '400000') {
+								$latest_properties = $latest_properties->where('price', '>', 300000)->where('price', '<=', 400000);
+							}
+							elseif($request->price == '300000') {
+								$latest_properties = $latest_properties->where('price', '>', 200000)->where('price', '<=', 300000);
+							}
+							elseif($request->price == '200000') {
+								$latest_properties = $latest_properties->where('price', '>', 100000)->where('price', '<=', 200000);
+							}
+							else {
+								$latest_properties = $latest_properties->where('price', '>', 0)->where('price', '<=', 100000);
+							}
+						}
+
+						if(!empty($request->bedrooms)) {
+							$latest_properties = $latest_properties->where('bedrooms', $request->bedrooms);
+						}
+
+
+						$latest_properties = $latest_properties->paginate(12);
+
+						return view('property.index', ['latest_properties' => $latest_properties]);
+					}
+									
+		
+		
+		//--------------------------------------------- resources/views/components/single-property-card.blade.php ------------------------------------------------
+				<div class="{{$width}} px-2  relative rounded-md mb-6">
+					<div class="shadow-lg">
+						<a href=""
+						   class="absolute left-3 w-9 h-9 leading-10 self-center text-base top-3 bg-black text-white bg-opacity-25 text-center hover:bg-yellow-500 hover:text-white duration-200 rounded-full text-base"><i
+								class="fa fa-heart-o"></i></a>
+						<div class="py-20 bg-center" style="background-image: url('/img/hero-bg.jpg')"></div>
+						<div class="p-3">
+							<h2 class="leading-0 text-base">{{$property->name}}</h2>
+							<h3 class="text-2xl py-3">{{$property->price}} TL</h3>
+							<div class="border-t-2">
+								<ul class="flex items-center -mx-1 my-4">
+									<li class="px-2 py-1 bg-blue-50 rounded-md text-xs mx-1 shadow-sm">{{$property->bedrooms}} bedrooms</li>
+									<li class="px-2 py-1 bg-blue-50 rounded-md text-xs mx-1 shadow-sm">{{$property->bathrooms}} bathrooms</li>
+									<li class="px-2 py-1 bg-blue-50 rounded-md text-xs mx-1 shadow-sm">{{$property->gross_sqm}} M<sup>2</sup></li>
+								</ul>
+								<a href="{{route('single-property', $property->id)}}" class="btn w-full text-center">More details</a>
+							</div>
+						</div>
+					</div>
+				</div>
+		
+		
+		
+		//--------------------------------------------- resources/views/welcome.blade.php ---------------------------------------------------------------------
+					<x-guest-layout>
+						<div class="relative z-10 pt-48 pb-52 bg-cover bg-center" style="background-image: url(/img/hero-bg.jpg)">
+							<div class="absolute h-full w-full bg-black opacity-70 top-0 left-0 z-10"></div>
+							<div class="container relative z-20 text-white text-center text-2xl">
+								<h2 class="font-bold text-5xl mb-8">Lorem ipsum dolor sit amet,<br/> consectetur adipisicing elit. Fuga, totam.</h2>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, mollitia.</p>
+							</div>
+						</div>
+
+					<!-- Search From Area -->
+					<div class="-mt-10">
+						<div class="container">
+							<div class="rounded-lg bg-white p-4 relative z-20 shadow-lg home-search">
+								@include('components.property-search-form')
+							</div>
+
+						</div>
+					</div>
+
+						<div class="py-20 text-center">
+							<div class="container">
+								<h2 class="section-heading">Lorem ipsum dolor sit amet, consectetur<br/> adipisicing elit. A aut autem dolorum <span class="underline">quis vitae!</span></h2>
+								<p class="text-gray-500 text-2xl font-bold mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, voluptatem!</p>
+
+								<a class="border-2 border-gray-700 rounded-2xl text-xl px-8 py-3 inline-block" href="">Start The Searching</a>
+
+								<h2 class="section-heading pt-14">Lorem ipsum dolor sit amet adipisicing<br/> adipisicing elit. A aut lorum </h2>
+
+								<div class="w-4/5 mx-auto">
+									<div class="flex -mx-3 flex-wrap justify-between mt-10">
+										<div class="w-3/12  mt-10 mx-3">
+											<h3 class="mb-2 text-xl">Huge selection of real estate</h3>
+											<p class="text-xs text-center mx-auto w-4/6">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+												Dolore</p>
+										</div>
+										<div class="w-3/12  mt-10 mx-3">
+											<h3 class="mb-2 text-xl">Huge selection of real estate</h3>
+											<p class="text-xs text-center mx-auto w-4/6">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+												Dolore</p>
+										</div>
+										<div class="w-3/12  mt-10 mx-3">
+											<h3 class="mb-2 text-xl">Huge selection of real estate</h3>
+											<p class="text-xs text-center mx-auto w-4/6">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+												Dolore</p>
+										</div>
+										<div class="w-3/12  mt-10 mx-3">
+											<h3 class="mb-2 text-xl">Huge selection of real estate</h3>
+											<p class="text-xs text-center mx-auto w-4/6">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+												Dolore</p>
+										</div>
+										<div class="w-3/12  mt-10 mx-3">
+											<h3 class="mb-2 text-xl">Huge selection of real estate</h3>
+											<p class="text-xs text-center mx-auto w-4/6">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+												Dolore</p>
+										</div>
+										<div class="w-3/12  mt-10 mx-3">
+											<h3 class="mb-2 text-xl">Huge selection of real estate</h3>
+											<p class="text-xs text-center mx-auto w-4/6">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+												Dolore</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="container text-center pt-14">
+							<h2 class="section-heading">More information about us</h2>
+							<div class="relative mt-10 mb-14 bg-cover rounded-xl py-24 bg-center"
+								 style="background-image: url('/img/hero-bg.jpg')">
+								<div class="absolute w-full h-full rounded-xl opacity-50 bg-black left-0 top-0"></div>
+								<div class="relative z-20">
+									<a href="" class="text-white text-xl flex flex-col justify-center items-center"><span class="border-2 border-white w-12 h-12 text-center pt-1 pl-1 leading-10 text-2xl hover:border-yellow-500 duration-200 rounded-full mb-2"><i class="fa fa-play"></i></span>Watch the video</a>
+								</div>
+							</div>
+
+							<div class="text-xl">
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam architecto autem corporis debitis
+									dignissimos doloremque eius error explicabo impedit iste libero magnam, natus officiis omnis quasi
+									ratione sequi totam, vero.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam architecto
+									autem corporis debitis
+									dignissimos doloremque eius error explicabo impedit iste libero magnam, natus officiis omnis quasi
+									ratione sequi totam, vero.</p>
+
+							</div>
+						</div>
+
+						<div class="container pt-14">
+							<div class="flex justify-between ">
+								<div class="flex-1 mr-10 text-lg leading-normal">
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores deleniti ipsam iure laborum nemo
+										non odit quis quod, sint tempore. Ab culpa cupiditate error, eum incidunt officiis rem sapiente
+										voluptate.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores deleniti ipsam iure
+										laborum nemo non odit quis quod, sint tempore. Ab culpa cupiditate error, eum incidunt officiis rem
+										sapiente voluptate.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores deleniti
+										ipsam iure laborum nemo non odit quis quod, sint tempore. Ab culpa cupiditate error, eum incidunt
+										officiis rem sapiente voluptate.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+										deleniti ipsam iure laborum nemo non odit quis quod, sint tempore. Ab culpa cupiditate error, eum
+										incidunt officiis rem sapiente voluptate</p>
+								</div>
+								<div class="flex-1 ml-10">
+									<img class="rounded" src="/img/hero-bg.jpg" alt="">
+								</div>
+							</div>
+						</div>
+						<div class="container pt-14">
+							<div class="flex justify-center items-center">
+								<a href="" class="btn">Start searching with filters</a>
+								<p class="mx-10">or</p>
+								<a href="" class="btn-outline">Start searching on the map</a>
+							</div>
+						</div>
+
+						<!-- Last Added Objects -->
+						<div class="container py-14">
+							<h2 class="section-heading">Last added objusts</h2>
+							<div class="flex flex-wrap -mx-2 mt-10">
+
+								@foreach($latest_properties as $property)
+									@include('components.single-property-card', ['property' => $property, 'width' => 'w-1/4'])
+								@endforeach
+
+							</div>
+						</div>
+
+				</x-guest-layout>
+				
+				
+		//--------------------------------------------- resources/views/components/header.blade.php ---------------------------------------------------------------------
+				<li><a class="inline-block p-4 text-white" href="{{route('properties')}}?type=0">Land</a></li>
+				<li><a class="inline-block p-4 text-white" href="{{route('properties')}}?type=2">Villa</a></li>
+				<li><a class="inline-block p-4 text-white" href="{{route('properties')}}?type=1">Apartment</a></li>
+		
+		
+		//--------------------------------------------- resources/views/components/property-search-form.blade.php ---------------------------------------------------
+					<form action="{{route('properties')}}" method="GET" class="flex justify-between">
+						<div class="flex w-7/12 justify-between items-center">
+							<div class="flex flex-col mx-3">
+								<label for="sale">Buy or Rent</label>
+								<select id="sale" name="sale" class="border-0 focus:ring-0">
+									<option value="">Buy or Rent</option>
+									<option {{request('sale') == '1' ? 'selected="selected"' : ''}} value="1">Buy</option>
+									<option {{request('sale') == '0' ? 'selected="selected"' : ''}} value="0">Rent</option>
+								</select>
+							</div>
+							<div class="py-3 self-center border-gray-500 border"></div>
+							<div class="flex flex-col mx-3">
+								<label for="type">Type</label>
+								<select id="type" name="type" class="border-0 focus:ring-0">
+									<option value="">Type</option>
+									<option {{request('type') == '0' ? 'selected="selected"' : ''}} value="0">Land</option>
+									<option {{request('type') == '1' ? 'selected="selected"' : ''}} value="1">Apartment</option>
+									<option {{request('type') == '2' ? 'selected="selected"' : ''}} value="2">Villa</option>
+								</select>
+							</div>
+							<div class="py-3 self-center border-gray-500 border"></div>
+							<div class="flex flex-col mx-3">
+								<label for="price">Price</label>
+								<select id="price" name="price" class="border-0 focus:ring-0">
+									<option value="">Price</option>
+									<option {{request('price') == '100000' ? 'selected="selected"' : ''}} value="100000">0 - 100000</option>
+									<option {{request('price') == '200000' ? 'selected="selected"' : ''}} value="200000">100000 - 200000</option>
+									<option {{request('price') == '300000' ? 'selected="selected"' : ''}} value="300000">200000 - 300000</option>
+									<option {{request('price') == '400000' ? 'selected="selected"' : ''}} value="400000">300000 - 400000</option>
+									<option {{request('price') == '500000' ? 'selected="selected"' : ''}} value="500000">400000 - 500000</option>
+									<option {{request('price') == '500000+' ? 'selected="selected"' : ''}} value="500000+">500000+</option>
+								</select>
+							</div>
+							<div class="py-3 self-center border-gray-500 border"></div>
+							<div class="flex flex-col mx-3">
+								<label for="bedrooms">Bedrooms</label>
+								<select id="bedrooms" name="bedrooms" class="border-0 focus:ring-0">
+									<option value="">Bedrooms</option>
+									<option {{request('bedrooms') == '1' ? 'selected="selected"' : ''}} value="1">1</option>
+									<option {{request('bedrooms') == '2' ? 'selected="selected"' : ''}} value="2">2</option>
+									<option {{request('bedrooms') == '3' ? 'selected="selected"' : ''}} value="3">3</option>
+									<option {{request('bedrooms') == '4' ? 'selected="selected"' : ''}} value="4">4</option>
+									<option {{request('bedrooms') == '5' ? 'selected="selected"' : ''}} value="5">5</option>
+								</select>
+							</div>
+						</div>
+						<div class="flex justify-between items-center w-5/12 ml-5">
+							<input type="search" placeholder="Try to search for something" class="rounded-lg px-4 py-2 w-full mr-4 focus:border-gray-700 focus:ring-0">
+							<button type="submit" class="btn">Search</button>
+						</div>
+					</form>
+		
+
+		//--------------------------------------------- resources/views/components/property-search-form.blade.php ---------------------------------------------------
+					<form action="{{route('properties')}}" method="GET" class="flex justify-between">
+						<div class="flex w-7/12 justify-between items-center">
+							<div class="flex flex-col mx-3">
+								{{-- <label for="sale">Buy or Rent</label> --}}
+								<select id="sale" name="sale" class="border-0 focus:ring-0">
+									<option value="">Buy or Rent</option>
+									<option {{request('sale') == '1' ? 'selected="selected"' : ''}} value="1">Buy</option>
+									<option {{request('sale') == '0' ? 'selected="selected"' : ''}} value="0">Rent</option>
+								</select>
+							</div>
+							<div class="py-3 self-center border-gray-500 border"></div>
+							<div class="flex flex-col mx-3">
+								{{-- <label for="type">Type</label> --}}
+								<select id="type" name="type" class="border-0 focus:ring-0">
+									<option value="">Type</option>
+									<option {{request('type') == '0' ? 'selected="selected"' : ''}} value="0">Land</option>
+									<option {{request('type') == '1' ? 'selected="selected"' : ''}} value="1">Apartment</option>
+									<option {{request('type') == '2' ? 'selected="selected"' : ''}} value="2">Villa</option>
+								</select>
+							</div>
+							<div class="py-3 self-center border-gray-500 border"></div>
+							<div class="flex flex-col mx-3">
+								{{-- <label for="price">Price</label> --}}
+								<select id="price" name="price" class="border-0 focus:ring-0">
+									<option value="">Price</option>
+									<option {{request('price') == '100000' ? 'selected="selected"' : ''}} value="100000">0 - 100000</option>
+									<option {{request('price') == '200000' ? 'selected="selected"' : ''}} value="200000">100000 - 200000 Tk</option>
+									<option {{request('price') == '300000' ? 'selected="selected"' : ''}} value="300000">200000 - 300000 Tk</option>
+									<option {{request('price') == '400000' ? 'selected="selected"' : ''}} value="400000">300000 - 400000 Tk</option>
+									<option {{request('price') == '500000' ? 'selected="selected"' : ''}} value="500000">400000 - 500000 Tk</option>
+									<option {{request('price') == '500000+' ? 'selected="selected"' : ''}} value="500000+">500000 up Tk</option>
+								</select>
+							</div>
+							<div class="py-3 self-center border-gray-500 border"></div>
+							<div class="flex flex-col mx-3">
+								{{-- <label for="bedrooms">Bedrooms</label> --}}
+								<select id="bedrooms" name="bedrooms" class="border-0 focus:ring-0">
+									<option value="">Bedrooms</option>
+									<option {{request('bedrooms') == '1' ? 'selected="selected"' : ''}} value="1">1</option>
+									<option {{request('bedrooms') == '2' ? 'selected="selected"' : ''}} value="2">2</option>
+									<option {{request('bedrooms') == '3' ? 'selected="selected"' : ''}} value="3">3</option>
+									<option {{request('bedrooms') == '4' ? 'selected="selected"' : ''}} value="4">4</option>
+									<option {{request('bedrooms') == '5' ? 'selected="selected"' : ''}} value="5">5</option>
+								</select>
+							</div>
+						</div>
+						<div class="flex justify-between items-center w-5/12 ml-5">
+							<input type="search" placeholder="Try to search for something" class="rounded-lg px-4 py-2 w-full mr-4 focus:border-gray-700 focus:ring-0">
+							<button type="submit" class="btn">Search</button>
+						</div>
+					</form>
+
+		
+		
+		//---------------------------------------------------- resources/views/property/index.blade.php ---------------------------------------------------------------------
+					<x-guest-layout>
+						{{-- Breadcrumb --}}
+						<div class="shadow-md border-2 border-gray-300 py-2 bg-white mt-28">
+							<div class="container mx-auto">
+								<ul class="flex items-center">
+									<li><a class="text-base text-red-800" href="{{route('home')}}">Property</a></li>
+									<li class="mx-3"><i class="fa fa-angle-right"></i></li>
+									<li>Properties</li>
+								</ul>
+							</div>
+						</div>
+
+						<!-- Title & Share -->
+						<div class="bg-white py-8">
+							<div class="container mx-auto">
+								<h2 class="text-3xl text-gray-600">Properties
+									@if(request('type') == '0')
+										- Land
+									@elseif(request('type') == 1)
+										- Apartment
+									@elseif(request('type') == 2)
+										- Villa
+									@endif
+								</h2>
+							</div>
+						</div>
+
+						<!-- Content -->
+						<div class="container mx-auto py-10">
+							<div class="flex justify-between">
+
+								{{-- Left Content --}}
+								<div class="w-9/12">
+									<div class="flex flex-wrap -mx-2 mt-10">
+										@foreach($latest_properties as $property)
+											@include('components.single-property-card', ['property' => $property, 'width' => 'w-1/3'])
+										@endforeach
+									</div>
+
+									{{ $latest_properties->withQueryString()->links() }}						//-----------------------------------------
+
+								</div>{{-- Left Content End --}}
+
+
+
+								{{-- Sidebar --}}
+								<div class="w-3/12 ml-6 vertical-search-form">
+									@include('components.property-search-form')
+								</div>
+
+
+							</div>
+
+						</div>
+					</x-guest-layout>
+
+
+		//-------------------------------------------------- resources/css/app.css ----------------------------------------------------------------------------------
+							.vertical-search-form > form > div {
+								display: block;
+								min-width: 100%;
+								margin-bottom: 15px;
+							}
+
+							.vertical-search-form > form {
+								display: block;
+							}
+
+							.vertical-search-form .border-gray-500 {
+								display: none;
+							}
+
+							.home-search label {
+								display: none;
+							}
+
+							.vertical-search-form label {
+								text-transform: uppercase;
+								font-size: 12px;
+								margin-bottom: 5px;
+								display: block;
+								opacity: .5;
+							}
+
+							.vertical-search-form select {
+								min-width: 100%;
+							}
+
+							.vertical-search-form > form > div > div {
+								display: block;
+								min-width: 100%;
+								margin-bottom: 15px;
+							}
+
+							.vertical-search-form > form > div.ml-5 {
+								margin-left: 12px;
+							}
+
+							.vertical-search-form button {
+								margin-top: 15px;
+								min-width: 100%;
+							}
+
+//------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
+
+
+
+
+
+
+//=================================================================================================
+												//-------------------- Class #13 + #14 --------------------
+//=================================================================================================
+		-- for static page ->> create Page Model,Controller, & Migration file.
+		-- command: php artisan make:model Page -mc
+		
+		
+		//--------------------------------------------- database/migrations/pages_table.php ---------------------------------------------------------------------
+						Schema::create('pages', function (Blueprint $table) {
+							$table->id();
+							$table->string('name');
+							$table->string('slug');
+							$table->longText('content');
+							$table->timestamps();
+						});
+		
+		//--------------------------------------------- routes/web.php ---------------------------------------------------------------------
+					use App\Http\Controllers\PageController;
+
+					Route::get('/page/{slug}', [PageController::class, 'single'])->name('page');
+					
+		
+		//--------------------------------------------- app/Http/Controllers/PageController.php ---------------------------------------------------------------------
+						public function single($slug) {
+								$page = Page::where('slug', $slug)->first();
+
+								if(!empty($page)) {
+									return view('pages.index')->with('page',$page);
+								} else {
+									return abort('404');
+								}
+						}
+		
+		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------
+						<x-guest-layout>
+							{{-- Breadcrumb --}}
+							<div class="shadow-md border-2 border-gray-300 py-2 bg-white">
+								<div class="container mx-auto">
+									<ul class="flex items-center">
+										<li><a class="text-3xl text-red-800" href="{{ url('/') }}"><i class="fa fa-home"></i></a></li>
+										<li class="mx-3"><i class="fa fa-angle-right"></i></li>
+										<li>{{ $page->name }}</li>
+									</ul>
+								</div>
+							</div>
+						</x-guest-layout>
+
+		
+		
+		
+		//--------------------------------------------- database/seeders/DatabaseSeeder.php ---------------------------------------------------------------------
+						<?php
+
+						namespace Database\Seeders;
+
+						use Illuminate\Database\Seeder;
+						use App\Models\Page;
+
+						class DatabaseSeeder extends Seeder
+						{
+							/**
+							 * Seed the application's database.
+							 *
+							 * @return void
+							 */
+							public function run()
+							{
+								// \App\Models\User::factory(10)->create();
+								\App\Models\Location::factory(10)->create();
+								\App\Models\Property::factory(50)->create();
+								\App\Models\Media::factory(500)->create();
+
+							//-------- for static page ---------------
+									$page = new Page();
+									$page->name = 'Contact Us';
+									$page->slug = 'contact-us';
+									$page->content = 'Lorem ipsum dolor, sit amet llam quae rem cumque aliquam';
+									$page->save();
+
+									$page = new Page();
+									$page->name = 'About Us';
+									$page->slug = 'about-us';
+									$page->content = 'Lorem ipsum dolor, sit amet rem cumque aliquam dolorem veritatis';
+									$page->save();
+							//------------ or ------------------
+									// Page::create([
+									//     'name'  => 'Contact Us',
+									//     'slug'  => 'contact-us',
+									//     'content'=> 'Lorem ipsum dolor, sit amet llam quae incidunt quos dolor, totam rem cumque aliquam,'
+									// ]);
+									// Page::create([
+									//     'name'  => 'About Us',
+									//     'slug'  => 'about-us',
+									//     'content'=> 'Lorem ipsum dolor, sit possimus assumenda dolorem veritatis aperiam! Necessitatibus.'
+									// ]);
+
+							}
+						}
+
+
+		//--------------------------------------------- resources/views/components/header.blade.php ---------------------------------------------------------------------
+				<li><a class="inline-block p-4 text-white" href="{{route('properties')}}?type=3">Land</a></li>
+				<li><a class="inline-block p-4 text-white" href="{{route('properties')}}?type=2">Villa</a></li>
+				<li><a class="inline-block p-4 text-white" href="{{route('properties')}}?type=1">Apartment</a></li>
+				<li><a class="inline-block p-4 text-white" href="{{route('page', 'about-us')}}">About Us</a></li>
+				<li><a class="inline-block p-4 text-white" href="{{route('page', 'contact-us')}}">Contact Us</a></li>
+						
+					
+		//-- run migration+seed command: php artisan migrate:fresh --seed
+		
+		
+		//--------------------------------------------- app/Http/Controllers/HomeController.php ---------------------------------------------------------------------
+					use App\Models\Location;
+					
+					public function home()
+					{
+							// $latest_properties = Property::all();
+							$latest_properties = Property::latest()->get()->take(4);
+							$locations = Location::select(['id', 'name'])->get();
+
+							return view('welcome',[
+								'latest_properties' => $latest_properties,
+								'locations' => $locations
+							]);
+							// return view('welcome')->with(['latest_properties' => $latest_properties]);
+							// return view('property.single')->with('property',$property);
+							// return view('welcome',compact('latest_properties'));
+					}
+		
+		//--------------------------------------------- resources/views/welcome.blade.php ---------------------------------------------------------------------
+					<div class="rounded-lg bg-white p-4 relative z-20 shadow-lg home-search">
+						@include('components.property-search-form', ['locations' => $locations])
+					</div>
+		
+		
+		//--------------------------------------------- resources/views/components/property-search-form.blade.php ---------------------------------------------------------------------
+					<form action="{{route('properties')}}" method="GET" class="flex justify-between">
+						<div class="flex w-7/12 justify-between items-center">
+							<div class="flex flex-col mx-3">
+								<label for="sale">Rent or Sale</label>
+								<select id="sale" name="sale" class="border-0 focus:ring-0">
+									<option value="">Rent or Sale</option>
+									<option {{request('sale') == '2' ? 'selected="selected"' : ''}} value="2">Rent</option>
+									<option {{request('sale') == '1' ? 'selected="selected"' : ''}} value="1">Sale</option>
+								</select>
+							</div>
+
+							<div class="py-3 self-center border-gray-500 border"></div>
+							<div class="flex flex-col mx-3">
+								<label for="location">Location</label>
+								<select id="location" name="location" class="border-0 focus:ring-0">
+									<option value="">Location</option>
+									@foreach($locations as $location)
+										<option {{request('location') == $location->id ? 'selected="selected"' : ''}} value="{{$location->id}}">{{$location->name}}</option>
+									@endforeach
+								</select>
+							</div>
+
+							<div class="py-3 self-center border-gray-500 border"></div>
+							<div class="flex flex-col mx-3">
+								<label for="type">Type</label>
+								<select id="type" name="type" class="border-0 focus:ring-0">
+									<option value="">Type</option>
+									<option {{request('type') == '3' ? 'selected="selected"' : ''}} value="3">Land</option>
+									<option {{request('type') == '1' ? 'selected="selected"' : ''}} value="1">Apartment</option>
+									<option {{request('type') == '2' ? 'selected="selected"' : ''}} value="2">Villa</option>
+								</select>
+							</div>
+							<div class="py-3 self-center border-gray-500 border"></div>
+							<div class="flex flex-col mx-3">
+								<label for="price">Price</label>
+								<select id="price" name="price" class="border-0 focus:ring-0">
+									<option value="">Price</option>
+									<option {{request('price') == '100000' ? 'selected="selected"' : ''}} value="100000">0 - 100000</option>
+									<option {{request('price') == '200000' ? 'selected="selected"' : ''}} value="200000">100000 - 200000 Tk</option>
+									<option {{request('price') == '300000' ? 'selected="selected"' : ''}} value="300000">200000 - 300000 Tk</option>
+									<option {{request('price') == '400000' ? 'selected="selected"' : ''}} value="400000">300000 - 400000 Tk</option>
+									<option {{request('price') == '500000' ? 'selected="selected"' : ''}} value="500000">400000 - 500000 Tk</option>
+									<option {{request('price') == '500000+' ? 'selected="selected"' : ''}} value="500000+">500000 up Tk</option>
+								</select>
+							</div>
+							<div class="py-3 self-center border-gray-500 border"></div>
+							<div class="flex flex-col mx-3">
+								<label for="bedrooms">Bedrooms</label>
+								<select id="bedrooms" name="bedrooms" class="border-0 focus:ring-0">
+									<option value="">Bedrooms</option>
+									<option {{request('bedrooms') == '1' ? 'selected="selected"' : ''}} value="1">1</option>
+									<option {{request('bedrooms') == '2' ? 'selected="selected"' : ''}} value="2">2</option>
+									<option {{request('bedrooms') == '3' ? 'selected="selected"' : ''}} value="3">3</option>
+									<option {{request('bedrooms') == '4' ? 'selected="selected"' : ''}} value="4">4</option>
+									<option {{request('bedrooms') == '5' ? 'selected="selected"' : ''}} value="5">5</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="flex justify-between items-center w-5/12 ml-5">
+						  <input name="property_name" value="{{request('property_name')}}" type="search" placeholder="Try to search property by property name" class="rounded-lg px-4 py-2 w-full mr-4 focus:border-gray-700 focus:ring-0">
+						  <button type="submit" class="btn">Search</button>
+						</div>
+					</form>
+
+			
+			
+			
+		//--------------------------------------------- app/Http/Controllers/PropertyController.php ---------------------------------------------------------------------
+					use App\Models\Location;
+					......................
+					$locations = Location::select(['id', 'name'])->get();
+					......................
+					if(!empty($request->location)) {
+						$latest_properties = $latest_properties->where('location_id', $request->location);
+					}
+					.........................
+					if(!empty($request->property_name)) {
+						$latest_properties = $latest_properties->where('name', 'LIKE', '%'. $request->property_name .'%');
+					}
+					........................
+					return view('property.index', ['latest_properties' => $latest_properties, 'locations' => $locations]);
+		
+		
+		
+		
+		//--------------------------------------------- resources/views/pages/property/index.blade.php ---------------------------------------------------------------------
+					<!-- Title & Share -->
+						<div class="bg-white py-8">
+							<div class="container mx-auto">
+								<h2 class="text-3xl text-gray-600">Properties
+									@if(request('type') == 3)
+										- Land
+									@elseif(request('type') == 1)
+										- Apartment
+									@elseif(request('type') == 2)
+										- Villa
+									@endif
+								</h2>
+
+
+								@if ( !empty(request('sale')) || !empty(request('location')) || !empty(request('type')) || !empty(request('price')) || !empty(request('bedrooms')) )
+									<h3 class="text-sm mt-1 font-normal">
+
+										Displaying
+										@if (request('sale') == '2')
+											Rentable
+										@elseif (request('sale') == '1')
+											Saleable
+										@endif
+
+										@if (request('type') == '3')
+											Lands
+										@elseif (request('type') == '1')
+											Appartments
+										@elseif (request('type') == '2')
+											Villas
+										@endif
+
+										@if ( !empty(request('bedrooms')) )
+											with
+											{{ request('bedrooms') }}
+												@if( request('bedrooms') == 1 )
+													Bedroom
+												@else
+													Bedrooms
+												@endif
+										@endif
+
+										@if (request('price') == 100000)
+											within 0 TK - 1,00,000 TK Price Range
+										@elseif (request('price') == 200000)
+											within 1,00,000 TK - 2,00,000 TK Price Range
+										@elseif (request('price') == 300000)
+											within 2,00,000 TK - 3,00,000 TK Price Range
+										@elseif (request('price') == 400000)
+											within 3,00,000 TK - 4,00,000 TK Price Range
+										@elseif (request('price') == 500000)
+											and More than 5,00,000 TK Price
+										@endif
+										from
+										{{-- {{ request('location') ?? 'all Location' }} --}}
+										@if(!empty(request('location')))
+											@foreach($locations as $location)
+												@if(request('location') == $location->id)
+													{{$location->name}} location
+												@endif
+											@endforeach
+										@else
+											all Locations
+										@endif
+									</h3>
+									<h4 class="text-sm font-normal"><span class="font-bold">{{ $latest_properties->total() }}</span> Property Found</h4>
+								@endif
+
+							</div>
+						</div>
+//------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
+
+
+
+
+
+
+//=================================================================================================
+												//-------------------- Class #15 || Contact form --------------------
+//=================================================================================================
+		--  php artisan make:model PropertyEnquire -mc
+		-- php artisan migrate
+		
+		//--------------------------------------------- database/migrations/2021_12_25_042547_create_property_enquires_table.php -------------------------------------
+						Schema::create('property_enquires', function (Blueprint $table) {
+							$table->id();
+							$table->string('name');
+							$table->string('email');
+							$table->string('phone');
+							$table->string('message');
+							$table->timestamps();
+						});
+				
+		//--------------------------------------------------------------- resources/views/property/single.blade.php ---------------------------------------------------------
+						<x-guest-layout>
+							{{-- Breadcrumb --}}
+							<div class="shadow-md border-2 border-gray-300 py-2 bg-white mt-28">
+								<div class="container mx-auto">
+									<ul class="flex items-center">
+										<li><a class="text-base text-red-800" href="#">Property</a></li>
+										<li class="mx-3"><i class="fa fa-angle-right"></i></li>
+										<li>{{$property->name}}</li>
+									</ul>
+								</div>
+							</div>
+
+							<!-- Title & Share -->
+							<div class="bg-white py-8">
+								<div class="container mx-auto">
+									<div class="flex justify-between">
+										<div class="w-8/12">
+											<h2 class="text-3xl text-gray-600">{{$property->name}}</h2>
+											<h3 class="text-lg mt-2">Price: <span class="text-red-800">
+												{{-- {{ number_format($property->price, 2, ',', ',') }} TK</span> --}}
+												{{ number_format($property->price) }} TK</span>
+											</h3>
+										</div>
+										<div class="w-3/12">
+											<ul class="flex justify-end -mr-2">
+												<li>
+													<a class="flex flex-col justify-center items-center mx-2 border-2 border-gray-200 p-3 hover:border-red-400 duration-200"
+													   href="#">
+														<i class="fa fa-print mb-2"></i>
+														<span class="text-md block">Print</span>
+													</a>
+												</li>
+												<li>
+													<a class="flex flex-col justify-center items-center mx-2 border-2 border-gray-200 p-3 hover:border-red-400 duration-200"
+													   href="#">
+														<i class="fa fa-heart-o mb-2"></i>
+														<span class="text-md block">Save</span></a>
+												</li>
+												<li>
+													<a class="flex flex-col justify-center items-center mx-2 border-2 border-gray-200 p-3 hover:border-red-400 duration-200"
+													   href="#">
+														<i class="fa fa-share-alt mb-2"></i>
+														<span class="text-md block">Share</span></a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+							@if (session('message'))
+								<div id="notice" class="text-center bg-green-100 text-green-700 p-3">{{ session('message') }}</div>
+							@endif
+
+
+							<!-- Content -->
+							<div class="container mx-auto py-10">
+								<div class="flex justify-between">
+
+									{{-- Left Content --}}
+									<div class="w-9/12">
+										<div id="slider" class="">
+											<div class="gallery-slider">
+												@foreach($property->gallery as $gallery)
+													<div style="background-image: url({{$gallery->name}})" class="single-gallery-item bg-cover bg-center"></div>
+												@endforeach
+											</div>
+
+											<div class="thumbnail-slider mt-4">
+												@foreach($property->gallery as $gallery)
+													<div style="background-image: url({{$gallery->name}})" class="single-thumbnail-item bg-cover bg-center"></div>
+												@endforeach
+											</div>
+										</div>
+										{{-- Overview --}}
+										<div class="flex justify-between items-center bg-white p-8 mt-10 shadow-sm">
+											<h4 class="text-lg w-2/12">Overview</h4>
+											<div class="border-l-2 border-gray-300 pl-5 ml-5 w-10/12 text-base">
+												<p>{{$property->overview}}</p>
+											</div>
+										</div>
+
+										{{-- Property Featuers --}}
+										<div class="flex justify-between items-center bg-white p-8 mt-10 shadow-sm">
+											<h4 class="text-lg w-2/12">Property Features</h4>
+											<div class="ml-2 w-10/12 text-base flex justify-between">
+												<div class="flex-1 border-l-2 border-gray-300 ml-3 pl-3 self-center">
+													<ul>
+														<li class="flex text-sm mb-2">
+															<div class="flex"><i
+																	class="fa fa-home mr-2 text-red-400 w-5 text-center"></i><span
+																	class="text-sm">Type:</span></div>
+															<span class="ml-2 font-bold">
+																@if($property->type == 1)
+																	Apartment
+																@elseif($property->type == 2)
+																	Villa
+																@else
+																	Land
+																@endif
+															</span>
+														</li>
+														<li class="flex text-sm">
+															<div class="flex"><i
+																	class="fa fa-bed mr-2 text-red-400 w-5 text-center"></i><span
+																	class="text-sm">Bedrooms:</span></div>
+															<span class="ml-2 font-bold">{{$property->bedrooms}}</span>
+														</li>
+													</ul>
+												</div>
+												<div class="flex-1 border-l-2 border-gray-300 ml-3 pl-3 self-center">
+													<ul>
+														<li class="flex text-sm mb-2">
+															<div class="flex"><i
+																	class="fa fa-shower mr-2 text-red-400 w-5 text-center"></i><span
+																	class="text-sm">Bathrooms:</span></div>
+															<span class="ml-2 font-bold">{{$property->bathrooms}}</span>
+														</li>
+														<li class="flex text-sm">
+															<div class="flex"><i
+																	class="fa fa-map-marker mr-2 text-red-400 w-5 text-center"></i><span
+																	class="text-sm">Location:</span></div>
+															<span class="ml-2 font-bold">{{$property->location->name}}</span>
+														</li>
+													</ul>
+												</div>
+												<div class="flex-1 border-l-2 border-gray-300 ml-3 pl-3 self-center">
+													<ul>
+														<li class="flex text-sm mb-2">
+															<div class="flex"><i
+																	class="fa fa-gratipay mr-2 text-red-400 w-5 text-center"></i><span
+																	class="text-sm">Living space sqm:</span></div>
+															<span class="ml-2 font-bold">{{ $property->net_sqm }}</span>
+														</li>
+														<li class="flex text-sm">
+															<div class="flex"><i
+																	class="fa fa-low-vision mr-2 text-red-400 w-5 text-center"></i><span
+																	class="text-sm">Pool</span></div>
+															<span class="ml-2 font-bold">
+																@if($property->pool == 1)
+																	Private
+																@elseif($property->pool == 2)
+																	Public
+																@elseif($property->pool == 3)
+																	Both
+																@else
+																	No
+																@endif
+															</span>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+
+										{{-- Overview --}}
+										<div class="flex justify-between items-center bg-white p-8 mt-10 shadow-sm">
+											<h4 class="text-lg w-2/12">Why buy this Property</h4>
+											<div class="border-l-2 border-gray-300 pl-5 ml-5 w-10/12 text-base">
+												{{$property->why_buy}}
+											</div>
+										</div>
+
+										{{-- Description --}}
+										<div class="bg-white p-8 mt-10 shadow-sm" id="description">
+
+											<h2 class="font-bold mb-5 text-2xl"> FACILITIES &amp; LOCATION</h2>
+
+											{{$property->description}}
+
+										</div>
+
+									</div>{{-- Left Content End --}}
+
+
+
+									{{-- Sidebar --}}
+									<div class="w-3/12 ml-6">
+										<div class="border-2 border-red-800 px-5 py-3 text-center font-light text-base">
+											<p>Subscribe to Property Turkey media for blogs/news/videos</p>
+										</div>
+										{{-- Form --}}
+										<div class="px-4 py-5 text-left bg-gray-300 my-5">
+											<h1 class="text-2xl font-normal leading-none mb-5">Enquire about this property</h1>
+
+											<form action="{{ route('enquireform',$property->id) }}" method="POST" enctype="multipart/form-data">
+												@csrf
+
+												<div class="">
+													<label class="inputLabel" for="name">Name <span class="text-red-800 font-serif">*</span></label>
+													<input class="inputField" type="text" id="name" name="name" placeholder="First Name"
+													value="{{ old('name') }}">
+
+													@error('name')
+														<p class="bg-red-100 text-red-500 px-2 mt-2 text-sm">{{ $message }}</p>
+													@enderror
+												</div>
+
+												<div class="mt-5">
+													<label class="inputLabel" for="phone">Phone <span class="text-red-800 font-serif">*</span></label>
+													<input class="inputField" type="text" id="phone" name="phone" placeholder="Phone"
+													value="{{ old('phone') }}">
+
+													@error('phone')
+														<p class="bg-red-100 text-red-500 px-2 mt-2 text-sm">{{ $message }}</p>
+													@enderror
+												</div>
+
+												<div class="mt-5">
+													<label class="inputLabel" for="email">Email <span class="text-red-800 font-serif">*</span></label>
+													<input class="inputField" type="email" id="email" name="email" placeholder="E-mail"
+													value="{{ old('email') }}">
+
+													@error('email')
+														<p class="bg-red-100 text-red-500 px-2 mt-2 text-sm">{{ $message }}</p>
+													@enderror
+												</div>
+
+												<div class="mt-5">
+													<label class="inputLabel" for="message">Message <span class="text-red-800 font-serif">*</span></label>
+													<textarea class="inputField" id="message" name="message" rows="4" placeholder="I'm interested in this property"></textarea>
+
+													@error('message')
+														<p class="bg-red-100 text-red-500 px-2 mt-2 text-sm">{{ $message }}</p>
+													@enderror
+												</div>
+
+												<div class="mt-5">
+													<button type="submit" class="w-full border-2 uppercase text-center py-3 font-semibold border-red-800 hover:bg-transparent hover:text-red-800 duration-200  text-white bg-red-800 rounded-none"><i class="fa fa-commenting mr-2"></i>Request Details</button>
+												</div>
+
+											</form>
+										</div>
+									</div>
+
+
+								</div>
+
+							</div>
+						</x-guest-layout>
+
+		
+		
+		//--------------------------------------------- routes/web.php ---------------------------------------------------------------------
+					use App\Http\Controllers\PropertyEnquireController;
+					Route::post('/property/enquire/{id}', [PropertyEnquireController::class,'enquire'])->name('enquireform');
+		
+		
+		//--------------------------------------------- app/Http/Controllers/PropertyEnquireController.php ---------------------------------------------------------------------
+						<?php
+
+						namespace App\Http\Controllers;
+
+						use Illuminate\Http\Request;
+						use App\Models\PropertyEnquire;
+
+						class PropertyEnquireController extends Controller
+						{
+							public function enquire(Request $request, $propertyID)
+							{
+								$request->validate([
+									'name'  => ['required', 'max:255'],
+									'phone' => ['required', 'max:255'],
+									'email' => ['email', 'required', 'max:255'],
+									'message' => ['required', 'max:255']
+								]);
+
+								// $request->message .= '\nThis message was sent from '. route('singleProperty',$propertyID) . ' website.';
+
+								PropertyEnquire::create([
+									'name'  => $request->name,
+									'phone'  => $request->phone,
+									'email'  => $request->email,
+									'message'  => $request->message . '\nThis message was sent from '. route('single-property',$propertyID) . ' website.',
+								]);
+
+								// Send User & Admin message
+
+								return redirect()->back()->with(['message'=>'Message sent successfully']);
+							}
+						}
+
+
+		//--------------------------------------------- app/Models/PropertyEnquire.php ---------------------------------------------------------------------
+						protected $fillable = [
+							'name',
+							'phone',
+							'email',
+							'message',
+						];
+		
+		//-----------------//-----------------//---------------------//--------------------//------------------//-----------------//----------------------//----------------//-------------------//----------------------//----------------------//--------------------//----------------------------//----------------------//---
+		
+		
+		
+		
+		
+
+//==================================================================================================================
+												//-------------------------------- Class #16 || mail sent -------------------------------
+//==================================================================================================================
+		-- php artisan make:mail EnquireEmail
+		-- mail trap use korbo, mail trap e dhoke er creadintial gula niye amader project er .env file e paste korbo.
+		
+		//----------------------------------------------------------------------------------- .env ---------------------------------------------------------------------------
+					MAIL_MAILER=smtp
+					MAIL_HOST=smtp.mailtrap.io
+					MAIL_PORT=2525
+					MAIL_USERNAME=f2c71eb3a86fc1
+					MAIL_PASSWORD=112fc8d5e851ee
+					MAIL_ENCRYPTION=tls
+					MAIL_FROM_ADDRESS=propertylisting@civanolo.com
+					MAIL_FROM_NAME="${APP_NAME}"
+
+
+		//--------------------------------------------- app/Http/Controllers/PropertyEnquireController.php ---------------------------------------------------------------------
+						use App\Mail\EnquireEmail;
+						use Illuminate\Support\Facades\Mail;
+						
+						.....  ......  ......  ......  ......  ......  ......  ......   ......
+						// Email Sending
+						$data = [$request->all(), 'propertyURL' => route('singleProperty', $propertyID)];
+
+						Mail::send(new EnquireEmail($data));
+		
+		
+		//---------------------------------------------------------- app/Mail/EnquireEmail.php ---------------------------------------------------------------------
+						<?php
+
+						namespace App\Mail;
+
+						use Illuminate\Bus\Queueable;
+						use Illuminate\Contracts\Queue\ShouldQueue;
+						use Illuminate\Mail\Mailable;
+						use Illuminate\Queue\SerializesModels;
+
+						class EnquireEmail extends Mailable
+						{
+							use Queueable, SerializesModels;
+
+
+
+							public $enquireData;
+
+							/**
+							 * Create a new message instance.
+							 *
+							 * @return void
+							 */
+							public function __construct($data)
+							{
+								$this->enquireData = $data;
+							}
+
+							/**
+							 * Build the message.
+							 *
+							 * @return $this
+							 */
+							public function build()
+							{
+								return $this->view('emails.enquire-email')->to($this->enquireData[0]['email'])->from('info@civanoglu.com')->subject('Property Enqire')->with('data',$this->enquireData);
+							}
+						}
+
+
+		//--------------------------------------------- resources/views/emails/enquire-email.blade.php ---------------------------------------------------------------------
+					<div class="emailBody">
+						<h2>Hello {{ $data[0]['name'] }},</h2>
+
+						<p>We got your enquire request regarding our
+							<a style="color: #c309d2" target="_blank" href="{{ $data['propertyURL'] }}">{{ $data['propertyURL'] }}</a> property.</p>
+						<p>We'll get back to you soon!</p>
+
+						<p>Thanks <br><small>This is an automated email. You don't need to reply this email</small></p>
+
+
+
+						<div class="demoContent">
+							<h3 style="color: #555">Here is a copy of what we've got from you</h3>
+							<p><strong>Name: </strong>{{ $data[0]['name'] }}</p>
+							<p><strong>Phone: </strong>{{ $data[0]['phone'] }}</p>
+							<p><strong>Email: </strong>{{ $data[0]['email'] }}</p>
+							<p><strong>Message: </strong>{{ $data[0]['message'] }}</p>
+						</div>
+
+					</div>
+
+					<style>
+						.emailBody {
+							background: #ebf1f6;
+							background: -moz-linear-gradient(-45deg, #ebf1f6 0%, #abd3ee 39%, #89c3eb 68%, #d5ebfb 100%);
+							background: -webkit-linear-gradient(-45deg, #ebf1f6 0%, #abd3ee 39%, #89c3eb 68%, #d5ebfb 100%);
+							background: linear-gradient(135deg, #ebf1f6 0%, #abd3ee 39%, #89c3eb 68%, #d5ebfb 100%);
+							filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ebf1f6', endColorstr='#d5ebfb', GradientType=1);
+							padding: 5px 15px;
+							padding-bottom: 50px
+						}
+
+						.demoContent {
+							background: #ffffff7a;
+							padding: 5px 15px;
+							display: inline-block;
+							border-radius: 15px;
+							max-width: 50%
+						}
+					</style>
+//------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
+
+
+
+
+
+
+//==============================================================================================================
+												//-------------------- Class #17 || localization --------------------
+//==============================================================================================================
+		-- laravel localization e amra amader language-switching er bepar ta korbo flag e click kore, laravel e default vabe localization( https://laravel.com/docs/8.x/localization ) deya thake, but amara ekhane localization er ekta package use korbo because ei package e kicho extra feature deya ache ja amader ei project requirement e lagbe tai,
+				-- laravel localization package link: https://github.com/mcamara/laravel-localization
+				
+						-- install: composer require mcamara/laravel-localization
+						-- then publish: php artisan vendor:publish --provider="Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider"
+				
+				
+		//--------------------------------------------- config/laravellocalization.php ---------------------------------------------------------------------
+				-- ei file e giye dekbo j default vabe ekhan english & spanish er option er code ache baki gula comment obostai ache, amra ekn ekhane giye spanish ta comment kore dibo && english er sathe bangla tar comment remove kore dibo.
+				
+		//----------------------------------------------- app/Http/Kernel.php ----------------------------------------------------------------------------------
+				    protected $routeMiddleware = [
+							/**** OTHER MIDDLEWARE ****/
+							'localize'                => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,
+							'localizationRedirect'    => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter::class,
+							'localeSessionRedirect'   => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,
+							'localeCookieRedirect'    => \Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect::class,
+							'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class
+					];
+					
+		//--------------------------------------------------- routes/web.php ------------------------------------------------------------------------------------------
+						<?php
+
+						use Illuminate\Support\Facades\Route;
+						use App\Http\Controllers\HomeController;
+						use App\Http\Controllers\PropertyController;
+						use App\Http\Controllers\PageController;
+						use App\Http\Controllers\PropertyEnquireController;
+						use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
+						// Route::get('/', function () {
+						//     return view('welcome');
+						// });
+
+						Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
+							// Home
+							Route::get('/', [HomeController::class, 'home'])->name('home');
+							// Property
+							Route::get('/property/{id}', [PropertyController::class, 'singleProperty'])->name('single-property');
+							Route::post('/property/enquire/{id}', [PropertyEnquireController::class,'enquire'])->name('enquireform');
+							Route::get('/properties', [PropertyController::class, 'index'])->name('properties');
+							// Page
+							Route::get('/page/{slug}', [PageController::class, 'single'])->name('page');
+						});
+
+
+						Route::get('/dashboard', function () {
+							return view('dashboard');
+						})->middleware(['auth'])->name('dashboard');
+
+						require __DIR__.'/auth.php';
+						
+						
+						
+		//--- ekn amra jodi project manually ( http://127.0.0.1:8000/bn ) mane sheshe amader language 'bn' likhe project run kori taile dekbo j project run hocche & ta bangla language e run hocche, amra view-page-source e click korle dekbo j html er language er code e 'bn' likha royeche, evabe amara eta pore flag gulate linking korbo.
+		
+		//-- ekn amra laravel er documentation er localization part e jabo. link: https://laravel.com/docs/8.x/localization  //--okhane rules bola ache kicho, ota follo kore amra ekn amader project er  "resources/lang/bn/header.php" or ""resources/lang/bn.json" name e ekta file nibo.
+						/resources
+								/lang
+										/en
+												messages.php
+										/bn
+												messages.php
+												
+				//------------------- or -----------------------
+						/resources
+							/lang
+								en.json
+								bn.json
+
+
+		//---------------------------------------------------------------- resources/lang/bn.json -----------------------------------------------------------------------
+					{
+						"TL":"৳",
+						"land":"ল্যান্ড",
+						"Land":"ল্যান্ড",
+						"Villa":"ভিলা",
+						"villa":"ভিলা",
+						"apartment":"এপার্টমেন্ট",
+						"Apartment":"এপার্টমেন্ট",
+						"About Us":"আমাদের সম্পর্কে",
+						"Contact Us":"যোগাযোগ",
+						"Guide Property -- your guide to the primary real estate market in dubai.":"গাইড প্রপার্টি -- দুবাইয়ের প্রাথমিক রিয়েল এস্টেট মার্কেটে আপনার গাইড",
+						"The most convenient real estate search portal in Dubai, start searching now!":"দুবাইতে সবচেয়ে সুবিধাজনক রিয়েল এস্টেট অনুসন্ধান পোর্টাল, এখনই অনুসন্ধান শুরু করুন!",
+						"Properties":"সম্পত্তি",
+						"More Filter":"আরও ফিল্টার",
+						"Location":"অবস্থান",
+						"Rent":"ভাড়া",
+						"Sale":"বিক্রয়",
+						"Type":"ধরন",
+						"Bedrooms":"বেডরুমস",
+						"Bedroom":"বেডরুম",
+						"Price":"দাম",
+						"Search here":"এখানে খুঁজুন",
+						"Search":"খুঁজুন",
+						"bed":"শয্যা",
+						"Bathrooms":"গোসলখানা",
+						"bath":"গোসলখানা",
+						"ft":"স্কোয়ার ফিট",
+						"No Property Found":"কোন সম্পত্তি পাওয়া যায়নি",
+						"Overview":"ওভারভিউ",
+						"Property Features":"সম্পত্তির বৈশিষ্ট্য",
+						"Why buy this Property":"কেন এই সম্পত্তি কিনবেন",
+						"Living space sqm":"লিভিং স্পেস বর্গমিটার",
+						"Pool":"পুল",
+						"Private":"ব্যক্তিগত",
+						"Public":"পাবলিক",
+						"Both":"উভয়",
+						"Article & Advices":"প্রবন্ধ ও পরামর্শ",
+						"Additional services":"অতিরিক্ত পরিষেবা",
+						"Enquire about this property":"এই সম্পত্তি সম্পর্কে অনুসন্ধান করুন",
+						"Request Details":"বিস্তারিত অনুরোধ",
+						"More details":"বিস্তারিত"
+					}
+							
+		//--------------------------------------------- resources/views/components/footer.blade.php ---------------------------------------------------------------------
+					<h2 class="section-title langBN">{{ __('Article & Advices') }}</h2>
+					<h2 class="section-title langBN">{{ __('Additional services') }}</h2>
+					
+					
+		//--------------------------------------------- resources/views/components/header.blade.php ---------------------------------------------------------------------
+				<div class="w-full">
+					<ul class="flex justify-center">
+						<li><a class="inline-block p-4 text-white {{request('type') == '3' ? 'bg-gray-50' : ''}}" href="{{route('properties')}}?type=3">{{ __('Land') }}</a></li>
+						<li><a class="inline-block p-4 text-white {{request('type') == '2' ? 'bg-gray-50' : ''}}" href="{{route('properties')}}?type=2">{{ __('Villa') }}</a></li>
+						<li><a class="inline-block p-4 text-white {{request('type') == '1' ? 'bg-gray-50' : ''}}" href="{{route('properties')}}?type=1">{{ __('Apartment') }}</a></li>
+						<li><a class="inline-block p-4 text-white {{ request()->is('*page/about-us*') ? 'bg-gray-50' : '' }}" href="{{route('page', 'about-us')}}">{{ __('About Us') }}</a></li>
+						<li><a class="inline-block p-4 text-white  {{ request()->is('page/contact-us') ? 'bg-gray-50' : '' }}" href="{{route('page', 'contact-us')}}">{{ __('Contact Us') }}</a></li>
+
+						{{-- <li><a class="menu-item {{ request()->is('*/properties/?type=land') ? 'active' : '' }}" href="{{ route('properties') }}/?type=land">{{ __('Land') }}</a></li>
+						<li><a class="menu-item {{ request()->is('*/properties/?type=villa') ? 'active' : '' }}" href="{{ route('properties') }}/?type=villa">{{ __('Villa') }}</a></li>
+						<li><a class="menu-item {{ request()->is('*/properties/?type=apartment') ? 'active' : '' }}" href="{{ route('properties') }}/?type=apartment">{{ __('Apartment') }}</a></li>
+						<li><a class="menu-item {{ request()->is('*/page/about-us*') ? 'active' : '' }}" href="{{ route('page','about-us') }}">{{ __('About Us') }}</a></li>
+						<li><a class="menu-item {{ request()->is('*/page/contact-us*') ? 'active' : '' }}" href="{{ route('page','contact-us') }}">{{ __('Contact Us') }}</a></li> --}}
+
+					</ul>
+				</div>
+
+				<div class="min-w-max mr-10 text-2xl">
+					<a class="inline-block text-base rounded-full px-3 py-1 text-white" href="?currency=usd">$</a>
+					<a class="inline-block text-2xl rounded-full px-3 py-1 text-white" href="?currency=bdt">৳</a>
+				</div>
+
+				<div class="min-w-max text-3xl">
+					<a href="{{ LaravelLocalization::getLocalizedURL('en') }}" title="English">🏁</a>
+					<a href="{{ LaravelLocalization::getLocalizedURL('bn') }}" title="Bangla">🚩</a>
+					{{-- &#127482;&#127480; --}}
+				</div>
+		
+		
+		
+		//--------------------------------------------- resources/views/components/property-search-form.blade.php ---------------------------------------------------------------------
+		            <label for="sale">{{ __('Rent') }}/{{ __('Sale') }}</label>
+						<select id="sale" name="sale" class="border-0 focus:ring-0">
+							<option value="">{{ __('Rent') }}/{{ __('Sale') }}</option>
+							<option {{request('sale') == '2' ? 'selected="selected"' : ''}} value="2">{{ __('Rent') }}</option>
+							<option {{request('sale') == '1' ? 'selected="selected"' : ''}} value="1">{{ __('Sale') }}</option>
+						</select>
+						
+						<label for="location">{{ __('Location') }}</label>
+						
+						......		.......		.........		..........		.........		..........		........		.........		...........
+						
+						
+		//--------------------------------------------- resources/views/property/index.blade.php ---------------------------------------------------------------------
+						......		.......		.........		..........		.........		..........		........		.........		...........
+		//--------------------------------------------- resources/views/property/single.blade.php ---------------------------------------------------------------------
+								......		.......		.........		..........		.........		..........		........		.........		...........
+		//--------------------------------------------- resources/views/welcome.blade.php -----------------------------------------------------------------------------
+								......		.......		.........		..........		.........		..........		........		.........		...........
+								
+		//--------------------------------------------- resources/css/app.css -------------------------------------------------------------------------------------------------
+				-- 1st e font er file gula ene 'resources/css/fonts' folder e paste korechi then nicher code gula add korechi.
+				
+				@import 'font-awesome.min.css';
+				
+				@font-face {
+					font-family: "Studio Sans DEMO";
+					src: url("../fonts/StudioSansDEMO.eot");
+					src: url("../fonts/StudioSansDEMO.eot?#iefix") format("embedded-opentype"),
+						url("../fonts/StudioSansDEMO.woff2") format("woff2"),
+						url("../fonts/StudioSansDEMO.woff") format("woff"),
+						url("../fonts/StudioSansDEMO.ttf") format("truetype");
+					font-weight: normal;
+					font-style: normal;
+					font-display: swap;
+				}
+
+				@font-face {
+					font-family: "Liberation Serif";
+					src: url("../fonts/LiberationSerif-Regular.eot");
+					src: url("../fonts/LiberationSerif-Regular.eot?#iefix")
+							format("embedded-opentype"),
+						url("../fonts/LiberationSerif-Regular.woff2") format("woff2"),
+						url("../fonts/LiberationSerif-Regular.woff") format("woff"),
+						url("../fonts/LiberationSerif-Regular.ttf") format("truetype");
+					font-weight: normal;
+					font-style: normal;
+					font-display: swap;
+				}
+
+				@font-face {
+					font-family: "Liberation Serif";
+					src: url("../fonts/LiberationSerif-Bold.eot");
+					src: url("../fonts/LiberationSerif-Bold.eot?#iefix")
+							format("embedded-opentype"),
+						url("../fonts/LiberationSerif-Bold.woff2") format("woff2"),
+						url("../fonts/LiberationSerif-Bold.woff") format("woff"),
+						url("../fonts/LiberationSerif-Bold.ttf") format("truetype");
+					font-weight: bold;
+					font-style: normal;
+					font-display: swap;
+				}
+
+				@font-face {
+					font-family: "Studio Sans Bold";
+					src: url("../fonts/StudioSans-Bold.eot");
+					src: url("../fonts/StudioSans-Bold.eot?#iefix") format("embedded-opentype"),
+						url("../fonts/StudioSans-Bold.woff2") format("woff2"),
+						url("../fonts/StudioSans-Bold.woff") format("woff"),
+						url("../fonts/StudioSans-Bold.ttf") format("truetype");
+					font-weight: bold;
+					font-style: normal;
+					font-display: swap;
+				}
+
+				@font-face {
+					font-family: 'SutonnyMJ';
+					src: url('../fonts/SutonnyMJ.eot');
+					src: url('../fonts/SutonnyMJ.eot?#iefix') format('embedded-opentype'),
+						url('../fonts/SutonnyMJ.woff2') format('woff2'),
+						url('../fonts/SutonnyMJ.woff') format('woff'),
+						url('../fonts/SutonnyMJ.ttf') format('truetype');
+					font-weight: normal;
+					font-style: italic;
+					font-display: swap;
+				}
+
+				html[lang="bn"] .product_price,
+				html[lang="bn"] .page_title,
+				html[lang="bn"] .breadcrumb li a,
+				html[lang="bn"] .langBN,
+				html[lang="bn"] .search-form,
+				html[lang="bn"] #header_area a {
+				font-family: 'SutonnyMJ';
+				}
+
+				html[lang="bn"] .noTranslate{
+					font-family: "Liberation Serif",
+					sans-serif;
+				}
+//------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
+
+
+
+
+
+
+
+//==============================================================================================================
+												//-------------------- going to Admin-Panel --------------------//
+//==============================================================================================================
+		-- Dashboad/Admin panel er dhokar jonno url holo: " http://127.0.0.1:8000/dashboard "
+						-- Url: http://127.0.0.1:8000/dashboard
+						-- email: admin@gmail.com
+						-- email: admin
+
+
+
+
+
+//==============================================================================================================
+												//-------------------- Class #18 + #19 + #20 --------------------//
+//==============================================================================================================
+		//--------------------------------------------- resources/css/app.css ---------------------------------------------------------------------		
+					@import 'tailwindcss/base';
+					@import 'tailwindcss/components';
+					@import 'tailwindcss/utilities';
+					@import 'font-awesome.min.css';
+
+					@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;700&display=swap');
+					/*     font-family: 'Nunito', sans-serif; */
+
+					@font-face {
+						font-family: 'SutonnyMJ';
+						src: url('../fonts/SutonnyMJ.eot');
+						src: url('../fonts/SutonnyMJ.eot?#iefix') format('embedded-opentype'),
+							url('../fonts/SutonnyMJ.woff2') format('woff2'),
+							url('../fonts/SutonnyMJ.woff') format('woff'),
+							url('../fonts/SutonnyMJ.ttf') format('truetype');
+						font-weight: normal;
+						font-style: italic;
+						font-display: swap;
+					}
+
+					html[lang="bn"] .product_price,
+					html[lang="bn"] .page_title,
+					html[lang="bn"] .breadcrumb li a,
+					html[lang="bn"] .langBN,
+					html[lang="bn"] .search-form,
+					html[lang="bn"] #header_area a {
+						font-family: 'SutonnyMJ';
+					}
+
+					html[lang="tr"] .product_price,
+					html[lang="tr"] .page_title,
+					html[lang="tr"] .breadcrumb li a,
+					html[lang="tr"] .langBN,
+					html[lang="tr"] .search-form,
+					html[lang="tr"] #header_area a {
+						font-family: 'Nunito', sans-serif;
+					}
+
+					html[lang="bn"] .noTranslate{
+						font-family: 'Nunito', sans-serif;
+					}
+					html[lang="tr"] .noTranslate{
+						font-family: 'Nunito', sans-serif;
+					}
+
+					.slick-slider{position:relative;display:block;box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none;-khtml-user-select:none;-ms-touch-action:pan-y;touch-action:pan-y;-webkit-tap-highlight-color:transparent}.slick-list{position:relative;display:block;overflow:hidden;margin:0;padding:0}.slick-list:focus{outline:0}.slick-list.dragging{cursor:pointer;cursor:hand}.slick-slider .slick-list,.slick-slider .slick-track{-webkit-transform:translate3d(0,0,0);-moz-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}.slick-track{position:relative;top:0;left:0;display:block;margin-left:auto;margin-right:auto}.slick-track:after,.slick-track:before{display:table;content:''}.slick-track:after{clear:both}.slick-loading .slick-track{visibility:hidden}.slick-slide{display:none;float:left;height:100%;min-height:1px}[dir=rtl] .slick-slide{float:right}.slick-slide img{display:block}.slick-slide.slick-loading img{display:none}.slick-slide.dragging img{pointer-events:none}.slick-initialized .slick-slide{display:block}.slick-loading .slick-slide{visibility:hidden}.slick-vertical .slick-slide{display:block;height:auto;border:1px solid transparent}.slick-arrow.slick-hidden{display:none}
+
+
+					body {
+
+					}
+
+					.container {
+						margin: 0 auto;
+						max-width: 1200px;
+					}
+
+					h1, h2, h3, h4, h5, h6 {
+						font-family: 'Nunito', sans-serif;
+						font-weight: bold;
+					}
+
+					.section-heading {
+						@apply font-bold text-center text-4xl mb-10
+					}
+
+					.btn {
+						@apply bg-gray-800 text-white px-6 py-2 rounded inline-block text-center
+					}
+
+					.fullwidth-btn {
+						@apply btn w-full
+					}
+
+					.sticky-header-active {
+						background-color: #fff;
+					}
+
+					.sticky-header-active a{color:#333}
+
+					.inputField {
+						@apply  w-full border-gray-400 block
+					}
+
+					#description h3 {}
+					#description p, #description ul {margin-bottom: 20px}
+
+					.general-header a {
+						color: #000;
+					}
+
+					.general-header {
+						background-color: #fff;
+					}
+
+					.single-gallery-item {
+						height: 600px;
+					}
+
+					.single-thumbnail-item {
+						height: 80px;
+					}
+
+
+					/*  */
+					.civanoglu-label{
+						@apply uppercase text-sm text-gray-600 cursor-pointer block mb-1
+					}
+					.civanoglu-input{
+						@apply border border-gray-400 w-full px-4 py-2 rounded-md focus:outline-none text-base
+					}
+
+
+					/* ----- CSS code for search -------- */
+					.vertical-search-form > form > div {
+						display: block;
+						min-width: 100%;
+						margin-bottom: 15px;
+					}
+
+					.vertical-search-form > form {
+						display: block;
+					}
+
+					.vertical-search-form .border-gray-500 {
+						display: none;
+					}
+
+					.home-search label {
+						display: none;
+					}
+
+					.vertical-search-form label {
+						text-transform: uppercase;
+						font-size: 12px;
+						margin-bottom: 5px;
+						display: block;
+						opacity: .5;
+					}
+
+					.vertical-search-form select {
+						min-width: 100%;
+					}
+
+					.vertical-search-form > form > div > div {
+						display: block;
+						min-width: 100%;
+						margin-bottom: 15px;
+					}
+
+					.vertical-search-form > form > div.ml-5 {
+						margin-left: 12px;
+					}
+
+					.vertical-search-form button {
+						margin-top: 15px;
+						min-width: 100%;
+					}
+
+					/* ----- CSS code for slick slider arrow buttons -------- */
+					.nextArrowBtn{
+						position: absolute;
+						z-index: 1;
+						top: 50%;
+						right: 5px;
+						color: #ffffff;
+					}
+					.prevArrowBtn{
+						position: absolute;
+						z-index: 1;
+						top: 50%;
+						left: 5px;
+						color: #ffffff;
+					}
+
+		
+		//--------------------------------------------- database/seeders/DatabaseSeeder.php ---------------------------------------------------------------------
+				-- ekn amra seeder er maddhome amader dashboard/admin panel e dhokar jonno ekta admin er login creadintial make kore rakbo. tar jonno code holo: 
+				
+						use App\Models\User;
+						use Illuminate\Support\Facades\Hash;
+						use Illuminate\Support\Str;
+						
+						
+						$user = new User();
+						$user->name = 'Admin';
+						$user->email = 'admin@gmail.com';
+						$user->email_verified_at = now();
+						$user->password = Hash::make('admin');
+						$user->remember_token = Str::random(10);
+						$user->save();
+						
+					-- php artisan migrate:fresh --seed
+			//------------------------------------------------------------------------------------------
+					
+					
+					
+					
+		-- Dashboad/Admin panel er dhokar jonno url holo: " http://127.0.0.1:8000/dashboard "
+						-- Url: http://127.0.0.1:8000/dashboard
+						-- email: admin@gmail.com
+						-- password: admin
+		
+		-- 1st e amra dashboard er jonno ekta alada Controller banabo, sob
+				-- command: php artisan make:controller DashboardController
+				
+				
+				
+				
+		//--------------------------------------------- app/Models/Property.php ------------------------------------------------------------------------------
+				protected $guarded = ['created_at', 'updated_at'];
+				protected $hidden = ['created_at', 'updated_at'];
+		
+		
+		//--------------------------------------------- config/laravellocalization.php ------------------------------------------------------------------------------
+				-- ei file e giye Turkish language er jonno o comment ta tole nibo.
+				
+				        'tr'          => ['name' => 'Turkish',                'script' => 'Latn', 'native' => 'Türkçe', 'regional' => 'tr_TR'],
+						
+						
+		//--------------------------------------------- resources/lang/tr.json -------------------------------------------------------------------------------------------
+						{
+							"TL":"TL",
+							"land":"Kara",
+							"Land":"Kara",
+							"Villa":"Villa",
+							"villa":"Villa",
+							"apartment":"apartman",
+							"Apartment":"apartman",
+							"About Us":"Hakkımızda",
+							"Contact Us":"Bizimle iletişime geçin",
+							"Guide Property -- your guide to the primary real estate market in dubai.":"Rehber Mülk - dubai'deki birincil emlak piyasasına rehberiniz.",
+							"The most convenient real estate search portal in Dubai, start searching now!":"Dubai'deki en uygun emlak arama portalı, şimdi aramaya başlayın!",
+							"Properties":"Özellikler",
+							"More Filter":"Daha Fazla Filtre",
+							"Location":"Konum",
+							"Rent":"Kira",
+							"Sale":"Satış",
+							"Type":"Tip",
+							"Bedrooms":"yatak odaları",
+							"Bedroom":"yatak odaları",
+							"Price":"Fiyat",
+							"Search here":"Burada ara",
+							"Search":"Aramak",
+							"bed":"yatak",
+							"Bathrooms":"banyolar",
+							"bath":"banyolar",
+							"ft":"ft",
+							"No Property Found":"Mülk Bulunamadı",
+							"Overview":"genel bakış",
+							"Property Features":"mülk özellikleri",
+							"Why buy this Property":"Neden bu Mülkü satın almalısınız?",
+							"Living space sqm":"Yaşam alanı m2",
+							"Pool":"Havuz",
+							"Private":"Özel",
+							"Public":"Halk",
+							"Both":"Her ikisi de",
+							"Article & Advices":"Makale ve Tavsiyeler",
+							"Additional services":"Ek hizmetler",
+							"Enquire about this property":"Bu mülk hakkında bilgi alın",
+							"Request Details":"İstek detayları",
+							"More details":"Daha fazla detay"
+						}
+
+		
+		//----------------------------------- database/migrations/2021_12_13_102741_create_properties_table.php ---------------------------------------------------------
+						Schema::create('properties', function (Blueprint $table) {
+								$table->id();
+								$table->string('name');
+								$table->string('name_tr');
+								$table->string('featured_image')->default('https://picsum.photos/500/300?random=' . rand(10, 1000));
+								$table->unsignedBigInteger('location_id');
+								$table->unsignedBigInteger('price');
+								$table->unsignedBigInteger('sale')->default(1)->comment('1=sale,2=rent');
+								$table->unsignedBigInteger('type')->default(1)->comment('1=apartment,2=villa,3=land');
+								$table->unsignedBigInteger('bedrooms')->nullable();
+								$table->unsignedBigInteger('bathrooms')->nullable();
+								$table->unsignedBigInteger('net_sqm')->nullable();
+								$table->unsignedBigInteger('gross_sqm')->nullable();
+								$table->unsignedBigInteger('pool')->nullable()->comment('1=private,2=public,3=both,4=no');
+								$table->string('overview');
+								$table->string('overview_tr');
+								$table->longText('why_buy')->nullable();
+								$table->longText('why_buy_tr')->nullable();
+								$table->longText('description');
+								$table->longText('description_tr');
+								$table->timestamps();
+
+								//$table->foreign('featured_media_id')->references('id')->on('media');
+								$table->foreign('location_id')->references('id')->on('locations');
+						});
+		
+		
+		//--------------------------------------------- database/factories/LocationFactory.php ------------------------------------------------------------------------------
+				-- change kori ni code ami amar project e, oi vai er change code er link: ( https://github.com/shadhinplanet/civanoglu/blob/c8c430c018e0f942fee0baac0f27ea9e46911188/database/factories/LocationFactory.php )
+		
+		//--------------------------------------------- resources/views/components/header.blade.php ------------------------------------------------------------------------------
+				-- hobho sob change kori ni code ami amar project e, oi vai er change code er link: ( https://github.com/shadhinplanet/civanoglu/blob/c8c430c018e0f942fee0baac0f27ea9e46911188/database/factories/PropertyFactory.php )
+				-- ami rasel vai er code mane jeta normal oitai follow korchi, unar tar link: ( https://github.com/raselupm/civanoglu/blob/master/database/factories/PropertyFactory.php )
+				
+				-- so amar code: --
+				        return [
+							'name' => $this->faker->sentence,
+							'name_tr' => $this->faker->sentence,
+							'featured_image' => 'https://picsum.photos/1200/800',
+							// 'featured_image' => 'https://picsum.photos/1200/800?random=' . rand(10, 1000),
+							'location_id' => Location::all()->random()->id,
+							'price' => rand(100000,500000),
+							'sale' => rand(1,2),
+							'type' => rand(1,3),
+							'bedrooms' => rand(1,6),
+							'bathrooms' => rand(1,5),
+							'net_sqm' => rand(55,300),
+							'gross_sqm' => rand(65,450),
+							'pool' => rand(1,4),
+							'overview' => $this->faker->text(100),
+							'overview_tr' => $this->faker->text(100),
+							'why_buy' => $this->faker->text(1000),
+							'why_buy_tr' => $this->faker->text(1000),
+							'description' => $this->faker->text(500),
+							'description_tr' => $this->faker->text(500)
+						];
+				
+		
+		//--------------------------------------------- resources/views/components/header.blade.php ------------------------------------------------------------------------------
+				<div class="min-w-max text-3xl">
+					<a href="{{ LaravelLocalization::getLocalizedURL('en') }}" title="English Language">🏁</a>
+					<a href="{{ LaravelLocalization::getLocalizedURL('bn') }}" title="Bangla Language">🚩</a>
+					<a href="{{ LaravelLocalization::getLocalizedURL('tr') }}" title="Turkish Language">🏳️</a>
+					{{-- &#127482;&#127480; --}}
+				</div>
+			
+			
+		//--------------------------------------------- resources/views/dashboard/index.blade.php ------------------------------------------------------------------------------
+				-- moved file 'resources/views/dashboard.blade.php'  to 'resources/views/dashboard/index.blade.php'
+		
+				
+		//------------------------------------------------------ routes/web.php ---------------------------------------------------------------------------------
+					use App\Http\Controllers\DashboardController;
+					
+					Route::prefix('dashboard')->middleware('auth')->group(function () {
+						Route::get('/', [DashboardController::class,'index'])->name('dashboard');
+						Route::get('properties', [DashboardController::class,'properties'])->name('adminProperties');
+						Route::get('properties/addnew', [DashboardController::class,'createProperty'])->name('createProperty');
+						Route::get('properties/edit/{id}', [DashboardController::class, 'editProperty'])->name('editProperty');
+						Route::put('properties/update/{id}', [DashboardController::class, 'updateProperty'])->name('updateProperty');
+						Route::delete('properties/destroy/{id}', [DashboardController::class, 'destroyProperty'])->name('destroyProperty');
+						Route::post('properties/store', [DashboardController::class, 'storeProperty'])->name('storeProperty');
+					});
+					
+			
+		
+		//--------------------------------------------- app/Http/Controllers/DashboardController.php ---------------------------------------------------------------------
+						<?php
+
+						namespace App\Http\Controllers;
+
+						use App\Models\Location;
+						use App\Models\Property;
+						use Illuminate\Http\Request;
+
+						class DashboardController extends Controller
+						{
+
+							//-------------------- Dashboard Home -----------------------
+							public function index()
+							{
+								return view('dashboard.index');
+							}
+
+
+							//----------------------- Property Page -------------------------------
+							public function properties()
+							{
+								$properties = Property::latest()->paginate(20);
+								return view('dashboard.property.index')->with('properties',$properties);
+							}
+
+
+							//---------------------- Create New Property ---------------------------
+							public function createProperty()
+							{
+								$locations = Location::all();
+								return view('dashboard.property.create')->with(['locations'=> $locations]);
+							}
+
+
+							//-------------------- Store New Property ---------------------------------
+							public function storeProperty(Request $request)
+							{
+								$request->validate([
+									'name' => 'required',
+									'name_tr' => 'required',
+									//'featured_image' => 'required|image',
+									'location_id' => 'required',
+									'price' => 'required|integer',
+									'sale' => 'integer',
+									'type' => 'integer',
+									'bedrooms' => 'integer',
+									'bathrooms' => 'integer',
+									'net_sqm' => 'integer',
+									'pool' => 'integer',
+									'overview' => 'required',
+									'overview_tr' => 'required',
+									'description' => 'required',
+									'description_tr' => 'required',
+								]);
+
+								Property::create([
+									'name' => $request->name,
+									'name_tr' => $request->name_tr,
+									// 'featured_image' => $request->featured_image,
+									'location_id' => $request->location_id,
+									'price' => $request->price,
+									'sale' => $request->sale,
+									'type' => $request->type,
+									'bedrooms' => $request->bedrooms,
+									'bathrooms' => $request->bathrooms,
+									'net_sqm' => $request->net_sqm,
+									'gross_sqm' => $request->gross_sqm,
+									'pool' => $request->pool,
+									'overview' => $request->overview,
+									'overview_tr' => $request->overview_tr,
+									'why_buy' => $request->why_buy,
+									'why_buy_tr' => $request->why_buy_tr,
+									'description' => $request->description,
+									'description_tr' => $request->description_tr,
+								]);
+
+								return redirect()->route('adminProperties')->with(['message' => 'Property is added.']);
+
+							}
+
+
+							//-------------------- Edit Property ---------------------------------
+							public function editProperty($property_id)
+							{
+								$property = Property::findOrFail($property_id);
+								$locations = Location::all();
+								return view('dashboard.property.edit', [
+									'property' => $property,
+									'locations' => $locations
+								]);
+							}
+
+
+							//------------------------ Update Property ------------------------------
+							public function updateProperty(Request $request, $property_id)
+							{
+								$request->validate([
+									'name' => 'required',
+									'name_tr' => 'required',
+									//'featured_image' => 'required|image',
+									'location_id' => 'required',
+									'price' => 'required|integer',
+									'sale' => 'integer',
+									'type' => 'integer',
+									'bathrooms' => 'integer',
+									'net_sqm' => 'integer',
+									'pool' => 'integer',
+									'overview' => 'required',
+									'overview_tr' => 'required',
+									'description' => 'required',
+									'description_tr' => 'required',
+								]);
+
+								Property::find($property_id)->update([
+									'name' => $request->name,
+									'name_tr' => $request->name_tr,
+									// 'featured_image' => $request->featured_image,
+									'location_id' => $request->location_id,
+									'price' => $request->price,
+									'sale' => $request->sale,
+									'type' => $request->type,
+									'bedrooms' => $request->bedrooms,
+									'bathrooms' => $request->bathrooms,
+									'net_sqm' => $request->net_sqm,
+									'gross_sqm' => $request->gross_sqm,
+									'pool' => $request->pool,
+									'overview' => $request->overview,
+									'overview_tr' => $request->overview_tr,
+									'why_buy' => $request->why_buy,
+									'why_buy_tr' => $request->why_buy_tr,
+									'description' => $request->description,
+									'description_tr' => $request->description_tr,
+								]);
+
+								return redirect()->route('adminProperties')->with(['message' => 'Property is Updated.']);
+							}
+
+
+							//------------------ Delete Property ------------------------------------------
+							public function destroyProperty($property_id)
+							{
+								try {
+									Property::findOrFail($property_id)->delete();
+									return redirect()->route('adminProperties')->with(['message' => 'Property Deleted']);
+								} catch (\Throwable $th) {
+									return redirect()->route('adminProperties')->with(['message' => $th->getMessage()]);
+								}
+							}
+
+						}
+
+
+		
+		//--------------------------------------------- resources/views/layouts/navigation.blade.php -----------------------------------------------------------------------------
+						<!-- Navigation Links -->
+						<div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+							<x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+								{{ __('Dashboard') }}
+							</x-nav-link>
+							<x-nav-link :href="route('adminProperties')" :active="request()->routeIs('adminProperties')">
+								{{ __('Properties') }}
+							</x-nav-link>
+						</div>
+						
+						
+		//--------------------------------------------- resources/views/dashboard/property/create.blade.php ---------------------------------------------------------------------
+					<x-app-layout>
+						<x-slot name="header">
+							<div class="flex justify-between items-center">
+								<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
+									{{ __('Add New Properties') }}
+								</h2>
+								<a href="{{ route('adminProperties') }}"
+									class="px-4 py-2 hover:text-white hover:bg-blue-600 bg-purple-800 duration-200 text-white rounded-md text-base">Back</a>
+							</div>
+						</x-slot>
+
+						<div class="py-12">
+							<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+								<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+									<div class="m-4">
+										<form action="{{route('storeProperty')}}" method="post" class="p-6 bg-white border-b border-gray-200">
+											@csrf
+											<div class="flex -mx-4 mb-6">
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="name">Title</label>
+													<input class="civanoglu-input" type="text" id="name" name="name" value="{{ old('name')}}">
+
+													@error('name')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="name_tr">Title - Turkish</label>
+													<input class="civanoglu-input" type="text" id="name_tr" name="name_tr" value="{{ old('name_tr')}}">
+
+													@error('name_tr')
+													<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+											</div>
+
+											<div class="mb-6">
+												<label class="civanoglu-label" for="featured_image">Featured Image</label>
+												<input class="civanoglu-input" type="file" id="featured_image" name="featured_image" value="{{ old('featured_image')}}">
+
+												@error('featured_image')
+													<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+												@enderror
+											</div>
+
+											<div class="flex -mx-4 mb-6">
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="location_id">Location</label>
+													<select class="civanoglu-input" name="location_id" id="location_id">
+														<option value="">Select location</option>
+														@foreach($locations as $location)
+															<option value="{{$location->id}}">{{$location->name}}</option>
+														@endforeach
+													</select>
+
+													@error('location_id')
+													<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="price">Price</label>
+													<input class="civanoglu-input" type="number" id="price" name="price" value="{{ old('price')}}">
+
+													@error('price')
+													<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="sale">For</label>
+													<select class="civanoglu-input" name="sale" id="sale">
+														<option value="">Select type</option>
+														<option value="2">Rent</option>
+														<option value="1">Sale</option>
+													</select>
+
+													@error('sale')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="type">Type</label>
+													<select class="civanoglu-input" name="type" id="type">
+														<option value="">Select property type</option>
+														<option value="3">Land</option>
+														<option value="1">Apartment</option>
+														<option value="2">Villa</option>
+													</select>
+
+													@error('type')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+											</div>
+
+											<div class="flex -mx-4 mb-6">
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="bedrooms">Bedrooms</label>
+													<select class="civanoglu-input" name="bedrooms" id="bedrooms">
+														<option value="">Select bedrooms</option>
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+														<option value="6">6</option>
+													</select>
+
+													@error('bedrooms')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="bathrooms">Bathrooms</label>
+													<select class="civanoglu-input" name="bathrooms" id="bathrooms">
+														<option value="">Select Bathrooms</option>
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+														<option value="6">6</option>
+													</select>
+
+													@error('bathrooms')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="net_sqm">Net square meeter</label>
+													<input class="civanoglu-input" type="number" id="net_sqm" name="net_sqm" value="{{ old('net_sqm')}}">
+
+													@error('net_sqm')
+													<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="gross_sqm">Gross square meeter</label>
+													<input class="civanoglu-input" type="number" id="gross_sqm" name="gross_sqm" value="{{ old('gross_sqm')}}">
+
+													@error('gross_sqm')
+													<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="pool">Pool</label>
+													<select class="civanoglu-input" name="pool" id="pool">
+														<option value="">Select pool</option>
+														<option value="4">No</option>
+														<option value="1">Private</option>
+														<option value="2">Public</option>
+														<option value="3">Both</option>
+													</select>
+
+													@error('pool')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+											</div>
+
+											<div class="flex -mx-4 mb-6">
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="overview">Overview</label>
+													<textarea class="civanoglu-input" name="overview" id="overview" cols="30" rows="3" value="{{ old('overview')}}"></textarea>
+
+													@error('overview')
+													<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="overview_tr">Overview - TR</label>
+													<textarea class="civanoglu-input" name="overview_tr" id="overview_tr" cols="30" rows="3" value="{{ old('overview_tr')}}"></textarea>
+
+													@error('overview_tr')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+											</div>
+
+											<div class="flex -mx-4 mb-6">
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="why_buy">Why buy</label>
+													<textarea class="civanoglu-input" name="why_buy" id="why_buy" cols="30" rows="5" value="{{ old('why_buy')}}"></textarea>
+
+													@error('why_buy')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="why_buy_tr">Why buy - TR</label>
+													<textarea class="civanoglu-input" name="why_buy_tr" id="why_buy_tr" cols="30" rows="5" value="{{ old('why_buy_tr')}}"></textarea>
+
+													@error('why_buy_tr')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+											</div>
+
+											<div class="flex -mx-4 mb-6">
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="description">Description</label>
+													<textarea class="civanoglu-input" name="description" id="description" cols="30" rows="10" value="{{ old('description')}}"></textarea>
+
+													@error('description')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="description_tr">Description - TR</label>
+													<textarea class="civanoglu-input" name="description_tr" id="description_tr" cols="30" rows="10" value="{{ old('description_tr')}}"></textarea>
+
+													@error('description_tr')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+											</div>
+
+											<button class="btn" type="submit">Save Property</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</x-app-layout>
+
+
+		
+		//--------------------------------------------- resources/views/dashboard/property/index.blade.php ---------------------------------------------------------------------
+					<x-app-layout>
+						<x-slot name="header">
+							<div class="flex justify-between items-center">
+								<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
+									{{ __('Properties') }}
+								</h2>
+								<a href="{{ route('createProperty') }}"
+									class="px-4 py-2 hover:text-white hover:bg-blue-600 bg-purple-800 duration-200 text-white rounded-md text-base">Add New</a>
+							</div>
+						</x-slot>
+
+
+						@if (session('message'))
+							<div id="notice" class="text-center bg-green-100 text-green-700 p-3">{{ session('message') }}</div>
+						@endif
+
+						<div class="py-12">
+							<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+								<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+									<div class="">
+										<table class="w-full table-auto mb-4">
+											<thead>
+												<tr>
+													<th class="border px-4 py-2">Name</th>
+													<th class="border px-4 py-2">Location</th>
+													<th class="border px-4 py-2">Price</th>
+													<th class="border px-4 py-2">Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												@forelse ($properties as $item)
+													<tr>
+														<td class="border px-4 py-2">{{ $item->name }}</td>
+
+														<td class="border px-4 py-2">{{ $item->location->name }}</td>
+														<td class="border px-4 py-2">{{ $item->price }}</td>
+														<td class="border px-4 py-2 flex items-center justify-center">
+															<a href="{{ route('editProperty', $item->id) }}" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-blue-700 text-white px-3 py-2 text-sm rounded-md">Edit</a>
+															<a target="_blank" href="" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-green-700 text-white px-3 py-2 text-sm rounded-md">View</a>
+
+															<form action="{{ route('destroyProperty', $item->id) }}" method="POST">
+																@csrf
+																@method('DELETE')
+																<button class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-red-700 text-white px-3 py-2 text-sm rounded-md">Delete</button>
+															</form>
+														</td>
+													</tr>
+												@empty
+													<tr>
+														<td colspan="4">No Property Found!</td>
+													</tr>
+												@endforelse
+
+											</tbody>
+										</table>
+
+										<div class="px-4 pb-4">
+											{{ $properties->links() }}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</x-app-layout>
+
+
+		
+		//--------------------------------------------- resources/views/dashboard/property/edit.blade.php ---------------------------------------------------------------------
+						<x-app-layout>
+							<x-slot name="header">
+								<div class="flex justify-between items-center">
+									<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
+										{{ __('Add New Properties') }}
+									</h2>
+									<a href="{{ route('adminProperties') }}"
+										class="px-4 py-2 hover:text-white hover:bg-blue-600 bg-purple-800 duration-200 text-white rounded-md text-base">Back</a>
+								</div>
+							</x-slot>
+
+							<div class="py-12">
+								<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+									<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+										<div class="m-4">
+											<form action="{{route('updateProperty',$property->id)}}" method="post" class="p-6 bg-white border-b border-gray-200">
+												@method('PUT')
+												@csrf
+												<div class="flex -mx-4 mb-6">
+													<div class="flex-1 px-4">
+														<label class="civanoglu-label" for="name">Title</label>
+														<input class="civanoglu-input" type="text" id="name" name="name" value="{{ $property->name }}">
+
+														@error('name')
+															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+
+													<div class="flex-1 px-4">
+														<label class="civanoglu-label" for="name_tr">Title - Turkish</label>
+														<input class="civanoglu-input" type="text" id="name_tr" name="name_tr" value="{{ $property->name_tr }}">
+
+														@error('name_tr')
+															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+												</div><div class="flex -mx-4 mb-6 items-center">
+													<div class="flex-1 px-4">
+													   <label class="civanoglu-label" for="featured_image">Featured Image</label>
+														<input class="civanoglu-input" type="file" id="featured_image" name="featured_image">
+
+														@error('featured_image')
+															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+
+													<div class="flex-1 px-4">
+														<img src="{{ $property->featured_image }}" width="100" alt="">
+													</div>
+												</div>
+
+
+												<div class="flex -mx-4 mb-6">
+													<div class="flex-1 px-4">
+														<label class="civanoglu-label" for="location_id">Location</label>
+														<select class="civanoglu-input" name="location_id" id="location_id">
+															<option value="">Select location</option>
+															@foreach($locations as $location)
+															<option {{ $location->id == $property->location->id  ? 'selected="selected"' : ''  }} value="{{$location->id}}">{{$location->name}}</option>
+															@endforeach
+														</select>
+
+														@error('location_id')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+
+													<div class="flex-1 px-4">
+														<label class="civanoglu-label" for="price">Price</label>
+														<input class="civanoglu-input" type="number" id="price" name="price" value="{{ $property->price }}">
+
+														@error('price')
+															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+
+													<div class="flex-1 px-4">
+														<label class="civanoglu-label" for="sale">For</label>
+														<select class="civanoglu-input" name="sale" id="sale">
+															<option value="">Select type</option>
+															<option {{ $property->sale == '2'  ? 'selected="selected"' : ''  }} value="2">Rent</option>
+															<option {{ $property->sale == '1'  ? 'selected="selected"' : ''  }} value="1">Sale</option>
+														</select>
+
+														@error('sale')
+															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+
+													<div class="flex-1 px-4">
+														<label class="civanoglu-label" for="type">Type</label>
+														<select class="civanoglu-input" name="type" id="type">
+															<option value="">Select property type</option>
+															<option {{ $property->type == '3'  ? 'selected="selected"' : ''  }} value="3">Land</option>
+															<option {{ $property->type == '1'  ? 'selected="selected"' : ''  }} value="1">Apartment</option>
+															<option {{ $property->type == '2'  ? 'selected="selected"' : ''  }} value="2">Villa</option>
+														</select>
+
+														@error('type')
+															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+												</div>
+
+												<div class="flex -mx-4 mb-6">
+													<div class="flex-1 px-4">
+														<label class="civanoglu-label" for="bedrooms">Bedrooms</label>
+														<select class="civanoglu-input" name="bedrooms" id="bedrooms">
+															<option value="">Select bedrooms</option>
+															<option {{ $property->bedrooms == '1'  ? 'selected="selected"' : ''  }} value="1">1</option>
+															<option {{ $property->bedrooms == '2'  ? 'selected="selected"' : ''  }} value="2">2</option>
+															<option {{ $property->bedrooms == '3'  ? 'selected="selected"' : ''  }} value="3">3</option>
+															<option {{ $property->bedrooms == '4'  ? 'selected="selected"' : ''  }} value="4">4</option>
+															<option {{ $property->bedrooms == '5'  ? 'selected="selected"' : ''  }} value="5">5</option>
+															<option {{ $property->bedrooms == '6'  ? 'selected="selected"' : ''  }} value="6">6</option>
+														</select>
+
+														@error('bedrooms')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+
+													<div class="flex-1 px-4">
+														<label class="civanoglu-label" for="bathrooms">Bathrooms</label>
+														<select class="civanoglu-input" name="bathrooms" id="bathrooms">
+															<option value="">Select bathrooms</option>
+															<option {{ $property->bathrooms == '1'  ? 'selected="selected"' : ''  }} value="1">1</option>
+															<option {{ $property->bathrooms == '2'  ? 'selected="selected"' : ''  }} value="2">2</option>
+															<option {{ $property->bathrooms == '3'  ? 'selected="selected"' : ''  }} value="3">3</option>
+															<option {{ $property->bathrooms == '4'  ? 'selected="selected"' : ''  }} value="4">4</option>
+															<option {{ $property->bathrooms == '5'  ? 'selected="selected"' : ''  }} value="5">5</option>
+															<option {{ $property->bathrooms == '6'  ? 'selected="selected"' : ''  }} value="6">6</option>
+														</select>
+
+														@error('bathrooms')
+															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+
+													<div class="flex-1 px-4">
+														<label class="civanoglu-label" for="net_sqm">Net square meeter</label>
+														<input class="civanoglu-input" type="number" id="net_sqm" name="net_sqm" value="{{ $property->net_sqm }}">
+
+														@error('net_sqm')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+
+													<div class="flex-1 px-4">
+														<label class="civanoglu-label" for="gross_sqm">Gross square meeter</label>
+														<input class="civanoglu-input" type="number" id="gross_sqm" name="gross_sqm" value="{{ $property->gross_sqm }}">
+
+														@error('gross_sqm')
+															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+
+													<div class="flex-1 px-4">
+														<label class="civanoglu-label" for="pool">Pool</label>
+														<select class="civanoglu-input" name="pool" id="pool">
+															<option value="">Select pool</option>
+															<option {{ $property->pool == '4'  ? 'selected="selected"' : ''  }}  value="4">No</option>
+															<option {{ $property->pool == '1'  ? 'selected="selected"' : ''  }}  value="1">Private</option>
+															<option {{ $property->pool == '2'  ? 'selected="selected"' : ''  }}  value="2">Public</option>
+															<option {{ $property->pool == '3'  ? 'selected="selected"' : ''  }}  value="3">Both</option>
+														</select>
+
+														@error('pool')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+												</div>
+
+												<div class="flex -mx-4 mb-6">
+													<div class="flex-1 px-4">
+														<label class="civanoglu-label" for="overview">Overview</label>
+														<textarea class="civanoglu-input" name="overview" id="overview" cols="30"
+															rows="3">{{ $property->overview }}</textarea>
+
+														@error('overview')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+
+													<div class="flex-1 px-4">
+														<label class="civanoglu-label" for="overview_tr">Overview - TR</label>
+														<textarea class="civanoglu-input" name="overview_tr" id="overview_tr" cols="30"
+															rows="3">{{ $property->overview_tr }}</textarea>
+
+														@error('overview_tr')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+												</div>
+
+												<div class="flex -mx-4 mb-6">
+													<div class="flex-1 px-4">
+														<label class="civanoglu-label" for="why_buy">Why buy</label>
+														<textarea class="civanoglu-input" name="why_buy" id="why_buy" cols="30"
+															rows="5">{{ $property->why_buy }}</textarea>
+
+														@error('why_buy')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+
+													<div class="flex-1 px-4">
+														<label class="civanoglu-label" for="why_buy_tr">Why buy - TR</label>
+														<textarea class="civanoglu-input" name="why_buy_tr" id="why_buy_tr" cols="30"
+															rows="5">{{ $property->why_buy_tr }}</textarea>
+
+														@error('why_buy_tr')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+												</div>
+
+												<div class="flex -mx-4 mb-6">
+													<div class="flex-1 px-4">
+														<label class="civanoglu-label" for="description">Description</label>
+														<textarea class="civanoglu-input" name="description" id="description" cols="30"
+															rows="10">{{ $property->description }}</textarea>
+
+														@error('description')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+
+													<div class="flex-1 px-4">
+														<label class="civanoglu-label" for="description_tr">Description - TR</label>
+														<textarea class="civanoglu-input" name="description_tr" id="description_tr" cols="30"
+															rows="10">{{ $property->description_tr }}</textarea>
+
+														@error('description_tr')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+												</div>
+
+												<button class="btn" type="submit">Save Property</button>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</x-app-layout>
+
+//------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
+
+
+
+
+
+
+
+//===================================================================================================================
+												//-------------------- Class #21 --------------------
+//===================================================================================================================
+		//--------------------------------------------- database/migrations/pages_table.php ---------------------------------------------------------------------
+		//--------------------------------------------- database/migrations/pages_table.php ---------------------------------------------------------------------
+		//--------------------------------------------- database/migrations/pages_table.php ---------------------------------------------------------------------
+		//--------------------------------------------- database/migrations/pages_table.php ---------------------------------------------------------------------
+
+		
+		
+		
+		
+		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------
+		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------
+		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------
+		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------
+		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------
+		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------
+		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------
+		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------
+		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//=================================================================================================
+												//-------------------- Class #7 --------------------
+//=================================================================================================
+		
+		//--------------------------------------------- HomeController ---------------------------------------------------------------------
+
+
+
