@@ -47,7 +47,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::delete('properties/destroy/{id}', [DashboardController::class, 'destroyProperty'])->name('destroyProperty');
     Route::post('properties/store', [DashboardController::class, 'storeProperty'])->name('storeProperty');
 
-    //Route::get('properties/delete-media/{id}', [DashboardController::class, 'deleteMedia'])->name('deleteMedia');
+    Route::get('properties/delete-media/{id}', [DashboardController::class, 'deleteMedia'])->name('deleteMedia');
 
     // Locations
     Route::get('locations', [LocationController::class, 'index'])->name('adminLocations');

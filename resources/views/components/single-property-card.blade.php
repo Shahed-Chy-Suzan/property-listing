@@ -1,7 +1,13 @@
 <div class="{{$width}} px-2  relative rounded-md mb-6">
     <div class="shadow-lg">
         <a href="" class="absolute left-3 w-9 h-9 leading-10 self-center text-base top-3 bg-black text-white bg-opacity-25 text-center hover:bg-yellow-500 hover:text-white duration-200 rounded-full"><i class="fa fa-heart-o"></i></a>
-        <div class="py-20 bg-center" style="background-image: url({{$property->featured_image}})"></div>
+
+        @if (file_exists(public_path('storage/uploads/' . $property->featured_image)))
+            <div class="py-20 flex-1 bg-center" style="background-image: url('/storage/uploads/{{ $property->featured_image }}')"></div>
+        @else
+            <div class="py-20 flex-1 bg-center" style="background-image: url('{{ $property->featured_image }}')"></div>
+        @endif
+
         <div class="p-3">
             <h2 class="leading-0 text-base">{{$property->name}}</h2>
             <h3 class="text-2xl py-3">{{ number_format($property->price) }} {{ __('TK') }}</h3>

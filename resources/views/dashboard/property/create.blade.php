@@ -44,6 +44,15 @@
                             @enderror
                         </div>
 
+                        <div class="mb-6">
+                            <label class="civanoglu-label" for="gallery_images">Gallery images <span class="required-text">*</span><small class="ml-2 lowercase">(multiple image supported)</small></label>
+                            <input class="civanoglu-input" type="file" id="gallery_images" name="gallery_images[]" multiple>
+
+                            @error('gallery_images')
+                                <p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+                            @enderror
+                        </div>
+
                         <div class="flex -mx-4 mb-6">
                             <div class="flex-1 px-4">
                                 <label class="civanoglu-label" for="location_id">Location <span class="required-text">*</span></label>

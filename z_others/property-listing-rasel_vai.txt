@@ -3350,12 +3350,12 @@
 							<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 								<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 									<div class="m-4">
-										<form action="{{route('storeProperty')}}" method="post" class="p-6 bg-white border-b border-gray-200">
+										<form action="{{route('storeProperty')}}" method="post" class="p-6 bg-white border-b border-gray-200" enctype="multipart/form-data">
 											@csrf
 											<div class="flex -mx-4 mb-6">
 												<div class="flex-1 px-4">
-													<label class="civanoglu-label" for="name">Title</label>
-													<input class="civanoglu-input" type="text" id="name" name="name" value="{{ old('name')}}">
+													<label class="civanoglu-label" for="name">Title <span class="required-text">*</span></label>
+													<input class="civanoglu-input" type="text" id="name" name="name" value="{{old('name')}}" required>
 
 													@error('name')
 														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
@@ -3363,31 +3363,40 @@
 												</div>
 
 												<div class="flex-1 px-4">
-													<label class="civanoglu-label" for="name_tr">Title - Turkish</label>
-													<input class="civanoglu-input" type="text" id="name_tr" name="name_tr" value="{{ old('name_tr')}}">
+													<label class="civanoglu-label" for="name_tr">Title - Turkish <span class="required-text">*</span></label>
+													<input class="civanoglu-input" type="text" id="name_tr" name="name_tr" value="{{old('name_tr')}}" required>
 
 													@error('name_tr')
-													<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
 													@enderror
 												</div>
 											</div>
 
 											<div class="mb-6">
-												<label class="civanoglu-label" for="featured_image">Featured Image</label>
-												<input class="civanoglu-input" type="file" id="featured_image" name="featured_image" value="{{ old('featured_image')}}">
+												<label class="civanoglu-label" for="featured_image">Featured Image <span class="required-text">*</span></label>
+												<input class="civanoglu-input" type="file" id="featured_image" name="featured_image" >
 
 												@error('featured_image')
 													<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
 												@enderror
 											</div>
 
+											<div class="mb-6">
+												<label class="civanoglu-label" for="gallery_images">Gallery images <span class="required-text">*</span><small class="ml-2 lowercase">(multiple image supported)</small></label>
+												<input class="civanoglu-input" type="file" id="gallery_images" name="gallery_images[]" multiple>
+
+												@error('gallery_images')
+													<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+												@enderror
+											</div>
+
 											<div class="flex -mx-4 mb-6">
 												<div class="flex-1 px-4">
-													<label class="civanoglu-label" for="location_id">Location</label>
-													<select class="civanoglu-input" name="location_id" id="location_id">
+													<label class="civanoglu-label" for="location_id">Location <span class="required-text">*</span></label>
+													<select class="civanoglu-input" name="location_id" id="location_id" required>
 														<option value="">Select location</option>
 														@foreach($locations as $location)
-															<option value="{{$location->id}}">{{$location->name}}</option>
+															<option {{old('location_id')==$location->id ? 'selected="selected"' : ''}} value="{{$location->id}}">{{$location->name}}</option>
 														@endforeach
 													</select>
 
@@ -3397,8 +3406,8 @@
 												</div>
 
 												<div class="flex-1 px-4">
-													<label class="civanoglu-label" for="price">Price</label>
-													<input class="civanoglu-input" type="number" id="price" name="price" value="{{ old('price')}}">
+													<label class="civanoglu-label" for="price">Price <span class="required-text">*</span></label>
+													<input class="civanoglu-input" type="number" id="price" name="price" value="{{old('price')}}" required>
 
 													@error('price')
 													<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
@@ -3406,11 +3415,13 @@
 												</div>
 
 												<div class="flex-1 px-4">
-													<label class="civanoglu-label" for="sale">For</label>
-													<select class="civanoglu-input" name="sale" id="sale">
+													<label class="civanoglu-label" for="sale">For <span class="required-text">*</span></label>
+													<select class="civanoglu-input" name="sale" id="sale" required>
 														<option value="">Select type</option>
-														<option value="2">Rent</option>
-														<option value="1">Sale</option>
+														<option {{old('sale')=='2' ? 'selected="selected"' : '' }} value="2">Rent</option>
+														<option {{old('sale')=='1' ? 'selected="selected"' : '' }} value="1">Sale</option>
+														{{-- <option value="2">Rent</option>
+														<option value="1">Sale</option> --}}
 													</select>
 
 													@error('sale')
@@ -3419,12 +3430,15 @@
 												</div>
 
 												<div class="flex-1 px-4">
-													<label class="civanoglu-label" for="type">Type</label>
-													<select class="civanoglu-input" name="type" id="type">
+													<label class="civanoglu-label" for="type">Type <span class="required-text">*</span></label>
+													<select class="civanoglu-input" name="type" id="type" required>
 														<option value="">Select property type</option>
-														<option value="3">Land</option>
+														<option {{old('type')=='3' ? 'selected="selected"' : '' }} value="3">Land</option>
+														<option {{old('type')=='1' ? 'selected="selected"' : '' }} value="1">Apartment</option>
+														<option {{old('type')=='2' ? 'selected="selected"' : '' }} value="2">Villa</option>
+														{{-- <option value="3">Land</option>
 														<option value="1">Apartment</option>
-														<option value="2">Villa</option>
+														<option value="2">Villa</option> --}}
 													</select>
 
 													@error('type')
@@ -3435,15 +3449,32 @@
 
 											<div class="flex -mx-4 mb-6">
 												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="drawing_rooms">Drawing rooms</label>
+													<select class="civanoglu-input" name="drawing_rooms" id="drawing_rooms">
+														<option value="">Select one</option>
+														@for($x = 1; $x <= 4; $x++)
+															<option {{old('drawing_rooms')==$x ? 'selected="selected"' : '' }} value="{{$x}}">{{$x}}</option>
+														@endfor
+													</select>
+
+													@error('drawing_rooms')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<div class="flex-1 px-4">
 													<label class="civanoglu-label" for="bedrooms">Bedrooms</label>
 													<select class="civanoglu-input" name="bedrooms" id="bedrooms">
-														<option value="">Select bedrooms</option>
-														<option value="1">1</option>
+														<option value="">Select Bedrooms</option>
+														@for($x = 1; $x <= 6; $x++)
+															<option {{old('bedrooms')==$x ? 'selected="selected"' : '' }} value="{{$x}}">{{$x}}</option>
+														@endfor
+														{{-- <option value="1">1</option>
 														<option value="2">2</option>
 														<option value="3">3</option>
 														<option value="4">4</option>
 														<option value="5">5</option>
-														<option value="6">6</option>
+														<option value="6">6</option> --}}
 													</select>
 
 													@error('bedrooms')
@@ -3451,16 +3482,20 @@
 													@enderror
 												</div>
 
+
 												<div class="flex-1 px-4">
 													<label class="civanoglu-label" for="bathrooms">Bathrooms</label>
 													<select class="civanoglu-input" name="bathrooms" id="bathrooms">
 														<option value="">Select Bathrooms</option>
-														<option value="1">1</option>
+														@for($x = 1; $x <= 6; $x++)
+															<option {{old('bathrooms')==$x ? 'selected="selected"' : '' }} value="{{$x}}">{{$x}}</option>
+														@endfor
+														{{-- <option value="1">1</option>
 														<option value="2">2</option>
 														<option value="3">3</option>
 														<option value="4">4</option>
 														<option value="5">5</option>
-														<option value="6">6</option>
+														<option value="6">6</option> --}}
 													</select>
 
 													@error('bathrooms')
@@ -3469,17 +3504,17 @@
 												</div>
 
 												<div class="flex-1 px-4">
-													<label class="civanoglu-label" for="net_sqm">Net square meeter</label>
-													<input class="civanoglu-input" type="number" id="net_sqm" name="net_sqm" value="{{ old('net_sqm')}}">
+													<label class="civanoglu-label" for="net_sqm">Net square meeter <span class="required-text">*</span></label>
+													<input class="civanoglu-input" type="number" id="net_sqm" name="net_sqm" value="{{old('net_sqm')}}" required>
 
 													@error('net_sqm')
-													<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
 													@enderror
 												</div>
 
 												<div class="flex-1 px-4">
 													<label class="civanoglu-label" for="gross_sqm">Gross square meeter</label>
-													<input class="civanoglu-input" type="number" id="gross_sqm" name="gross_sqm" value="{{ old('gross_sqm')}}">
+													<input class="civanoglu-input" type="number" id="gross_sqm" name="gross_sqm" value="{{old('gross_sqm')}}">
 
 													@error('gross_sqm')
 													<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
@@ -3490,10 +3525,14 @@
 													<label class="civanoglu-label" for="pool">Pool</label>
 													<select class="civanoglu-input" name="pool" id="pool">
 														<option value="">Select pool</option>
-														<option value="4">No</option>
+														<option {{old('pool')=='4' ? 'selected="selected"' : '' }} value="4">No</option>
+														<option {{old('pool')=='1' ? 'selected="selected"' : '' }} value="1">Private</option>
+														<option {{old('pool')=='2' ? 'selected="selected"' : '' }} value="2">Public</option>
+														<option {{old('pool')=='3' ? 'selected="selected"' : '' }} value="3">Both</option>
+														{{-- <option value="4">No</option>
 														<option value="1">Private</option>
 														<option value="2">Public</option>
-														<option value="3">Both</option>
+														<option value="3">Both</option> --}}
 													</select>
 
 													@error('pool')
@@ -3504,17 +3543,17 @@
 
 											<div class="flex -mx-4 mb-6">
 												<div class="flex-1 px-4">
-													<label class="civanoglu-label" for="overview">Overview</label>
-													<textarea class="civanoglu-input" name="overview" id="overview" cols="30" rows="3" value="{{ old('overview')}}"></textarea>
+													<label class="civanoglu-label" for="overview">Overview <span class="required-text">*</span></label>
+													<textarea class="civanoglu-input" name="overview" id="overview" cols="30" rows="3" required>{{old('overview')}}</textarea>
 
 													@error('overview')
-													<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
 													@enderror
 												</div>
 
 												<div class="flex-1 px-4">
-													<label class="civanoglu-label" for="overview_tr">Overview - TR</label>
-													<textarea class="civanoglu-input" name="overview_tr" id="overview_tr" cols="30" rows="3" value="{{ old('overview_tr')}}"></textarea>
+													<label class="civanoglu-label" for="overview_tr">Overview - TR <span class="required-text">*</span></label>
+													<textarea class="civanoglu-input" name="overview_tr" id="overview_tr" cols="30" rows="3" required>{{old('overview_tr')}}</textarea>
 
 													@error('overview_tr')
 														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
@@ -3524,8 +3563,8 @@
 
 											<div class="flex -mx-4 mb-6">
 												<div class="flex-1 px-4">
-													<label class="civanoglu-label" for="why_buy">Why buy</label>
-													<textarea class="civanoglu-input" name="why_buy" id="why_buy" cols="30" rows="5" value="{{ old('why_buy')}}"></textarea>
+													<label class="civanoglu-label" for="why_buy">Why buy <span class="required-text">*</span></label>
+													<textarea class="civanoglu-input" name="why_buy" id="why_buy" cols="30" rows="5" required>{{old('why_buy')}}</textarea>
 
 													@error('why_buy')
 														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
@@ -3533,8 +3572,8 @@
 												</div>
 
 												<div class="flex-1 px-4">
-													<label class="civanoglu-label" for="why_buy_tr">Why buy - TR</label>
-													<textarea class="civanoglu-input" name="why_buy_tr" id="why_buy_tr" cols="30" rows="5" value="{{ old('why_buy_tr')}}"></textarea>
+													<label class="civanoglu-label" for="why_buy_tr">Why buy - TR <span class="required-text">*</span></label>
+													<textarea class="civanoglu-input" name="why_buy_tr" id="why_buy_tr" cols="30" rows="5" required>{{old('why_buy_tr')}}</textarea>
 
 													@error('why_buy_tr')
 														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
@@ -3544,8 +3583,8 @@
 
 											<div class="flex -mx-4 mb-6">
 												<div class="flex-1 px-4">
-													<label class="civanoglu-label" for="description">Description</label>
-													<textarea class="civanoglu-input" name="description" id="description" cols="30" rows="10" value="{{ old('description')}}"></textarea>
+													<label class="civanoglu-label" for="description">Description <span class="required-text">*</span></label>
+													<textarea class="civanoglu-input" name="description" id="description" cols="30" rows="10" required>{{old('description')}}</textarea>
 
 													@error('description')
 														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
@@ -3553,8 +3592,8 @@
 												</div>
 
 												<div class="flex-1 px-4">
-													<label class="civanoglu-label" for="description_tr">Description - TR</label>
-													<textarea class="civanoglu-input" name="description_tr" id="description_tr" cols="30" rows="10" value="{{ old('description_tr')}}"></textarea>
+													<label class="civanoglu-label" for="description_tr">Description - TR <span class="required-text">*</span></label>
+													<textarea class="civanoglu-input" name="description_tr" id="description_tr" cols="30" rows="10" required>{{old('description_tr')}}</textarea>
 
 													@error('description_tr')
 														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
@@ -3569,6 +3608,7 @@
 							</div>
 						</div>
 					</x-app-layout>
+
 
 
 		
@@ -3594,26 +3634,26 @@
 								<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 									<div class="">
 										<table class="w-full table-auto mb-4">
-											<thead>
+											<thead class="bg-green-500 text-white">
 												<tr>
-													<th class="border px-4 py-2">Name</th>
-													<th class="border px-4 py-2">Location</th>
-													<th class="border px-4 py-2">Price</th>
-													<th class="border px-4 py-2">Action</th>
+													<th class="border px-4 py-4">Name</th>
+													<th class="border px-4 py-4">Location</th>
+													<th class="border px-4 py-4">Price</th>
+													<th class="border px-4 py-4">Action</th>
 												</tr>
 											</thead>
-											<tbody>
+											<tbody class="">
 												@forelse ($properties as $item)
-													<tr>
+													<tr class="bg-green-300 text-black hover:bg-red-500 hover:text-white duration-50">
 														<td class="border px-4 py-2">{{ $item->name }}</td>
 
 														<td class="border px-4 py-2">{{ $item->location->name }}</td>
 														<td class="border px-4 py-2">{{ $item->price }}</td>
 														<td class="border px-4 py-2 flex items-center justify-center">
 															<a href="{{ route('editProperty', $item->id) }}" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-blue-700 text-white px-3 py-2 text-sm rounded-md">Edit</a>
-															<a target="_blank" href="" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-green-700 text-white px-3 py-2 text-sm rounded-md">View</a>
+															<a target="_blank" href="{{ route('single-property',$item->id) }}" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-green-700 text-white px-3 py-2 text-sm rounded-md">View</a>
 
-															<form action="{{ route('destroyProperty', $item->id) }}" method="POST">
+															<form action="{{ route('destroyProperty', $item->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete property?')">
 																@csrf
 																@method('DELETE')
 																<button class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-red-700 text-white px-3 py-2 text-sm rounded-md">Delete</button>
@@ -3621,7 +3661,7 @@
 														</td>
 													</tr>
 												@empty
-													<tr>
+													<tr class="text-center">
 														<td colspan="4">No Property Found!</td>
 													</tr>
 												@endforelse
@@ -3639,254 +3679,297 @@
 					</x-app-layout>
 
 
+
 		
 		//--------------------------------------------- resources/views/dashboard/property/edit.blade.php ---------------------------------------------------------------------
-						<x-app-layout>
-							<x-slot name="header">
-								<div class="flex justify-between items-center">
-									<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
-										{{ __('Add New Properties') }}
-									</h2>
-									<a href="{{ route('adminProperties') }}"
-										class="px-4 py-2 hover:text-white hover:bg-blue-600 bg-purple-800 duration-200 text-white rounded-md text-base">Back</a>
-								</div>
-							</x-slot>
+					<x-app-layout>
+						<x-slot name="header">
+							<div class="flex justify-between items-center">
+								<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
+									{{ __('Edit Properties') }}
+								</h2>
+								<a href="{{ route('adminProperties') }}"
+									class="px-4 py-2 hover:text-white hover:bg-blue-600 bg-purple-800 duration-200 text-white rounded-md text-base">Back</a>
+							</div>
+						</x-slot>
 
-							<div class="py-12">
-								<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-									<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-										<div class="m-4">
-											<form action="{{route('updateProperty',$property->id)}}" method="post" class="p-6 bg-white border-b border-gray-200">
-												@method('PUT')
-												@csrf
-												<div class="flex -mx-4 mb-6">
-													<div class="flex-1 px-4">
-														<label class="civanoglu-label" for="name">Title</label>
-														<input class="civanoglu-input" type="text" id="name" name="name" value="{{ $property->name }}">
+						<div class="py-12">
+							<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+								<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+									<div class="m-4">
+										<form action="{{route('updateProperty',$property->id)}}" method="post" enctype="multipart/form-data" class="p-6 bg-white border-b border-gray-200">
+											@csrf
+											@method('PUT')
+											<div class="flex -mx-4 mb-6">
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="name">Title <span class="required-text">*</span></label>
+													<input class="civanoglu-input" type="text" id="name" name="name" value="{{$property->name}}" required>
 
-														@error('name')
-															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-														@enderror
-													</div>
+													@error('name')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
 
-													<div class="flex-1 px-4">
-														<label class="civanoglu-label" for="name_tr">Title - Turkish</label>
-														<input class="civanoglu-input" type="text" id="name_tr" name="name_tr" value="{{ $property->name_tr }}">
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="name_tr">Title - Turkish <span class="required-text">*</span></label>
+													<input class="civanoglu-input" type="text" id="name_tr" name="name_tr" value="{{$property->name_tr}}" required>
 
-														@error('name_tr')
-															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-														@enderror
-													</div>
-												</div><div class="flex -mx-4 mb-6 items-center">
-													<div class="flex-1 px-4">
-													   <label class="civanoglu-label" for="featured_image">Featured Image</label>
-														<input class="civanoglu-input" type="file" id="featured_image" name="featured_image">
+													@error('name_tr')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+											</div>
 
-														@error('featured_image')
-															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-														@enderror
-													</div>
+											<div class="mb-6 flex">
+												<div class="">
+													<label class="civanoglu-label" for="featured_image">Featured Image</label>
+													<input class="civanoglu-input" type="file" id="featured_image" name="featured_image">
 
-													<div class="flex-1 px-4">
-														<img src="{{ $property->featured_image }}" width="100" alt="">
+													@error('featured_image')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<div class="mt-3 ml-5">
+													<img style="max-width: 100px" src="/storage/uploads/{{$property->featured_image}}" alt="">
+													{{-- <img src="{{ $property->featured_image }}" width="100" alt=""> --}}
+												</div>
+											</div>
+
+											<div class="mb-6">
+												<label class="civanoglu-label" for="gallery_images">Gallery images </label>
+												<input class="civanoglu-input" type="file" id="gallery_images" name="gallery_images[]" multiple>
+												<div class="mt-3">
+													<div class="flex items-center -mx-2">
+														@foreach ($property->gallery as $item)
+
+															@if (file_exists(public_path('storage/uploads/' . $item->name)))
+																<div class="relative">
+																	<img style="max-width: 100px; max-height:100px" class="mx-2" src="/storage/uploads/{{$item->name}}" alt="image not found">
+																	<a href="{{ route('deleteMedia',$item->id) }}" onclick="return confirm('Are you sure you want to delete the location?')" class="absolute top-0 right-0 bg-red-500 w-5 h-5 leading-5 text-sm text-white rounded-full text-center hover:text-white hover:bg-black"><i class="fa fa-close"></i></a>
+																</div>
+															@endif
+														@endforeach
 													</div>
 												</div>
 
+												@error('gallery_images')
+													<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+												@enderror
+											</div>
 
-												<div class="flex -mx-4 mb-6">
-													<div class="flex-1 px-4">
-														<label class="civanoglu-label" for="location_id">Location</label>
-														<select class="civanoglu-input" name="location_id" id="location_id">
-															<option value="">Select location</option>
-															@foreach($locations as $location)
-															<option {{ $location->id == $property->location->id  ? 'selected="selected"' : ''  }} value="{{$location->id}}">{{$location->name}}</option>
-															@endforeach
-														</select>
 
-														@error('location_id')
-														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-														@enderror
-													</div>
+											<div class="flex -mx-4 mb-6">
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="location_id">Location <span class="required-text">*</span></label>
+													<select class="civanoglu-input" name="location_id" id="location_id" required>
+														<option value="">Select location</option>
+														@foreach($locations as $location)
+															<option {{$property->location->id == $location->id ? 'selected="selected"' : ''}} value="{{$location->id}}">{{$location->name}}</option>
+															{{-- <option {{ $location->id == $property->location->id  ? 'selected="selected"' : ''  }} value="{{$location->id}}">{{$location->name}}</option> --}}
+														@endforeach
+													</select>
 
-													<div class="flex-1 px-4">
-														<label class="civanoglu-label" for="price">Price</label>
-														<input class="civanoglu-input" type="number" id="price" name="price" value="{{ $property->price }}">
-
-														@error('price')
-															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-														@enderror
-													</div>
-
-													<div class="flex-1 px-4">
-														<label class="civanoglu-label" for="sale">For</label>
-														<select class="civanoglu-input" name="sale" id="sale">
-															<option value="">Select type</option>
-															<option {{ $property->sale == '2'  ? 'selected="selected"' : ''  }} value="2">Rent</option>
-															<option {{ $property->sale == '1'  ? 'selected="selected"' : ''  }} value="1">Sale</option>
-														</select>
-
-														@error('sale')
-															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-														@enderror
-													</div>
-
-													<div class="flex-1 px-4">
-														<label class="civanoglu-label" for="type">Type</label>
-														<select class="civanoglu-input" name="type" id="type">
-															<option value="">Select property type</option>
-															<option {{ $property->type == '3'  ? 'selected="selected"' : ''  }} value="3">Land</option>
-															<option {{ $property->type == '1'  ? 'selected="selected"' : ''  }} value="1">Apartment</option>
-															<option {{ $property->type == '2'  ? 'selected="selected"' : ''  }} value="2">Villa</option>
-														</select>
-
-														@error('type')
-															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-														@enderror
-													</div>
+													@error('location_id')
+													<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
 												</div>
 
-												<div class="flex -mx-4 mb-6">
-													<div class="flex-1 px-4">
-														<label class="civanoglu-label" for="bedrooms">Bedrooms</label>
-														<select class="civanoglu-input" name="bedrooms" id="bedrooms">
-															<option value="">Select bedrooms</option>
-															<option {{ $property->bedrooms == '1'  ? 'selected="selected"' : ''  }} value="1">1</option>
-															<option {{ $property->bedrooms == '2'  ? 'selected="selected"' : ''  }} value="2">2</option>
-															<option {{ $property->bedrooms == '3'  ? 'selected="selected"' : ''  }} value="3">3</option>
-															<option {{ $property->bedrooms == '4'  ? 'selected="selected"' : ''  }} value="4">4</option>
-															<option {{ $property->bedrooms == '5'  ? 'selected="selected"' : ''  }} value="5">5</option>
-															<option {{ $property->bedrooms == '6'  ? 'selected="selected"' : ''  }} value="6">6</option>
-														</select>
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="price">Price <span class="required-text">*</span></label>
+													<input class="civanoglu-input" type="number" id="price" name="price" value="{{$property->price}}" required>
 
-														@error('bedrooms')
+													@error('price')
 														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-														@enderror
-													</div>
-
-													<div class="flex-1 px-4">
-														<label class="civanoglu-label" for="bathrooms">Bathrooms</label>
-														<select class="civanoglu-input" name="bathrooms" id="bathrooms">
-															<option value="">Select bathrooms</option>
-															<option {{ $property->bathrooms == '1'  ? 'selected="selected"' : ''  }} value="1">1</option>
-															<option {{ $property->bathrooms == '2'  ? 'selected="selected"' : ''  }} value="2">2</option>
-															<option {{ $property->bathrooms == '3'  ? 'selected="selected"' : ''  }} value="3">3</option>
-															<option {{ $property->bathrooms == '4'  ? 'selected="selected"' : ''  }} value="4">4</option>
-															<option {{ $property->bathrooms == '5'  ? 'selected="selected"' : ''  }} value="5">5</option>
-															<option {{ $property->bathrooms == '6'  ? 'selected="selected"' : ''  }} value="6">6</option>
-														</select>
-
-														@error('bathrooms')
-															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-														@enderror
-													</div>
-
-													<div class="flex-1 px-4">
-														<label class="civanoglu-label" for="net_sqm">Net square meeter</label>
-														<input class="civanoglu-input" type="number" id="net_sqm" name="net_sqm" value="{{ $property->net_sqm }}">
-
-														@error('net_sqm')
-														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-														@enderror
-													</div>
-
-													<div class="flex-1 px-4">
-														<label class="civanoglu-label" for="gross_sqm">Gross square meeter</label>
-														<input class="civanoglu-input" type="number" id="gross_sqm" name="gross_sqm" value="{{ $property->gross_sqm }}">
-
-														@error('gross_sqm')
-															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-														@enderror
-													</div>
-
-													<div class="flex-1 px-4">
-														<label class="civanoglu-label" for="pool">Pool</label>
-														<select class="civanoglu-input" name="pool" id="pool">
-															<option value="">Select pool</option>
-															<option {{ $property->pool == '4'  ? 'selected="selected"' : ''  }}  value="4">No</option>
-															<option {{ $property->pool == '1'  ? 'selected="selected"' : ''  }}  value="1">Private</option>
-															<option {{ $property->pool == '2'  ? 'selected="selected"' : ''  }}  value="2">Public</option>
-															<option {{ $property->pool == '3'  ? 'selected="selected"' : ''  }}  value="3">Both</option>
-														</select>
-
-														@error('pool')
-														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-														@enderror
-													</div>
+													@enderror
 												</div>
 
-												<div class="flex -mx-4 mb-6">
-													<div class="flex-1 px-4">
-														<label class="civanoglu-label" for="overview">Overview</label>
-														<textarea class="civanoglu-input" name="overview" id="overview" cols="30"
-															rows="3">{{ $property->overview }}</textarea>
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="sale">For <span class="required-text">*</span></label>
+													<select class="civanoglu-input" name="sale" id="sale" required>
+														<option value="">Select type</option>
+														<option {{ $property->sale == '2' ? 'selected="selected"' : '' }} value="2">Rent</option>
+														<option {{ $property->sale == '1' ? 'selected="selected"' : '' }} value="1">Sale</option>
+													</select>
 
-														@error('overview')
+													@error('sale')
 														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-														@enderror
-													</div>
-
-													<div class="flex-1 px-4">
-														<label class="civanoglu-label" for="overview_tr">Overview - TR</label>
-														<textarea class="civanoglu-input" name="overview_tr" id="overview_tr" cols="30"
-															rows="3">{{ $property->overview_tr }}</textarea>
-
-														@error('overview_tr')
-														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-														@enderror
-													</div>
+													@enderror
 												</div>
 
-												<div class="flex -mx-4 mb-6">
-													<div class="flex-1 px-4">
-														<label class="civanoglu-label" for="why_buy">Why buy</label>
-														<textarea class="civanoglu-input" name="why_buy" id="why_buy" cols="30"
-															rows="5">{{ $property->why_buy }}</textarea>
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="type">Type <span class="required-text">*</span></label>
+													<select class="civanoglu-input" name="type" id="type" required>
+														<option value="">Select property type</option>
+														<option {{ $property->type == '3'  ? 'selected="selected"' : ''  }} value="3">Land</option>
+														<option {{ $property->type == '1'  ? 'selected="selected"' : ''  }} value="1">Apartment</option>
+														<option {{ $property->type == '2'  ? 'selected="selected"' : ''  }} value="2">Villa</option>
+													</select>
 
-														@error('why_buy')
+													@error('type')
 														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-														@enderror
-													</div>
+													@enderror
+												</div>
+											</div>
 
-													<div class="flex-1 px-4">
-														<label class="civanoglu-label" for="why_buy_tr">Why buy - TR</label>
-														<textarea class="civanoglu-input" name="why_buy_tr" id="why_buy_tr" cols="30"
-															rows="5">{{ $property->why_buy_tr }}</textarea>
+											<div class="flex -mx-4 mb-6">
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="drawing_rooms">Drawing rooms</label>
+													<select class="civanoglu-input" name="drawing_rooms" id="drawing_rooms">
+														<option value="">Select one</option>
+														@for($x = 1; $x <= 4; $x++)
+															<option {{$property->drawing_rooms == $x ? 'selected="selected"' : ''}} value="{{$x}}">{{$x}}</option>
+														@endfor
+													</select>
 
-														@error('why_buy_tr')
+													@error('drawing_rooms')
 														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-														@enderror
-													</div>
+													@enderror
 												</div>
 
-												<div class="flex -mx-4 mb-6">
-													<div class="flex-1 px-4">
-														<label class="civanoglu-label" for="description">Description</label>
-														<textarea class="civanoglu-input" name="description" id="description" cols="30"
-															rows="10">{{ $property->description }}</textarea>
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="bedrooms">Bedrooms</label>
+													<select class="civanoglu-input" name="bedrooms" id="bedrooms">
+														<option value="">Select bedrooms</option>
+														@for($x = 0; $x <= 3; $x++)
+															<option {{ $property->bedrooms == $x ? 'selected="selected"' : ''}} value="{{$x}}">{{$x}}</option>
+														@endfor
+														{{-- <option {{ $property->bedrooms == '1'  ? 'selected="selected"' : ''  }} value="1">1</option>
+														<option {{ $property->bedrooms == '2'  ? 'selected="selected"' : ''  }} value="2">2</option>
+														<option {{ $property->bedrooms == '3'  ? 'selected="selected"' : ''  }} value="3">3</option>
+														<option {{ $property->bedrooms == '4'  ? 'selected="selected"' : ''  }} value="4">4</option>
+														<option {{ $property->bedrooms == '5'  ? 'selected="selected"' : ''  }} value="5">5</option>
+														<option {{ $property->bedrooms == '6'  ? 'selected="selected"' : ''  }} value="6">6</option> --}}
+													</select>
 
-														@error('description')
-														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-														@enderror
-													</div>
-
-													<div class="flex-1 px-4">
-														<label class="civanoglu-label" for="description_tr">Description - TR</label>
-														<textarea class="civanoglu-input" name="description_tr" id="description_tr" cols="30"
-															rows="10">{{ $property->description_tr }}</textarea>
-
-														@error('description_tr')
-														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-														@enderror
-													</div>
+													@error('bedrooms')
+													<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
 												</div>
 
-												<button class="btn" type="submit">Save Property</button>
-											</form>
-										</div>
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="bathrooms">Bathrooms</label>
+													<select class="civanoglu-input" name="bathrooms" id="bathrooms">
+														<option value="">Select bathrooms</option>
+														@for($x = 0; $x <= 5; $x++)
+															<option {{ $property->bathrooms == $x ? 'selected="selected"' : ''}} value="{{$x}}">{{$x}}</option>
+														@endfor
+														{{-- <option {{ $property->bathrooms == '1'  ? 'selected="selected"' : ''  }} value="1">1</option>
+														<option {{ $property->bathrooms == '2'  ? 'selected="selected"' : ''  }} value="2">2</option>
+														<option {{ $property->bathrooms == '3'  ? 'selected="selected"' : ''  }} value="3">3</option>
+														<option {{ $property->bathrooms == '4'  ? 'selected="selected"' : ''  }} value="4">4</option>
+														<option {{ $property->bathrooms == '5'  ? 'selected="selected"' : ''  }} value="5">5</option>
+														<option {{ $property->bathrooms == '6'  ? 'selected="selected"' : ''  }} value="6">6</option> --}}
+													</select>
+
+													@error('bathrooms')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="net_sqm">Net square meeter <span class="required-text">*</span></label>
+													<input class="civanoglu-input" type="number" id="net_sqm" name="net_sqm" value="{{$property->net_sqm}}" required>
+
+													@error('net_sqm')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="gross_sqm">Gross square meeter</label>
+													<input class="civanoglu-input" type="number" id="gross_sqm" name="gross_sqm" value="{{$property->gross_sqm}}">
+
+													@error('gross_sqm')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="pool">Pool</label>
+													<select class="civanoglu-input" name="pool" id="pool">
+														<option value="">Select pool</option>
+														<option {{ $property->pool == '4'  ? 'selected="selected"' : ''  }}  value="4">No</option>
+														<option {{ $property->pool == '1'  ? 'selected="selected"' : ''  }}  value="1">Private</option>
+														<option {{ $property->pool == '2'  ? 'selected="selected"' : ''  }}  value="2">Public</option>
+														<option {{ $property->pool == '3'  ? 'selected="selected"' : ''  }}  value="3">Both</option>
+													</select>
+
+													@error('pool')
+													<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+											</div>
+
+											<div class="flex -mx-4 mb-6">
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="overview">Overview <span class="required-text">*</span></label>
+													<textarea class="civanoglu-input" name="overview" id="overview" cols="30" rows="3" required>{{$property->overview}}</textarea>
+
+													@error('overview')
+													<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="overview_tr">Overview - TR <span class="required-text">*</span></label>
+													<textarea class="civanoglu-input" name="overview_tr" id="overview_tr" cols="30" rows="3" required>{{$property->overview_tr}}</textarea>
+
+													@error('overview_tr')
+													<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+											</div>
+
+											<div class="flex -mx-4 mb-6">
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="why_buy">Why buy <span class="required-text">*</span></label>
+													<textarea class="civanoglu-input" name="why_buy" id="why_buy" cols="30" rows="5" required>{{$property->why_buy}}</textarea>
+
+													@error('why_buy')
+													<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="why_buy_tr">Why buy - TR <span class="required-text">*</span></label>
+													<textarea class="civanoglu-input" name="why_buy_tr" id="why_buy_tr" cols="30" rows="5" required>{{$property->why_buy_tr}}</textarea>
+
+													@error('why_buy_tr')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+											</div>
+
+											<div class="flex -mx-4 mb-6">
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="description">Description <span class="required-text">*</span></label>
+													<textarea class="civanoglu-input" name="description" id="description" cols="30" rows="10" required>{{ $property->description }}</textarea>
+
+													@error('description')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<div class="flex-1 px-4">
+													<label class="civanoglu-label" for="description_tr">Description - TR <span class="required-text">*</span></label>
+													<textarea class="civanoglu-input" name="description_tr" id="description_tr" cols="30" rows="10" required>{{ $property->description_tr }}</textarea>
+
+													@error('description_tr')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+											</div>
+
+											<button class="btn" type="submit">Save Property</button>
+										</form>
 									</div>
 								</div>
 							</div>
-						</x-app-layout>
+						</div>
+					</x-app-layout>
+
+
 
 //------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
 
@@ -3897,17 +3980,387 @@
 
 
 //===================================================================================================================
-												//-------------------- Class #21 --------------------
+												//-------------------- Class #21 + #22 + #23 || property CRUD --------------------
 //===================================================================================================================
-		//--------------------------------------------- database/migrations/pages_table.php ---------------------------------------------------------------------
-		//--------------------------------------------- database/migrations/pages_table.php ---------------------------------------------------------------------
+					
+		//--------------------------------------------- database/migrations/2021_12_05_092834_create_properties_table.php ------------------------------------------------
+					$table->unsignedBigInteger('drawing_rooms')->nullable();
+		
+		//--------------------------------------------- database/factories/PropertyFactory.php ---------------------------------------------------------------------
+					'drawing_rooms' => rand(1,4),
+					
+		//--------------------------------------------- resources/views/dashboard/property/create.blade.php ---------------------------------------------------------------------
+					<div class="flex-1 px-4">
+						<label class="civanoglu-label" for="drawing_rooms">Drawing rooms</label>
+						<select class="civanoglu-input" name="drawing_rooms" id="drawing_rooms">
+									<option value="">Select one</option>
+                                    @for($x = 1; $x <= 4; $x++)
+                                        <option {{old('drawing_rooms')==$x ? 'selected="selected"' : '' }} value="{{$x}}">{{$x}}</option>
+                                    @endfor
+						</select>
+
+						@error('drawing_rooms')
+						<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+						@enderror
+					</div>
+					
+					<div class="mb-6">
+                            <label class="civanoglu-label" for="gallery_images">Gallery images <span class="required-text">*</span><small class="ml-2 lowercase">(multiple image supported)</small></label>
+                            <input class="civanoglu-input" type="file" id="gallery_images" name="gallery_images[]" multiple>
+
+                            @error('gallery_images')
+                                <p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+                            @enderror
+                    </div>
+					
+		//--------------------------------------------- resources/views/admin/property/edit.blade.php ---------------------------------------------------------------------
+					<div class="flex-1 px-4">
+						<label class="civanoglu-label" for="drawing_rooms">Drawing rooms</label>
+						<select class="civanoglu-input" name="drawing_rooms" id="drawing_rooms">
+							<option value="">Select one</option>
+							@for($x = 1; $x <= 4; $x++)
+								<option {{$property->drawing_rooms == $x ? 'selected="selected"' : ''}} value="{{$x}}">{{$x}}</option>
+							@endfor
+						</select>
+
+						@error('drawing_rooms')
+							<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+						@enderror
+					</div>
+					
+                        <div class="mb-6">
+                            <label class="civanoglu-label" for="gallery_images">Gallery images </label>
+                            <input class="civanoglu-input" type="file" id="gallery_images" name="gallery_images[]" multiple>
+                            <div class="mt-3">
+                                <div class="flex items-center -mx-2">
+                                    @foreach ($property->gallery as $item)
+
+                                        @if (file_exists(public_path('storage/uploads/' . $item->name)))
+                                            <div class="relative">
+                                                <img style="max-width: 100px; max-height:100px" class="mx-2" src="/storage/uploads/{{$item->name}}" alt="image not found">
+                                                <a href="{{ route('deleteMedia',$item->id) }}" onclick="return confirm('Are you sure you want to delete the location?')" class="absolute top-0 right-0 bg-red-500 w-5 h-5 leading-5 text-sm text-white rounded-full text-center hover:text-white hover:bg-black"><i class="fa fa-close"></i></a>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+
+                            @error('gallery_images')
+                                <p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+                            @enderror
+                        </div>
+					
+		//--------------------------------------------- routes/web.php -------------------------------------------------------------------------------------------------
+						Route::prefix('dashboard')->middleware('auth')->group(function () {
+								Route::get('/', [DashboardController::class,'index'])->name('dashboard');
+								Route::get('properties', [DashboardController::class,'properties'])->name('adminProperties');
+								Route::get('properties/addnew', [DashboardController::class,'createProperty'])->name('createProperty');
+								Route::get('properties/edit/{id}', [DashboardController::class, 'editProperty'])->name('editProperty');
+								Route::put('properties/update/{id}', [DashboardController::class, 'updateProperty'])->name('updateProperty');
+								Route::delete('properties/destroy/{id}', [DashboardController::class, 'destroyProperty'])->name('destroyProperty');
+								Route::post('properties/store', [DashboardController::class, 'storeProperty'])->name('storeProperty');
+
+								Route::get('properties/delete-media/{id}', [DashboardController::class, 'deleteMedia'])->name('deleteMedia');
+														
+								// Locations
+								Route::get('locations', [LocationController::class, 'index'])->name('adminLocations');
+						});
+						
+						
+		//----------------------------------------------- app/Http/Controllers/DashboardController.php ---------------------------------------------------------------------------------
+				-- command:  php artisan storage:link
+				
+							<?php
+
+							namespace App\Http\Controllers;
+
+							use App\Models\Location;
+							use App\Models\Property;
+							use App\Models\Media;
+							use Illuminate\Support\Facades\Storage;
+							use Illuminate\Http\Request;
+
+							class DashboardController extends Controller
+							{
+
+							//-------------------- Dashboard Home -----------------------
+								public function index()
+								{
+									return view('dashboard.index');
+								}
+
+
+							//----------------------- Property Page -------------------------------
+								public function properties()
+								{
+									$properties = Property::latest()->paginate(20);
+									return view('dashboard.property.index')->with('properties',$properties);
+								}
+
+
+							//---------------------- Create New Property ---------------------------
+								public function createProperty()
+								{
+									$locations = Location::all();
+									return view('dashboard.property.create')->with(['locations'=> $locations]);
+								}
+
+
+							//---------------------- Store New Property ------------------------------------------
+								public function storeProperty(Request $request)
+								{
+									// try {
+										// Extended validation for image
+										$updated_validation = $this->validateProperty()[] = [
+											'featured_image' => 'required|image',
+											'gallery_images' => 'required',
+										];
+
+										// Validation
+										$request->validate($updated_validation);
+
+										// Property Instance
+										$property = new Property();
+
+										// Save all data
+										$this->saveOrUpdateProperty($property, $request);
+
+										// Redirect with success message
+										return redirect()->route('adminProperties')->with(['message' => 'Property is added.']);
+
+									// } catch (\Throwable $th) {
+									//     // Redirect with error message
+									//     return redirect()->route('adminProperties')->with(['message' => $th->getMessage()]);
+									// }
+								}
+
+
+							//------------------------ Edit property page ------------------------------------------
+								public function editProperty($property_id)
+								{
+								//    try {
+										// Find the property
+										$property = Property::findOrFail($property_id);
+
+										// Get all locations
+										$locations = Location::all();
+
+										// return view with data
+										return view('dashboard.property.edit', [
+											'property' => $property,
+											'locations' => $locations
+										]);
+
+								//    } catch (\Throwable $th) {
+								//         // Redirect with error message
+								//         return redirect()->route('adminProperties')->with(['message' => $th->getMessage()]);
+								//    }
+
+								}
+
+
+							//-------------------------- Update Property ---------------------------------------------
+								public function updateProperty(Request $request, $property_id)
+								{
+									// try {
+										// Get the property
+										$property = Property::findOrFail($property_id);
+
+										// Validation
+										$request->validate($this->validateProperty());
+
+										// Update Data
+										$this->saveOrUpdateProperty($property, $request);
+
+										// Redirect with success message
+										return redirect()->route('adminProperties')->with(['message' => 'Property is Updated.']);
+
+									// } catch (\Throwable $th) {
+									//     // Redirect with error message
+									//     return redirect()->route('adminProperties')->with(['message' => $th->getMessage()]);
+									// }
+								}
+
+
+							//------------------------- Delete Property ----------------------------------------
+								public function destroyProperty($property_id)
+								{
+									// try {
+										// Get Property
+										$property = Property::findOrFail($property_id);
+
+										// delete featured image
+										Storage::delete('public/uploads/' . $property->featured_image);
+
+										// delete gallery items
+										foreach ($property->gallery as $media) {
+											$media = Media::findOrFail($media->id);
+											Storage::delete('public/uploads/' . $media->name);
+											$media->delete();
+										}
+
+										// Delete the property from database
+										$property->delete();
+										// Redirect with success message
+										return redirect()->route('adminProperties')->with(['message' => 'Property Deleted']);
+
+									// } catch (\Throwable $th) {
+									//     // Redirect with error message
+									//     return redirect()->route('adminProperties')->with(['message' => $th->getMessage()]);
+									// }
+								}
+
+
+							//--------------------------- Delete Media -----------------------------------------
+								public function deleteMedia($media_id)
+								{
+									// Get media by id
+									$media = Media::findOrFail($media_id);
+
+									// delete the file
+									Storage::delete('public/uploads/' . $media->name);
+
+									// Remove from database
+									$media->delete();
+
+									// Back
+									return back();
+								}
+
+
+
+							//----------------------- Property form validation --------------------------
+								public function validateProperty()
+								{
+									return [
+										'name' => 'required',
+										'name_tr' => 'required',
+										'location_id' => 'required',
+										'price' => 'required|integer',
+										'sale' => 'integer',
+										'type' => 'integer',
+										'bathrooms' => 'integer',
+										'net_sqm' => 'integer',
+										'pool' => 'integer',
+										'overview' => 'required',
+										'overview_tr' => 'required',
+										'description' => 'required',
+										'description_tr' => 'required',
+									];
+								}
+
+
+							//------------------ Save or Update Property -----------------------------------
+								public function saveOrUpdateProperty($property, $request)
+								{
+									$property->name = $request->name;
+									$property->name_tr = $request->name_tr;
+
+									// Get Default value from databse
+									$featured_image_name = $property->featured_image;
+									// Check if image is empty or not
+									if (!empty($request->file('featured_image'))) {
+										// Check if the file already exits or not
+										if ($featured_image_name) {
+											if (file_exists(public_path('storage/uploads/' . $featured_image_name))) {
+												unlink(public_path('storage/uploads/' . $featured_image_name));
+											}
+										}
+										// Get unique name of the image
+										$featured_image_name = time() . mt_rand(100,999) . '-' . $request->featured_image->getClientOriginalName();
+										// Store image in Storage
+										$request->featured_image->storeAs('public/uploads', $featured_image_name);
+									}
+									// Feature image name into database
+									$property->featured_image = $featured_image_name;
+
+									$property->location_id = $request->location_id;
+									$property->price = $request->price;
+									$property->sale = $request->sale;
+									$property->type = $request->type;
+									$property->bedrooms = $request->bedrooms;
+									$property->bathrooms = $request->bathrooms;
+									$property->drawing_rooms = $request->drawing_rooms;
+									$property->net_sqm = $request->net_sqm;
+									$property->gross_sqm = $request->gross_sqm;
+									$property->pool = $request->pool;
+									$property->overview = $request->overview;
+									$property->overview_tr = $request->overview_tr;
+									$property->why_buy = $request->why_buy;
+									$property->why_buy_tr = $request->why_buy_tr;
+									$property->description = $request->description;
+									$property->description_tr = $request->description_tr;
+
+									// Save or update data
+									$property->save();
+
+									// Storing Media - Property Gallery
+									if (!empty($request->file('gallery_images'))) {
+										foreach ($request->gallery_images as $image) {
+											$gallery_image_name = time() . mt_rand(100,999) . '-' . $image->getClientOriginalName();
+											$image->storeAs('public/uploads', $gallery_image_name);
+											// Insert into PropertyMedia
+											Media::create([
+												'name'  => $gallery_image_name,
+												'property_id'   => $property->id
+											]);
+										}
+									}
+								}
+
+
+							}
+
+				
+		//--------------------------------------------- resources/views/components/property-card.blade.php ---------------------------------------------------------------------
+					@if (file_exists(public_path('storage/uploads/' . $property->featured_image)))
+						<div class="py-20 flex-1 bg-center" style="background-image: url('/storage/uploads/{{ $property->featured_image }}')"></div>
+					@else
+						<div class="py-20 flex-1 bg-center" style="background-image: url('{{ $property->featured_image }}')"></div>
+					@endif
+		
+		//--------------------------------------------- resources/views/property/single.blade.php -----------------------------------------------------------------------------------
+						<div id="slider" class="">
+							<div class="gallery-slider">
+								@foreach($property->gallery as $gallery)
+									@if (file_exists(public_path('storage/uploads/' . $gallery->name)))
+										<div style="background-image: url('/storage/uploads/{{ $gallery->name }}')" class="single-gallery-item bg-cover bg-center"></div>
+									@endif
+								@endforeach
+							</div>
+
+							<div class="thumbnail-slider mt-4">
+								@foreach($property->gallery as $gallery)
+									@if (file_exists(public_path('storage/uploads/' . $gallery->name)))
+										<div style="background-image: url('/storage/uploads/{{ $gallery->name }}')" class="single-thumbnail-item bg-cover bg-center"></div>
+									@endif
+								@endforeach
+							</div>
+						</div>
+//------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
+
+
+
+
+
+
+//=================================================================================================
+												//-------------------- Class #24 --------------------
+//=================================================================================================
+	
+		//--------------------------------------------- resources/views/layouts/navigation.blade.php ---------------------------------------------------------------------
+					<x-nav-link :href="route('adminLocations')" :active="request()->routeIs('adminLocations')">
+						{{ __('Locations') }}
+					</x-nav-link>
+					
+					
+					
+					
+	
 		//--------------------------------------------- database/migrations/pages_table.php ---------------------------------------------------------------------
 		//--------------------------------------------- database/migrations/pages_table.php ---------------------------------------------------------------------
 
-		
-		
-		
-		
+
 		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------
 		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------
 		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------

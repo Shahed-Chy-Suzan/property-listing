@@ -47,9 +47,30 @@
                             </div>
 
                             <div class="mt-3 ml-5">
-                                {{-- <img style="max-width: 100px" src="/uploads/{{$property->featured_image}}" alt=""> --}}
-                                <img src="{{ $property->featured_image }}" width="100" alt="">
+                                <img style="max-width: 100px" src="/storage/uploads/{{$property->featured_image}}" alt="image not found">
                             </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="civanoglu-label" for="gallery_images">Gallery images </label>
+                            <input class="civanoglu-input" type="file" id="gallery_images" name="gallery_images[]" multiple>
+                            <div class="mt-3">
+                                <div class="flex items-center -mx-2">
+                                    @foreach ($property->gallery as $item)
+
+                                        @if (file_exists(public_path('storage/uploads/' . $item->name)))
+                                            <div class="relative">
+                                                <img style="max-width: 100px; max-height:100px" class="mx-2" src="/storage/uploads/{{$item->name}}" alt="image not found">
+                                                <a href="{{ route('deleteMedia',$item->id) }}" onclick="return confirm('Are you sure you want to delete the location?')" class="absolute top-0 right-0 bg-red-500 w-5 h-5 leading-5 text-sm text-white rounded-full text-center hover:text-white hover:bg-black"><i class="fa fa-close"></i></a>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+
+                            @error('gallery_images')
+                                <p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+                            @enderror
                         </div>
 
 

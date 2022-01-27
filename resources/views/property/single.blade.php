@@ -63,13 +63,21 @@
                 <div id="slider" class="">
                     <div class="gallery-slider">
                         @foreach($property->gallery as $gallery)
-                            <div style="background-image: url({{$gallery->name}})" class="single-gallery-item bg-cover bg-center"></div>
+                            @if (file_exists(public_path('storage/uploads/'.$gallery->name)))
+                                <div style="background-image: url('/storage/uploads/{{ $gallery->name }}')" class="single-gallery-item bg-cover bg-center"></div>
+                            @else
+                                <div style="background-image: url({{ $gallery->name }})" class="single-gallery-item bg-cover bg-center"></div>
+                            @endif
                         @endforeach
                     </div>
 
                     <div class="thumbnail-slider mt-4">
                         @foreach($property->gallery as $gallery)
-                            <div style="background-image: url({{$gallery->name}})" class="single-thumbnail-item bg-cover bg-center"></div>
+                            @if (file_exists(public_path('storage/uploads/'.$gallery->name)))
+                                <div style="background-image: url('/storage/uploads/{{ $gallery->name }}')" class="single-thumbnail-item bg-cover bg-center"></div>
+                            @else
+                                <div style="background-image: url({{$gallery->name}})" class="single-thumbnail-item bg-cover bg-center"></div>
+                            @endif
                         @endforeach
                     </div>
                 </div>
