@@ -108,6 +108,20 @@
 
                         <div class="flex -mx-4 mb-6">
                             <div class="flex-1 px-4">
+                                <label class="civanoglu-label" for="drawing_rooms">Drawing rooms</label>
+                                <select class="civanoglu-input" name="drawing_rooms" id="drawing_rooms">
+                                    <option value="">Select one</option>
+                                    @for($x = 1; $x <= 4; $x++)
+                                        <option {{$property->drawing_rooms == $x ? 'selected="selected"' : ''}} value="{{$x}}">{{$x}}</option>
+                                    @endfor
+                                </select>
+
+                                @error('drawing_rooms')
+                                    <p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+                                @enderror
+                            </div>
+
+                            <div class="flex-1 px-4">
                                 <label class="civanoglu-label" for="bedrooms">Bedrooms</label>
                                 <select class="civanoglu-input" name="bedrooms" id="bedrooms">
                                     <option value="">Select bedrooms</option>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PropertyEnquireController;
@@ -45,6 +46,16 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::put('properties/update/{id}', [DashboardController::class, 'updateProperty'])->name('updateProperty');
     Route::delete('properties/destroy/{id}', [DashboardController::class, 'destroyProperty'])->name('destroyProperty');
     Route::post('properties/store', [DashboardController::class, 'storeProperty'])->name('storeProperty');
+
+    //Route::get('properties/delete-media/{id}', [DashboardController::class, 'deleteMedia'])->name('deleteMedia');
+
+    // Locations
+    Route::get('locations', [LocationController::class, 'index'])->name('adminLocations');
+    // Route::get('locations/create', [LocationController::class, 'create'])->name('createLocation');
+    // Route::post('locations/create/new', [LocationController::class, 'store'])->name('storeLocation');
+    // Route::get('location/edit/{id}', [LocationController::class, 'edit'])->name('editLocation');
+    // Route::put('location/update/{id}', [LocationController::class, 'update'])->name('updateLocation');
+    // Route::delete('location/delete/{id}', [LocationController::class, 'destroy'])->name('deleteLocation');
 });
 
 

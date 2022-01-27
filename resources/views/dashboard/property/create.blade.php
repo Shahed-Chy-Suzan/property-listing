@@ -30,7 +30,7 @@
                                 <input class="civanoglu-input" type="text" id="name_tr" name="name_tr" value="{{old('name_tr')}}" required>
 
                                 @error('name_tr')
-                                <p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+                                    <p class="text-red-500 mt-2 text-sm">{{$message}}</p>
                                 @enderror
                             </div>
                         </div>
@@ -103,10 +103,24 @@
 
                         <div class="flex -mx-4 mb-6">
                             <div class="flex-1 px-4">
+                                <label class="civanoglu-label" for="drawing_rooms">Drawing rooms</label>
+                                <select class="civanoglu-input" name="drawing_rooms" id="drawing_rooms">
+                                    <option value="">Select one</option>
+                                    @for($x = 1; $x <= 4; $x++)
+                                        <option {{old('drawing_rooms')==$x ? 'selected="selected"' : '' }} value="{{$x}}">{{$x}}</option>
+                                    @endfor
+                                </select>
+
+                                @error('drawing_rooms')
+                                    <p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+                                @enderror
+                            </div>
+
+                            <div class="flex-1 px-4">
                                 <label class="civanoglu-label" for="bedrooms">Bedrooms</label>
                                 <select class="civanoglu-input" name="bedrooms" id="bedrooms">
-                                    <option value="">Select bedrooms</option>
-                                    @for($x = 1; $x <= 8; $x++)
+                                    <option value="">Select Bedrooms</option>
+                                    @for($x = 1; $x <= 6; $x++)
                                         <option {{old('bedrooms')==$x ? 'selected="selected"' : '' }} value="{{$x}}">{{$x}}</option>
                                     @endfor
                                     {{-- <option value="1">1</option>
@@ -122,13 +136,14 @@
                                 @enderror
                             </div>
 
+
                             <div class="flex-1 px-4">
                                 <label class="civanoglu-label" for="bathrooms">Bathrooms</label>
                                 <select class="civanoglu-input" name="bathrooms" id="bathrooms">
                                     <option value="">Select Bathrooms</option>
                                     @for($x = 1; $x <= 6; $x++)
                                         <option {{old('bathrooms')==$x ? 'selected="selected"' : '' }} value="{{$x}}">{{$x}}</option>
-                                        @endfor
+                                    @endfor
                                     {{-- <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -147,7 +162,7 @@
                                 <input class="civanoglu-input" type="number" id="net_sqm" name="net_sqm" value="{{old('net_sqm')}}" required>
 
                                 @error('net_sqm')
-                                <p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+                                    <p class="text-red-500 mt-2 text-sm">{{$message}}</p>
                                 @enderror
                             </div>
 

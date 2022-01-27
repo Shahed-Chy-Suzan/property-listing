@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('adminProperties')" :active="request()->routeIs('adminProperties')">
                         {{ __('Properties') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('adminLocations')" :active="request()->routeIs('adminLocations')">
+                        {{ __('Locations') }}
+                    </x-nav-link>
                 </div>
             </div>
 
