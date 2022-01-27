@@ -51,11 +51,11 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
 
     // Locations
     Route::get('locations', [LocationController::class, 'index'])->name('adminLocations');
-    // Route::get('locations/create', [LocationController::class, 'create'])->name('createLocation');
-    // Route::post('locations/create/new', [LocationController::class, 'store'])->name('storeLocation');
-    // Route::get('location/edit/{id}', [LocationController::class, 'edit'])->name('editLocation');
-    // Route::put('location/update/{id}', [LocationController::class, 'update'])->name('updateLocation');
-    // Route::delete('location/delete/{id}', [LocationController::class, 'destroy'])->name('deleteLocation');
+    Route::get('locations/create', [LocationController::class, 'create'])->name('createLocation');
+    Route::post('locations/create/new', [LocationController::class, 'store'])->name('storeLocation');
+    Route::get('location/edit/{id}', [LocationController::class, 'edit'])->name('editLocation');
+    Route::put('location/update/{id}', [LocationController::class, 'update'])->name('updateLocation');
+    Route::delete('location/delete/{id}', [LocationController::class, 'destroy'])->name('deleteLocation');
 });
 
 
