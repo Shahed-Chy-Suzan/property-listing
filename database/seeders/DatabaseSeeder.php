@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Page;
 use App\Models\User;
+use App\Models\PropertyEnquire;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Location::factory(10)->create();
         \App\Models\Property::factory(50)->create();
         \App\Models\Media::factory(500)->create();
+        \App\Models\PropertyEnquire::factory(50)->create();
 
         //-------- for static page ---------------
             $user = new User();
