@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\LocationController as AdminLocationController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Admin\MessageController as AdminMessageController;
     use App\Http\Controllers\Admin\PropertyController as AdminPropertyController;
-    use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\DashboardController;
 
 // Frontend
@@ -54,7 +54,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::resource('pages', AdminPageController::class);
 
     // User
-            Route::resource('user', UserController::class);
+    Route::resource('user', UserController::class);
 
     // Message
     Route::resource('message', AdminMessageController::class);
