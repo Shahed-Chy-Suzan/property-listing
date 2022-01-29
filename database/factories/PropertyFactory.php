@@ -33,8 +33,8 @@ class PropertyFactory extends Factory
             'overview_tr' => $this->faker->text(100),
             'why_buy' => $this->faker->text(1000),
             'why_buy_tr' => $this->faker->text(1000),
-            'description' => $this->faker->text(500),
-            'description_tr' => $this->faker->text(500)
+            'description' => $this->faker->sentence(50),
+            'description_tr' => $this->faker->sentence(50)
         ];
     }
 }

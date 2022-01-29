@@ -21,12 +21,12 @@
 
 
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 				//-------------- Resources of Owner --------------
 						-- YouTube_playlist : https://www.youtube.com/playlist?list=PLhPBqF--77ImGEZE6xSS62UVegQOIgP4g
 						-- GitHub_Repo: https://github.com/raselupm/civanoglu				
 								-- GitHub_Repo_student: https://github.com/shadhinplanet/civanoglu
-//---------------------------------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -38,201 +38,250 @@
 
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------
 			-- Project run korar jonno url holo('php artisan serve' command diye):  " http://127.0.0.1:8000 "
 			-- Dashboad/Admin panel er dhokar jonno url holo: " http://127.0.0.1:8000/dashboard "
 					-- Url: http://127.0.0.1:8000/dashboard
 					-- email: admin@gmail.com
 					-- password: admin
-//---------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 														//------ New in this project ------//
-//---------------------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-			//-- amra jodi buildin css e kono edit/customize korte chai taile amader k "resources/css/app.css" e giye CSS-Code likte hobe, "public/css/app.css" e likle hobe na, because ota build howa css, && "resources/css/app.css" e css-code add/customize korar build korar jonno obossoy abar "npm run watch" or "npm run dev" chalate hobe.
-								//------------------------------------- resources/css/app.css -----------------------------------------------
-											@import 'tailwindcss/base';
-											@import 'tailwindcss/components';
-											@import 'tailwindcss/utilities';
-																					
-											.container {
-												margin: 0 auto;
-												max-width: 1200px;
-											}
-											
-			//-- Using custom fonts on a website is one of the easiest ways to drastically change the aesthetics of a website. The only problem is that the boilerplate setup can be tedious when working with multiple fonts. That is where the site Transfonter.org comes in. This site makes converting fonts and setting up the boilerplate CSS incredibly easy. In this video I will be demonstrating how to use Transfonter.org to simplify your custom font process. 
-									-- Link: ( https://transfonter.org/ )
-									-- YT Link: ( https://www.youtube.com/watch?v=T-9yBKX7aEI )
-									-- YT Link: ( https://www.youtube.com/watch?v=1wVU3wylx-0&list=PLhPBqF--77ImGEZE6xSS62UVegQOIgP4g&index=3&t=4s )
-
-							-- amra amader icchamotho Font er file/zip download kore nibo amader PC te, then ( https://transfonter.org/ ) ei link e giye font gula add kore amader web er useable code e ropantor korte parbo(ekane ekta css code file o genereate kore dibe), oi website e new generated font er zip file ta download kore nibo, ekn amader laravel project er use er jonno amader k ei new download kora font tar vitor generate howa CSS code gula amader "resources/css/app.css" e opore(import gular er niche) add kore dibo, because ei font gulao build hobe, && ei font gula tho amader project e must rakte hobe, er jonno new download kora font gular file gula sob amader project er "resources" er vitor "fonts" name e ekta folder kore er vitore rekhe diyechi && "resources/css/app.css" file er oi font er css code gulate path ta thik kore diyechi project onosare
-
-										//--------------------------------- resources/css/fonts -------------------------------------------------------------------
-													-- pasted here all fonts file which is generated form "transfonter.org" website.
-
-										//--------------------------------- resources/css/app.css -------------------------------------------------------------------
-													@font-face {
-														font-family: 'Liberation Serif';
-														src: url('../fonts/LiberationSerif-Bold.woff2') format('woff2'),			//-------------------------
-														url('../fonts/LiberationSerif-Bold.woff') format('woff');					//------------------------
-														font-weight: bold;
-														font-style: normal;
-														font-display: swap;
-													}
-
-													@font-face {
-														font-family: 'Liberation Serif';
-														src: url('../fonts/LiberationSerif.woff2') format('woff2'),
-														url('../fonts/LiberationSerif.woff') format('woff');
-														font-weight: normal;
-														font-style: normal;
-														font-display: swap;
-													}
-
-													@font-face {
-														font-family: 'Studio Sans DEMO';
-														src: url('../fonts/StudioSansDEMO.woff2') format('woff2'),
-														url('../fonts/StudioSansDEMO.woff') format('woff');
-														font-weight: normal;
-														font-style: normal;
-														font-display: swap;
-													}
-																					
-													h1,h2,h3,h4,h5,h6 {
-														font-family: "Liberation Serif", sans-serif;
-														font-weight: bold;
-													}
-
-													.section-heading {
-														@apply font-bold text-center text-4xl mb-10;
-													}
-
-													.fullwidth-btn {
-														@apply bg-gray-800 text-white px-6 py-2 rounded w-full inline-block text-center;
-													}
-
-						-- tailwind css e ekta body er jonno ekta default font deya thake amra oita use kobo na, tai amara "tailwind.config.js" e giye font/theme er code e j default font tar name mention kora ache amra ota ke delete/moche amara amader website er body te j font ta use korte chai oi font tar name likhe dibo.
-
-			//-- $table->unsignedBigInteger('type')->default(1)->comment('0=land, 1=appertment, 2=villa');
-
-			//---  Table - migration file ---
-									Schema::create('properties', function (Blueprint $table) {
-											$table->unsignedBigInteger('location_id');
-											$table->foreign('location_id')->references('id')->on('locations');
-									});
-
-			//--	--1--	
-						 $latest_properties = Property::all();			//--query
-								return view('welcome',[
-									'latest_properties' => $latest_properties
-								]);
-					//-2- 	return view('welcome')->with(['latest_properties' => $latest_properties]);
-					//-3- 	return view('property.single')->with('latest_properties',$latest_properties);
-					//-4- 	return view('welcome',compact('latest_properties'));
-
-
-			//--- <a href="{{route('page', 'about-us')}}">About Us</a>
-						-->>	Route::get('/page/{slug}', [PageController::class, 'single'])->name('page');
-							-->>		public function single($slug) {
-											$page = Page::where('slug', $slug)->first();
-
-											if(!empty($page)) {
-												return view('pages.index')->with('page',$page);
-											} else {
-												return abort('404');
-											}
+		//-- amra jodi buildin css e kono edit/customize korte chai taile amader k "resources/css/app.css" e giye CSS-Code likte hobe, "public/css/app.css" e likle hobe na, because ota build howa css, && "resources/css/app.css" e css-code add/customize korar build korar jonno obossoy abar "npm run watch" or "npm run dev" chalate hobe.
+							//------------------------------------- resources/css/app.css -----------------------------------------------
+										@import 'tailwindcss/base';
+										@import 'tailwindcss/components';
+										@import 'tailwindcss/utilities';
+																				
+										.container {
+											margin: 0 auto;
+											max-width: 1200px;
 										}
 
-			//-- <div class="fixed top-0 w-full py-4 px-12 flex justify-between items-center z-30 sticky-header {{request()->routeIs('home') ? '' : 'general-header'}}">
-							-- {{request()->routeIs('home') ? '' : 'general-header'}}
+		//------------------------------------------------------------------------------------------------------------------------------------------------
+															//-------------- Using Custom Font -----------------
+		//------------------------------------------------------------------------------------------------------------------------------------------------
+		//-- Using custom fonts on a website is one of the easiest ways to drastically change the aesthetics of a website. The only problem is that the boilerplate setup can be tedious when working with multiple fonts. That is where the site Transfonter.org comes in. This site makes converting fonts and setting up the boilerplate CSS incredibly easy. In this video I will be demonstrating how to use Transfonter.org to simplify your custom font process. 
+								-- Link: ( https://transfonter.org/ )
+								-- YT Link: ( https://www.youtube.com/watch?v=T-9yBKX7aEI )
+								-- YT Link: ( https://www.youtube.com/watch?v=1wVU3wylx-0&list=PLhPBqF--77ImGEZE6xSS62UVegQOIgP4g&index=3&t=4s )
 
-			//---- Slick Slider ---
-						-- link: https://kenwheeler.github.io/slick/
-						-- CSS : <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-						-- JS : <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+						-- amra amader icchamotho Font er file/zip download kore nibo amader PC te, then ( https://transfonter.org/ ) ei link e giye font gula add kore amader web er useable code e ropantor korte parbo(ekane ekta css code file o genereate kore dibe), oi website e new generated font er zip file ta download kore nibo, ekn amader laravel project er use er jonno amader k ei new download kora font tar vitor generate howa CSS code gula amader "resources/css/app.css" e opore(import gular er niche) add kore dibo, because ei font gulao build hobe, && ei font gula tho amader project e must rakte hobe, er jonno new download kora font gular file gula sob amader project er "resources" er vitor "fonts" name e ekta folder kore er vitore rekhe diyechi && "resources/css/app.css" file er oi font er css code gulate path ta thik kore diyechi project onosare
 
-			//---  Model - in Property Model ---
-							public function gallery() {
-								return $this->hasMany(Media::class, 'property_id');
-							}
+									//--------------------------------- resources/css/fonts -------------------------------------------------------------------
+												-- pasted here all fonts file which is generated form "transfonter.org" website.
 
-			//--- Factory - Seeder
+									//--------------------------------- resources/css/app.css -------------------------------------------------------------------
+												@font-face {
+													font-family: 'Liberation Serif';
+													src: url('../fonts/LiberationSerif-Bold.woff2') format('woff2'),			//-------------------------
+													url('../fonts/LiberationSerif-Bold.woff') format('woff');					//------------------------
+													font-weight: bold;
+													font-style: normal;
+													font-display: swap;
+												}
 
-			//---    if(!empty($request->sale)) {
-							$latest_properties = $latest_properties->where('sale', $request->sale);
+												@font-face {
+													font-family: 'Liberation Serif';
+													src: url('../fonts/LiberationSerif.woff2') format('woff2'),
+													url('../fonts/LiberationSerif.woff') format('woff');
+													font-weight: normal;
+													font-style: normal;
+													font-display: swap;
+												}
+
+												@font-face {
+													font-family: 'Studio Sans DEMO';
+													src: url('../fonts/StudioSansDEMO.woff2') format('woff2'),
+													url('../fonts/StudioSansDEMO.woff') format('woff');
+													font-weight: normal;
+													font-style: normal;
+													font-display: swap;
+												}
+																				
+												h1,h2,h3,h4,h5,h6 {
+													font-family: "Liberation Serif", sans-serif;
+													font-weight: bold;
+												}
+
+												.section-heading {
+													@apply font-bold text-center text-4xl mb-10;
+												}
+
+												.fullwidth-btn {
+													@apply bg-gray-800 text-white px-6 py-2 rounded w-full inline-block text-center;
+												}
+
+					-- tailwind css e ekta body er jonno ekta default font deya thake amra oita use kobo na, tai amara "tailwind.config.js" e giye font/theme er code e j default font tar name mention kora ache amra ota ke delete/moche amara amader website er body te j font ta use korte chai oi font tar name likhe dibo.
+
+
+		//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+																//------------ Flasher --------------//
+		//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+					-- Flasher Notification link: https://php-flasher.github.io/
+					-- using er rules sob ekhane ache: https://php-flasher.github.io/docs/framework/laravel/
+					
+							--1-- at first install flasher from docs's command: composer require php-flasher/flasher-laravel
+							--2-- in main root file --------
+												 <!doctype html>
+												 <html>
+													 <head>
+														 <title>PHP Flasher</title>
+													 </head>
+													 <body>
+
+														 @flasher_render
+													 </body>
+												 </html>
+							--3-- in controller --------
+											 public function store(PostRequest $request, FlasherInterface $flasher)
+											{
+													$flasher->addSuccess('Data has been saved successfully!');
+											}
+											//-------- or -------------
+											use Flasher\Laravel\Facade\Flasher;
+											
+											public function store(Request $request)
+											{
+												Flasher::addSuccess('Location Added');  // Flasher
+											}
+													
+		//-- $table->unsignedBigInteger('type')->default(1)->comment('0=land, 1=appertment, 2=villa');
+
+		//---  Table - migration file ---
+								Schema::create('properties', function (Blueprint $table) {
+										$table->unsignedBigInteger('location_id');
+										$table->foreign('location_id')->references('id')->on('locations');
+								});
+
+		//--	--1--	
+					 $latest_properties = Property::all();			//--query
+							return view('welcome',[
+								'latest_properties' => $latest_properties
+							]);
+				//-2- 	return view('welcome')->with(['latest_properties' => $latest_properties]);
+				//-3- 	return view('property.single')->with('latest_properties',$latest_properties);
+				//-4- 	return view('welcome',compact('latest_properties'));
+
+
+		//--- <a href="{{route('page', 'about-us')}}">About Us</a>
+					-->>	Route::get('/page/{slug}', [PageController::class, 'single'])->name('page');
+						-->>		public function single($slug) {
+										$page = Page::where('slug', $slug)->first();
+
+										if(!empty($page)) {
+											return view('pages.index')->with('page',$page);
+										} else {
+											return abort('404');
+										}
+									}
+
+		//-- <div class="fixed top-0 w-full py-4 px-12 flex justify-between items-center z-30 sticky-header {{request()->routeIs('home') ? '' : 'general-header'}}">
+						-- {{request()->routeIs('home') ? '' : 'general-header'}}
+
+		//---- Slick Slider ---
+					-- link: https://kenwheeler.github.io/slick/
+					-- CSS : <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+					-- JS : <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+		//---  Model - in Property Model ---
+						public function gallery() {
+							return $this->hasMany(Media::class, 'property_id');
 						}
 
-			//---    @foreach($latest_properties as $property)
-							@include('components.single-property-card', ['property' => $property, 'width' => 'w-1/4'])
-						@endforeach
+		//--- Factory - Seeder
 
-			//---  <a class="inline-block p-4 text-white" href="{{route('properties')}}?type=0"> Land </a>
+		//---    if(!empty($request->sale)) {
+						$latest_properties = $latest_properties->where('sale', $request->sale);
+					}
 
-			//---    <h2> Properties
-								@if(request('type') == '0')
-									- Land
-								@elseif(request('type') == 1)
-									- Apartment
-								@endif
-						</h2>
+		//---    @foreach($latest_properties as $property)
+						@include('components.single-property-card', ['property' => $property, 'width' => 'w-1/4'])
+					@endforeach
 
-			//---  <option {{request('type') == '0' ? 'selected="selected"' : ''}} value="0">Land</option>
+		//---  <a class="inline-block p-4 text-white" href="{{route('properties')}}?type=0"> Land </a>
 
-			//--- https://gist.github.com/
+		//---    <h2> Properties
+							@if(request('type') == '0')
+								- Land
+							@elseif(request('type') == 1)
+								- Apartment
+							@endif
+					</h2>
 
-			//--- seeder: 
-									public function run()
-										{
-											// \App\Models\User::factory(10)->create();
-											\App\Models\Location::factory(10)->create();
-											\App\Models\Property::factory(50)->create();
-											\App\Models\Media::factory(500)->create();
+		//---  <option {{request('type') == '0' ? 'selected="selected"' : ''}} value="0">Land</option>
 
-										//-------- for static page ---------------
-												$page = new Page();
-												$page->name = 'Contact Us';
-												$page->slug = 'contact-us';
-												$page->content = 'Lorem ipsum dolor, sit amet llam quae rem cumque aliquam';
-												$page->save();
+		//--- https://gist.github.com/
 
-												$page = new Page();
-												$page->name = 'About Us';
-												$page->slug = 'about-us';
-												$page->content = 'Lorem ipsum dolor, sit amet rem cumque aliquam dolorem veritatis';
-												$page->save();
-										//------------ or ------------------
-												// Page::create([
-												//     'name'  => 'Contact Us',
-												//     'slug'  => 'contact-us',
-												//     'content'=> 'Lorem ipsum dolor, sit amet llam quae incidunt quos dolor, totam rem cumque aliquam,'
-												// ]);
-												// Page::create([
-												//     'name'  => 'About Us',
-												//     'slug'  => 'about-us',
-												//     'content'=> 'Lorem ipsum dolor, sit possimus assumenda dolorem veritatis aperiam! Necessitatibus.'
-												// ]);
+		//--- seeder: 
+								public function run()
+									{
+										// \App\Models\User::factory(10)->create();
+										\App\Models\Location::factory(10)->create();
+										\App\Models\Property::factory(50)->create();
+										\App\Models\Media::factory(500)->create();
 
-										}
+									//-------- for static page ---------------
+											$page = new Page();
+											$page->name = 'Contact Us';
+											$page->slug = 'contact-us';
+											$page->content = 'Lorem ipsum dolor, sit amet llam quae rem cumque aliquam';
+											$page->save();
+
+											$page = new Page();
+											$page->name = 'About Us';
+											$page->slug = 'about-us';
+											$page->content = 'Lorem ipsum dolor, sit amet rem cumque aliquam dolorem veritatis';
+											$page->save();
+									//------------ or ------------------
+											// Page::create([
+											//     'name'  => 'Contact Us',
+											//     'slug'  => 'contact-us',
+											//     'content'=> 'Lorem ipsum dolor, sit amet llam quae incidunt quos dolor, totam rem cumque aliquam,'
+											// ]);
+											// Page::create([
+											//     'name'  => 'About Us',
+											//     'slug'  => 'about-us',
+											//     'content'=> 'Lorem ipsum dolor, sit possimus assumenda dolorem veritatis aperiam! Necessitatibus.'
+											// ]);
+
+									}
 
 
-			//--- $locations = Location::select(['id', 'name'])->get();
+		//--- $locations = Location::select(['id', 'name'])->get();
 
-			//---    <div class="rounded-lg bg-white p-4 relative z-20 shadow-lg home-search">
-								@include('components.property-search-form', ['locations' => $locations])
-						</div>
+		//--- @include('components.property-search-form', ['locations' => $locations])
+				 @include('components.single-property-card', ['property' => $property, 'width' => 'w-1/3'])
 
-			//--- 'message'  => $request->message . '\nThis message was sent from '. route('single-property',$propertyID) . ' website.',
 
-			//---  <a class="menu-item {{ request()->is('*/properties/?type=land') ? 'active' : '' }}" href="{{ route('properties') }}/?type=land">{{ __('Land') }}</a>
-					  <a class="menu-item {{ request()->is('*/page/contact-us*') ? 'active' : '' }}" href="{{ route('page','contact-us') }}">{{ __('Contact Us') }}</a>
-					  <a class="inline-block p-4 text-white {{request('type') == '3' ? 'bg-gray-50' : ''}}" href="{{route('properties')}}?type=3">{{ __('Land') }}</a>
+		//--- 'message'  => $request->message . '\nThis message was sent from '. route('single-property',$propertyID) . ' website.',
 
-			//---  <form action="{{ route('destroyProperty', $item->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete property?')">
+		//---  <a class="menu-item {{ request()->is('*/properties/?type=land') ? 'active' : '' }}" href="{{ route('properties') }}/?type=land">{{ __('Land') }}</a>
+				  <a class="menu-item {{ request()->is('*/page/contact-us*') ? 'active' : '' }}" href="{{ route('page','contact-us') }}">{{ __('Contact Us') }}</a>
+				  <a class="inline-block p-4 text-white {{request('type') == '3' ? 'bg-gray-50' : ''}}" href="{{route('properties')}}?type=3">{{ __('Land') }}</a>
+
+		//---  <form action="{{ route('destroyProperty', $item->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete property?')">
+
+		//---   $data = [$request->all(), 'propertyURL' => route('single-property', $propertyID)];		// Send User & Admin mail/message
+					Mail::send(new EnquireEmail($data));
+					
+		//--- {{$loop->iteration}} 	//for dynamicly show row index/serial number
+
+		//---     // Notice Panel
+						setTimeout(() => {
+							$("#notice").slideUp("slow");
+						 }, 2000);
+
+		//--- 	-- Flasher Notification link: https://php-flasher.github.io/
+					-- using er rules sob ekhane ache: https://php-flasher.github.io/docs/framework/laravel/
+
 
 
 //------------//------------//------------//---------------//---------------//-------------//-----------//------------//--------------//---------
@@ -4344,32 +4393,936 @@
 
 
 
-//=================================================================================================
-												//-------------------- Class #24 --------------------
-//=================================================================================================
+//=================================================================================================================
+												//------------- Class after #23 || Home Work || Location CRUD --------------------
+//=================================================================================================================
 	
 		//--------------------------------------------- resources/views/layouts/navigation.blade.php ---------------------------------------------------------------------
 					<x-nav-link :href="route('adminLocations')" :active="request()->routeIs('adminLocations')">
 						{{ __('Locations') }}
 					</x-nav-link>
 					
+		//--------------------------------------------- app/Http/Controllers/LocationController.php ---------------------------------------------------------------------
+					<?php
+
+					namespace App\Http\Controllers;
+
+					use Illuminate\Http\Request;
+					use App\Models\Location;
+
+					class LocationController extends Controller
+					{
+
+					//------------------------- Index -------------------------------------------------
+						  public function index()
+						  {
+							  $locations = Location::orderBy('id','desc')->get();
+							  return view('dashboard.locations.index')->with('locations', $locations);
+						  }
+						  
+
+					//--------------------------------- Create ------------------------------------------
+						  public function create()
+						  {
+							  return view('dashboard.locations.create');
+						  }
+
+
+					//------------------------------- Store ------------------------------------------
+						  public function store(Request $request)
+						  {
+							  $request->validate([
+								  'name'  => ['required', 'max:255']
+							  ]);
+							  Location::create($request->only('name'));
+							  return redirect()->route('adminLocations')->with('message', 'Location Added');
+
+						  }
+
+
+					//------------------------- Edit Page --------------------------------------------
+						  public function edit($locationID)
+						  {
+
+							  $location = Location::findorFail($locationID);
+							  return view('dashboard.locations.edit')->with('location', $location);
+						  }
+
+
+					//---------------------------- Upate ----------------------------------------------
+						  public function update(Request $request, $locationID)
+						  {
+							  $request->validate([
+								  'name'  => ['required', 'max:255']
+							  ]);
+							  Location::findorFail($locationID)->update($request->only('name'));
+							  return redirect()->route('adminLocations')->with('message', 'Location Updated');
+						  }
+
+
+					//----------------------- Delete ------------------------------------------------
+						  public function destroy($locationID)
+						  {
+							  Location::findorFail($locationID)->delete();
+							  return redirect()->route('adminLocations')->with('message', 'Location Deleted');
+						  }
+					}
+
+		//--------------------------------------------- app/Models/Location.php ----------------------------------------------------------------------------
+							protected $fillable = [
+								'name',
+							];
+							
+		//--------------------------------------------- resources/views/dashboard/locations/create.blade.php ---------------------------------------------------------------------
+					<x-app-layout>
+						<x-slot name="header">
+							<div class="flex justify-between items-center">
+								<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
+									{{ __('Add New Locations') }}
+								</h2>
+								<a href="{{ route('adminLocations') }}"
+									class="px-4 py-2 hover:text-white hover:bg-blue-600 bg-purple-800 duration-200 text-white rounded-md text-base">Back</a>
+							</div>
+						</x-slot>
+
+
+						<div class="py-12">
+							<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+								<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+									<div class="p-5 mx-auto w-1/2">
+										<form action="{{ route('storeLocation') }}" method="POST">
+											@csrf
+											<div class="flex items-end">
+												<div class="flex-auto">
+													<label for="name" class="civanoglu-label">Location Name<span class="required-text">*</span></label>
+													<input type="text" name="name" class="civanoglu-input h-10"
+														placeholder="Type location here" value="{{ old('name') }}">
+												</div>
+												<button type="submit"
+													class="ml-3 flex-auto rounded-md px-5 py-2 h-10 hover:bg-black hover:text-white duration-200 bg-blue-500 text-white inline-block">Create</button>
+
+											</div>
+											@error('name')
+											<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+											@enderror
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</x-app-layout>
+
+		//--------------------------------------------- resources/views/dashboard/locations/edit.blade.php ---------------------------------------------------------------------
+					<x-app-layout>
+						<x-slot name="header">
+							<div class="flex justify-between items-center">
+								<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
+									{{ __('Edit Locations') }}
+								</h2>
+								<a href="{{ route('adminLocations') }}"
+									class="px-4 py-2 hover:text-white hover:bg-blue-600 bg-purple-800 duration-200 text-white rounded-md text-base">Back</a>
+							</div>
+						</x-slot>
+
+
+						<div class="py-12">
+							<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+								<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+									<div class="p-5 mx-auto w-1/2">
+										<form action="{{ route('updateLocation',$location->id) }}" method="POST">
+											@csrf
+											@method('PUT')
+											<div class="flex items-end">
+												<div class="flex-auto">
+														<label for="name" class="civanoglu-label">Location Name <span class="required-text">*</span></label>
+														<input type="text" name="name" class="civanoglu-input h-10"
+															placeholder="Type location here" value="{{ $location->name }}">
+													</div>
+													<button type="submit"
+														class="ml-3 flex-auto rounded-md px-5 py-2 h-10 hover:bg-black hover:text-white duration-200 bg-blue-500 text-white inline-block">Update</button>
+
+												</div>
+												@error('name')
+												<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+												@enderror
+
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</x-app-layout>
+
+		//--------------------------------------------- resources/views/dashboard/locations/index.blade.php ---------------------------------------------------------------------
+					<x-app-layout>
+						<x-slot name="header">
+							<div class="flex justify-between items-center">
+								<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
+									{{ __('Locations') }}
+								</h2>
+								<a href="{{ route('createLocation') }}"
+									class="px-4 py-2 hover:text-white hover:bg-blue-600 bg-purple-800 duration-200 text-white rounded-md text-base">Add
+									New</a>
+							</div>
+						</x-slot>
+
+
+						@if (session('message'))
+						<div id="notice" class="text-center bg-green-100 text-green-700 p-3">{{ session('message') }}</div>
+						@endif
+
+						<div class="py-12">
+							<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+								<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+									<div class="">
+										<table class="w-full table-auto mb-4">
+											<thead>
+												<tr>
+													<th class="border px-4 py-2 text-center">ID</th>
+													<th class="border px-4 py-2">Name</th>
+													<th class="border px-4 py-2 w-44">Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												@forelse ($locations as $location)
+												<tr>
+													<td class="border px-4 py-2 text-center">{{ $location->id }}</td>
+
+													<td class="border px-4 py-2">{{ $location->name }}</td>
+													<td class="border px-4 py-2 flex items-center justify-center">
+														<a href="{{ route('editLocation', $location->id) }}"
+															class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-blue-700 text-white px-3 py-2 text-sm rounded-md">Edit</a>
+
+														<form action="{{ route('deleteLocation', $location->id) }}" method="POST"
+															onsubmit="return confirm('Are you sure you want to delete the location?')">
+															@csrf
+															@method('DELETE')
+															<button type="submit"
+																class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-red-700 text-white px-3 py-2 text-sm rounded-md">
+																Delete</button>
+														</form>
+													</td>
+												</tr>
+												@empty
+												<tr class="text-center">
+													<td colspan="3">No Location Found!</td>
+												</tr>
+
+												@endforelse
+
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</x-app-layout>
+
+		//--------------------------------------------- routes/web.php ------------------------------------------------------------------------------------------------
+					use App\Http\Controllers\LocationController;
+					use App\Http\Controllers\DashboardController;
 					
+					Route::prefix('dashboard')->middleware('auth')->group(function () {
+						Route::get('/', [DashboardController::class,'index'])->name('dashboard');
+						Route::get('properties', [DashboardController::class,'properties'])->name('adminProperties');
+						Route::get('properties/addnew', [DashboardController::class,'createProperty'])->name('createProperty');
+						Route::get('properties/edit/{id}', [DashboardController::class, 'editProperty'])->name('editProperty');
+						Route::put('properties/update/{id}', [DashboardController::class, 'updateProperty'])->name('updateProperty');
+						Route::delete('properties/destroy/{id}', [DashboardController::class, 'destroyProperty'])->name('destroyProperty');
+						Route::post('properties/store', [DashboardController::class, 'storeProperty'])->name('storeProperty');
+
+						Route::get('properties/delete-media/{id}', [DashboardController::class, 'deleteMedia'])->name('deleteMedia');
+
+						// Locations
+						Route::get('locations', [LocationController::class, 'index'])->name('adminLocations');
+						Route::get('locations/create', [LocationController::class, 'create'])->name('createLocation');
+						Route::post('locations/create/new', [LocationController::class, 'store'])->name('storeLocation');
+						Route::get('location/edit/{id}', [LocationController::class, 'edit'])->name('editLocation');
+						Route::put('location/update/{id}', [LocationController::class, 'update'])->name('updateLocation');
+						Route::delete('location/delete/{id}', [LocationController::class, 'destroy'])->name('deleteLocation');
+					});
+//------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
+
+
+
+
+
+
+//=============================================================================================================
+							//--------- Class #24 + #26 || resource route(Page, User, Location, Message) || flasher notification ---------
+//=============================================================================================================
+			-- Ei part e amra route/controller gula Admin/User onosare alada alada vag kore pelechi, for example amra admin controller gula new kore ekta admin folder niye er vitor admin er sob controller gula rekehchi, route e o same vabe admin/user route gula alada korechi + resource route use korechi,
+			
+			-- Flasher Notification link: https://php-flasher.github.io/
+					-- composer require php-flasher/flasher-laravel
 					
-					
+			-- using er rules sob ekhane ache: https://php-flasher.github.io/docs/framework/laravel/
+			
 	
-		//--------------------------------------------- database/migrations/pages_table.php ---------------------------------------------------------------------
-		//--------------------------------------------- database/migrations/pages_table.php ---------------------------------------------------------------------
+		//--------------------------------------------- app/Providers/AppServiceProvider.php ---------------------------------------------------------------------
+					use Illuminate\Support\Facades\Schema;
+					
+					public function boot()
+					{
+					  Schema::defaultStringLength(191);
+					}
+					
+		//--------------------------------------------- database/migrations/2021_12_25_042547_create_property_enquires_table.php ------------------------------
+					$table->longText('message')
+
+		//--------------------------------------------- database/factories/PropertyFactory.php ---------------------------------------------------------------------------------
+		            'description' => $this->faker->sentence(50),
+					'description_tr' => $this->faker->sentence(50)
+		
+		//----------------------------------------------- resources/css/app.css --------------------------------------------------------------------------------------------------------
+					/* Dashboard Card */
+					.dashboard-card{
+					  @apply text-center py-10 bg-gradient-to-r from-green-400 to-blue-500 rounded-md text-white hover:text-white  hover:from-pink-500 hover:to-yellow-500 duration-200 relative overflow-hidden transition-all;
+					}
+					.dashboard-card i{
+					  @apply text-4xl mb-3
+					}
+
+					.dashboard-card span{
+					  @apply absolute -right-5 -top-5 bg-gradient-to-t from-red-500 to-yellow-500 w-20 h-20 font-bold text-xl rounded-full leading-10 pr-2 pt-6;
+					}
+					
+		//------------------------------------------------- resources/js/app.js ----------------------------------------------------------------------------------------------------
+						// Open Reply Box
+						$('#reply-box-open').on('click', function(){
+							$(this).fadeOut();
+							$("#reply-delete-btn").fadeOut();
+							$("#reply-box").slideDown('slow');
+						});
+						$('#cancel-reply-btn').on('click', function(){
+							$('#reply-delete-btn').fadeIn();
+							$('#reply-box-open').fadeIn();
+							$("#reply-box").slideUp('slow');
+						});
+
+		//--------------------------------------------- resources/views/layouts/app.blade.php ---------------------------------------------------------------------
+						<body>
+								...... ....... ....... ........ ...... .......
+								@flasher_render
+						<body>
+						
+				
+
+				
+		//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+																//------------ Flasher --------------//
+		//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+					-- Flasher Notification link: https://php-flasher.github.io/
+					-- using er rules sob ekhane ache: https://php-flasher.github.io/docs/framework/laravel/
+					
+							--1-- at first install flasher from docs's command: composer require php-flasher/flasher-laravel
+							--2-- in main root file --------
+												 <!doctype html>
+												 <html>
+													 <head>
+														 <title>PHP Flasher</title>
+													 </head>
+													 <body>
+
+														 @flasher_render
+													 </body>
+												 </html>
+							--3-- in controller --------
+											 public function store(PostRequest $request, FlasherInterface $flasher)
+											{
+													$flasher->addSuccess('Data has been saved successfully!');
+											}
+											//-------- or -------------
+											use Flasher\Laravel\Facade\Flasher;
+											
+											public function store(Request $request)
+											{
+												Flasher::addSuccess('Location Added');  // Flasher
+											}
+
+					
+						
+						
+						
+		//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+																//------------ Location er kaj resource controller diye new --------------//
+		//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+					-- Command: php artisan make:controller Admin/LocationController --resource
+					
+			//--------------------------------------------- resources/views/layouts/navigation.blade.php ---------------------------------------------------------------------
+						<x-nav-link :href="route('location.index')" :active="request()->routeIs('location*')">
+							{{ __('Locations') }}
+						</x-nav-link>
+						
+			//--------------------------------------------- routes/web.php --------------------------------------------------------------------------------------------------------
+						use App\Http\Controllers\Admin\LocationController as AdminLocationController;
+						
+						Route::prefix('dashboard')->middleware('auth')->group(function () {
+								Route::resource('location', AdminLocationController::class);
+						});
+						
+			//--------------------------------------------- app/Http/Controllers/Admin/LocationController.php ---------------------------------------------------------------------
+						<?php
+
+						namespace App\Http\Controllers\Admin;
+
+						use App\Http\Controllers\Controller;
+						use Illuminate\Http\Request;
+						use App\Models\Location;
+						use Flasher\Laravel\Facade\Flasher;
+
+						class LocationController extends Controller
+						{
+
+							public function index()
+							{
+								// Get All locations order by id decending
+								$locations = Location::orderBy('id','desc')->get();
+								return view('dashboard.locations.index')->with('locations', $locations);
+							}
 
 
+							public function create()
+							{
+								return view('dashboard.locations.create');
+							}
+
+
+							public function store(Request $request)
+							{
+								$request->validate([
+								  'name'  => ['required', 'max:255']
+								]);
+
+								Flasher::addSuccess('Location Added');  // Flasher
+
+								return redirect()->route('location.index'); // Redirect with success message
+							}
+
+
+							public function show($id)
+							{
+								//
+							}
+
+
+							public function edit($id)
+							{
+								// Get location by id
+							   $location = Location::findorFail($id);
+							   return view('dashboard.locations.edit')->with('location', $location);
+							}
+
+
+							public function update(Request $request, $id)
+							{
+								$request->validate([
+									'name'  => ['required', 'max:255']
+								]);
+
+								Location::findorFail($id)->update($request->only('name'));
+
+								Flasher::addSuccess('Location Updated');   // Flasher
+
+								return redirect()->route('location.index');     // Redirect with success message
+							}
+
+
+							public function destroy($id)
+							{
+								Location::findorFail($id)->delete();
+
+								Flasher::addSuccess('Location Removed');    // Flasher
+
+								return redirect()->back();   // Redirect with success message
+							}
+						}
+
+		
+		//--------------------------------------------- resources/views/dashboard/locations/create.blade.php ---------------------------------------------------------------------
+					<x-app-layout>
+						<x-slot name="header">
+							<div class="flex justify-between items-center">
+								<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
+									{{ __('Add New Locations') }}
+								</h2>
+								<a href="{{ route('location.index') }}" class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Back</a>
+							</div>
+						</x-slot>
+
+
+						<div class="py-12">
+							<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+								<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+									<div class="p-5 mx-auto w-1/2">
+										<form action="{{ route('location.store') }}" method="POST">
+											@csrf
+											<div class="flex items-end">
+												<div class="flex-auto">
+													<label for="name" class="civanoglu-label">Location Name<span class="required-text">*</span></label>
+													<input type="text" name="name" class="civanoglu-input h-10" placeholder="Type location here" value="{{ old('name') }}">
+												</div>
+												<button type="submit" class="ml-3 flex-auto rounded-md px-5 py-2 h-10 hover:bg-black hover:text-white duration-200 bg-blue-500 text-white inline-block">Create</button>
+											</div>
+
+											@error('name')
+												<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+											@enderror
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</x-app-layout>
+
+		//--------------------------------------------- resources/views/dashboard/locations/edit.blade.php ---------------------------------------------------------------------
+					<x-app-layout>
+						<x-slot name="header">
+							<div class="flex justify-between items-center">
+								<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
+									{{ __('Edit Locations') }}
+								</h2>
+								<a href="{{ route('location.index') }}" class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Back</a>
+							</div>
+						</x-slot>
+
+
+						<div class="py-12">
+							<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+								<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+									<div class="p-5 mx-auto w-1/2">
+										<form action="{{ route('location.update',$location->id) }}" method="POST">
+											@csrf
+											@method('PUT')
+											<div class="flex items-end">
+												<div class="flex-auto">
+													<label for="name" class="civanoglu-label">Location Name <span class="required-text">*</span></label>
+													<input type="text" name="name" class="civanoglu-input h-10" placeholder="Type location here" value="{{ $location->name }}">
+												</div>
+													<button type="submit" class="ml-3 flex-auto rounded-md px-5 py-2 h-10 hover:bg-black hover:text-white duration-200 bg-blue-500 text-white inline-block">Update</button>
+												</div>
+
+												@error('name')
+													<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+												@enderror
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</x-app-layout>
+
+		//--------------------------------------------- resources/views/dashboard/locations/index.blade.php ---------------------------------------------------------------------
+						<x-app-layout>
+							<x-slot name="header">
+								<div class="flex justify-between items-center">
+									<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
+										{{ __('Locations') }}
+									</h2>
+									<a href="{{ route('location.create') }}" class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Add New Location</a>
+								</div>
+							</x-slot>
+
+
+							@if (session('message'))
+								<div id="notice" class="text-center bg-red-500 text-white p-3">{{ session('message') }}</div>
+							@endif
+
+							<div class="py-12">
+								<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+									<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+										<div class="">
+											<table class="w-full table-auto mb-4">
+												<thead class="bg-green-500 text-white">
+													<tr>
+														<th class="border px-4 py-3 text-center">Serial No</th>
+														<th class="border px-4 py-3">Name</th>
+														<th class="border px-4 py-3 w-44">Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													@forelse ($locations as $location)
+														<tr class="bg-green-300 hover:bg-red-500 hover:text-white duration-50">
+															<td class="border px-4 py-2 text-center">{{$loop->iteration}}</td>
+
+															<td class="border px-4 py-2">{{ $location->name }}</td>
+															<td class="border px-4 py-2">
+																<div class="flex items-center justify-center">
+																	<a href="{{ route('location.edit', $location->id) }}" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-blue-700 text-white px-3 py-2 text-sm rounded-md">Edit</a>
+
+																	<form action="{{ route('location.destroy', $location->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete the location?')">
+																		@csrf
+																		@method('DELETE')
+																		<button type="submit" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-red-700 text-white px-3 py-2 text-sm rounded-md">Delete</button>
+																	</form>
+																</div>
+															</td>
+														</tr>
+													@empty
+														<tr class="text-center">
+															<td colspan="3">No Location Found!</td>
+														</tr>
+													@endforelse
+
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</x-app-layout>
+
+
+				
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+														//------------ Page er kaj resource controller diye new --------------//
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			-- Command: php artisan make:controller Admin/PageController --resource
+			
+	//--------------------------------------------- resources/views/layouts/navigation.blade.php ---------------------------------------------------------------------
+				<x-nav-link :href="route('pages.index')" :active="request()->routeIs('pages*')">
+					{{ __('Pages') }}
+				</x-nav-link>
+				
+	//--------------------------------------------- routes/web.php --------------------------------------------------------------------------------------------------------
+				use App\Http\Controllers\Admin\PageController as AdminPageController;
+				use App\Http\Controllers\HomeController;
+				
+				// front
+				Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
+						Route::get('/page/{slug}', [HomeController::class, 'pages'])->name('page');
+				});
+				// back
+				Route::prefix('dashboard')->middleware('auth')->group(function () {
+						Route::resource('pages', AdminPageController::class);
+				});
+				
+	//--------------------------------------------- app/Http/Controllers/Admin/HomeController.php ---------------------------------------------------------------------
+					<?php
+
+					namespace App\Http\Controllers;
+
+					use Illuminate\Http\Request;
+					use App\Models\Property;
+					use App\Models\Location;
+					use App\Models\Page;
+
+					class HomeController extends Controller
+					{
+						public function index()
+						{
+							// $latest_properties = Property::all();
+							$latest_properties = Property::latest()->get()->take(4);
+							$locations = Location::select(['id', 'name'])->get();
+
+							return view('welcome',[
+								'latest_properties' => $latest_properties,
+								'locations' => $locations
+							]);
+							// return view('welcome')->with(['latest_properties' => $latest_properties]);
+							// return view('property.single')->with('property',$property);
+							// return view('welcome',compact('latest_properties'));
+						}
+
+
+					//--------------------- frotnend(nav) page view ---------------------------------------------
+						public function pages($slug)
+						{
+							$page = Page::where('slug', $slug)->first();
+							if (!empty($page)) {
+								return view('pages.index')->with('page', $page);
+							} else {
+								return abort('404');
+							}
+						}
+
+					}
+
+	
+	//--------------------------------------------- app/Http/Controllers/Admin/PageController.php ---------------------------------------------------------------------
+						<?php
+
+						namespace App\Http\Controllers\Admin;
+
+						use App\Http\Controllers\Controller;
+						use App\Models\Page;
+						use Flasher\Laravel\Facade\Flasher;
+						use Illuminate\Http\Request;
+
+						class PageController extends Controller
+						{
+
+							public function index()
+							{
+								$pages = Page::latest()->paginate(20);
+								return view('dashboard.pages.index')->with('pages',$pages);
+							}
+
+
+
+							public function validatePage() {
+								return [
+									'name' => 'required',
+									'slug' => 'required',
+									'content' => 'required'
+								];
+							}
+
+							public function saveOrUpdate($page, $request) {
+								$page->name = $request->name;
+								$page->slug = $request->slug;
+								$page->content = $request->slug;
+
+								$page->save();
+							}
+
+
+							public function create()
+							{
+								return view('dashboard.pages.create');
+							}
+
+
+							public function store(Request $request)
+							{
+								$request->validate($this->validatePage());
+
+								$page = new Page();
+
+								$this->saveOrUpdate($page, $request);
+
+								Flasher::addSuccess($request->name.' Page Created Successfully');
+
+								return redirect(route('pages.index'));
+							}
+
+
+							public function show($id)
+							{
+								//
+							}
+
+
+							public function edit($id)
+							{
+								$page = Page::findOrFail($id);
+
+								return view('dashboard.pages.edit', ['page' => $page]);
+							}
+
+
+							public function update(Request $request, $id)
+							{
+								$page = Page::findOrFail($id);
+
+								$request->validate($this->validatePage());
+
+
+								$this->saveOrUpdate($page, $request);
+
+								Flasher::addSuccess($request->name.' Page Updated Successfully');
+
+								return redirect()->route('pages.index');
+							}
+
+
+							public function destroy($id)
+							{
+								try {
+									Page::findorFail($id)->delete();
+
+									Flasher::addSuccess('Page Removed Successfully');   // Flasher
+
+									return redirect()->back();    // Redirect with success message
+
+								} catch (\Throwable $th) {
+									return redirect()->route('pages.index')->with(['message' => $th->getMessage()]);    // Redirect with error message
+								}
+							}
+
+						}
+
+
+	
+	//--------------------------------------------- resources/views/dashboard/pages/index.blade.php ---------------------------------------------------------------------
+				<x-app-layout>
+					<x-slot name="header">
+						<div class="flex justify-between items-center">
+							<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
+								{{ __('Pages') }}
+							</h2>
+							<a href="{{ route('pages.create') }}" class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Add New Page</a>
+						</div>
+					</x-slot>
+
+
+					@if (session('message'))
+						<div id="notice" class="text-center bg-green-100 text-green-700 p-3">{{ session('message') }}</div>
+					@endif
+
+					<div class="py-12">
+						<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+							<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+								<div class="">
+									<table class="w-full table-auto mb-4">
+										<thead class="bg-green-500 text-white">
+											<tr>
+												<th class="border px-4 py-2 text-center">ID</th>
+												<th class="border px-4 py-2">Name</th>
+												<th class="border px-4 py-2 w-44">Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											@forelse ($pages as $page)
+												<tr class="bg-green-300 hover:bg-red-500 hover:text-white duration-50">
+													<td class="border px-4 py-2 text-center">{{ $page->id }}</td>
+													<td class="border px-4 py-2">{{ $page->name }}</td>
+													<td class="border px-4 py-2">
+														<div class="flex items-center justify-center">
+															<a href="{{ route('pages.edit', $page->id) }}" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-blue-700 text-white px-3 py-2 text-sm rounded-md">Edit</a>
+															<a target="_blank" href="{{ route('page',$page->slug) }}" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-green-700 text-white px-3 py-2 text-sm rounded-md">View</a>
+															<form action="{{ route('pages.destroy', $page->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete the location?')">
+																@csrf
+																@method('DELETE')
+																<button type="submit" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-red-700 text-white px-3 py-2 text-sm rounded-md">Delete</button>
+															</form>
+														</div>
+													</td>
+												</tr>
+											@empty
+												<tr class="text-center">
+													<td colspan="3">No Location Found!</td>
+												</tr>
+											@endforelse
+
+										</tbody>
+									</table>
+
+									<div class="px-4 pb-4">
+										{{ $pages->links() }}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</x-app-layout>
+
+
+	
+	//--------------------------------------------- resources/views/dashboard/pages/create.blade.php ---------------------------------------------------------------------
+						<x-app-layout>
+						<x-slot name="header">
+							<div class="flex justify-between items-center">
+								<h2 class="font-semibold text-xl text-gray-800 leading-tight">
+									{{ __('Add New Pages') }}
+								</h2>
+
+								<div class="min-w-max">
+									<a href="{{route('pages.index')}}" class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Back</a>
+								</div>
+							</div>
+						</x-slot>
+
+						<div class="py-12">
+							<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+								<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+									<form action="{{route('pages.store')}}" method="post" class="p-6 bg-white border-b border-gray-200" enctype="multipart/form-data"> @csrf
+										<div class="mb-6">
+											<label class="civanoglu-label" for="name">Name <span class="required-text">*</span></label>
+											<input class="civanoglu-input" type="text" id="name" name="name" value="{{old('name')}}" required>
+
+											@error('name')
+												<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+											@enderror
+										</div>
+
+										<div class="mb-6">
+											<label class="civanoglu-label" for="slug">Slug <span class="required-text">*</span></label>
+											<input class="civanoglu-input" type="text" id="slug" name="slug" value="{{old('slug')}}" required>
+
+											@error('slug')
+												<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+											@enderror
+										</div>
+
+										<div class="mb-6">
+											<label class="civanoglu-label" for="content">Content <span class="required-text">*</span></label>
+											<textarea class="civanoglu-input" name="content" id="content" cols="30" rows="10" required>{{old('content')}}</textarea>
+
+											@error('content')
+												<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+											@enderror
+										</div>
+
+										<button class="btn" type="submit">Submit</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</x-app-layout>
+
+	
+	//--------------------------------------------- resources/views/dashboard/pages/edit.blade.php ---------------------------------------------------------------------
+					<x-app-layout>
+						<x-slot name="header">
+							<div class="flex justify-between items-center">
+								<h2 class="font-semibold text-xl text-gray-800 leading-tight">
+									{{ __('Edit Locations') }}
+								</h2>
+
+								<div class="min-w-max">
+									<a href="{{route('pages.index')}}" class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Back</a>
+								</div>
+							</div>
+						</x-slot>
+
+						<div class="py-12">
+							<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+								<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+									<form action="{{route('pages.update', $page->id)}}" method="post" class="p-6 bg-white border-b border-gray-200" enctype="multipart/form-data"> @csrf @method('put')
+										<div class="mb-6">
+											<label class="civanoglu-label" for="name">Name <span class="required-text">*</span></label>
+											<input class="civanoglu-input" type="text" id="name" name="name" value="{{$page->name}}" required>
+
+											@error('name')
+												<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+											@enderror
+										</div>
+
+										<div class="mb-6">
+											<label class="civanoglu-label" for="slug">Slug <span class="required-text">*</span></label>
+											<input class="civanoglu-input" type="text" id="slug" name="slug" value="{{$page->slug}}" required>
+
+											@error('slug')
+												<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+											@enderror
+										</div>
+
+										<div class="mb-6">
+											<label class="civanoglu-label" for="content">Content <span class="required-text">*</span></label>
+											<textarea class="civanoglu-input" name="content" id="content" cols="30" rows="10" required>{{$page->content}}</textarea>
+
+											@error('content')
+												<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+											@enderror
+										</div>
+
+										<button class="btn" type="submit">Update</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</x-app-layout>
+
+	
+	
+	
+	
+	
 		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------
 		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------
 		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------
-		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------
-		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------
-		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------
-		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------
-		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------
-		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------
+
 
 
 

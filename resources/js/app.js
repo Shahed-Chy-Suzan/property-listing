@@ -42,10 +42,25 @@ jQuery(document).ready(function ($) {   //for slick slider
             nextArrow: '<i class="fa fa-angle-right slick-next nextArrowBtn"></i>'
     });
 
+
     // Notice Panel
     setTimeout(() => {
         $("#notice").slideUp("slow");
      }, 2000);
+
+
+    // Open Reply Box
+    $('#reply-box-open').on('click', function(){
+        $(this).fadeOut();
+        $("#reply-delete-btn").fadeOut();
+        $("#reply-box").slideDown('slow');
+    });
+    $('#cancel-reply-btn').on('click', function(){
+        $('#reply-delete-btn').fadeIn();
+        $('#reply-box-open').fadeIn();
+        $("#reply-box").slideUp('slow');
+    });
+
 
 });
 

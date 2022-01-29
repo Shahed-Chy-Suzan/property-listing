@@ -16,10 +16,20 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('adminProperties')" :active="request()->routeIs('adminProperties')">
+                    {{-- <x-nav-link :href="route('properties.index')" :active="request()->routeIs('properties*')"> --}}
                         {{ __('Properties') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('adminLocations')" :active="request()->routeIs('adminLocations')">
+                    <x-nav-link :href="route('location.index')" :active="request()->routeIs('location*')">
                         {{ __('Locations') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('pages.index')" :active="request()->routeIs('pages*')">
+                        {{ __('Pages') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('user.index')" :active="request()->routeIs('user*')">
+                        {{ __('Users') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('message.index')" :active="request()->routeIs('message*')">
+                        {{ __('Messages') }}
                     </x-nav-link>
                 </div>
             </div>

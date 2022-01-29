@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
                 {{ __('Edit Locations') }}
             </h2>
-            <a href="{{ route('adminLocations') }}" class="px-4 py-2 hover:text-white hover:bg-blue-600 bg-purple-800 duration-200 text-white rounded-md text-base">Back</a>
+            <a href="{{ route('location.index') }}" class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Back</a>
         </div>
     </x-slot>
 
@@ -13,7 +13,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-5 mx-auto w-1/2">
-                    <form action="{{ route('updateLocation',$location->id) }}" method="POST">
+                    <form action="{{ route('location.update',$location->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="flex items-end">

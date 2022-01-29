@@ -171,6 +171,19 @@ h1, h2, h3, h4, h5, h6 {
     @apply text-red-800 text-base ml-1
 }
 
+/* Dashboard Card */
+.dashboard-card{
+  @apply text-center py-10 bg-gradient-to-r from-green-400 to-blue-500 rounded-md text-white hover:text-white  hover:from-pink-500 hover:to-yellow-500 duration-200 relative overflow-hidden transition-all;
+}
+.dashboard-card i{
+  @apply text-4xl mb-3
+}
+
+.dashboard-card span{
+  @apply absolute -right-5 -top-5 bg-gradient-to-t from-red-500 to-yellow-500 w-20 h-20 font-bold text-xl rounded-full leading-10 pr-2 pt-6;
+}
+
+
 /* ----- CSS code for search -------- */
 .vertical-search-form > form > div {
     display: block;

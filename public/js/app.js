@@ -5494,7 +5494,18 @@ jQuery(document).ready(function ($) {
 
   setTimeout(function () {
     $("#notice").slideUp("slow");
-  }, 2000);
+  }, 2000); // Open Reply Box
+
+  $('#reply-box-open').on('click', function () {
+    $(this).fadeOut();
+    $("#reply-delete-btn").fadeOut();
+    $("#reply-box").slideDown('slow');
+  });
+  $('#cancel-reply-btn').on('click', function () {
+    $('#reply-delete-btn').fadeIn();
+    $('#reply-box-open').fadeIn();
+    $("#reply-box").slideUp('slow');
+  });
 });
 
 /***/ }),

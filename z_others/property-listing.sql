@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 27, 2022 at 08:33 PM
+-- Generation Time: Jan 29, 2022 at 04:15 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -64,7 +64,8 @@ INSERT INTO `locations` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (7, 'eum', '2022-01-27 03:23:00', '2022-01-27 03:23:00'),
 (8, 'et', '2022-01-27 03:23:00', '2022-01-27 03:23:00'),
 (9, 'est', '2022-01-27 03:23:00', '2022-01-27 03:23:00'),
-(10, 'et', '2022-01-27 03:23:00', '2022-01-27 03:23:00');
+(10, 'kadalpur', '2022-01-27 03:23:00', '2022-01-27 14:15:06'),
+(12, 'Raozan', '2022-01-27 14:15:36', '2022-01-29 08:37:17');
 
 -- --------------------------------------------------------
 
@@ -843,7 +844,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `locations`
 --
 ALTER TABLE `locations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `media`
@@ -861,7 +862,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

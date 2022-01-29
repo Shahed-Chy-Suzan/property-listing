@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
                 {{ __('Add New Locations') }}
             </h2>
-            <a href="{{ route('adminLocations') }}" class="px-4 py-2 hover:text-white hover:bg-blue-600 bg-purple-800 duration-200 text-white rounded-md text-base">Back</a>
+            <a href="{{ route('location.index') }}" class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Back</a>
         </div>
     </x-slot>
 
@@ -13,7 +13,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-5 mx-auto w-1/2">
-                    <form action="{{ route('storeLocation') }}" method="POST">
+                    <form action="{{ route('location.store') }}" method="POST">
                         @csrf
                         <div class="flex items-end">
                             <div class="flex-auto">
@@ -22,7 +22,7 @@
                             </div>
                             <button type="submit" class="ml-3 flex-auto rounded-md px-5 py-2 h-10 hover:bg-black hover:text-white duration-200 bg-blue-500 text-white inline-block">Create</button>
                         </div>
-                        
+
                         @error('name')
                             <p class="text-red-500 mt-2 text-sm">{{$message}}</p>
                         @enderror
