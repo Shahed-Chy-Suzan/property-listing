@@ -4,8 +4,8 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
                 {{ __('Edit Properties') }}
             </h2>
-            <a href="{{ route('adminProperties') }}"
-                class="px-4 py-2 hover:text-white hover:bg-blue-600 bg-purple-800 duration-200 text-white rounded-md text-base">Back</a>
+            <a href="{{ route('properties.store') }}"
+                class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Back</a>
         </div>
     </x-slot>
 
@@ -13,7 +13,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="m-4">
-                    <form action="{{route('updateProperty',$property->id)}}" method="post" enctype="multipart/form-data" class="p-6 bg-white border-b border-gray-200">
+                    <form action="{{route('properties.update',$property->id)}}" method="post" enctype="multipart/form-data" class="p-6 bg-white border-b border-gray-200">
                         @csrf
                         @method('PUT')
                         <div class="flex -mx-4 mb-6">
@@ -47,7 +47,9 @@
                             </div>
 
                             <div class="mt-3 ml-5">
-                                <img style="max-width: 100px" src="/storage/uploads/{{$property->featured_image}}" alt="image not found">
+                                @if (file_exists(public_path('storage/uploads/' . $property->featured_image)))
+                                    <img style="max-width: 100px" src="/storage/uploads/{{$property->featured_image}}" alt="Not Found Image">
+                                @endif
                             </div>
                         </div>
 

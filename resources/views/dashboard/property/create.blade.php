@@ -4,8 +4,8 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
                 {{ __('Add New Properties') }}
             </h2>
-            <a href="{{ route('adminProperties') }}"
-                class="px-4 py-2 hover:text-white hover:bg-blue-600 bg-purple-800 duration-200 text-white rounded-md text-base">Back</a>
+            <a href="{{ route('properties.index') }}"
+                class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Back</a>
         </div>
     </x-slot>
 
@@ -13,7 +13,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="m-4">
-                    <form action="{{route('storeProperty')}}" method="post" class="p-6 bg-white border-b border-gray-200" enctype="multipart/form-data">
+                    <form action="{{route('properties.store')}}" method="post" class="p-6 bg-white border-b border-gray-200" enctype="multipart/form-data">
                         @csrf
                         <div class="flex -mx-4 mb-6">
                             <div class="flex-1 px-4">

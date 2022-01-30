@@ -4,7 +4,7 @@
 use App\Http\Controllers\Admin\LocationController as AdminLocationController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Admin\MessageController as AdminMessageController;
-    use App\Http\Controllers\Admin\PropertyController as AdminPropertyController;
+use App\Http\Controllers\Admin\PropertyController as AdminPropertyController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\DashboardController;
 
@@ -24,6 +24,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     // Home
     Route::get('/', [HomeController::class, 'index'])->name('home');
     // Property
+                Route::resource('property', PropertyController::class);
+    // Property Enquire
+                Route::post('/property/enquire/{id}', [PropertyController::class, 'enquire'])->name('enquireform');
+    // Property
             Route::get('/property/{id}', [PropertyController::class, 'singleProperty'])->name('single-property');
             Route::post('/property/enquire/{id}', [PropertyEnquireController::class,'enquire'])->name('enquireform');
             Route::get('/properties', [PropertyController::class, 'index'])->name('properties');
@@ -36,26 +40,15 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     // Dashboard
     Route::get('/', [DashboardController::class,'index'])->name('dashboard');
     // Property
-            Route::get('properties', [DashboardController::class,'properties'])->name('adminProperties');
-            Route::get('properties/addnew', [DashboardController::class,'createProperty'])->name('createProperty');
-            Route::get('properties/edit/{id}', [DashboardController::class, 'editProperty'])->name('editProperty');
-            Route::put('properties/update/{id}', [DashboardController::class, 'updateProperty'])->name('updateProperty');
-            Route::delete('properties/destroy/{id}', [DashboardController::class, 'destroyProperty'])->name('destroyProperty');
-            Route::post('properties/store', [DashboardController::class, 'storeProperty'])->name('storeProperty');
-
+    Route::resource('properties', AdminPropertyController::class);
     // Delete Media
-            Route::get('properties/delete-media/{id}', [DashboardController::class, 'deleteMedia'])->name('deleteMedia');
-
-
+    Route::get('properties/delete-media/{id}', [AdminPropertyController::class, 'destroyMedia'])->name('deleteMedia');
     // Location
     Route::resource('location', AdminLocationController::class);
-
     // Page
     Route::resource('pages', AdminPageController::class);
-
     // User
     Route::resource('user', UserController::class);
-
     // Message
     Route::resource('message', AdminMessageController::class);
 
