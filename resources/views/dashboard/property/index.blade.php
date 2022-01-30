@@ -36,7 +36,7 @@
                                     <td class="border px-4 py-2">
                                         <div class="flex items-center justify-center">
                                             <a href="{{ route('properties.edit', $item->id) }}" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-blue-700 text-white px-3 py-2 text-sm rounded-md">Edit</a>
-                                            <a target="_blank" href="{{ route('properties.show',$item->id) }}" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-green-700 text-white px-3 py-2 text-sm rounded-md">View</a>
+                                            <a target="_blank" href="{{ route('property.show',$item->id) }}" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-green-700 text-white px-3 py-2 text-sm rounded-md">View</a>
 
                                             <form action="{{ route('properties.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete property?')">
                                                 @csrf

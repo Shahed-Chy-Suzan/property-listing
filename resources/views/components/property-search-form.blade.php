@@ -1,4 +1,4 @@
-<form action="{{route('properties')}}" method="GET" class="flex justify-between">
+<form action="{{route('property.index')}}" method="GET" class="flex justify-between">
     <div class="flex flex-1 justify-between items-center">
         <div class="flex flex-col mx-3">
             <label for="sale">{{ __('Rent') }}/{{ __('Sale') }}</label>

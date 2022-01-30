@@ -14,30 +14,22 @@ use App\Http\Controllers\PropertyController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
-//---------------------------------------------------------------------
-use App\Http\Controllers\PropertyEnquireController;
-//------------------------------------------------------------------------
-
 
 
 Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     // Home
     Route::get('/', [HomeController::class, 'index'])->name('home');
     // Property
-                Route::resource('property', PropertyController::class);
+    Route::resource('property', PropertyController::class);
     // Property Enquire
-                Route::post('/property/enquire/{id}', [PropertyController::class, 'enquire'])->name('enquireform');
-    // Property
-            Route::get('/property/{id}', [PropertyController::class, 'singleProperty'])->name('single-property');
-            Route::post('/property/enquire/{id}', [PropertyEnquireController::class,'enquire'])->name('enquireform');
-            Route::get('/properties', [PropertyController::class, 'index'])->name('properties');
+    Route::post('/property/enquire/{id}', [PropertyController::class, 'enquire'])->name('enquireform');
     // Page
     Route::get('/page/{slug}', [HomeController::class, 'pages'])->name('page');
 });
 
 
 Route::prefix('dashboard')->middleware('auth')->group(function () {
-    // Dashboard
+    // Dashboard/Admin Panel
     Route::get('/', [DashboardController::class,'index'])->name('dashboard');
     // Property
     Route::resource('properties', AdminPropertyController::class);

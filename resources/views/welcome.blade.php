@@ -114,7 +114,7 @@
 
     <!-- Last Added Objects -->
     <div class="container py-14">
-        <h2 class="section-heading">Last added objusts</h2>
+        <h2 class="section-heading">Last added properties</h2>
         <div class="flex flex-wrap -mx-2 mt-10">
 
             @foreach($latest_properties as $property)

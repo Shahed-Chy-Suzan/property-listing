@@ -136,7 +136,7 @@ h1, h2, h3, h4, h5, h6 {
 .sticky-header-active a{color:#333}
 
 .inputField {
-    @apply  w-full border-gray-400 block
+    @apply w-full border-gray-400 block
 }
 
 #description h3 {}
@@ -208,7 +208,8 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 12px;
     margin-bottom: 5px;
     display: block;
-    opacity: .5;
+    opacity: .8;
+    font-family: ;
 }
 
 .vertical-search-form select {

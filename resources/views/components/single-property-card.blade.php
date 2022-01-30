@@ -17,7 +17,7 @@
                     <li class="px-2 py-1 bg-gray-200 rounded-md text-xs mx-1 shadow-sm">{{$property->bathrooms}} {{ __('Bathrooms') }}</li>
                     <li class="px-2 py-1 bg-gray-200 rounded-md text-xs mx-1 shadow-sm">{{$property->gross_sqm}} {{ __('ft') }}<sup>2</sup></li>
                 </ul>
-                <a href="{{route('single-property', $property->id)}}" class="btn w-full text-center">{{ __('More details') }}</a>
+                <a href="{{route('property.show', $property->id)}}" class="btn w-full text-center">{{ __('More details') }}</a>
             </div>
         </div>
     </div>
