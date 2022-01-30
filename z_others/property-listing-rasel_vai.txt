@@ -4839,93 +4839,325 @@
 						}
 
 		
-		//--------------------------------------------- resources/views/dashboard/locations/create.blade.php ---------------------------------------------------------------------
-					<x-app-layout>
-						<x-slot name="header">
-							<div class="flex justify-between items-center">
-								<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
-									{{ __('Add New Locations') }}
-								</h2>
-								<a href="{{ route('location.index') }}" class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Back</a>
-							</div>
-						</x-slot>
-
-
-						<div class="py-12">
-							<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-								<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-									<div class="p-5 mx-auto w-1/2">
-										<form action="{{ route('location.store') }}" method="POST">
-											@csrf
-											<div class="flex items-end">
-												<div class="flex-auto">
-													<label for="name" class="civanoglu-label">Location Name<span class="required-text">*</span></label>
-													<input type="text" name="name" class="civanoglu-input h-10" placeholder="Type location here" value="{{ old('name') }}">
-												</div>
-												<button type="submit" class="ml-3 flex-auto rounded-md px-5 py-2 h-10 hover:bg-black hover:text-white duration-200 bg-blue-500 text-white inline-block">Create</button>
-											</div>
-
-											@error('name')
-												<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-											@enderror
-										</form>
-									</div>
+			//--------------------------------------------- resources/views/dashboard/locations/create.blade.php ---------------------------------------------------------------------
+						<x-app-layout>
+							<x-slot name="header">
+								<div class="flex justify-between items-center">
+									<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
+										{{ __('Add New Locations') }}
+									</h2>
+									<a href="{{ route('location.index') }}" class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Back</a>
 								</div>
-							</div>
-						</div>
-					</x-app-layout>
-
-		//--------------------------------------------- resources/views/dashboard/locations/edit.blade.php ---------------------------------------------------------------------
-					<x-app-layout>
-						<x-slot name="header">
-							<div class="flex justify-between items-center">
-								<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
-									{{ __('Edit Locations') }}
-								</h2>
-								<a href="{{ route('location.index') }}" class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Back</a>
-							</div>
-						</x-slot>
+							</x-slot>
 
 
-						<div class="py-12">
-							<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-								<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-									<div class="p-5 mx-auto w-1/2">
-										<form action="{{ route('location.update',$location->id) }}" method="POST">
-											@csrf
-											@method('PUT')
-											<div class="flex items-end">
-												<div class="flex-auto">
-													<label for="name" class="civanoglu-label">Location Name <span class="required-text">*</span></label>
-													<input type="text" name="name" class="civanoglu-input h-10" placeholder="Type location here" value="{{ $location->name }}">
-												</div>
-													<button type="submit" class="ml-3 flex-auto rounded-md px-5 py-2 h-10 hover:bg-black hover:text-white duration-200 bg-blue-500 text-white inline-block">Update</button>
+							<div class="py-12">
+								<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+									<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+										<div class="p-5 mx-auto w-1/2">
+											<form action="{{ route('location.store') }}" method="POST">
+												@csrf
+												<div class="flex items-end">
+													<div class="flex-auto">
+														<label for="name" class="civanoglu-label">Location Name<span class="required-text">*</span></label>
+														<input type="text" name="name" class="civanoglu-input h-10" placeholder="Type location here" value="{{ old('name') }}">
+													</div>
+													<button type="submit" class="ml-3 flex-auto rounded-md px-5 py-2 h-10 hover:bg-black hover:text-white duration-200 bg-blue-500 text-white inline-block">Create</button>
 												</div>
 
 												@error('name')
 													<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
 												@enderror
-										</form>
+											</form>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					</x-app-layout>
+						</x-app-layout>
 
-		//--------------------------------------------- resources/views/dashboard/locations/index.blade.php ---------------------------------------------------------------------
+			//--------------------------------------------- resources/views/dashboard/locations/edit.blade.php ---------------------------------------------------------------------
 						<x-app-layout>
 							<x-slot name="header">
 								<div class="flex justify-between items-center">
 									<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
-										{{ __('Locations') }}
+										{{ __('Edit Locations') }}
 									</h2>
-									<a href="{{ route('location.create') }}" class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Add New Location</a>
+									<a href="{{ route('location.index') }}" class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Back</a>
+								</div>
+							</x-slot>
+
+
+							<div class="py-12">
+								<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+									<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+										<div class="p-5 mx-auto w-1/2">
+											<form action="{{ route('location.update',$location->id) }}" method="POST">
+												@csrf
+												@method('PUT')
+												<div class="flex items-end">
+													<div class="flex-auto">
+														<label for="name" class="civanoglu-label">Location Name <span class="required-text">*</span></label>
+														<input type="text" name="name" class="civanoglu-input h-10" placeholder="Type location here" value="{{ $location->name }}">
+													</div>
+														<button type="submit" class="ml-3 flex-auto rounded-md px-5 py-2 h-10 hover:bg-black hover:text-white duration-200 bg-blue-500 text-white inline-block">Update</button>
+													</div>
+
+													@error('name')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</x-app-layout>
+
+			//--------------------------------------------- resources/views/dashboard/locations/index.blade.php ---------------------------------------------------------------------
+							<x-app-layout>
+								<x-slot name="header">
+									<div class="flex justify-between items-center">
+										<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
+											{{ __('Locations') }}
+										</h2>
+										<a href="{{ route('location.create') }}" class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Add New Location</a>
+									</div>
+								</x-slot>
+
+
+								@if (session('message'))
+									<div id="notice" class="text-center bg-red-500 text-white p-3">{{ session('message') }}</div>
+								@endif
+
+								<div class="py-12">
+									<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+										<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+											<div class="">
+												<table class="w-full table-auto mb-4">
+													<thead class="bg-green-500 text-white">
+														<tr>
+															<th class="border px-4 py-3 text-center">Serial No</th>
+															<th class="border px-4 py-3">Name</th>
+															<th class="border px-4 py-3 w-44">Action</th>
+														</tr>
+													</thead>
+													<tbody>
+														@forelse ($locations as $location)
+															<tr class="bg-green-300 hover:bg-red-500 hover:text-white duration-50">
+																<td class="border px-4 py-2 text-center">{{$loop->iteration}}</td>
+
+																<td class="border px-4 py-2">{{ $location->name }}</td>
+																<td class="border px-4 py-2">
+																	<div class="flex items-center justify-center">
+																		<a href="{{ route('location.edit', $location->id) }}" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-blue-700 text-white px-3 py-2 text-sm rounded-md">Edit</a>
+
+																		<form action="{{ route('location.destroy', $location->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete the location?')">
+																			@csrf
+																			@method('DELETE')
+																			<button type="submit" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-red-700 text-white px-3 py-2 text-sm rounded-md">Delete</button>
+																		</form>
+																	</div>
+																</td>
+															</tr>
+														@empty
+															<tr class="text-center">
+																<td colspan="3">No Location Found!</td>
+															</tr>
+														@endforelse
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</x-app-layout>
+
+
+						
+		//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+																//------------ Page er kaj resource controller diye new --------------//
+		//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+					-- Command: php artisan make:controller Admin/PageController --resource
+					
+			//--------------------------------------------- resources/views/layouts/navigation.blade.php ---------------------------------------------------------------------
+						<x-nav-link :href="route('pages.index')" :active="request()->routeIs('pages*')">
+							{{ __('Pages') }}
+						</x-nav-link>
+						
+			//--------------------------------------------- routes/web.php --------------------------------------------------------------------------------------------------------
+						use App\Http\Controllers\Admin\PageController as AdminPageController;
+						use App\Http\Controllers\HomeController;
+						
+						// front
+						Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
+								Route::get('/page/{slug}', [HomeController::class, 'pages'])->name('page');
+						});
+						// back
+						Route::prefix('dashboard')->middleware('auth')->group(function () {
+								Route::resource('pages', AdminPageController::class);
+						});
+						
+			//--------------------------------------------- app/Http/Controllers/Admin/HomeController.php ---------------------------------------------------------------------
+							<?php
+
+							namespace App\Http\Controllers;
+
+							use Illuminate\Http\Request;
+							use App\Models\Property;
+							use App\Models\Location;
+							use App\Models\Page;
+
+							class HomeController extends Controller
+							{
+								public function index()
+								{
+									// $latest_properties = Property::all();
+									$latest_properties = Property::latest()->get()->take(4);
+									$locations = Location::select(['id', 'name'])->get();
+
+									return view('welcome',[
+										'latest_properties' => $latest_properties,
+										'locations' => $locations
+									]);
+									// return view('welcome')->with(['latest_properties' => $latest_properties]);
+									// return view('property.single')->with('property',$property);
+									// return view('welcome',compact('latest_properties'));
+								}
+
+
+							//--------------------- frotnend(nav) page view ---------------------------------------------
+								public function pages($slug)
+								{
+									$page = Page::where('slug', $slug)->first();
+									if (!empty($page)) {
+										return view('pages.index')->with('page', $page);
+									} else {
+										return abort('404');
+									}
+								}
+
+							}
+
+			
+			//--------------------------------------------- app/Http/Controllers/Admin/PageController.php ---------------------------------------------------------------------
+								<?php
+
+								namespace App\Http\Controllers\Admin;
+
+								use App\Http\Controllers\Controller;
+								use App\Models\Page;
+								use Flasher\Laravel\Facade\Flasher;
+								use Illuminate\Http\Request;
+
+								class PageController extends Controller
+								{
+
+									public function index()
+									{
+										$pages = Page::latest()->paginate(20);
+										return view('dashboard.pages.index')->with('pages',$pages);
+									}
+
+
+
+									public function validatePage() {
+										return [
+											'name' => 'required',
+											'slug' => 'required',
+											'content' => 'required'
+										];
+									}
+
+									public function saveOrUpdate($page, $request) {
+										$page->name = $request->name;
+										$page->slug = $request->slug;
+										$page->content = $request->slug;
+
+										$page->save();
+									}
+
+
+									public function create()
+									{
+										return view('dashboard.pages.create');
+									}
+
+
+									public function store(Request $request)
+									{
+										$request->validate($this->validatePage());
+
+										$page = new Page();
+
+										$this->saveOrUpdate($page, $request);
+
+										Flasher::addSuccess($request->name.' Page Created Successfully');
+
+										return redirect(route('pages.index'));
+									}
+
+
+									public function show($id)
+									{
+										//
+									}
+
+
+									public function edit($id)
+									{
+										$page = Page::findOrFail($id);
+
+										return view('dashboard.pages.edit', ['page' => $page]);
+									}
+
+
+									public function update(Request $request, $id)
+									{
+										$page = Page::findOrFail($id);
+
+										$request->validate($this->validatePage());
+
+
+										$this->saveOrUpdate($page, $request);
+
+										Flasher::addSuccess($request->name.' Page Updated Successfully');
+
+										return redirect()->route('pages.index');
+									}
+
+
+									public function destroy($id)
+									{
+										try {
+											Page::findorFail($id)->delete();
+
+											Flasher::addSuccess('Page Removed Successfully');   // Flasher
+
+											return redirect()->back();    // Redirect with success message
+
+										} catch (\Throwable $th) {
+											return redirect()->route('pages.index')->with(['message' => $th->getMessage()]);    // Redirect with error message
+										}
+									}
+
+								}
+
+
+			
+			//--------------------------------------------- resources/views/dashboard/pages/index.blade.php ---------------------------------------------------------------------
+						<x-app-layout>
+							<x-slot name="header">
+								<div class="flex justify-between items-center">
+									<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
+										{{ __('Pages') }}
+									</h2>
+									<a href="{{ route('pages.create') }}" class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Add New Page</a>
 								</div>
 							</x-slot>
 
 
 							@if (session('message'))
-								<div id="notice" class="text-center bg-red-500 text-white p-3">{{ session('message') }}</div>
+								<div id="notice" class="text-center bg-green-100 text-green-700 p-3">{{ session('message') }}</div>
 							@endif
 
 							<div class="py-12">
@@ -4935,22 +5167,21 @@
 											<table class="w-full table-auto mb-4">
 												<thead class="bg-green-500 text-white">
 													<tr>
-														<th class="border px-4 py-3 text-center">Serial No</th>
-														<th class="border px-4 py-3">Name</th>
-														<th class="border px-4 py-3 w-44">Action</th>
+														<th class="border px-4 py-2 text-center">ID</th>
+														<th class="border px-4 py-2">Name</th>
+														<th class="border px-4 py-2 w-44">Action</th>
 													</tr>
 												</thead>
 												<tbody>
-													@forelse ($locations as $location)
+													@forelse ($pages as $page)
 														<tr class="bg-green-300 hover:bg-red-500 hover:text-white duration-50">
-															<td class="border px-4 py-2 text-center">{{$loop->iteration}}</td>
-
-															<td class="border px-4 py-2">{{ $location->name }}</td>
+															<td class="border px-4 py-2 text-center">{{ $page->id }}</td>
+															<td class="border px-4 py-2">{{ $page->name }}</td>
 															<td class="border px-4 py-2">
 																<div class="flex items-center justify-center">
-																	<a href="{{ route('location.edit', $location->id) }}" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-blue-700 text-white px-3 py-2 text-sm rounded-md">Edit</a>
-
-																	<form action="{{ route('location.destroy', $location->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete the location?')">
+																	<a href="{{ route('pages.edit', $page->id) }}" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-blue-700 text-white px-3 py-2 text-sm rounded-md">Edit</a>
+																	<a target="_blank" href="{{ route('page',$page->slug) }}" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-green-700 text-white px-3 py-2 text-sm rounded-md">View</a>
+																	<form action="{{ route('pages.destroy', $page->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete the location?')">
 																		@csrf
 																		@method('DELETE')
 																		<button type="submit" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-red-700 text-white px-3 py-2 text-sm rounded-md">Delete</button>
@@ -4966,6 +5197,10 @@
 
 												</tbody>
 											</table>
+
+											<div class="px-4 pb-4">
+												{{ $pages->links() }}
+											</div>
 										</div>
 									</div>
 								</div>
@@ -4973,365 +5208,1792 @@
 						</x-app-layout>
 
 
-				
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-														//------------ Page er kaj resource controller diye new --------------//
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-			-- Command: php artisan make:controller Admin/PageController --resource
 			
-	//--------------------------------------------- resources/views/layouts/navigation.blade.php ---------------------------------------------------------------------
-				<x-nav-link :href="route('pages.index')" :active="request()->routeIs('pages*')">
-					{{ __('Pages') }}
-				</x-nav-link>
+			//--------------------------------------------- resources/views/dashboard/pages/create.blade.php ---------------------------------------------------------------------
+								<x-app-layout>
+								<x-slot name="header">
+									<div class="flex justify-between items-center">
+										<h2 class="font-semibold text-xl text-gray-800 leading-tight">
+											{{ __('Add New Pages') }}
+										</h2>
+
+										<div class="min-w-max">
+											<a href="{{route('pages.index')}}" class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Back</a>
+										</div>
+									</div>
+								</x-slot>
+
+								<div class="py-12">
+									<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+										<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+											<form action="{{route('pages.store')}}" method="post" class="p-6 bg-white border-b border-gray-200" enctype="multipart/form-data"> @csrf
+												<div class="mb-6">
+													<label class="civanoglu-label" for="name">Name <span class="required-text">*</span></label>
+													<input class="civanoglu-input" type="text" id="name" name="name" value="{{old('name')}}" required>
+
+													@error('name')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<div class="mb-6">
+													<label class="civanoglu-label" for="slug">Slug <span class="required-text">*</span></label>
+													<input class="civanoglu-input" type="text" id="slug" name="slug" value="{{old('slug')}}" required>
+
+													@error('slug')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<div class="mb-6">
+													<label class="civanoglu-label" for="content">Content <span class="required-text">*</span></label>
+													<textarea class="civanoglu-input" name="content" id="content" cols="30" rows="10" required>{{old('content')}}</textarea>
+
+													@error('content')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<button class="btn" type="submit">Submit</button>
+											</form>
+										</div>
+									</div>
+								</div>
+							</x-app-layout>
+
+			
+			//--------------------------------------------- resources/views/dashboard/pages/edit.blade.php ---------------------------------------------------------------------
+							<x-app-layout>
+								<x-slot name="header">
+									<div class="flex justify-between items-center">
+										<h2 class="font-semibold text-xl text-gray-800 leading-tight">
+											{{ __('Edit Locations') }}
+										</h2>
+
+										<div class="min-w-max">
+											<a href="{{route('pages.index')}}" class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Back</a>
+										</div>
+									</div>
+								</x-slot>
+
+								<div class="py-12">
+									<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+										<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+											<form action="{{route('pages.update', $page->id)}}" method="post" class="p-6 bg-white border-b border-gray-200" enctype="multipart/form-data"> @csrf @method('put')
+												<div class="mb-6">
+													<label class="civanoglu-label" for="name">Name <span class="required-text">*</span></label>
+													<input class="civanoglu-input" type="text" id="name" name="name" value="{{$page->name}}" required>
+
+													@error('name')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<div class="mb-6">
+													<label class="civanoglu-label" for="slug">Slug <span class="required-text">*</span></label>
+													<input class="civanoglu-input" type="text" id="slug" name="slug" value="{{$page->slug}}" required>
+
+													@error('slug')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<div class="mb-6">
+													<label class="civanoglu-label" for="content">Content <span class="required-text">*</span></label>
+													<textarea class="civanoglu-input" name="content" id="content" cols="30" rows="10" required>{{$page->content}}</textarea>
+
+													@error('content')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<button class="btn" type="submit">Update</button>
+											</form>
+										</div>
+									</div>
+								</div>
+							</x-app-layout>
+
+						
+						
+						
+							
+			//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+																	//------------ Message er kaj resource controller diye new --------------//
+			//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+						-- Command: php artisan make:controller Admin/MessageController --resource
+						
+				//--------------------------------------------- resources/views/layouts/navigation.blade.php ---------------------------------------------------------------------
+							<x-nav-link :href="route('message.index')" :active="request()->routeIs('message*')">
+								{{ __('Messages') }}
+							</x-nav-link>
+					
+				//--------------------------------------------- routes/web.php --------------------------------------------------------------------------------------------------------
+							use App\Http\Controllers\Admin\MessageController as AdminMessageController;
+							
+							Route::prefix('dashboard')->middleware('auth')->group(function () {
+									Route::resource('message', AdminMessageController::class);
+							});
+							
+				//--------------------------------------------- database/factories/PropertyEnquireFactory.php ---------------------------------------------------------------------
+							-- Command:  php artisan make:factory PropertyEnquireFactory 
+							
+							
+									<?php
+
+									namespace Database\Factories;
+
+									use Illuminate\Database\Eloquent\Factories\Factory;
+
+									class PropertyEnquireFactory extends Factory
+									{
+										/**
+										 * Define the model's default state.
+										 *
+										 * @return array
+										 */
+										public function definition()
+										{
+											return [
+												'name'  => $this->faker->name(),
+												'email'  => $this->faker->email(),
+												'phone'  => $this->faker->phoneNumber(),
+												'message'  => $this->faker->paragraph($nbSentences = 5, $variableNbSentences = true),
+											];
+										}
+									}
+
+							
+				//--------------------------------------------- project/database/seeders/DatabaseSeeder.php ---------------------------------------------------------------------
+									\App\Models\PropertyEnquire::factory(50)->create();
 				
-	//--------------------------------------------- routes/web.php --------------------------------------------------------------------------------------------------------
-				use App\Http\Controllers\Admin\PageController as AdminPageController;
-				use App\Http\Controllers\HomeController;
-				
-				// front
-				Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
-						Route::get('/page/{slug}', [HomeController::class, 'pages'])->name('page');
-				});
-				// back
-				Route::prefix('dashboard')->middleware('auth')->group(function () {
-						Route::resource('pages', AdminPageController::class);
-				});
-				
-	//--------------------------------------------- app/Http/Controllers/Admin/HomeController.php ---------------------------------------------------------------------
-					<?php
+									-- command: php artisan migrate:fresh --seed
+									
+									
+				//--------------------------------------------- app/Http/Controllers/Admin/MessageController.php ---------------------------------------------------------------------
+								<?php
 
-					namespace App\Http\Controllers;
+								namespace App\Http\Controllers\Admin;
 
-					use Illuminate\Http\Request;
-					use App\Models\Property;
-					use App\Models\Location;
-					use App\Models\Page;
+								use App\Http\Controllers\Controller;
+								use Illuminate\Http\Request;
+								use App\Models\PropertyEnquire;
+								use Flasher\Laravel\Facade\Flasher;
 
-					class HomeController extends Controller
-					{
-						public function index()
-						{
-							// $latest_properties = Property::all();
-							$latest_properties = Property::latest()->get()->take(4);
-							$locations = Location::select(['id', 'name'])->get();
+								class MessageController extends Controller
+								{
 
-							return view('welcome',[
-								'latest_properties' => $latest_properties,
-								'locations' => $locations
-							]);
-							// return view('welcome')->with(['latest_properties' => $latest_properties]);
-							// return view('property.single')->with('property',$property);
-							// return view('welcome',compact('latest_properties'));
-						}
+									public function index()
+									{
+										$enquires = PropertyEnquire::latest()->paginate(10);
+										return view('dashboard.messages.index')->with('enquires',$enquires);
+									}
 
 
-					//--------------------- frotnend(nav) page view ---------------------------------------------
-						public function pages($slug)
-						{
-							$page = Page::where('slug', $slug)->first();
-							if (!empty($page)) {
-								return view('pages.index')->with('page', $page);
-							} else {
-								return abort('404');
-							}
-						}
-
-					}
-
-	
-	//--------------------------------------------- app/Http/Controllers/Admin/PageController.php ---------------------------------------------------------------------
-						<?php
-
-						namespace App\Http\Controllers\Admin;
-
-						use App\Http\Controllers\Controller;
-						use App\Models\Page;
-						use Flasher\Laravel\Facade\Flasher;
-						use Illuminate\Http\Request;
-
-						class PageController extends Controller
-						{
-
-							public function index()
-							{
-								$pages = Page::latest()->paginate(20);
-								return view('dashboard.pages.index')->with('pages',$pages);
-							}
+									public function create()
+									{
+										//
+									}
 
 
-
-							public function validatePage() {
-								return [
-									'name' => 'required',
-									'slug' => 'required',
-									'content' => 'required'
-								];
-							}
-
-							public function saveOrUpdate($page, $request) {
-								$page->name = $request->name;
-								$page->slug = $request->slug;
-								$page->content = $request->slug;
-
-								$page->save();
-							}
+									public function store(Request $request)
+									{
+										//
+									}
 
 
-							public function create()
-							{
-								return view('dashboard.pages.create');
-							}
+									public function show($id)
+									{
+										$enquiry = PropertyEnquire::findorFail($id);
+										return view('dashboard.messages.view')->with('enquiry',$enquiry);
+									}
 
 
-							public function store(Request $request)
-							{
-								$request->validate($this->validatePage());
-
-								$page = new Page();
-
-								$this->saveOrUpdate($page, $request);
-
-								Flasher::addSuccess($request->name.' Page Created Successfully');
-
-								return redirect(route('pages.index'));
-							}
+									public function edit($id)
+									{
+										//
+									}
 
 
-							public function show($id)
-							{
-								//
-							}
+									public function update(Request $request, $id)
+									{
+										//
+									}
 
 
-							public function edit($id)
-							{
-								$page = Page::findOrFail($id);
+									public function destroy($id)
+									{
+										PropertyEnquire::findorFail($id)->delete();
 
-								return view('dashboard.pages.edit', ['page' => $page]);
-							}
+										Flasher::addSuccess('Enquiry Deleted');    // Flasher
 
-
-							public function update(Request $request, $id)
-							{
-								$page = Page::findOrFail($id);
-
-								$request->validate($this->validatePage());
-
-
-								$this->saveOrUpdate($page, $request);
-
-								Flasher::addSuccess($request->name.' Page Updated Successfully');
-
-								return redirect()->route('pages.index');
-							}
-
-
-							public function destroy($id)
-							{
-								try {
-									Page::findorFail($id)->delete();
-
-									Flasher::addSuccess('Page Removed Successfully');   // Flasher
-
-									return redirect()->back();    // Redirect with success message
-
-								} catch (\Throwable $th) {
-									return redirect()->route('pages.index')->with(['message' => $th->getMessage()]);    // Redirect with error message
+										return redirect()->route('message.index');
+									}
 								}
-							}
-
-						}
 
 
-	
-	//--------------------------------------------- resources/views/dashboard/pages/index.blade.php ---------------------------------------------------------------------
-				<x-app-layout>
-					<x-slot name="header">
-						<div class="flex justify-between items-center">
-							<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
-								{{ __('Pages') }}
-							</h2>
-							<a href="{{ route('pages.create') }}" class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Add New Page</a>
-						</div>
-					</x-slot>
+				//--------------------------------------------- resources/views/dashboard/message/index.blade.php ---------------------------------------------------------------------
+							<x-app-layout>
+								<x-slot name="header">
+									<div class="flex justify-between items-center">
+										<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
+											{{ __('Messages') }}
+										</h2>
+									</div>
+								</x-slot>
 
 
-					@if (session('message'))
-						<div id="notice" class="text-center bg-green-100 text-green-700 p-3">{{ session('message') }}</div>
-					@endif
+								@if (session('message'))
+									<div id="notice" class="text-center bg-green-100 text-green-700 p-3">{{ session('message') }}</div>
+								@endif
 
-					<div class="py-12">
-						<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-							<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-								<div class="">
-									<table class="w-full table-auto mb-4">
-										<thead class="bg-green-500 text-white">
-											<tr>
-												<th class="border px-4 py-2 text-center">ID</th>
-												<th class="border px-4 py-2">Name</th>
-												<th class="border px-4 py-2 w-44">Action</th>
-											</tr>
-										</thead>
-										<tbody>
-											@forelse ($pages as $page)
-												<tr class="bg-green-300 hover:bg-red-500 hover:text-white duration-50">
-													<td class="border px-4 py-2 text-center">{{ $page->id }}</td>
-													<td class="border px-4 py-2">{{ $page->name }}</td>
-													<td class="border px-4 py-2">
-														<div class="flex items-center justify-center">
-															<a href="{{ route('pages.edit', $page->id) }}" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-blue-700 text-white px-3 py-2 text-sm rounded-md">Edit</a>
-															<a target="_blank" href="{{ route('page',$page->slug) }}" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-green-700 text-white px-3 py-2 text-sm rounded-md">View</a>
-															<form action="{{ route('pages.destroy', $page->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete the location?')">
-																@csrf
-																@method('DELETE')
-																<button type="submit" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-red-700 text-white px-3 py-2 text-sm rounded-md">Delete</button>
-															</form>
+								<div class="py-12">
+									<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+										<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+											<div class="">
+												<table class="w-full table-auto mb-4">
+													<thead class="bg-green-500 text-white">
+														<tr>
+															<th class="border px-4 py-4">Name</th>
+															<th class="border px-4 py-4">Message</th>
+															<th class="border px-4 py-4 w-44">Action</th>
+														</tr>
+													</thead>
+													<tbody>
+														@forelse ($enquires as $enquiry)
+															<tr class="bg-green-300 hover:bg-red-500 hover:text-white duration-50">
+																<td class="border px-4 py-2">
+																	<a href="{{ route('message.show', $enquiry->id) }}" class=" flex flex-col">{{ $enquiry->name }} <small>{{ $enquiry->email }}</small></a>
+																</td>
+																<td class="border px-4 py-2">{{ $enquiry->message }}</td>
+																<td class="border px-4 py-2">
+																	<div class="flex items-center justify-center">
+																		<a href="{{ route('message.show',$enquiry->id) }}" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-green-700 text-white px-3 py-2 text-sm rounded-md">View</a>
+
+																		<form action="{{ route('message.destroy', $enquiry->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete the location?')">
+																			@csrf
+																			@method('DELETE')
+																			<button type="submit" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-red-700 text-white px-3 py-2 text-sm rounded-md">Delete</button>
+																		</form>
+																	</div>
+																</td>
+															</tr>
+														@empty
+															<tr class="text-center">
+																<td colspan="3">No Message Found!</td>
+															</tr>
+														@endforelse
+
+													</tbody>
+												</table>
+												
+												<div class="px-4 pb-4">
+													{{ $enquires->links() }}
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</x-app-layout>
+
+				//--------------------------------------------- resources/views/dashboard/message/view.blade.php ---------------------------------------------------------------------
+							<x-app-layout>
+								<x-slot name="header">
+									<div class="flex justify-between items-center">
+										<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
+											{{ __('Message') }}
+										</h2>
+										<a href="{{ route('message.index') }}" class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Back</a>
+									</div>
+								</x-slot>
+
+
+								<div class="py-12">
+									<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+										<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+											<div class="p-5 mx-auto">
+												<div>
+													<h2>Name: {{ $enquiry->name }}</h2>
+													<h3 class="text-sm font-normal">Email: {{ $enquiry->email }}</h3>
+													<h4 class="text-sm font-normal">Phone: {{ $enquiry->phone }}</h4>
+												</div>
+												<div class="py-2 w-full bg-gray-200 my-5 px-2">
+													{{ $enquiry->message }}
+												</div>
+												<div class="mb-4 hidden" id="reply-box">
+													<div>
+														<label for="reply-message" class="civanoglu-label">Reply</label>
+														<textarea type="text" placeholder="Reply Message" name="reply-message" id="reply-message" class="civanoglu-input"></textarea>
+													</div>
+													<div class="mt-4">
+														<button id="cancel-reply-btn" type="button" class="px-3 py-1 text-white bg-red-800 rounded-md">Cancel</button>
+														<button type="submit" class="px-3 py-1 text-white bg-purple-800 rounded-md">Reply</button>
+													</div>
+
+												</div>
+
+												<div class="flex">
+													<button id="reply-box-open" type="button" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-purple-700 text-white px-3 py-2 text-sm rounded-md">Reply</button>
+
+													<form id="reply-delete-btn" action="{{ route('message.destroy', $enquiry->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete?')">
+														@csrf
+														@method('DELETE')
+														<button type="submit" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-red-700 text-white px-3 py-2 text-sm rounded-md">Delete</button>
+													</form>
+
+												</div>
+
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</x-app-layout>
+
+				
+				
+				
+			//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+																	//------------ Location er kaj resource controller diye new --------------//
+			//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+							-- Command: php artisan make:controller Admin/UserController  --resource
+						
+				//--------------------------------------------- resources/views/layouts/navigation.blade.php ---------------------------------------------------------------------
+							<x-nav-link :href="route('user.index')" :active="request()->routeIs('user*')">
+									{{ __('Users') }}
+							</x-nav-link>
+							
+				//--------------------------------------------- routes/web.php --------------------------------------------------------------------------------------------------------
+							use App\Http\Controllers\Admin\UserController;
+							
+							Route::prefix('dashboard')->middleware('auth')->group(function () {
+									    Route::resource('user', UserController::class);
+							});
+							
+				//--------------------------------------------- app/Http/Controllers/Admin/UserController.php ---------------------------------------------------------------------
+								<?php
+
+								namespace App\Http\Controllers\Admin;
+
+								use App\Http\Controllers\Controller;
+								use App\Models\User;
+								use Illuminate\Http\Request;
+
+								class UserController extends Controller
+								{
+
+									public function index()
+									{
+										$users = User::latest()->get();
+										return view('dashboard.user.index')->with('users',$users);
+									}
+
+
+									public function create()
+									{
+										return view('dashboard.user.create');
+									}
+
+
+									public function store(Request $request)
+									{
+										//
+									}
+
+
+									public function show($id)
+									{
+										//
+									}
+
+
+									public function edit($id)
+									{
+										return view('dashboard.user.edit', ['user' => User::findOrFail($id)]);
+									}
+
+
+									public function update(Request $request, $id)
+									{
+										//
+									}
+
+
+									public function destroy($id)
+									{
+										//
+									}
+
+								}
+
+				//--------------------------------------------- resources/views/dashboard/user/create.blade.php ---------------------------------------------------------------------
+							<x-app-layout>
+									<x-slot name="header">
+										<div class="flex justify-between items-center">
+											<h2 class="font-semibold text-xl text-gray-800 leading-tight">
+												{{ __('Add New Users') }}
+											</h2>
+
+											<div class="min-w-max">
+												<a href="{{route('user.index')}}" class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Back</a>
+											</div>
+										</div>
+									</x-slot>
+
+									<div class="py-12">
+										<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+											<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+												<form action="{{route('user.store')}}" method="post" class="p-6 bg-white border-b border-gray-200" enctype="multipart/form-data"> @csrf
+													<div class="mb-6">
+														<label class="civanoglu-label" for="name">Name <span class="required-text">*</span></label>
+														<input class="civanoglu-input" type="text" id="name" name="name" value="{{old('name')}}" required>
+
+														@error('name')
+															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+
+													<div class="mb-6">
+														<label class="civanoglu-label" for="email">Email <span class="required-text">*</span></label>
+														<input class="civanoglu-input" type="text" id="email" name="email" value="{{old('email')}}" required>
+
+														@error('email')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+
+													<div class="flex -mx-4 mb-6">
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="password">Password <span class="required-text">*</span></label>
+															<input class="civanoglu-input" type="password" id="password" name="password" value="{{old('password')}}" required>
+
+															@error('password')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
 														</div>
-													</td>
-												</tr>
-											@empty
-												<tr class="text-center">
-													<td colspan="3">No Location Found!</td>
-												</tr>
-											@endforelse
 
-										</tbody>
-									</table>
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="password_confirmation">Password Confirmation <span class="required-text">*</span></label>
+															<input class="civanoglu-input" type="password" id="password_confirmation" name="password_confirmation" value="{{old('password_confirmation')}}" required>
 
-									<div class="px-4 pb-4">
-										{{ $pages->links() }}
+															@error('password_confirmation')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+													</div>
+
+													<button class="btn" type="submit">Submit</button>
+												</form>
+											</div>
+										</div>
+									</div>
+								</x-app-layout>
+
+				//--------------------------------------------- resources/views/dashboard/user/edit.blade.php ---------------------------------------------------------------------
+							<x-app-layout>
+								<x-slot name="header">
+									<div class="flex justify-between items-center">
+										<h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Edit Users') }}</h2>
+
+										<div class="min-w-max">
+											<a href="{{route('user.index')}}" class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Back</a>
+										</div>
+									</div>
+								</x-slot>
+
+								<div class="py-12">
+									<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+										<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+											<form action="{{route('user.update', $user->id)}}" method="post" class="p-6 bg-white border-b border-gray-200" enctype="multipart/form-data"> @csrf @method('put')
+												<div class="mb-6">
+													<label class="civanoglu-label" for="name">Name <span class="required-text">*</span></label>
+													<input class="civanoglu-input" type="text" id="name" name="name" value="{{$user->name}}" required>
+
+													@error('name')
+														<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+													@enderror
+												</div>
+
+												<div class="mb-6">
+													<label class="civanoglu-label" for="email">Email <span class="required-text">*</span></label>
+													<input class="civanoglu-input cursor-not-allowed" type="text" id="email" name="email" value="{{$user->email}}" readonly>
+												</div>
+
+												<div class="flex -mx-4 mb-6">
+													<div class="flex-1 px-4">
+														<label class="civanoglu-label" for="password">Password <span class="required-text">*</span></label>
+														<input class="civanoglu-input" type="password" id="password" name="password" value="{{old('password')}}" required>
+
+														@error('password')
+															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+
+													<div class="flex-1 px-4">
+														<label class="civanoglu-label" for="password_confirmation">Password Confirmation <span class="required-text">*</span></label>
+														<input class="civanoglu-input" type="password" id="password_confirmation" name="password_confirmation" value="{{old('password_confirmation')}}" required>
+
+														@error('password_confirmation')
+															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+												</div>
+
+												<button class="btn" type="submit">Update</button>
+											</form>
+										</div>
+									</div>
+								</div>
+							</x-app-layout>
+
+				//--------------------------------------------- resources/views/dashboard/user/index.blade.php ---------------------------------------------------------------------
+								<x-app-layout>
+									<x-slot name="header">
+										<div class="flex justify-between items-center">
+											<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
+												{{ __('Users') }}
+											</h2>
+											<a href="{{ route('user.create') }}" class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Add New</a>
+										</div>
+									</x-slot>
+
+
+									@if (session('message'))
+										<div id="notice" class="text-center bg-green-100 text-green-700 p-3">{{ session('message') }}</div>
+									@endif
+
+									<div class="py-12">
+										<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+											<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+												<div class="">
+													<table class="w-full table-auto mb-4">
+														<thead class="bg-green-500 text-white">
+															<tr>
+																<th class="border px-4 py-4 text-center">ID</th>
+																<th class="border px-4 py-4">Name</th>
+																<th class="border px-4 py-4 w-44">Action</th>
+															</tr>
+														</thead>
+														<tbody>
+															@forelse ($users as $user)
+																<tr class="bg-green-300 hover:bg-red-500 hover:text-white duration-50">
+																	<td class="border px-4 py-2 text-center">{{ $user->id }}</td>
+																	<td class="border px-4 py-2">{{ $user->name }}</td>
+																	<td class="border px-4 py-2">
+																		<div class="flex items-center justify-center">
+																			<a href="{{ route('user.edit', $user->id) }}" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-blue-700 text-white px-3 py-2 text-sm rounded-md">Edit</a>
+
+																			<form action="{{ route('user.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete the location?')">
+																				@csrf
+																				@method('DELETE')
+																				<button type="submit" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-red-700 text-white px-3 py-2 text-sm rounded-md">Delete</button>
+																			</form>
+																		</div>
+																	</td>
+																</tr>
+															@empty
+																<tr class="text-center">
+																	<td colspan="3">No User Found!</td>
+																</tr>
+															@endforelse
+
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</x-app-layout>
+			//-------------------//--------------------//--------------------//---------------------//-----------------------//----------------------//-----------------//---------
+
+				
+							
+							
+			//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+																	//------------ Property (admin) er kaj resource controller diye new --------------//
+			//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+						-- Command: php artisan make:controller Admin/PropertyController  --resource
+						
+				//--------------------------------------------- resources/views/layouts/navigation.blade.php ---------------------------------------------------------------------
+							<x-nav-link :href="route('properties.index')" :active="request()->routeIs('properties*')">
+								{{ __('Properties') }}
+							</x-nav-link>
+							
+				//--------------------------------------------- routes/web.php --------------------------------------------------------------------------------------------------------
+							use App\Http\Controllers\Admin\PropertyController as AdminPropertyController;
+							
+							Route::prefix('dashboard')->middleware('auth')->group(function () {
+									    // Property
+										Route::resource('properties', AdminPropertyController::class);
+										// Delete Media
+										Route::get('properties/delete-media/{id}', [AdminPropertyController::class, 'destroyMedia'])->name('deleteMedia');
+							});
+							
+							
+				//--------------------------------------------- app/Http/Controllers/Admin/LocationController.php ---------------------------------------------------------------------
+								<?php
+
+									namespace App\Http\Controllers\Admin;
+
+									use App\Http\Controllers\Controller;
+									use Illuminate\Http\Request;
+									use App\Models\Location;
+									use App\Models\Property;
+									use App\Models\Media;
+									use Flasher\Laravel\Facade\Flasher;
+									use Illuminate\Support\Facades\Storage;
+
+									class PropertyController extends Controller
+									{
+
+									//------------------------ Index of Property ----------------------------------------------------------------
+										public function index()
+										{
+											$properties = Property::latest()->paginate(20);
+											return view('dashboard.property.index')->with('properties', $properties);
+										}
+
+
+									//------------------------ Create Property ----------------------------------------------------------------
+										public function create()
+										{
+											$locations = Location::all();
+											return view('dashboard.property.create')->with(['locations' => $locations]);
+										}
+
+
+									//------------------------ Save/Store Property ----------------------------------------------------------------
+										public function store(Request $request)
+										{
+											// try {
+												// Extended validation for image
+												$updated_validation = $this->validateProperty()[] = [
+													'featured_image' => 'required|image',
+													'gallery_images' => 'required',
+												];
+
+												$request->validate($updated_validation);      // Validation
+
+												$property = new Property();     // Property Instance
+
+												$this->saveOrUpdateProperty($property, $request);     // Save all data
+
+												Flasher::addSuccess('Property is added');     // Flasher
+
+												return redirect()->route('properties.index');      // Redirect with success message
+
+											// } catch (\Throwable $th) {
+											//     // Redirect with error message
+											//     return redirect()->route('properties.index')->with(['message' => $th->getMessage()]);
+											// }
+										}
+
+
+										public function show($id)
+										{
+											//
+										}
+
+
+									//------------------------ Edit Property ----------------------------------------------------------------
+										public function edit($id)
+										{
+											// try {
+
+												$property = Property::findOrFail($id);   // Find the property
+
+												$locations = Location::all();     // Get all locations
+
+												return view('dashboard.property.edit', [     // return view with data
+													'property' => $property,
+													'locations' => $locations
+												]);
+
+											// } catch (\Throwable $th) {
+											//     // Redirect with error message
+											//     return redirect()->route('properties.index')->with(['message' => $th->getMessage()]);
+											// }
+										}
+
+
+									//------------------------ Update Property ----------------------------------------------------------------
+										public function update(Request $request, $id)
+										{
+											// try {
+												$property = Property::findOrFail($id);    // Get the property
+
+												$request->validate($this->validateProperty());   // Validation
+
+												$this->saveOrUpdateProperty($property, $request);    // Update Data
+
+												Flasher::addSuccess('Property is Updated');    // Flasher
+
+												return redirect()->route('properties.index')->with(['message' => 'Property is Updated.']); // Redirect with success message
+
+											// } catch (\Throwable $th) {
+											//     // Redirect with error message
+											//     return redirect()->route('properties.index')->with(['message' => $th->getMessage()]);
+											// }
+										}
+
+
+									//------------------------ Delete Property ----------------------------------------------------------------
+										public function destroy($id)
+										{
+											// try {
+												$property = Property::findOrFail($id);  // Get Property
+
+												Storage::delete('public/uploads/' . $property->featured_image);   // delete featured image
+
+												foreach ($property->gallery as $media) {     // delete gallery items
+													$media = Media::findOrFail($media->id);
+													Storage::delete('public/uploads/' . $media->name);
+													$media->delete();
+												}
+
+												$property->delete();    // Delete the property
+
+												Flasher::addSuccess('Property Deleted');  // Flasher
+
+												return redirect()->route('properties.index')->with(['message' => 'Property Deleted']);  // Redirect with success message
+
+											// } catch (\Throwable $th) {
+											//     // Redirect with error message
+											//     return redirect()->route('properties.index')->with(['message' => $th->getMessage()]);
+											// }
+										}
+
+
+									//------------------------ Delete Media ----------------------------------------------------------------
+										public function destroyMedia($media_id)
+										{
+											$media = Media::findOrFail($media_id);        // Get media by id
+
+											Storage::delete('public/uploads/' . $media->name);        // delete the file
+
+											$media->delete();        // Remove from database
+
+											Flasher::addSuccess('Media Deleted');        // Flasher
+
+											return back();        // Back
+										}
+
+
+									//------------------------------ Property form validation ------------------------------------
+										public function validateProperty()
+										{
+											return [
+												'name' => 'required',
+												'name_tr' => 'required',
+												'location_id' => 'required',
+												'price' => 'required|integer',
+												'sale' => 'integer',
+												'type' => 'integer',
+												'bathrooms' => 'integer',
+												'net_sqm' => 'integer',
+												'pool' => 'integer',
+												'overview' => 'required',
+												'overview_tr' => 'required',
+												'description' => 'required',
+												'description_tr' => 'required',
+											];
+										}
+
+
+									//-------------------- Save or Update Property ------------------------------------------
+										public function saveOrUpdateProperty($property, $request)
+										{
+											$property->name = $request->name;
+											$property->name_tr = $request->name_tr;
+
+											// Get Default value from databse
+											$featured_image_name = $property->featured_image;
+											// Check if image is empty or not
+											if (!empty($request->file('featured_image'))) {
+												// Check if the file already exits or not
+												if ($featured_image_name) {
+													if (file_exists(public_path('storage/uploads/' . $featured_image_name))) {
+														unlink(public_path('storage/uploads/' . $featured_image_name));
+													}
+												}
+												// Get unique name of the image
+												$featured_image_name = time() . mt_rand(100,999) . '-' . $request->featured_image->getClientOriginalName();
+												// Store image in Storage
+												$request->featured_image->storeAs('public/uploads', $featured_image_name);
+											}
+											// Feature image name into database
+											$property->featured_image = $featured_image_name;
+
+											$property->location_id = $request->location_id;
+											$property->price = $request->price;
+											$property->sale = $request->sale;
+											$property->type = $request->type;
+											$property->bedrooms = $request->bedrooms;
+											$property->bathrooms = $request->bathrooms;
+											$property->drawing_rooms = $request->drawing_rooms;
+											$property->net_sqm = $request->net_sqm;
+											$property->gross_sqm = $request->gross_sqm;
+											$property->pool = $request->pool;
+											$property->overview = $request->overview;
+											$property->overview_tr = $request->overview_tr;
+											$property->why_buy = $request->why_buy;
+											$property->why_buy_tr = $request->why_buy_tr;
+											$property->description = $request->description;
+											$property->description_tr = $request->description_tr;
+
+											// Save or update data
+											$property->save();
+
+											// Storing Media - Property Gallery
+											if (!empty($request->file('gallery_images'))) {
+												foreach ($request->gallery_images as $image) {
+													$gallery_image_name = time() . mt_rand(100,999) . '-' . $image->getClientOriginalName();
+													$image->storeAs('public/uploads', $gallery_image_name);
+													// Insert into PropertyMedia
+													Media::create([
+														'name'  => $gallery_image_name,
+														'property_id'   => $property->id
+													]);
+												}
+											}
+										}
+
+									}
+
+
+				//--------------------------------------------- resources/views/dashboard/property/index.blade.php ---------------------------------------------------------------------
+							<x-app-layout>
+								<x-slot name="header">
+									<div class="flex justify-between items-center">
+										<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
+											{{ __('Properties') }}
+										</h2>
+										<a href="{{ route('properties.create') }}"
+											class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Add New Property</a>
+									</div>
+								</x-slot>
+
+
+								@if (session('message'))
+									<div id="notice" class="text-center bg-green-100 text-green-700 p-3">{{ session('message') }}</div>
+								@endif
+
+								<div class="py-12">
+									<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+										<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+											<div class="">
+												<table class="w-full table-auto mb-4">
+													<thead class="bg-green-500 text-white">
+														<tr>
+															<th class="border px-4 py-4">Name</th>
+															<th class="border px-4 py-4">Location</th>
+															<th class="border px-4 py-4">Price</th>
+															<th class="border px-4 py-4">Action</th>
+														</tr>
+													</thead>
+													<tbody>
+														@forelse ($properties as $item)
+															<tr class="bg-green-300 text-black hover:bg-red-500 hover:text-white duration-50">
+																<td class="border px-4 py-2">{{ $item->name }}</td>
+																<td class="border px-4 py-2">{{ $item->location->name }}</td>
+																<td class="border px-4 py-2">{{ $item->price }}</td>
+																<td class="border px-4 py-2">
+																	<div class="flex items-center justify-center">
+																		<a href="{{ route('properties.edit', $item->id) }}" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-blue-700 text-white px-3 py-2 text-sm rounded-md">Edit</a>
+																		<a target="_blank" href="{{ route('property.show',$item->id) }}" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-green-700 text-white px-3 py-2 text-sm rounded-md">View</a>
+
+																		<form action="{{ route('properties.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete property?')">
+																			@csrf
+																			@method('DELETE')
+																			<button class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-red-700 text-white px-3 py-2 text-sm rounded-md">Delete</button>
+																		</form>
+																	</div>
+																</td>
+															</tr>
+														@empty
+															<tr class="text-center">
+																<td colspan="4">No Property Found!</td>
+															</tr>
+														@endforelse
+
+													</tbody>
+												</table>
+
+												<div class="px-4 pb-4">
+													{{ $properties->links() }}
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</x-app-layout>
+
+				
+				//--------------------------------------------- resources/views/dashboard/property/create.blade.php -------------------------------------------------------
+							<x-app-layout>
+								<x-slot name="header">
+									<div class="flex justify-between items-center">
+										<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
+											{{ __('Add New Properties') }}
+										</h2>
+										<a href="{{ route('properties.index') }}"
+											class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Back</a>
+									</div>
+								</x-slot>
+
+								<div class="py-12">
+									<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+										<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+											<div class="m-4">
+												<form action="{{route('properties.store')}}" method="post" class="p-6 bg-white border-b border-gray-200" enctype="multipart/form-data">
+													@csrf
+													<div class="flex -mx-4 mb-6">
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="name">Title <span class="required-text">*</span></label>
+															<input class="civanoglu-input" type="text" id="name" name="name" value="{{old('name')}}" required>
+
+															@error('name')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="name_tr">Title - Turkish <span class="required-text">*</span></label>
+															<input class="civanoglu-input" type="text" id="name_tr" name="name_tr" value="{{old('name_tr')}}" required>
+
+															@error('name_tr')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+													</div>
+
+													<div class="mb-6">
+														<label class="civanoglu-label" for="featured_image">Featured Image <span class="required-text">*</span></label>
+														<input class="civanoglu-input" type="file" id="featured_image" name="featured_image" >
+
+														@error('featured_image')
+															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+
+													<div class="mb-6">
+														<label class="civanoglu-label" for="gallery_images">Gallery images <span class="required-text">*</span><small class="ml-2 lowercase">(multiple image supported)</small></label>
+														<input class="civanoglu-input" type="file" id="gallery_images" name="gallery_images[]" multiple>
+
+														@error('gallery_images')
+															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+
+													<div class="flex -mx-4 mb-6">
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="location_id">Location <span class="required-text">*</span></label>
+															<select class="civanoglu-input" name="location_id" id="location_id" required>
+																<option value="">Select location</option>
+																@foreach($locations as $location)
+																	<option {{old('location_id')==$location->id ? 'selected="selected"' : ''}} value="{{$location->id}}">{{$location->name}}</option>
+																@endforeach
+															</select>
+
+															@error('location_id')
+															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="price">Price <span class="required-text">*</span></label>
+															<input class="civanoglu-input" type="number" id="price" name="price" value="{{old('price')}}" required>
+
+															@error('price')
+															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="sale">For <span class="required-text">*</span></label>
+															<select class="civanoglu-input" name="sale" id="sale" required>
+																<option value="">Select type</option>
+																<option {{old('sale')=='2' ? 'selected="selected"' : '' }} value="2">Rent</option>
+																<option {{old('sale')=='1' ? 'selected="selected"' : '' }} value="1">Sale</option>
+																{{-- <option value="2">Rent</option>
+																<option value="1">Sale</option> --}}
+															</select>
+
+															@error('sale')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="type">Type <span class="required-text">*</span></label>
+															<select class="civanoglu-input" name="type" id="type" required>
+																<option value="">Select property type</option>
+																<option {{old('type')=='3' ? 'selected="selected"' : '' }} value="3">Land</option>
+																<option {{old('type')=='1' ? 'selected="selected"' : '' }} value="1">Apartment</option>
+																<option {{old('type')=='2' ? 'selected="selected"' : '' }} value="2">Villa</option>
+																{{-- <option value="3">Land</option>
+																<option value="1">Apartment</option>
+																<option value="2">Villa</option> --}}
+															</select>
+
+															@error('type')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+													</div>
+
+													<div class="flex -mx-4 mb-6">
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="drawing_rooms">Drawing rooms</label>
+															<select class="civanoglu-input" name="drawing_rooms" id="drawing_rooms">
+																<option value="">Select one</option>
+																@for($x = 1; $x <= 4; $x++)
+																	<option {{old('drawing_rooms')==$x ? 'selected="selected"' : '' }} value="{{$x}}">{{$x}}</option>
+																@endfor
+															</select>
+
+															@error('drawing_rooms')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="bedrooms">Bedrooms</label>
+															<select class="civanoglu-input" name="bedrooms" id="bedrooms">
+																<option value="">Select Bedrooms</option>
+																@for($x = 1; $x <= 6; $x++)
+																	<option {{old('bedrooms')==$x ? 'selected="selected"' : '' }} value="{{$x}}">{{$x}}</option>
+																@endfor
+																{{-- <option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+																<option value="6">6</option> --}}
+															</select>
+
+															@error('bedrooms')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="bathrooms">Bathrooms</label>
+															<select class="civanoglu-input" name="bathrooms" id="bathrooms">
+																<option value="">Select Bathrooms</option>
+																@for($x = 1; $x <= 6; $x++)
+																	<option {{old('bathrooms')==$x ? 'selected="selected"' : '' }} value="{{$x}}">{{$x}}</option>
+																@endfor
+																{{-- <option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+																<option value="6">6</option> --}}
+															</select>
+
+															@error('bathrooms')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="net_sqm">Net square meeter <span class="required-text">*</span></label>
+															<input class="civanoglu-input" type="number" id="net_sqm" name="net_sqm" value="{{old('net_sqm')}}" required>
+
+															@error('net_sqm')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="gross_sqm">Gross square meeter</label>
+															<input class="civanoglu-input" type="number" id="gross_sqm" name="gross_sqm" value="{{old('gross_sqm')}}">
+
+															@error('gross_sqm')
+															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="pool">Pool</label>
+															<select class="civanoglu-input" name="pool" id="pool">
+																<option value="">Select pool</option>
+																<option {{old('pool')=='4' ? 'selected="selected"' : '' }} value="4">No</option>
+																<option {{old('pool')=='1' ? 'selected="selected"' : '' }} value="1">Private</option>
+																<option {{old('pool')=='2' ? 'selected="selected"' : '' }} value="2">Public</option>
+																<option {{old('pool')=='3' ? 'selected="selected"' : '' }} value="3">Both</option>
+																{{-- <option value="4">No</option>
+																<option value="1">Private</option>
+																<option value="2">Public</option>
+																<option value="3">Both</option> --}}
+															</select>
+
+															@error('pool')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+													</div>
+
+													<div class="flex -mx-4 mb-6">
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="overview">Overview <span class="required-text">*</span></label>
+															<textarea class="civanoglu-input" name="overview" id="overview" cols="30" rows="3" required>{{old('overview')}}</textarea>
+
+															@error('overview')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="overview_tr">Overview - TR <span class="required-text">*</span></label>
+															<textarea class="civanoglu-input" name="overview_tr" id="overview_tr" cols="30" rows="3" required>{{old('overview_tr')}}</textarea>
+
+															@error('overview_tr')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+													</div>
+
+													<div class="flex -mx-4 mb-6">
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="why_buy">Why buy <span class="required-text">*</span></label>
+															<textarea class="civanoglu-input" name="why_buy" id="why_buy" cols="30" rows="5" required>{{old('why_buy')}}</textarea>
+
+															@error('why_buy')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="why_buy_tr">Why buy - TR <span class="required-text">*</span></label>
+															<textarea class="civanoglu-input" name="why_buy_tr" id="why_buy_tr" cols="30" rows="5" required>{{old('why_buy_tr')}}</textarea>
+
+															@error('why_buy_tr')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+													</div>
+
+													<div class="flex -mx-4 mb-6">
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="description">Description <span class="required-text">*</span></label>
+															<textarea class="civanoglu-input" name="description" id="description" cols="30" rows="10" required>{{old('description')}}</textarea>
+
+															@error('description')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="description_tr">Description - TR <span class="required-text">*</span></label>
+															<textarea class="civanoglu-input" name="description_tr" id="description_tr" cols="30" rows="10" required>{{old('description_tr')}}</textarea>
+
+															@error('description_tr')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+													</div>
+
+													<button class="btn" type="submit">Save Property</button>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</x-app-layout>
+
+				
+				//--------------------------------------------- resources/views/dashboard/property/edit.blade.php ---------------------------------------------------------------------
+							<x-app-layout>
+								<x-slot name="header">
+									<div class="flex justify-between items-center">
+										<h2 class="font-semibold text-xl text-gray-800 leading-tight inline-block">
+											{{ __('Edit Properties') }}
+										</h2>
+										<a href="{{ route('properties.store') }}"
+											class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Back</a>
+									</div>
+								</x-slot>
+
+								<div class="py-12">
+									<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+										<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+											<div class="m-4">
+												<form action="{{route('properties.update',$property->id)}}" method="post" enctype="multipart/form-data" class="p-6 bg-white border-b border-gray-200">
+													@csrf
+													@method('PUT')
+													<div class="flex -mx-4 mb-6">
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="name">Title <span class="required-text">*</span></label>
+															<input class="civanoglu-input" type="text" id="name" name="name" value="{{$property->name}}" required>
+
+															@error('name')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="name_tr">Title - Turkish <span class="required-text">*</span></label>
+															<input class="civanoglu-input" type="text" id="name_tr" name="name_tr" value="{{$property->name_tr}}" required>
+
+															@error('name_tr')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+													</div>
+
+													<div class="mb-6 flex">
+														<div class="">
+															<label class="civanoglu-label" for="featured_image">Featured Image</label>
+															<input class="civanoglu-input" type="file" id="featured_image" name="featured_image">
+
+															@error('featured_image')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+														<div class="mt-3 ml-5">
+															@if (file_exists(public_path('storage/uploads/' . $property->featured_image)))
+																<img style="max-width: 100px" src="/storage/uploads/{{$property->featured_image}}" alt="Not Found Image">
+															@endif
+														</div>
+													</div>
+
+													<div class="mb-6">
+														<label class="civanoglu-label" for="gallery_images">Gallery images </label>
+														<input class="civanoglu-input" type="file" id="gallery_images" name="gallery_images[]" multiple>
+														<div class="mt-3">
+															<div class="flex items-center -mx-2">
+																@foreach ($property->gallery as $item)
+
+																	@if (file_exists(public_path('storage/uploads/' . $item->name)))
+																		<div class="relative">
+																			<img style="max-width: 100px; max-height:100px" class="mx-2" src="/storage/uploads/{{$item->name}}" alt="image not found">
+																			<a href="{{ route('deleteMedia',$item->id) }}" onclick="return confirm('Are you sure you want to delete the location?')" class="absolute top-0 right-0 bg-red-500 w-5 h-5 leading-5 text-sm text-white rounded-full text-center hover:text-white hover:bg-black"><i class="fa fa-close"></i></a>
+																		</div>
+																	@endif
+																@endforeach
+															</div>
+														</div>
+
+														@error('gallery_images')
+															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+														@enderror
+													</div>
+
+
+													<div class="flex -mx-4 mb-6">
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="location_id">Location <span class="required-text">*</span></label>
+															<select class="civanoglu-input" name="location_id" id="location_id" required>
+																<option value="">Select location</option>
+																@foreach($locations as $location)
+																	<option {{$property->location->id == $location->id ? 'selected="selected"' : ''}} value="{{$location->id}}">{{$location->name}}</option>
+																	{{-- <option {{ $location->id == $property->location->id  ? 'selected="selected"' : ''  }} value="{{$location->id}}">{{$location->name}}</option> --}}
+																@endforeach
+															</select>
+
+															@error('location_id')
+															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="price">Price <span class="required-text">*</span></label>
+															<input class="civanoglu-input" type="number" id="price" name="price" value="{{$property->price}}" required>
+
+															@error('price')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="sale">For <span class="required-text">*</span></label>
+															<select class="civanoglu-input" name="sale" id="sale" required>
+																<option value="">Select type</option>
+																<option {{ $property->sale == '2' ? 'selected="selected"' : '' }} value="2">Rent</option>
+																<option {{ $property->sale == '1' ? 'selected="selected"' : '' }} value="1">Sale</option>
+															</select>
+
+															@error('sale')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="type">Type <span class="required-text">*</span></label>
+															<select class="civanoglu-input" name="type" id="type" required>
+																<option value="">Select property type</option>
+																<option {{ $property->type == '3'  ? 'selected="selected"' : ''  }} value="3">Land</option>
+																<option {{ $property->type == '1'  ? 'selected="selected"' : ''  }} value="1">Apartment</option>
+																<option {{ $property->type == '2'  ? 'selected="selected"' : ''  }} value="2">Villa</option>
+															</select>
+
+															@error('type')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+													</div>
+
+													<div class="flex -mx-4 mb-6">
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="drawing_rooms">Drawing rooms</label>
+															<select class="civanoglu-input" name="drawing_rooms" id="drawing_rooms">
+																<option value="">Select one</option>
+																@for($x = 1; $x <= 4; $x++)
+																	<option {{$property->drawing_rooms == $x ? 'selected="selected"' : ''}} value="{{$x}}">{{$x}}</option>
+																@endfor
+															</select>
+
+															@error('drawing_rooms')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="bedrooms">Bedrooms</label>
+															<select class="civanoglu-input" name="bedrooms" id="bedrooms">
+																<option value="">Select bedrooms</option>
+																@for($x = 0; $x <= 3; $x++)
+																	<option {{ $property->bedrooms == $x ? 'selected="selected"' : ''}} value="{{$x}}">{{$x}}</option>
+																@endfor
+																{{-- <option {{ $property->bedrooms == '1'  ? 'selected="selected"' : ''  }} value="1">1</option>
+																<option {{ $property->bedrooms == '2'  ? 'selected="selected"' : ''  }} value="2">2</option>
+																<option {{ $property->bedrooms == '3'  ? 'selected="selected"' : ''  }} value="3">3</option>
+																<option {{ $property->bedrooms == '4'  ? 'selected="selected"' : ''  }} value="4">4</option>
+																<option {{ $property->bedrooms == '5'  ? 'selected="selected"' : ''  }} value="5">5</option>
+																<option {{ $property->bedrooms == '6'  ? 'selected="selected"' : ''  }} value="6">6</option> --}}
+															</select>
+
+															@error('bedrooms')
+															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="bathrooms">Bathrooms</label>
+															<select class="civanoglu-input" name="bathrooms" id="bathrooms">
+																<option value="">Select bathrooms</option>
+																@for($x = 0; $x <= 5; $x++)
+																	<option {{ $property->bathrooms == $x ? 'selected="selected"' : ''}} value="{{$x}}">{{$x}}</option>
+																@endfor
+																{{-- <option {{ $property->bathrooms == '1'  ? 'selected="selected"' : ''  }} value="1">1</option>
+																<option {{ $property->bathrooms == '2'  ? 'selected="selected"' : ''  }} value="2">2</option>
+																<option {{ $property->bathrooms == '3'  ? 'selected="selected"' : ''  }} value="3">3</option>
+																<option {{ $property->bathrooms == '4'  ? 'selected="selected"' : ''  }} value="4">4</option>
+																<option {{ $property->bathrooms == '5'  ? 'selected="selected"' : ''  }} value="5">5</option>
+																<option {{ $property->bathrooms == '6'  ? 'selected="selected"' : ''  }} value="6">6</option> --}}
+															</select>
+
+															@error('bathrooms')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="net_sqm">Net square meeter <span class="required-text">*</span></label>
+															<input class="civanoglu-input" type="number" id="net_sqm" name="net_sqm" value="{{$property->net_sqm}}" required>
+
+															@error('net_sqm')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="gross_sqm">Gross square meeter</label>
+															<input class="civanoglu-input" type="number" id="gross_sqm" name="gross_sqm" value="{{$property->gross_sqm}}">
+
+															@error('gross_sqm')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="pool">Pool</label>
+															<select class="civanoglu-input" name="pool" id="pool">
+																<option value="">Select pool</option>
+																<option {{ $property->pool == '4'  ? 'selected="selected"' : ''  }}  value="4">No</option>
+																<option {{ $property->pool == '1'  ? 'selected="selected"' : ''  }}  value="1">Private</option>
+																<option {{ $property->pool == '2'  ? 'selected="selected"' : ''  }}  value="2">Public</option>
+																<option {{ $property->pool == '3'  ? 'selected="selected"' : ''  }}  value="3">Both</option>
+															</select>
+
+															@error('pool')
+															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+													</div>
+
+													<div class="flex -mx-4 mb-6">
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="overview">Overview <span class="required-text">*</span></label>
+															<textarea class="civanoglu-input" name="overview" id="overview" cols="30" rows="3" required>{{$property->overview}}</textarea>
+
+															@error('overview')
+															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="overview_tr">Overview - TR <span class="required-text">*</span></label>
+															<textarea class="civanoglu-input" name="overview_tr" id="overview_tr" cols="30" rows="3" required>{{$property->overview_tr}}</textarea>
+
+															@error('overview_tr')
+															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+													</div>
+
+													<div class="flex -mx-4 mb-6">
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="why_buy">Why buy <span class="required-text">*</span></label>
+															<textarea class="civanoglu-input" name="why_buy" id="why_buy" cols="30" rows="5" required>{{$property->why_buy}}</textarea>
+
+															@error('why_buy')
+															<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="why_buy_tr">Why buy - TR <span class="required-text">*</span></label>
+															<textarea class="civanoglu-input" name="why_buy_tr" id="why_buy_tr" cols="30" rows="5" required>{{$property->why_buy_tr}}</textarea>
+
+															@error('why_buy_tr')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+													</div>
+
+													<div class="flex -mx-4 mb-6">
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="description">Description <span class="required-text">*</span></label>
+															<textarea class="civanoglu-input" name="description" id="description" cols="30" rows="10" required>{{ $property->description }}</textarea>
+
+															@error('description')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+
+														<div class="flex-1 px-4">
+															<label class="civanoglu-label" for="description_tr">Description - TR <span class="required-text">*</span></label>
+															<textarea class="civanoglu-input" name="description_tr" id="description_tr" cols="30" rows="10" required>{{ $property->description_tr }}</textarea>
+
+															@error('description_tr')
+																<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
+															@enderror
+														</div>
+													</div>
+
+													<button class="btn" type="submit">Save Property</button>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</x-app-layout>
+			//-----------------------//---------------------//----------------------//-----------------//---------------------//-----------------------//------------------//--------------------
+		
+
+
+
+			//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+																	//------------ Property (frontend) er kaj resource controller diye new --------------//
+			//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+						-- Command: php artisan make:controller PropertyController  --resource
+							
+				//--------------------------------------------- routes/web.php --------------------------------------------------------------------------------------------------------
+							use App\Http\Controllers\PropertyController;
+							
+							Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
+								// Home
+								Route::get('/', [HomeController::class, 'index'])->name('home');
+								// Property
+								Route::resource('property', PropertyController::class);
+								// Property Enquire
+								Route::post('/property/enquire/{id}', [PropertyController::class, 'enquire'])->name('enquireform');
+								// Page
+								Route::get('/page/{slug}', [HomeController::class, 'pages'])->name('page');
+							});
+														
+							
+				//--------------------------------------------- app/Http/Controllers/PropertyController.php ---------------------------------------------------------------------
+							<?php
+
+									namespace App\Http\Controllers;
+
+									use App\Models\Location;
+									use App\Models\Property;
+									use App\Models\PropertyEnquire;
+									use App\Mail\EnquireEmail;
+									use Illuminate\Support\Facades\Mail;
+									use Illuminate\Http\Request;
+
+									class PropertyController extends Controller
+									{
+
+									//--------------------------- Property Search bar ------------------------------------------------
+										public function index(Request $request) {
+
+											$latest_properties = Property::latest();
+											$locations = Location::select(['id', 'name'])->get();
+
+											if(!empty($request->sale)) {
+												$latest_properties = $latest_properties->where('sale', $request->sale);
+											}
+
+											if(!empty($request->location)) {
+												$latest_properties = $latest_properties->where('location_id', $request->location);
+											}
+
+											if(!empty($request->type)) {
+												$latest_properties = $latest_properties->where('type', $request->type);
+											}
+
+											if(!empty($request->price)) {
+												if($request->price == '500000+') {
+													$latest_properties = $latest_properties->where('price', '>', 500000);
+												}
+												elseif($request->price == '500000') {
+													$latest_properties = $latest_properties->where('price', '>', 400000)->where('price', '<=', 500000);
+												}
+												elseif($request->price == '400000') {
+													$latest_properties = $latest_properties->where('price', '>', 300000)->where('price', '<=', 400000);
+												}
+												elseif($request->price == '300000') {
+													$latest_properties = $latest_properties->where('price', '>', 200000)->where('price', '<=', 300000);
+												}
+												elseif($request->price == '200000') {
+													$latest_properties = $latest_properties->where('price', '>', 100000)->where('price', '<=', 200000);
+												}
+												else {
+													$latest_properties = $latest_properties->where('price', '>', 0)->where('price', '<=', 100000);
+												}
+											}
+
+											if(!empty($request->bedrooms)) {
+												$latest_properties = $latest_properties->where('bedrooms', $request->bedrooms);
+											}
+
+											if(!empty($request->property_name)) {
+												$latest_properties = $latest_properties->where('name', 'LIKE', '%'. $request->property_name .'%');
+											}
+
+
+											$latest_properties = $latest_properties->paginate(12);
+
+											return view('property.index', ['latest_properties' => $latest_properties, 'locations' => $locations]);
+										}
+
+
+									//--------------------------- asking ques by user ------------------------------------------------
+										public function enquire(Request $request, $propertyID)
+										{
+											$request->validate([
+												'name'  => ['required', 'max:255'],
+												'phone' => ['required', 'max:255'],
+												'email' => ['email', 'required', 'max:255'],
+												'message' => ['required', 'max:255']
+											]);
+
+											// $request->message .= '\nThis message was sent from '. route('property.show',$propertyID) . ' website.';
+
+											PropertyEnquire::create([
+												'name'  => $request->name,
+												'phone'  => $request->phone,
+												'email'  => $request->email,
+												'message'  => $request->message . '\nThis message was sent from '. route('property.show',$propertyID) . ' website.',
+											]);
+
+											// Send User & Admin mail/message
+											$data = [$request->all(), 'propertyURL' => route('property.show', $propertyID)];
+
+											Mail::send(new EnquireEmail($data));
+
+
+											return redirect()->back()->with(['message'=>'Message sent successfully']);
+										}
+
+
+										public function create()
+										{
+											//
+										}
+
+
+										public function store(Request $request)
+										{
+											//
+										}
+
+									//--------------------------- Single/individual Property Show(frontend) ------------------------------------------------
+										public function show($id)
+										{
+											//$property = Property::with('gallery', 'location')->findOrFail($id);  // Find Property by id
+
+											$property = Property::findOrFail($id);
+											//dd($property->gallery());
+											return view('property.single')->with('property', $property);
+										}
+
+
+										public function edit($id)
+										{
+											//
+										}
+
+
+										public function update(Request $request, $id)
+										{
+											//
+										}
+
+
+										public function destroy($id)
+										{
+											//
+										}
+
+									}
+
+				
+				//--------------------------------------------- resources/views/property/single.blade.php ---------------------------------------------------------------------
+				
+				
+				//--------------------------------------------- resources/views/components/header.blade.php ---------------------------------------------------------------------
+				            <li><a class="inline-block p-4 text-white {{request('type') == '3' ? 'bg-gray-50' : ''}}" href="{{route('property.index')}}?type=3">{{ __('Land') }}</a></li>
+							<li><a class="inline-block p-4 text-white {{request('type') == '2' ? 'bg-gray-50' : ''}}" href="{{route('property.index')}}?type=2">{{ __('Villa') }}</a></li>
+							<li><a class="inline-block p-4 text-white {{request('type') == '1' ? 'bg-gray-50' : ''}}" href="{{route('property.index')}}?type=1">{{ __('Apartment') }}</a></li>
+							
+							
+				//--------------------------------------------- resources/views/components/property-card.blade.php ------------------------------------------------------
+							<a href="{{route('property.show', $property->id)}}" class="btn w-full text-center">{{ __('More details') }}</a>
+				
+				//--------------------------------------------- resources/views/components/property-search-form.blade.php ------------------------------------------------
+							<form action="{{ route('property.index') }}" method="GET" class="flex justify-between search-form">
+							
+		//--------------//----------------//---------------------//--------------------//--------------------//----------------------//-----------------------//------------------------//---------	
+		
+		
+						
+						
+						
+			//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+																	//------------ Dashboad ------------//
+			//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+						
+				//--------------------------------------------- resources/views/layouts/navigation.blade.php ---------------------------------------------------------------------
+							Url: http://127.0.0.1:8000/dashboard
+							
+							<a href="{{ route('dashboard') }}">
+								<x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+							</a>
+							
+				//--------------------------------------------- routes/web.php --------------------------------------------------------------------------------------------------------
+							Route::prefix('dashboard')->middleware('auth')->group(function () {
+									Route::get('/', [DashboardController::class,'index'])->name('dashboard');
+							});
+
+				//--------------------------------------------- app/Http/Controllers/DashboardController.php ---------------------------------------------------------------------
+								<?php
+
+									namespace App\Http\Controllers;
+
+									use App\Models\Location;
+									use App\Models\Page;
+									use App\Models\Property;
+									use App\Models\PropertyEnquire;
+									use App\Models\User;
+									use Illuminate\Support\Facades\Storage;
+									use Illuminate\Http\Request;
+
+									class DashboardController extends Controller
+									{
+
+									//----------------------------------- Dashboard Home ---------------------------------------
+										public function index()
+										{
+											$counter = [
+												'properties' => count(Property::all()),
+												'location' => count(Location::all()),
+												'page' => count(Page::all()),
+												'user' => count(User::all()),
+												'message' => count(PropertyEnquire::all()),
+											];
+
+											return view('dashboard.index')->with('counter', $counter);
+										}
+
+									}
+
+		
+		//--------------------------------------------- resources/views/dashboard/index.blade.php ---------------------------------------------------------------------
+						<x-app-layout>
+							<x-slot name="header">
+								<h2 class="font-semibold text-xl text-gray-800 leading-tight">
+									{{ __('Dashboard') }}
+								</h2>
+							</x-slot>
+
+							<div class="py-12">
+								<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+									<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+										<div class="p-6 bg-white border-b border-gray-200">
+											<h2 class="font-bold text-2xl px-3 mb-6 bg-gradient-to-r inline-block from-purple-500 to-blue-500 bg-clip-text text-transparent">Website Summery</h2>
+											<div class="grid grid-cols-3 gap-5">
+
+												<a href="{{ route('properties.index') }}" class="dashboard-card">
+													<i class="fa fa-map-signs"></i>
+													<h2 class="font-bold text-xl uppercase">Properties</h2>
+													<span> {{ $counter['properties'] }}</span>
+												</a>
+												<a href="{{ route('location.index') }}" class="dashboard-card">
+													<i class="fa fa-location-arrow"></i>
+													<h2 class="font-bold text-xl uppercase">Locations</h2>
+													<span> {{ $counter['location'] }}</span>
+												</a>
+												<a href="{{ route('pages.index') }}" class="dashboard-card">
+													<i class="fa fa-file-archive-o"></i>
+													<h2 class="font-bold text-xl uppercase">Pages</h2>
+													<span> {{ $counter['page'] }}</span>
+												</a>
+
+												<a href="{{ route('user.index') }}" class="dashboard-card">
+													<i class="fa fa-users"></i>
+													<h2 class="font-bold text-xl uppercase">Users</h2>
+													<span> {{ $counter['user'] }}</span>
+												</a>
+
+												<a href="{{ route('message.index') }}" class="dashboard-card">
+													<i class="fa fa-comments"></i>
+													<h2 class="font-bold text-xl uppercase">Messages</h2>
+													<span> {{ $counter['message'] }}</span>
+												</a>
+												<a href="#" class="dashboard-card">
+													<i class="fa fa-cogs"></i>
+													<h2 class="font-bold text-xl uppercase">Setting</h2>
+												</a>
+
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-				</x-app-layout>
+						</x-app-layout>
 
-
-	
-	//--------------------------------------------- resources/views/dashboard/pages/create.blade.php ---------------------------------------------------------------------
-						<x-app-layout>
-						<x-slot name="header">
-							<div class="flex justify-between items-center">
-								<h2 class="font-semibold text-xl text-gray-800 leading-tight">
-									{{ __('Add New Pages') }}
-								</h2>
-
-								<div class="min-w-max">
-									<a href="{{route('pages.index')}}" class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Back</a>
-								</div>
-							</div>
-						</x-slot>
-
-						<div class="py-12">
-							<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-								<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-									<form action="{{route('pages.store')}}" method="post" class="p-6 bg-white border-b border-gray-200" enctype="multipart/form-data"> @csrf
-										<div class="mb-6">
-											<label class="civanoglu-label" for="name">Name <span class="required-text">*</span></label>
-											<input class="civanoglu-input" type="text" id="name" name="name" value="{{old('name')}}" required>
-
-											@error('name')
-												<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-											@enderror
-										</div>
-
-										<div class="mb-6">
-											<label class="civanoglu-label" for="slug">Slug <span class="required-text">*</span></label>
-											<input class="civanoglu-input" type="text" id="slug" name="slug" value="{{old('slug')}}" required>
-
-											@error('slug')
-												<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-											@enderror
-										</div>
-
-										<div class="mb-6">
-											<label class="civanoglu-label" for="content">Content <span class="required-text">*</span></label>
-											<textarea class="civanoglu-input" name="content" id="content" cols="30" rows="10" required>{{old('content')}}</textarea>
-
-											@error('content')
-												<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-											@enderror
-										</div>
-
-										<button class="btn" type="submit">Submit</button>
-									</form>
-								</div>
-							</div>
-						</div>
-					</x-app-layout>
-
-	
-	//--------------------------------------------- resources/views/dashboard/pages/edit.blade.php ---------------------------------------------------------------------
-					<x-app-layout>
-						<x-slot name="header">
-							<div class="flex justify-between items-center">
-								<h2 class="font-semibold text-xl text-gray-800 leading-tight">
-									{{ __('Edit Locations') }}
-								</h2>
-
-								<div class="min-w-max">
-									<a href="{{route('pages.index')}}" class="px-4 py-2 hover:text-white text-white rounded-md text-base bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">Back</a>
-								</div>
-							</div>
-						</x-slot>
-
-						<div class="py-12">
-							<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-								<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-									<form action="{{route('pages.update', $page->id)}}" method="post" class="p-6 bg-white border-b border-gray-200" enctype="multipart/form-data"> @csrf @method('put')
-										<div class="mb-6">
-											<label class="civanoglu-label" for="name">Name <span class="required-text">*</span></label>
-											<input class="civanoglu-input" type="text" id="name" name="name" value="{{$page->name}}" required>
-
-											@error('name')
-												<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-											@enderror
-										</div>
-
-										<div class="mb-6">
-											<label class="civanoglu-label" for="slug">Slug <span class="required-text">*</span></label>
-											<input class="civanoglu-input" type="text" id="slug" name="slug" value="{{$page->slug}}" required>
-
-											@error('slug')
-												<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-											@enderror
-										</div>
-
-										<div class="mb-6">
-											<label class="civanoglu-label" for="content">Content <span class="required-text">*</span></label>
-											<textarea class="civanoglu-input" name="content" id="content" cols="30" rows="10" required>{{$page->content}}</textarea>
-
-											@error('content')
-												<p class="text-red-500 mt-2 text-sm">{{$message}}</p>
-											@enderror
-										</div>
-
-										<button class="btn" type="submit">Update</button>
-									</form>
-								</div>
-							</div>
-						</div>
-					</x-app-layout>
-
-	
-	
-	
-	
-	
-		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------
-		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------
-		//--------------------------------------------- resources/views/pages/page.blade.php ---------------------------------------------------------------------
+//------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
 
 
 
 
 
 
-
-
-
-
+//===================================================================================================================
+												//-------------------- Class #27 --------------------
+//===================================================================================================================
+		//--------------------------------------------- database/migrations/pages_table.php ---------------------------------------------------------------------
 
 
 
