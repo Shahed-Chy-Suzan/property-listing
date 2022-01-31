@@ -101,7 +101,7 @@ html[lang="tr"] .noTranslate{
 
 
 body {
-
+    font-family: 'Nunito', sans-serif;
 }
 
 
@@ -212,8 +212,8 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 12px;
     margin-bottom: 5px;
     display: block;
-    opacity: .8;
-    font-family: ;
+    /* opacity: .8; */
+    font-family: 'Nunito', sans-serif;
 }
 
 .vertical-search-form select {

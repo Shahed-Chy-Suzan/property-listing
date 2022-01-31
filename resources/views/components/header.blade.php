@@ -1,5 +1,5 @@
 
-<div class="fixed top-0 w-full py-4 px-12 flex justify-between items-center z-30 sticky-header {{request()->routeIs('home') ? '' : 'general-header'}}">
+<div class="fixed top-0 w-full py-4 px-12 flex justify-between items-center z-30 sticky-header {{request()->routeIs('home') ? '' : 'general-header'}}" style="font-family: 'Nunito', sans-serif; font-weight:bold;">
     <div class="min-w-max">
         <a href="{{route('home')}}"><img width="100" src="/img/house-logo.png" alt=""></a>
     </div>
@@ -27,7 +27,7 @@
         <div class="mr-10 text-2xl currency">
             <a class="inline-block text-xl rounded-full px-3 py-1 text-white" href="{{ route('currency', 'usd') }}" title="Change Currency to Doller">$</a>
             <a class="inline-block text-xl rounded-full px-3 py-1 text-white" href="{{ route('currency', 'tl') }}" title="Change Currency to Lira">₺</a>
-            <a class="inline-block text-2xl rounded-full px-3 py-1 text-white" href="{{ route('currency', 'bdt') }}" title="Change Currency to Taka">৳</a>
+            <a class="inline-block text-xl rounded-full px-3 py-1 text-white" href="{{ route('currency', 'bdt') }}" title="Change Currency to Taka">৳</a>
         </div>
 
         <!------ Language Change Button - Flag ------->
@@ -56,7 +56,7 @@
                 </g>
             </svg>
         </a>
-        <a href="{{ LaravelLocalization::getLocalizedURL('tr') }}" title="Turkish Language">🏳️</a>
+        <a href="{{ LaravelLocalization::getLocalizedURL('tr') }}" title="Turkish Language"><!--🏳️--> 🚩</a>
         {{-- &#127482;&#127480; --}}
     </div>
 
