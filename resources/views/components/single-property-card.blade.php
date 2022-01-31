@@ -10,7 +10,11 @@
         @endif
 
         <div class="p-3">
-            <h2 class="leading-0 text-base">{{$property->name}}</h2>
+            @if(request()->is('*tr*'))
+                <h2 class="leading-0 text-base">{{$property->name_tr}}</h2>
+            @else
+                <h2 class="leading-0 text-base">{{$property->name}}</h2>
+            @endif
             {{-- <h3 class="text-2xl py-3">{{ number_format($property->price) }} {{ __('TK') }}</h3> --}}
             <h3 class="text-2xl py-3">{{ $property->dynamic_pricing($property->price) }}</h3>
             <div class="border-t-2">

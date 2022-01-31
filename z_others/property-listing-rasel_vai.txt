@@ -2472,7 +2472,7 @@
 		
 
 //==================================================================================================================
-												//-------------------------------- Class #16 || mail sent -------------------------------
+												//-------------------------------- Class #16 || mail send -------------------------------
 //==================================================================================================================
 		-- php artisan make:mail EnquireEmail
 		-- mail trap use korbo, mail trap e dhoke er creadintial gula niye amader project er .env file e paste korbo.
@@ -2492,11 +2492,38 @@
 						use App\Mail\EnquireEmail;
 						use Illuminate\Support\Facades\Mail;
 						
-						.....  ......  ......  ......  ......  ......  ......  ......   ......
+						public function enquire(Request $request, $propertyID)
+						{
+							$request->validate([
+								'name'  => ['required', 'max:255'],
+								'phone' => ['required', 'max:255'],
+								'email' => ['email', 'required', 'max:255'],
+								'message' => ['required', 'max:255']
+							]);
+
+							// $request->message .= '\nThis message was sent from '. route('property.show',$propertyID) . ' website.';
+
+							PropertyEnquire::create([
+								'name'  => $request->name,
+								'phone'  => $request->phone,
+								'email'  => $request->email,
+								'message'  => $request->message . '\nThis message was sent from '. route('property.show',$propertyID) . ' website.',
+							]);
+
+							// Send User & Admin mail/message
+							$data = [$request->all(), 'propertyURL' => route('property.show', $propertyID)];
+
+							Mail::send(new EnquireEmail($data));
+
+							return redirect()->back()->with(['message'=>'Message sent successfully']);
+						}
+						
+						............................ shortcut mail functionality .....................................
 						// Email Sending
 						$data = [$request->all(), 'propertyURL' => route('singleProperty', $propertyID)];
 
 						Mail::send(new EnquireEmail($data));
+						...................................................................
 		
 		
 		//---------------------------------------------------------- app/Mail/EnquireEmail.php ---------------------------------------------------------------------
@@ -2581,6 +2608,183 @@
 						}
 					</style>
 //------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
+
+//===================================================================================================================
+												//-------------------- Class #27 || Laravel Queue (applied in mail) --------------------
+//===================================================================================================================
+			-- Laravel Queues doc link: https://laravel.com/docs/8.x/queues
+			-- Laravel Task Schedule doc link: https://laravel.com/docs/8.x/scheduling
+			
+			-- amra jokhon amader ei project e Email patai tkn dekte pari j amader ei mail ta jethe ektu time nei, mane browser mail ta patanor somoy beshi somoy dhore reload nei, because amra jokon mail patacchi tkn ta SMTP te request patacche, erpor jokon shee response pacche tkn shee frontend theke mane user er data gula send korteche, that means server to server communication hocche, ei same kaj jodi oneke kore mane website e 1000+ eksathe message/mail patathe pare, taile tkn kinto problem hobe, because eksathe shee 1000+ connection make korbe, So er solution hisebe laravel e ei dhororner kaj gula background e rekhe deya jai, & aste aste ekta ekta kore dispatch hothe thakbe, dispatch howa mane jokon suppose 1000+ request job asbe tkn shee eksathe ei sob korbe na, shee ekta job list make korbe then ekta dhorbe, oita shesh hole arekta dhorbe, eivabe korar fole may be kaj ta korte 5minute time beshi lagbe, but server e kono pressure porbe na, So eta ekta life saving/server saving matter, ei jinister jonno laravel e "laravel Queue schedule" name e documentation e dekte pabo, link: ( https://laravel.com/docs/8.x/queues ).
+			
+			-- ekn amra direct kaj e chole jacchi: 
+					-- 1 -- apply_command: php artisan queue:table
+										-- eta dile queue er jonno amader magration table(jobs name e) make hobe. ei name e: 2022_01_31_073236_create_jobs_table.php
+										-- link: https://laravel.com/docs/8.x/queues#database
+										
+					-- 2 -- command: php artisan migrate
+					
+					-- 3 -- in .env file ---------- QUEUE_CONNECTION=database
+					
+					-- 4 -- apply_command: php artisan make:job ProcessEnquireEmail
+										-- eta dile queue er jonno amader magration table(jobs name e) make hobe.
+										-- link: https://laravel.com/docs/8.x/queues#creating-jobs
+					
+					-- 5 -- in .env file ---------- QUEUE_CONNECTION=database
+					
+					-- 6 -- command: php artisan make:job ProcessEnquireEmail
+					
+					-- 7 -- in controller:-- ProcessEnquireEmail::dispatch($data);
+					
+					-- 8 -- in ProcessEnquireEmail.php:-- Mail::send(new EnquireEmail($this->enquireData)); //++ opore variable(enquireData) niye data rakar kaj ta korte hobe,
+			
+			
+		//--------------------------------------------- 2022_01_31_073236_create_jobs_table.php ---------------------------------------------------------------------
+					-- apply_command: php artisan queue:table
+					-- kono kicho change korte hobe na, default ja chilo tai rekhe migrate kore dibo.
+					-- command: php artisan migrate
+					
+						Schema::create('jobs', function (Blueprint $table) {
+							$table->bigIncrements('id');
+							$table->string('queue')->index();
+							$table->longText('payload');
+							$table->unsignedTinyInteger('attempts');
+							$table->unsignedInteger('reserved_at')->nullable();
+							$table->unsignedInteger('available_at');
+							$table->unsignedInteger('created_at');
+						});
+
+		//---------------------------------------------------------- .env ---------------------------------------------------------------------------------------------------------------
+						// QUEUE_CONNECTION=sync 		//eta default chilo, otar bodole nicher ta dibo
+						QUEUE_CONNECTION=database
+						
+						
+		-- command: php artisan make:job ProcessEnquireEmail
+				-- ei command deyar sathe sathe amder ekta file create hobe "ProcessEnquireEmail.php" name e, jar directory holo: "app/Jobs/ProcessEnquireEmail.php"
+		
+		-- in controller:-- ProcessEnquireEmail::dispatch($data);
+		-- in ProcessEnquireEmail.php:-- Mail::send(new EnquireEmail($this->enquireData)); //++ opore variable(enquireData) niye data rakar kaj ta korte hobe,
+		
+		-- Now ekn amader k dispatch korte hobe job ta controller e, documentation_link: https://laravel.com/docs/8.x/queues#dispatching-jobs
+		-- amra jokon kono ekta mail patabo userEnd theke tkn ta sathe satehi dekahbe mail send, time/reload e beshi somoy nibe na, & ta database e queue e job ta save hobe, but tkn kinto mail ta send hoye jai ni, amader k ei job ta chalalor/howar jonno amader ei queue ta k run korte hobe, amara localhost e eta manually command(php artisan queue:work or php artisan queue:list) diye run kori, && server/live_server e amra eita k corn_job chaliye run kore dei always
+		
+		-- command: php artisan queue:list
+		-- command: php artisan queue:work
+		
+						
+		//--------------------------------------------- app/Http/Controllers/PropertyController.php ---------------------------------------------------------------------
+					public function enquire(Request $request, $propertyID)
+						{
+							$request->validate([
+								'name'  => ['required', 'max:255'],
+								'phone' => ['required', 'max:255'],
+								'email' => ['email', 'required', 'max:255'],
+								'message' => ['required', 'max:255']
+							]);
+
+							// $request->message .= '\nThis message was sent from '. route('property.show',$propertyID) . ' website.';
+
+							PropertyEnquire::create([
+								'name'  => $request->name,
+								'phone'  => $request->phone,
+								'email'  => $request->email,
+								'message'  => $request->message . '\nThis message was sent from '. route('property.show',$propertyID) . ' website.',
+							]);
+
+							// Send User & Admin mail/message
+							$data = [$request->all(), 'propertyURL' => route('property.show', $propertyID)];
+
+							// Send User & Admin mail/message via Queue
+							ProcessEnquireEmail::dispatch($data);								//-------------------------------------------------------------------
+							// Mail::send(new EnquireEmail($data));     // Send User & Admin mail/message via normal way
+
+							return redirect()->back()->with(['message'=>'Message sent successfully']);
+						}
+						
+						
+		//--------------------------------------------- app/Jobs/ProcessEnquireEmail.php ---------------------------------------------------------------------
+						<?php
+
+						namespace App\Jobs;
+
+						use App\Mail\EnquireEmail;
+						use Illuminate\Support\Facades\Mail;
+						use Illuminate\Bus\Queueable;
+						use Illuminate\Contracts\Queue\ShouldBeUnique;
+						use Illuminate\Contracts\Queue\ShouldQueue;
+						use Illuminate\Foundation\Bus\Dispatchable;
+						use Illuminate\Queue\InteractsWithQueue;
+						use Illuminate\Queue\SerializesModels;
+
+						class ProcessEnquireEmail implements ShouldQueue
+						{
+							use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+
+							public $enquireData;									//----------------------------------------
+
+							/**
+							 * Create a new job instance.
+							 *
+							 * @return void
+							 */
+							public function __construct($data)										//----------------------------------------
+							{
+								$this->enquireData = $data;										//----------------------------------------
+							}
+
+							/**
+							 * Execute the job.
+							 *
+							 * @return void
+							 */
+							public function handle()
+							{
+								Mail::send(new EnquireEmail($this->enquireData));										//----------------------------------------
+							}
+						}
+						
+						
+		//-------------------------------------------------------- app/Mail/EnquireEmail.php ---------------------------------------------------------------------------------------
+						<?php
+
+							namespace App\Mail;
+
+							use Illuminate\Bus\Queueable;
+							use Illuminate\Contracts\Queue\ShouldQueue;
+							use Illuminate\Mail\Mailable;
+							use Illuminate\Queue\SerializesModels;
+
+							class EnquireEmail extends Mailable
+							{
+								use Queueable, SerializesModels;
+
+
+								public $enquireData;
+
+								public function __construct($data)
+								{
+									$this->enquireData = $data;
+								}
+
+								/**
+								 * Build the message.
+								 *
+								 * @return $this
+								 */
+								public function build()
+								{
+									return $this->view('emails.enquire-email')->to($this->enquireData[0]['email'])->from('propertylisting@civanolo.com')->subject('Property Enquire')->with('data',$this->enquireData);
+								}
+							}
+
+						
+		//-- evabe amra "queues" diye onek rokomer kaj korte parbo, ekhane just mail ta dekhano hoyeche summary vabe, ProcessEnquireEmail.php file er handle() method er moddhe amra amader jabotiyo proyojonio sob php code likte parbo, for example: ekahane amara jodi chai amader property create er beparta amra ei queues diye korbo, taile amra ei "ProcessEnquireEmail.php" file er handle() method e eshe property_create er code gual likte parbo.
+
+//------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
+
+
+
 
 
 
@@ -2741,7 +2945,7 @@
 		
 		
 		
-		//--------------------------------------------- resources/views/components/property-search-form.blade.php ---------------------------------------------------------------------
+		//--------------------------------------------- resources/views/components/property-search-form.blade.php ------------------------------------------------------
 		            <label for="sale">{{ __('Rent') }}/{{ __('Sale') }}</label>
 						<select id="sale" name="sale" class="border-0 focus:ring-0">
 							<option value="">{{ __('Rent') }}/{{ __('Sale') }}</option>
@@ -4368,6 +4572,39 @@
 						<div class="py-20 flex-1 bg-center" style="background-image: url('{{ $property->featured_image }}')"></div>
 					@endif
 		
+					//------------------------ niche eta full final file deya holo--------------------------------------------------------
+								<div class="{{$width}} px-2  relative rounded-md mb-6">
+									<div class="shadow-lg">
+										<a href="" class="absolute left-3 w-9 h-9 leading-10 self-center text-base top-3 bg-black text-white bg-opacity-25 text-center hover:bg-yellow-500 hover:text-white duration-200 rounded-full"><i class="fa fa-heart-o"></i></a>
+
+										{{-- @if ( File::exists(storage_path('app/public/uploads/') . $property->featured_image) ) --}}
+										@if (file_exists(public_path('storage/uploads/' . $property->featured_image)))
+											<div class="py-20 flex-1 bg-center" style="background-image: url('/storage/uploads/{{ $property->featured_image }}')"></div>
+										@else
+											<div class="py-20 flex-1 bg-center" style="background-image: url('{{ $property->featured_image }}')"></div>
+										@endif
+
+										<div class="p-3">
+											@if(request()->is('*tr*'))
+												<h2 class="leading-0 text-base">{{$property->name_tr}}</h2>
+											@else
+												<h2 class="leading-0 text-base">{{$property->name}}</h2>
+											@endif
+											{{-- <h3 class="text-2xl py-3">{{ number_format($property->price) }} {{ __('TK') }}</h3> --}}
+											<h3 class="text-2xl py-3">{{ $property->dynamic_pricing($property->price) }}</h3>
+											<div class="border-t-2">
+												<ul class="flex items-center -mx-1 my-4">
+													<li class="px-2 py-1 bg-gray-200 rounded-md text-xs mx-1 shadow-sm">{{$property->bedrooms}} {{ __('Bedrooms') }}</li>
+													<li class="px-2 py-1 bg-gray-200 rounded-md text-xs mx-1 shadow-sm">{{$property->bathrooms}} {{ __('Bathrooms') }}</li>
+													<li class="px-2 py-1 bg-gray-200 rounded-md text-xs mx-1 shadow-sm">{{$property->gross_sqm}} {{ __('ft') }}<sup>2</sup></li>
+												</ul>
+												<a href="{{route('property.show', $property->id)}}" class="btn w-full text-center">{{ __('More details') }}</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+		
 		//--------------------------------------------- resources/views/property/single.blade.php -----------------------------------------------------------------------------------
 						<div id="slider" class="">
 							<div class="gallery-slider">
@@ -4386,6 +4623,272 @@
 								@endforeach
 							</div>
 						</div>
+						
+						//------------------------ niche eta full final file deya holo--------------------------------------------------------
+									<x-guest-layout>
+										{{-- Breadcrumb --}}
+										<div class="shadow-md border-2 border-gray-300 py-2 bg-white mt-28">
+											<div class="container mx-auto">
+												<ul class="flex items-center">
+													<li><a class="text-red-800" href="{{ route('property.index') }}">{{ __('Properties') }}</a></li>
+													<li class="mx-3"><i class="fa fa-angle-right"></i></li>
+													<li>{{$property->name}}</li>
+												</ul>
+											</div>
+										</div>
+
+										<!-- Title & Share -->
+										<div class="bg-white py-8">
+											<div class="container mx-auto">
+												<div class="flex justify-between">
+													<div class="w-8/12">
+														@if(request()->is('*tr*'))
+															<h2 class="text-3xl text-gray-600">{{$property->name_tr}}</h2>
+														@else
+															<h2 class="text-3xl text-gray-600">{{$property->name}}</h2>
+														@endif
+														<h3 class="text-lg mt-2">{{ __('Price') }}: <span class="text-red-800">
+															{{-- {{ number_format($property->price, 2, ',', ',') }} TK</span> --}}
+															{{-- {{ number_format($property->price) }} {{ __('Tk') }}</span> --}}
+															{{ $property->dynamic_pricing($property->price) }}
+														</h3>
+													</div>
+													<div class="w-3/12">
+														<ul class="flex justify-end -mr-2">
+															<li>
+																<a class="flex flex-col justify-center items-center mx-2 border-2 border-gray-200 p-3 hover:border-red-400 duration-200"
+																   href="#">
+																	<i class="fa fa-print mb-2"></i>
+																	<span class="text-md block">Print</span>
+																</a>
+															</li>
+															<li>
+																<a class="flex flex-col justify-center items-center mx-2 border-2 border-gray-200 p-3 hover:border-red-400 duration-200"
+																   href="#">
+																	<i class="fa fa-heart-o mb-2"></i>
+																	<span class="text-md block">Save</span></a>
+															</li>
+															<li>
+																<a class="flex flex-col justify-center items-center mx-2 border-2 border-gray-200 p-3 hover:border-red-400 duration-200"
+																   href="#">
+																	<i class="fa fa-share-alt mb-2"></i>
+																	<span class="text-md block">Share</span></a>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+										@if (session('message'))
+											<div id="notice" class="text-center bg-red-500 text-white p-3">{{ session('message') }}</div>
+										@endif
+
+
+										<!-- Content -->
+										<div class="container mx-auto py-10">
+											<div class="flex justify-between">
+
+												{{-- Left Content --}}
+												<div class="w-9/12">
+													<div id="slider" class="">
+														<div class="gallery-slider">
+															@foreach($property->gallery as $gallery)
+																@if (file_exists(public_path('storage/uploads/'.$gallery->name)))
+																	<div style="background-image: url('/storage/uploads/{{ $gallery->name }}')" class="single-gallery-item bg-cover bg-center"></div>
+																@else
+																	<div style="background-image: url({{ $gallery->name }})" class="single-gallery-item bg-cover bg-center"></div>
+																@endif
+															@endforeach
+														</div>
+
+														<div class="thumbnail-slider mt-4">
+															@foreach($property->gallery as $gallery)
+																@if (file_exists(public_path('storage/uploads/'.$gallery->name)))
+																	<div style="background-image: url('/storage/uploads/{{ $gallery->name }}')" class="single-thumbnail-item bg-cover bg-center"></div>
+																@else
+																	<div style="background-image: url({{$gallery->name}})" class="single-thumbnail-item bg-cover bg-center"></div>
+																@endif
+															@endforeach
+														</div>
+													</div>
+													{{-- Overview --}}
+													<div class="flex justify-between items-center bg-white p-8 mt-10 shadow-sm">
+														<h4 class="text-lg w-2/12 langBN">{{ __('Overview') }}</h4>
+														<div class="border-l-2 border-gray-300 pl-5 ml-5 w-10/12 text-base">
+															@if(request()->is('*tr*'))
+																<p>{{$property->overview_tr}}</p>
+															@else
+																<p>{{$property->overview}}</p>
+															@endif
+														</div>
+													</div>
+
+													{{-- Property Featuers --}}
+													<div class="flex justify-between items-center bg-white p-8 mt-10 shadow-sm langBN">
+														<h4 class="text-lg w-2/12">{{ __('Property Features') }}</h4>
+														<div class="ml-2 w-10/12 text-base flex justify-between">
+															<div class="flex-1 border-l-2 border-gray-300 ml-3 pl-3 self-center">
+																<ul>
+																	<li class="flex text-sm mb-2">
+																		<div class="flex"><i
+																				class="fa fa-home mr-2 text-red-400 w-5 text-center"></i><span
+																				class="text-sm">{{ __('Type') }}:</span></div>
+																		<span class="ml-2 font-bold">
+																			@if($property->type == 1)
+																				{{ __('Apartment') }}
+																			@elseif($property->type == 2)
+																				{{ __('Villa') }}
+																			@else
+																				{{ __('Land') }}
+																			@endif
+																		</span>
+																	</li>
+																	<li class="flex text-sm">
+																		<div class="flex"><i
+																				class="fa fa-bed mr-2 text-red-400 w-5 text-center"></i><span
+																				class="text-sm">{{ __('Bedroom') }}:</span></div>
+																		<span class="ml-2 font-bold">{{$property->bedrooms}}</span>
+																	</li>
+																</ul>
+															</div>
+															<div class="flex-1 border-l-2 border-gray-300 ml-3 pl-3 self-center">
+																<ul>
+																	<li class="flex text-sm mb-2">
+																		<div class="flex"><i
+																				class="fa fa-shower mr-2 text-red-400 w-5 text-center"></i><span
+																				class="text-sm">{{ __('Bathrooms') }}:</span></div>
+																		<span class="ml-2 font-bold">{{$property->bathrooms}}</span>
+																	</li>
+																	<li class="flex text-sm">
+																		<div class="flex"><i
+																				class="fa fa-map-marker mr-2 text-red-400 w-5 text-center"></i><span
+																				class="text-sm">{{ __('Location') }}:</span></div>
+																		<span class="ml-2 font-bold noTranslate">{{$property->location->name}}</span>
+																	</li>
+																</ul>
+															</div>
+															<div class="flex-1 border-l-2 border-gray-300 ml-3 pl-3 self-center">
+																<ul>
+																	<li class="flex text-sm mb-2">
+																		<div class="flex"><i
+																				class="fa fa-gratipay mr-2 text-red-400 w-5 text-center"></i><span
+																				class="text-sm">{{ __('Living space sqm') }}:</span></div>
+																		<span class="ml-2 font-bold">{{ $property->net_sqm }}</span>
+																	</li>
+																	<li class="flex text-sm">
+																		<div class="flex"><i class="fa fa-low-vision mr-2 text-red-400 w-5 text-center"></i>
+																			<span class="text-sm">{{ __('Pool') }}</span>
+																		</div>
+																		<span class="ml-2 font-bold">
+																			@if($property->pool == 1)
+																				{{ __('Private') }}
+																			@elseif($property->pool == 2)
+																				{{ __('Public') }}
+																			@elseif($property->pool == 3)
+																				{{ __('Both') }}
+																			@else
+																				{{ __('No') }}
+																			@endif
+																		</span>
+																	</li>
+																</ul>
+															</div>
+														</div>
+													</div>
+
+													{{-- Overview --}}
+													<div class="flex justify-between items-center bg-white p-8 mt-10 shadow-sm">
+														<h4 class="text-lg w-2/12">{{ __('Why buy this Property') }}</h4>
+														<div class="border-l-2 border-gray-300 pl-5 ml-5 w-10/12 text-base">
+															@if(request()->is('*tr*'))
+																<p>{{$property->why_buy_tr}}</p>
+															@else
+																<p>{{$property->why_buy}}</p>
+															@endif
+														</div>
+													</div>
+
+													{{-- Description --}}
+													<div class="bg-white p-8 mt-10 shadow-sm" id="description">
+														<h2 class="font-bold mb-5 text-2xl"> FACILITIES &amp; LOCATION</h2>
+															@if(request()->is('*tr*'))
+																<p>{{$property->description_tr}}</p>
+															@else
+																<p>{{$property->description}}</p>
+															@endif
+													</div>
+
+												</div>{{-- Left Content End --}}
+
+
+
+												{{-- Sidebar --}}
+												<div class="w-3/12 ml-6">
+													<div class="border-2 border-red-800 px-5 py-3 text-center font-light text-base">
+														<p>Subscribe to Property Turkey media for blogs/news/videos</p>
+													</div>
+													{{-- Form --}}
+													<div class="px-4 py-5 text-left bg-gray-300 my-5">
+														<h1 class="text-2xl font-normal leading-none mb-5 langBN">{{ __('Enquire about this property') }}</h1>
+
+														<form action="{{ route('enquireform',$property->id) }}" method="POST" enctype="multipart/form-data">
+															@csrf
+
+															<div class="">
+																<label class="inputLabel" for="name">Name <span class="text-red-800 font-serif">*</span></label>
+																<input class="inputField" type="text" id="name" name="name" placeholder="First Name"
+																value="{{ old('name') }}">
+
+																@error('name')
+																	<p class="bg-red-100 text-red-500 px-2 mt-2 text-sm">{{ $message }}</p>
+																@enderror
+															</div>
+
+															<div class="mt-5">
+																<label class="inputLabel" for="phone">Phone <span class="text-red-800 font-serif">*</span></label>
+																<input class="inputField" type="text" id="phone" name="phone" placeholder="Phone"
+																value="{{ old('phone') }}">
+
+																@error('phone')
+																	<p class="bg-red-100 text-red-500 px-2 mt-2 text-sm">{{ $message }}</p>
+																@enderror
+															</div>
+
+															<div class="mt-5">
+																<label class="inputLabel" for="email">Email <span class="text-red-800 font-serif">*</span></label>
+																<input class="inputField" type="email" id="email" name="email" placeholder="E-mail"
+																value="{{ old('email') }}">
+
+																@error('email')
+																	<p class="bg-red-100 text-red-500 px-2 mt-2 text-sm">{{ $message }}</p>
+																@enderror
+															</div>
+
+															<div class="mt-5">
+																<label class="inputLabel" for="message">Message <span class="text-red-800 font-serif">*</span></label>
+																<textarea class="inputField" id="message" name="message" rows="4" placeholder="I'm interested in this property"></textarea>
+
+																@error('message')
+																	<p class="bg-red-100 text-red-500 px-2 mt-2 text-sm">{{ $message }}</p>
+																@enderror
+															</div>
+
+															<div class="mt-5">
+																<button type="submit" class="w-full border-2 uppercase text-center py-3 font-semibold border-red-800 hover:bg-transparent hover:text-red-800 duration-200  text-white bg-red-800 rounded-none"><i class="fa fa-commenting mr-2"></i>{{__('Request Details')}}</button>
+															</div>
+
+														</form>
+													</div>
+												</div>
+
+
+											</div>
+
+										</div>
+									</x-guest-layout>
+
 //------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
 
 
@@ -6991,13 +7494,300 @@
 
 
 //===================================================================================================================
-												//-------------------- Class #27 --------------------
+												//-------------------- Class #27 || Laravel Queue (applied in mail) --------------------
 //===================================================================================================================
+			-- Laravel Queues doc link: https://laravel.com/docs/8.x/queues
+			-- Laravel Task Schedule doc link: https://laravel.com/docs/8.x/scheduling
+			
+			-- amra jokhon amader ei project e Email patai tkn dekte pari j amader ei mail ta jethe ektu time nei, mane browser mail ta patanor somoy beshi somoy dhore reload nei, because amra jokon mail patacchi tkn ta SMTP te request patacche, erpor jokon shee response pacche tkn shee frontend theke mane user er data gula send korteche, that means server to server communication hocche, ei same kaj jodi oneke kore mane website e 1000+ eksathe message/mail patathe pare, taile tkn kinto problem hobe, because eksathe shee 1000+ connection make korbe, So er solution hisebe laravel e ei dhororner kaj gula background e rekhe deya jai, & aste aste ekta ekta kore dispatch hothe thakbe, dispatch howa mane jokon suppose 1000+ request job asbe tkn shee eksathe ei sob korbe na, shee ekta job list make korbe then ekta dhorbe, oita shesh hole arekta dhorbe, eivabe korar fole may be kaj ta korte 5minute time beshi lagbe, but server e kono pressure porbe na, So eta ekta life saving/server saving matter, ei jinister jonno laravel e "laravel Queue schedule" name e documentation e dekte pabo, link: ( https://laravel.com/docs/8.x/queues ).
+			
+			-- ekn amra direct kaj e chole jacchi: 
+					-- 1 -- apply_command: php artisan queue:table
+										-- eta dile queue er jonno amader magration table(jobs name e) make hobe. ei name e: 2022_01_31_073236_create_jobs_table.php
+										-- link: https://laravel.com/docs/8.x/queues#database
+										
+					-- 2 -- command: php artisan migrate
+					
+					-- 3 -- in .env file ---------- QUEUE_CONNECTION=database
+					
+					-- 4 -- apply_command: php artisan make:job ProcessEnquireEmail
+										-- eta dile queue er jonno amader magration table(jobs name e) make hobe.
+										-- link: https://laravel.com/docs/8.x/queues#creating-jobs
+					
+					-- 5 -- in .env file ---------- QUEUE_CONNECTION=database
+					
+					-- 6 -- command: php artisan make:job ProcessEnquireEmail
+					
+					-- 7 -- in controller:-- ProcessEnquireEmail::dispatch($data);
+					
+					-- 8 -- in ProcessEnquireEmail.php:-- Mail::send(new EnquireEmail($this->enquireData)); //++ opore variable(enquireData) niye data rakar kaj ta korte hobe,
+			
+			
+		//--------------------------------------------- 2022_01_31_073236_create_jobs_table.php ---------------------------------------------------------------------
+					-- apply_command: php artisan queue:table
+					-- kono kicho change korte hobe na, default ja chilo tai rekhe migrate kore dibo.
+					-- command: php artisan migrate
+					
+						Schema::create('jobs', function (Blueprint $table) {
+							$table->bigIncrements('id');
+							$table->string('queue')->index();
+							$table->longText('payload');
+							$table->unsignedTinyInteger('attempts');
+							$table->unsignedInteger('reserved_at')->nullable();
+							$table->unsignedInteger('available_at');
+							$table->unsignedInteger('created_at');
+						});
+
+		//---------------------------------------------------------- .env ---------------------------------------------------------------------------------------------------------------
+						// QUEUE_CONNECTION=sync 		//eta default chilo, otar bodole nicher ta dibo
+						QUEUE_CONNECTION=database
+						
+						
+		-- command: php artisan make:job ProcessEnquireEmail
+				-- ei command deyar sathe sathe amder ekta file create hobe "ProcessEnquireEmail.php" name e, jar directory holo: "app/Jobs/ProcessEnquireEmail.php"
+		
+		-- in controller:-- ProcessEnquireEmail::dispatch($data);
+		-- in ProcessEnquireEmail.php:-- Mail::send(new EnquireEmail($this->enquireData)); //++ opore variable(enquireData) niye data rakar kaj ta korte hobe,
+		
+		-- Now ekn amader k dispatch korte hobe job ta controller e, documentation_link: https://laravel.com/docs/8.x/queues#dispatching-jobs
+		-- amra jokon kono ekta mail patabo userEnd theke tkn ta sathe satehi dekahbe mail send, time/reload e beshi somoy nibe na, & ta database e queue e job ta save hobe, but tkn kinto mail ta send hoye jai ni, amader k ei job ta chalalor/howar jonno amader ei queue ta k run korte hobe, amara localhost e eta manually command(php artisan queue:work or php artisan queue:list) diye run kori, && server/live_server e amra eita k corn_job chaliye run kore dei always
+		
+		-- command: php artisan queue:list
+		-- command: php artisan queue:work
+		
+						
+		//--------------------------------------------- app/Http/Controllers/PropertyController.php ---------------------------------------------------------------------
+					public function enquire(Request $request, $propertyID)
+						{
+							$request->validate([
+								'name'  => ['required', 'max:255'],
+								'phone' => ['required', 'max:255'],
+								'email' => ['email', 'required', 'max:255'],
+								'message' => ['required', 'max:255']
+							]);
+
+							// $request->message .= '\nThis message was sent from '. route('property.show',$propertyID) . ' website.';
+
+							PropertyEnquire::create([
+								'name'  => $request->name,
+								'phone'  => $request->phone,
+								'email'  => $request->email,
+								'message'  => $request->message . '\nThis message was sent from '. route('property.show',$propertyID) . ' website.',
+							]);
+
+							// Send User & Admin mail/message
+							$data = [$request->all(), 'propertyURL' => route('property.show', $propertyID)];
+
+							// Send User & Admin mail/message via Queue
+							ProcessEnquireEmail::dispatch($data);								//-------------------------------------------------------------------
+							// Mail::send(new EnquireEmail($data));     // Send User & Admin mail/message via normal way
+
+							return redirect()->back()->with(['message'=>'Message sent successfully']);
+						}
+						
+						
+		//--------------------------------------------- app/Jobs/ProcessEnquireEmail.php ---------------------------------------------------------------------
+						<?php
+
+						namespace App\Jobs;
+
+						use App\Mail\EnquireEmail;
+						use Illuminate\Support\Facades\Mail;
+						use Illuminate\Bus\Queueable;
+						use Illuminate\Contracts\Queue\ShouldBeUnique;
+						use Illuminate\Contracts\Queue\ShouldQueue;
+						use Illuminate\Foundation\Bus\Dispatchable;
+						use Illuminate\Queue\InteractsWithQueue;
+						use Illuminate\Queue\SerializesModels;
+
+						class ProcessEnquireEmail implements ShouldQueue
+						{
+							use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+
+							public $enquireData;									//----------------------------------------
+
+							/**
+							 * Create a new job instance.
+							 *
+							 * @return void
+							 */
+							public function __construct($data)										//----------------------------------------
+							{
+								$this->enquireData = $data;										//----------------------------------------
+							}
+
+							/**
+							 * Execute the job.
+							 *
+							 * @return void
+							 */
+							public function handle()
+							{
+								Mail::send(new EnquireEmail($this->enquireData));										//----------------------------------------
+							}
+						}
+						
+						
+		//-------------------------------------------------------- app/Mail/EnquireEmail.php ---------------------------------------------------------------------------------------
+						<?php
+
+							namespace App\Mail;
+
+							use Illuminate\Bus\Queueable;
+							use Illuminate\Contracts\Queue\ShouldQueue;
+							use Illuminate\Mail\Mailable;
+							use Illuminate\Queue\SerializesModels;
+
+							class EnquireEmail extends Mailable
+							{
+								use Queueable, SerializesModels;
+
+
+								public $enquireData;
+
+								public function __construct($data)
+								{
+									$this->enquireData = $data;
+								}
+
+								/**
+								 * Build the message.
+								 *
+								 * @return $this
+								 */
+								public function build()
+								{
+									return $this->view('emails.enquire-email')->to($this->enquireData[0]['email'])->from('propertylisting@civanolo.com')->subject('Property Enquire')->with('data',$this->enquireData);
+								}
+							}
+
+						
+		//-- evabe amra "queues" diye onek rokomer kaj korte parbo, ekhane just mail ta dekhano hoyeche summary vabe, ProcessEnquireEmail.php file er handle() method er moddhe amra amader jabotiyo proyojonio sob php code likte parbo, for example: ekahane amara jodi chai amader property create er beparta amra ei queues diye korbo, taile amra ei "ProcessEnquireEmail.php" file er handle() method e eshe property_create er code gual likte parbo.
+
+//------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
+
+
+
+
+
+
+
+//============================================================================================================
+												//-------------------- Class #28 || Currency Change --------------------
+//============================================================================================================
+
+		-- amra ekhane currency change dekbo, mane amader ekahne website e 2ta currency system ache ekta Doller arekta Taka, nav bar e ei currency gula sign button akare deya ache, amra ei currency button gula te click kore currency gula change korbo, R egula amra change korbo User er browser er "cookie" te rekhe, mane amara ekahne COOKIE use korbo, Cookie amra amader browser k inspect korle "Application" er moddhe cookie dekte pabo,
+		
+		-- Cookie::queue('currency', $code, 3600);		//--ekhane queue er parameters e 3ta perameter royeche ekahen, 1st er holo amra cookie te amra eta ki 'name' e save korbo, R 2nd parameter holo route theke 'code' ta asbe, R 3rd parameter holo ei cookie ta kotho minute stay korbe(ekhane 3600 minute stay korbe).
+		
+		-- Currency Converter API : $get = Http::get('https://freecurrencyapi.net/api/v2/latest?apikey=76c89170-6178-11ec-98f1-5f7ce0abde0a&base_currency=TRY');
+		
+		
+		//--------------------------------------------- resources/views/components/header.blade.php ----------------------------------------------------------------
+					<a class="inline-block text-xl rounded-full px-3 py-1 text-white" href="{{ route('currency', 'usd') }}" title="Change Currency to Doller">$</a>
+					<a class="inline-block text-xl rounded-full px-3 py-1 text-white" href="{{ route('currency', 'tl') }}" title="Change Currency to Lira">₺</a>
+					<a class="inline-block text-2xl rounded-full px-3 py-1 text-white" href="{{ route('currency', 'bdt') }}" title="Change Currency to Taka">৳</a>
+		
+		//--------------------------------------------- routes/web.php -----------------------------------------------------------------------------------------------------------
+						Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
+								// Currency Change
+								Route::get('/currency-change/{code}', [HomeController::class, 'currencyConverter'])->name('currency');
+						});
+						
+		//--------------------------------------------- app/Http/Controllers/HomeController.php -----------------------------------------------------------------------------
+						use Illuminate\Support\Facades\Cookie;
+						
+						public function currencyConverter($code)
+						{
+							Cookie::queue('currency', $code, 3600);
+							return back();
+							
+							//queue er parameters e 3ta perameter royeche ekahen, 1st er holo amra cookie te amra eta ki 'name' e save korbo, R 2nd parameter holo route theke 'code' ta asbe, R 3rd parameter holo ei cookie ta kotho minute stay korbe(ekhane 3600 minute stay korbe).
+						}
+		
+		//--------------------------------------------- app/Models/Property.php --------------------------------------------------------------------------------------------
+						<?php
+
+							namespace App\Models;
+
+							use Illuminate\Database\Eloquent\Factories\HasFactory;
+							use Illuminate\Database\Eloquent\Model;
+							use Illuminate\Support\Facades\Cookie;									//---------------------------------
+							use Illuminate\Support\Facades\Http;									//---------------------------------
+
+							class Property extends Model
+							{
+								use HasFactory;
+
+								protected $fillable = [
+									'name','name_tr','featured_image','location_id','price','sale','type','bedrooms','drawing_rooms','bathrooms','net_sqm','gross_sqm','pool','overview','overview_tr','why_buy','why_buy_tr','description','description_tr',
+								];
+								// protected $guarded = ['created_at', 'updated_at'];
+								// protected $hidden = ['created_at', 'updated_at'];
+
+
+								//    public function featured() {
+								//        $this->belongsTo(Media::class, 'featured_media_id');
+								//    }
+
+								public function location() {
+									return $this->belongsTo(Location::class, 'location_id');
+								}
+
+								public function gallery() {
+									return $this->hasMany(Media::class, 'property_id');
+								}
+
+								public function dynamic_pricing($lira) {					//----------------------------------------
+									$current_currency = Cookie::get('currency', 'tl');  //ekhane Cookie::get('key':'currency', default:'tl'); mane default lira(tl) raktechi amra currency website e.
+									if($current_currency == 'usd') {
+										$get = Http::get('https://freecurrencyapi.net/api/v2/latest?apikey=76c89170-6178-11ec-98f1-5f7ce0abde0a&base_currency=TRY');
+										if($get->successful()) {
+											$usd = intval($lira * $get->json()['data']['USD']);
+											$usd = number_format($usd, 2);
+											return $usd . ' USD';
+										}
+									}
+									elseif($current_currency == 'bdt'){
+										$get = Http::get('https://freecurrencyapi.net/api/v2/latest?apikey=76c89170-6178-11ec-98f1-5f7ce0abde0a&base_currency=TRY');
+										if($get->successful()) {
+											$bdt = intval($lira * $get->json()['data']['BDT']);
+											$bdt = number_format($bdt, 2);
+											return $bdt . ' BDT';
+										}
+									} else {
+										$lira = number_format($lira, 2);
+										return $lira . ' TL';
+									}
+								}
+
+							}
+
+		//--------------------------------------------- resources/views/components/single-property-card.blade.php -------------------------------------------------------------
+							<h3 class="text-2xl py-3">{{ $property->dynamic_pricing($property->price) }}</h3>
+							
+		//--------------------------------------------- resources/views/property/single.blade.php -----------------------------------------------------------------------------
+						<h3 class="text-lg mt-2">{{ __('Price') }}: <span class="text-red-800">
+									{{-- {{ number_format($property->price, 2, ',', ',') }} TK</span> --}}
+									{{-- {{ number_format($property->price) }} {{ __('Tk') }}</span> --}}
+									{{ $property->dynamic_pricing($property->price) }}
+						</h3>
+
+//------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
+
+
+
+
+
+
+
+
+
+//===============================================================================================================
+												//-------------------- Class #29 || Cloudways deployment --------------------
+//===============================================================================================================
 		//--------------------------------------------- database/migrations/pages_table.php ---------------------------------------------------------------------
-
-
-
-
 
 
 

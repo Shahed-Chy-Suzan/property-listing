@@ -15,7 +15,11 @@
         <div class="container mx-auto">
             <div class="flex justify-between">
                 <div class="w-8/12">
-                    <h2 class="text-3xl text-gray-600">{{$property->name}}</h2>
+                    @if(request()->is('*tr*'))
+                        <h2 class="text-3xl text-gray-600">{{$property->name_tr}}</h2>
+                    @else
+                        <h2 class="text-3xl text-gray-600">{{$property->name}}</h2>
+                    @endif
                     <h3 class="text-lg mt-2">{{ __('Price') }}: <span class="text-red-800">
                         {{-- {{ number_format($property->price, 2, ',', ',') }} TK</span> --}}
                         {{-- {{ number_format($property->price) }} {{ __('Tk') }}</span> --}}
@@ -86,7 +90,11 @@
                 <div class="flex justify-between items-center bg-white p-8 mt-10 shadow-sm">
                     <h4 class="text-lg w-2/12 langBN">{{ __('Overview') }}</h4>
                     <div class="border-l-2 border-gray-300 pl-5 ml-5 w-10/12 text-base">
-                        <p>{{$property->overview}}</p>
+                        @if(request()->is('*tr*'))
+                            <p>{{$property->overview_tr}}</p>
+                        @else
+                            <p>{{$property->overview}}</p>
+                        @endif
                     </div>
                 </div>
 
@@ -167,17 +175,22 @@
                 <div class="flex justify-between items-center bg-white p-8 mt-10 shadow-sm">
                     <h4 class="text-lg w-2/12">{{ __('Why buy this Property') }}</h4>
                     <div class="border-l-2 border-gray-300 pl-5 ml-5 w-10/12 text-base">
-                        {{$property->why_buy}}
+                        @if(request()->is('*tr*'))
+                            <p>{{$property->why_buy_tr}}</p>
+                        @else
+                            <p>{{$property->why_buy}}</p>
+                        @endif
                     </div>
                 </div>
 
                 {{-- Description --}}
                 <div class="bg-white p-8 mt-10 shadow-sm" id="description">
-
                     <h2 class="font-bold mb-5 text-2xl"> FACILITIES &amp; LOCATION</h2>
-
-                    {{$property->description}}
-
+                        @if(request()->is('*tr*'))
+                            <p>{{$property->description_tr}}</p>
+                        @else
+                            <p>{{$property->description}}</p>
+                        @endif
                 </div>
 
             </div>{{-- Left Content End --}}
