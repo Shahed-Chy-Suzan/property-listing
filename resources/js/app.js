@@ -9,7 +9,7 @@ window.$ = window.jQuery = require('jquery'); //jquery added here after appling 
 
 require('./slick-1.8.1.min');       //slick added here
 
-jQuery(window).scroll(function() {                //for navbar
+jQuery(window).scroll(function() {        //for navbar
     const scroll = jQuery(window).scrollTop();
 
     if (scroll >= 50) {

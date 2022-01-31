@@ -129,6 +129,11 @@ h1, h2, h3, h4, h5, h6 {
     @apply btn w-full
 }
 
+.sticky-header {
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+}
+
 .sticky-header-active {
     background-color: #fff;
 }

@@ -65,12 +65,12 @@
 
 
     <div class="container text-center pt-14">
-        <h2 class="section-heading">More information about us</h2>
+        <h2 class="section-heading">{{ __('More information about us') }}</h2>
         <div class="relative mt-10 mb-14 bg-cover rounded-xl py-24 bg-center"
              style="background-image: url(/img/6.jpg)">
             <div class="absolute w-full h-full rounded-xl opacity-50 bg-black left-0 top-0"></div>
             <div class="relative z-20">
-                <a href="" class="text-white text-xl flex flex-col justify-center items-center"><span class="border-2 border-white w-12 h-12 text-center pt-1 pl-1 leading-10 text-2xl hover:border-yellow-500 duration-200 rounded-full mb-2"><i class="fa fa-play"></i></span>Watch the video</a>
+                <a href="" class="text-white text-xl flex flex-col justify-center items-center"><span class="border-2 border-white w-12 h-12 text-center pt-1 pl-1 leading-10 text-2xl hover:border-yellow-500 duration-200 rounded-full mb-2"><i class="fa fa-play"></i></span>{{ __('Watch the video') }}</a>
             </div>
         </div>
 
@@ -114,7 +114,7 @@
 
     <!-- Last Added Objects -->
     <div class="container py-14">
-        <h2 class="section-heading">Last added properties</h2>
+        <h2 class="section-heading">{{ __('Last added properties') }}</h2>
         <div class="flex flex-wrap -mx-2 mt-10">
 
             @foreach($latest_properties as $property)

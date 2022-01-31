@@ -32,26 +32,25 @@ class PropertyController extends Controller
 //------------------------ Save/Store Property ----------------------------------------------------------------
     public function store(Request $request)
     {
+        // Extended validation for image
+        $updated_validation = $this->validateProperty()[] = [
+            'featured_image' => 'required|image',
+            'gallery_images' => 'required',
+        ];
+
+        $request->validate($updated_validation);   // Validation
+
         // try {
-            // Extended validation for image
-            $updated_validation = $this->validateProperty()[] = [
-                'featured_image' => 'required|image',
-                'gallery_images' => 'required',
-            ];
+            $property = new Property();    // Property Instance
 
-            $request->validate($updated_validation);      // Validation
+            $this->saveOrUpdateProperty($property, $request);    // Save all data
 
-            $property = new Property();     // Property Instance
+            Flasher::addSuccess('Property is added');    // Flasher
 
-            $this->saveOrUpdateProperty($property, $request);     // Save all data
-
-            Flasher::addSuccess('Property is added');     // Flasher
-
-            return redirect()->route('properties.index');      // Redirect with success message
+            return redirect()->route('properties.index');     // Redirect with success message
 
         // } catch (\Throwable $th) {
-        //     // Redirect with error message
-        //     return redirect()->route('properties.index')->with(['message' => $th->getMessage()]);
+        //     return redirect()->route('properties.index')->with(['message' => $th->getMessage()]); // Redirect with error message
         // }
     }
 
@@ -183,6 +182,10 @@ class PropertyController extends Controller
                     unlink(public_path('storage/uploads/' . $featured_image_name));
                 }
             }
+            // $file = 'uploads/' . $featured_image_name;
+            // if (Storage::exists($file)) {
+            //     Storage::delete($file);
+            // }
             // Get unique name of the image
             $featured_image_name = time() . mt_rand(100,999) . '-' . $request->featured_image->getClientOriginalName();
             // Store image in Storage

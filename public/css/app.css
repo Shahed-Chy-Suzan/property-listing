@@ -35302,6 +35302,11 @@ h1, h2, h3, h4, h5, h6 {
   color: rgba(255, 255, 255, var(--tw-text-opacity))
 }
 
+.sticky-header {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+}
+
 .sticky-header-active {
   background-color: #fff;
 }
@@ -35478,7 +35483,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 12px;
   margin-bottom: 5px;
   display: block;
-  opacity: .8;
+  /* opacity: .8; */
   font-family: 'Nunito', sans-serif;
 }
 

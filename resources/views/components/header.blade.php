@@ -1,5 +1,5 @@
 
-<div class="fixed top-0 w-full py-4 px-12 flex justify-between items-center z-30 sticky-header {{request()->routeIs('home') ? '' : 'general-header'}}" style="font-family: 'Nunito', sans-serif; font-weight:bold;">
+<div class="fixed top-0 w-full py-4 px-12 flex justify-between items-center z-30 sticky-header {{request()->routeIs('home') ? '' : 'general-header'}}">
     <div class="min-w-max">
         <a href="{{route('home')}}"><img width="100" src="/img/house-logo.png" alt=""></a>
     </div>
