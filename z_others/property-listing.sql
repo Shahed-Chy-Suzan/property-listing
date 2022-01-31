@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 30, 2022 at 04:31 PM
+-- Generation Time: Jan 31, 2022 at 01:05 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -35,6 +35,22 @@ CREATE TABLE `failed_jobs` (
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jobs`
+--
+
+CREATE TABLE `jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `queue` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attempts` tinyint(3) UNSIGNED NOT NULL,
+  `reserved_at` int(10) UNSIGNED DEFAULT NULL,
+  `available_at` int(10) UNSIGNED NOT NULL,
+  `created_at` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -618,7 +634,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2021_12_05_072808_create_properties_table', 1),
 (7, '2021_12_06_090337_create_media_table', 1),
 (8, '2022_01_01_072326_create_pages_table', 1),
-(9, '2022_01_25_062821_create_property_enquires_table', 1);
+(9, '2022_01_25_062821_create_property_enquires_table', 1),
+(10, '2022_01_31_073236_create_jobs_table', 2);
 
 -- --------------------------------------------------------
 
@@ -762,7 +779,7 @@ INSERT INTO `properties` (`id`, `name`, `name_tr`, `featured_image`, `location_i
 (49, 'Et harum cumque vel omnis.', 'Consequatur sit eius eum maiores qui deleniti.', 'https://picsum.photos/1200/800', 9, 384952, 2, 3, 5, 1, 2, 129, 440, 2, 'Quasi est dicta temporibus harum doloribus id. Quia veritatis et vero nobis natus.', 'Laborum non quia possimus aliquam. Provident explicabo nobis voluptates laudantium enim.', 'Accusantium nostrum reiciendis similique et voluptatem. Impedit ut quidem itaque ipsam. Ipsa itaque deleniti corrupti aperiam. Aspernatur nesciunt quia autem dolor. Sit repudiandae itaque repellendus nam incidunt id aperiam. Officiis dicta et deserunt qui sint aut. Aliquid minus voluptas occaecati porro quas quam ut. Voluptatem accusantium in qui fuga. Autem sit porro consequatur illo libero ut non. Nam quis distinctio in facilis mollitia repudiandae. Nostrum aut ratione omnis qui ut. A et libero sint libero maiores placeat. Dolores commodi eligendi voluptas consequuntur dolores. Quis aliquid sit esse eaque quae natus delectus dicta. Voluptas inventore ipsum maiores ad quibusdam et. Ea aperiam illo placeat velit. Nihil ea ut sint explicabo eius maiores tenetur. Esse officiis officia in rerum et dolorem. Quam quos commodi suscipit eveniet quod dolorem.', 'Voluptatibus commodi quisquam voluptas consectetur. Debitis suscipit et laudantium commodi dicta. Modi qui nesciunt enim quod voluptatum. Veniam id debitis officiis doloremque sed esse suscipit. Est aspernatur facere facilis autem odit. Ullam et ullam qui voluptas. Vel ut mollitia soluta. Qui sed placeat enim facilis quo voluptates. Ad consequuntur dolor corrupti placeat aut. Voluptatem alias aut est id ut architecto repellat. Cum eum ut quaerat sed ut qui tenetur. Aut fuga tempore quia labore sit quia aut. Nisi enim tenetur cupiditate aperiam. Amet maxime id facilis delectus ea. Et aliquam deserunt doloremque placeat temporibus id. Animi quod mollitia consequatur ea repudiandae sequi reiciendis. Qui necessitatibus aut quisquam esse. Natus beatae quia doloribus cumque. Delectus voluptatem quia corrupti. Maxime iste similique alias libero rerum reprehenderit sint magni. Cupiditate unde ipsam doloremque et itaque quis at. Totam aliquid fugiat est.', 'Non ut quae eveniet et aut molestias qui nostrum rerum corporis autem laborum ut non deserunt alias ullam dolores voluptatem distinctio occaecati earum est quae provident rerum aut et impedit iusto eligendi id voluptates exercitationem rerum et est quia voluptas sit quo hic id.', 'Dolorum quaerat dignissimos hic voluptas quisquam quidem eveniet dignissimos inventore fugit eum qui ratione beatae explicabo est dignissimos harum ad consequuntur quo minima blanditiis ut expedita ut sed in voluptatem praesentium adipisci rerum rerum consectetur qui non consequuntur veniam asperiores quaerat ex laboriosam corporis voluptas dolorem.', '2022-01-29 09:36:43', '2022-01-29 09:36:43');
 INSERT INTO `properties` (`id`, `name`, `name_tr`, `featured_image`, `location_id`, `price`, `sale`, `type`, `bedrooms`, `drawing_rooms`, `bathrooms`, `net_sqm`, `gross_sqm`, `pool`, `overview`, `overview_tr`, `why_buy`, `why_buy_tr`, `description`, `description_tr`, `created_at`, `updated_at`) VALUES
 (50, 'Quia laborum voluptatibus ipsa a qui doloremque.', 'Veritatis aut iure eligendi fugiat consequatur.', 'https://picsum.photos/1200/800', 9, 227658, 1, 3, 2, 1, 1, 249, 102, 3, 'Provident id optio facilis repellat numquam sapiente. Non quis aliquam adipisci doloremque eius.', 'Maiores ut sunt in repellat. Debitis unde quaerat placeat nobis illo necessitatibus.', 'Asperiores blanditiis voluptate quod unde. Exercitationem nemo itaque quasi aliquam velit magnam. Ullam non possimus sunt omnis non dolorem. Qui incidunt dolorem velit dolores error corrupti numquam. Omnis sit repudiandae voluptas. Occaecati quisquam aut officiis ipsa sit occaecati. Molestias beatae id alias reprehenderit. Aut in quisquam non vero consequuntur. Necessitatibus atque est provident alias. Blanditiis autem neque laboriosam nihil et assumenda. Quia earum eos ipsam ad iusto quos. Culpa autem soluta qui. Reiciendis ipsum voluptas et molestiae enim. Quia necessitatibus aut et est eum rem repellat. Ut doloribus est dolores. Dolorem et blanditiis doloremque qui in adipisci hic. Dolores tempore voluptatem nostrum ipsa labore deleniti. Blanditiis pariatur eaque dolore sunt. Corrupti dicta necessitatibus et laboriosam labore. Hic voluptatem placeat facilis harum. Magni et molestiae rem aspernatur. Explicabo quas eveniet aspernatur iste.', 'Nulla cum ipsa eum qui vero. Rerum voluptas iusto nam. Neque totam ad a vitae. Et laborum illo quia dolor corrupti. Libero velit fugiat nesciunt itaque consequatur autem. Et ratione cumque aut tenetur quam harum sed. Maiores eos ut hic possimus aperiam quo. Omnis perferendis quisquam iusto at excepturi quos reiciendis. Et fugiat odit quisquam ullam veritatis. Labore odit quasi facere mollitia. Deserunt repellat similique sequi dicta sint dicta. Neque consequuntur nobis sed delectus. Ipsam aliquid cum animi hic autem. Possimus omnis numquam quis laboriosam. Voluptatem mollitia dolore velit itaque. Quo distinctio voluptatem qui minus. Dolorem quae totam rerum ex molestiae numquam dolor. Animi qui molestiae quas perferendis ut mollitia maxime. Praesentium sed labore perferendis eveniet facere. Necessitatibus nobis vitae accusantium quia dignissimos dolor. Occaecati laborum magni possimus velit. Et molestiae et iste magni. Placeat et commodi corrupti iusto et est est.', 'Optio aut consectetur et quia exercitationem ex sit modi et officia ut maiores molestias non dignissimos laudantium sunt placeat temporibus rerum maiores non illum sed sed dolores vel omnis qui est fuga autem voluptatum possimus aspernatur aliquid consectetur officiis nostrum occaecati non rerum reprehenderit non voluptate facilis.', 'Eum sunt aut accusantium non vel neque fuga quos beatae voluptate autem similique possimus aliquid cum suscipit asperiores at et quae excepturi veniam consequuntur dolore maiores sit cum dolor repudiandae quos quaerat sit ratione pariatur consequatur natus aut corrupti veritatis velit et rerum dignissimos et quam.', '2022-01-29 09:36:43', '2022-01-29 09:36:43'),
-(51, 'Property Title Turkish for new property 1', 'Property Title Turkish for new property 1', '1643542312866-int (87).jpg', 3, 24000, 2, 1, 0, 4, 4, 234, 334, 1, 'Property OVERVIEW Turkish for new property 1', 'Property OVERVIEW - TR Turkish for new property 1', 'Property WHY BUY Turkish for new property 1', 'Property WHY BUY - TR Turkish for new property 1', 'Property DESCRIPTION Turkish for new property 1', 'Property DESCRIPTION - TR Turkish for new property 1', '2022-01-30 05:31:52', '2022-01-30 09:08:26');
+(51, 'Property Title English for new property 1', 'Property Title Turkish for new property 1', '1643542312866-int (87).jpg', 3, 24000, 2, 1, 6, 4, 4, 234, 334, 1, 'Property OVERVIEW Turkish for new property 1', 'Property OVERVIEW - TR Turkish for new property 1', 'Property WHY BUY Turkish for new property 1', 'Property WHY BUY - TR Turkish for new property 1', 'Property DESCRIPTION Turkish for new property 1', 'Property DESCRIPTION - TR Turkish for new property 1', '2022-01-30 05:31:52', '2022-01-31 00:54:21');
 
 -- --------------------------------------------------------
 
@@ -833,7 +850,9 @@ INSERT INTO `property_enquires` (`id`, `name`, `email`, `phone`, `message`, `cre
 (46, 'Claire Berge', 'jacobi.lillian@langworth.org', '480-631-5364', 'Reprehenderit sint inventore aut dolorem esse ut. Velit quas velit deserunt dicta eum non. Suscipit quibusdam possimus dolor quia odio aperiam error. Saepe ex doloremque et rerum praesentium consequatur. Placeat aut accusantium illo voluptatem sint ab dolor. Tempora enim neque aut.', '2022-01-29 09:37:31', '2022-01-29 09:37:31'),
 (47, 'Frieda O\'Conner', 'nschneider@armstrong.com', '1-360-227-4964', 'Aut aut perspiciatis deleniti est. Similique et rerum voluptas velit placeat eum deserunt. Culpa provident dicta harum. Et dolorem corporis quo error. Repellat occaecati illum deserunt quo.', '2022-01-29 09:37:32', '2022-01-29 09:37:32'),
 (48, 'Easter Hintz', 'rwitting@moen.com', '(830) 943-4437', 'Non aut modi sunt dolor. Perspiciatis similique neque nesciunt cupiditate voluptatem. Illo ipsa consequatur explicabo corrupti. Provident veritatis aliquam harum ut. Eligendi ea qui adipisci dolores optio. Cumque corporis beatae et.', '2022-01-29 09:37:32', '2022-01-29 09:37:32'),
-(50, 'Leda Bogan', 'fmurray@klein.com', '(959) 458-4369', 'Eum ea delectus nulla modi quam possimus. Eum possimus recusandae est sit veritatis fugit. Aperiam qui dicta officiis explicabo est blanditiis. Quasi nobis sed quaerat. In dolor nihil atque ut sunt. Quia eius possimus doloribus officia ab eum.', '2022-01-29 09:37:32', '2022-01-29 09:37:32');
+(50, 'Leda Bogan', 'fmurray@klein.com', '(959) 458-4369', 'Eum ea delectus nulla modi quam possimus. Eum possimus recusandae est sit veritatis fugit. Aperiam qui dicta officiis explicabo est blanditiis. Quasi nobis sed quaerat. In dolor nihil atque ut sunt. Quia eius possimus doloribus officia ab eum.', '2022-01-29 09:37:32', '2022-01-29 09:37:32'),
+(51, 'suzan', 'suzan@gmail.com', '01822222222', 'test message from user\\nThis message was sent from http://127.0.0.1:8000/property/49 website.', '2022-01-31 00:31:03', '2022-01-31 00:31:03'),
+(58, 'Md Arman', 'arman@gmail.com', '01733455325', 'test mail notification\\nThis message was sent from http://127.0.0.1:8000/property/43 website.', '2022-01-31 01:08:07', '2022-01-31 01:08:07');
 
 -- --------------------------------------------------------
 
@@ -869,6 +888,13 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `jobs`
+--
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `jobs_queue_index` (`queue`);
 
 --
 -- Indexes for table `locations`
@@ -939,6 +965,12 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `jobs`
+--
+ALTER TABLE `jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `locations`
 --
 ALTER TABLE `locations`
@@ -954,7 +986,7 @@ ALTER TABLE `media`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `pages`
@@ -978,7 +1010,7 @@ ALTER TABLE `properties`
 -- AUTO_INCREMENT for table `property_enquires`
 --
 ALTER TABLE `property_enquires`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `users`

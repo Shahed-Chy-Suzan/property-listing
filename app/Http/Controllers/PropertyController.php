@@ -7,6 +7,7 @@ use App\Models\Property;
 use App\Models\PropertyEnquire;
 use App\Mail\EnquireEmail;
 use Illuminate\Support\Facades\Mail;
+use App\Jobs\ProcessEnquireEmail;
 use Illuminate\Http\Request;
 
 class PropertyController extends Controller
@@ -88,7 +89,9 @@ class PropertyController extends Controller
         // Send User & Admin mail/message
         $data = [$request->all(), 'propertyURL' => route('property.show', $propertyID)];
 
-        Mail::send(new EnquireEmail($data));
+        // Send User & Admin mail/message via Queue
+        ProcessEnquireEmail::dispatch($data);
+        // Mail::send(new EnquireEmail($data));     // Send User & Admin mail/message via normal way
 
         return redirect()->back()->with(['message'=>'Message sent successfully']);
     }

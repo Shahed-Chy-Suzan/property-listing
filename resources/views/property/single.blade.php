@@ -50,7 +50,7 @@
 
 
     @if (session('message'))
-        <div id="notice" class="text-center bg-green-100 text-green-700 p-3">{{ session('message') }}</div>
+        <div id="notice" class="text-center bg-red-500 text-white p-3">{{ session('message') }}</div>
     @endif
 
 
