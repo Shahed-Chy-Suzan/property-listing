@@ -18,7 +18,8 @@
                     <h2 class="text-3xl text-gray-600">{{$property->name}}</h2>
                     <h3 class="text-lg mt-2">{{ __('Price') }}: <span class="text-red-800">
                         {{-- {{ number_format($property->price, 2, ',', ',') }} TK</span> --}}
-                        {{ number_format($property->price) }} {{ __('Tk') }}</span>
+                        {{-- {{ number_format($property->price) }} {{ __('Tk') }}</span> --}}
+                        {{ $property->dynamic_pricing($property->price) }}
                     </h3>
                 </div>
                 <div class="w-3/12">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Models\Location;
 use App\Models\Page;
+use Illuminate\Support\Facades\Cookie;
 
 class HomeController extends Controller
 {
@@ -34,6 +35,16 @@ class HomeController extends Controller
         } else {
             return abort('404');
         }
+    }
+
+
+//--------------------- Change Currency ---------------------------------------------
+    public function currencyConverter($code)
+    {
+        Cookie::queue('currency', $code, 3600);
+        return back();
+
+        //queue er parameters e 3ta perameter royeche ekahen, 1st er holo amra cookie te amra eta ki 'name' e save korbo, R 2nd parameter holo route theke 'code' ta asbe, R 3rd parameter holo ei cookie ta kotho minute stay korbe(ekhane 3600 minute stay korbe).
     }
 
 }

@@ -35339,6 +35339,10 @@ h1, h2, h3, h4, h5, h6 {
   height: 80px;
 }
 
+.otherpage .currency a{
+  color: #000;
+}
+
 /* property add/edit form from admin/dashboard */
 
 .civanoglu-label{

@@ -25,6 +25,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     Route::post('/property/enquire/{id}', [PropertyController::class, 'enquire'])->name('enquireform');
     // Page
     Route::get('/page/{slug}', [HomeController::class, 'pages'])->name('page');
+    // Currency Change
+    Route::get('/currency-change/{code}', [HomeController::class, 'currencyConverter'])->name('currency');
 });
 
 
