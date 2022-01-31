@@ -148,7 +148,7 @@
                                 <label class="civanoglu-label" for="bedrooms">Bedrooms</label>
                                 <select class="civanoglu-input" name="bedrooms" id="bedrooms">
                                     <option value="">Select bedrooms</option>
-                                    @for($x = 0; $x <= 3; $x++)
+                                    @for($x = 1; $x <= 6; $x++)
                                         <option {{ $property->bedrooms == $x ? 'selected="selected"' : ''}} value="{{$x}}">{{$x}}</option>
                                     @endfor
                                     {{-- <option {{ $property->bedrooms == '1'  ? 'selected="selected"' : ''  }} value="1">1</option>
@@ -168,7 +168,7 @@
                                 <label class="civanoglu-label" for="bathrooms">Bathrooms</label>
                                 <select class="civanoglu-input" name="bathrooms" id="bathrooms">
                                     <option value="">Select bathrooms</option>
-                                    @for($x = 0; $x <= 5; $x++)
+                                    @for($x = 1; $x <= 6; $x++)
                                         <option {{ $property->bathrooms == $x ? 'selected="selected"' : ''}} value="{{$x}}">{{$x}}</option>
                                     @endfor
                                     {{-- <option {{ $property->bathrooms == '1'  ? 'selected="selected"' : ''  }} value="1">1</option>

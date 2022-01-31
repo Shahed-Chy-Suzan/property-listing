@@ -90,7 +90,6 @@ class PropertyController extends Controller
 
         Mail::send(new EnquireEmail($data));
 
-
         return redirect()->back()->with(['message'=>'Message sent successfully']);
     }
 

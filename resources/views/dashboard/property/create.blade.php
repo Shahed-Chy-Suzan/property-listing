@@ -115,7 +115,7 @@
                                 <label class="civanoglu-label" for="drawing_rooms">Drawing rooms</label>
                                 <select class="civanoglu-input" name="drawing_rooms" id="drawing_rooms">
                                     <option value="">Select one</option>
-                                    @for($x = 1; $x <= 4; $x++)
+                                    @for($x = 1; $x <= 6; $x++)
                                         <option {{old('drawing_rooms')==$x ? 'selected="selected"' : '' }} value="{{$x}}">{{$x}}</option>
                                     @endfor
                                 </select>
