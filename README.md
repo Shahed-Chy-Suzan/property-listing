@@ -2,8 +2,9 @@
 
 ## What I have done
     - Completed property search by Rent/Sale, Type, Bedrooms, Price range.
-    - Applied Multiple Language(English, Bangla, Turkish) support through Laravel Localization.
+    - Applied 3 Language(English, Bangla, Turkish) support through Laravel Localization.
     - Applied Laravel Queue for sending/enquiring/contacting User Email.
+    - 3 Types Currency Converter System Added (USD(Dollar), BDT(Taka), TR(Turkish Lira))
     - Hosted it Cloudways Server.
     - Used form as Component
     - Used property item as Component
