@@ -152,7 +152,20 @@
 											{
 												Flasher::addSuccess('Location Added');  // Flasher
 											}
-													
+
+		//---- Slick Slider ---
+					-- link: https://kenwheeler.github.io/slick/
+					-- CSS : <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+					-- JS : <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+					
+
+		//--- 	-- Flasher Notification link: https://php-flasher.github.io/
+					-- using er rules sob ekhane ache: https://php-flasher.github.io/docs/framework/laravel/
+
+		//-- 	feather Icons -- link: https://feathericons.com/  	|| -- link: https://github.com/feathericons/feather#feather
+
+		//-- 	Lity lightbox -- link: https://sorgalla.com/lity/
+
 		//-- $table->unsignedBigInteger('type')->default(1)->comment('0=land, 1=appertment, 2=villa');
 
 		//---  Table - migration file ---
@@ -185,11 +198,6 @@
 
 		//-- <div class="fixed top-0 w-full py-4 px-12 flex justify-between items-center z-30 sticky-header {{request()->routeIs('home') ? '' : 'general-header'}}">
 						-- {{request()->routeIs('home') ? '' : 'general-header'}}
-
-		//---- Slick Slider ---
-					-- link: https://kenwheeler.github.io/slick/
-					-- CSS : <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-					-- JS : <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 		//---  Model - in Property Model ---
 						public function gallery() {
@@ -278,10 +286,6 @@
 						setTimeout(() => {
 							$("#notice").slideUp("slow");
 						 }, 2000);
-
-		//--- 	-- Flasher Notification link: https://php-flasher.github.io/
-					-- using er rules sob ekhane ache: https://php-flasher.github.io/docs/framework/laravel/
-
 
 
 //------------//------------//------------//---------------//---------------//-------------//-----------//------------//--------------//---------
@@ -832,7 +836,7 @@
 				-- CSS : <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 				-- JS : <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 				
-				-- amader ei project e amra cdn use koretehci na, css & js cdn theke direct code gula download kore file akaare niye & oi file ta project e link/require kore use kortechi, tai ekn css er cdn er code gula minify kore amader project er "resources/css/app.css" e rekehchi, & js er cdn theke code niye file akare save kore oi ta "resources/css/js" folder er vitor rakbo, then "resources/css/app" file e require kore nithe hobe,
+				-- amader ei project e amra cdn use koretehci na, css & js cdn theke direct code gula download kore file akaare niye & oi file ta project e link/require kore use kortechi, tai ekn css er cdn er code gula minify kore amader project er "resources/css/app.css" e rekehchi, & js er cdn theke code niye file akare save kore oi file ta "resources/js" folder er vitor rakbo, then "resources/js/app.js" file e require kore nithe hobe,
 									
 		
 					//-------------------------------------------- resources/js/app.js (jquery applied) --------------------------------------------------
@@ -931,12 +935,101 @@
 							@endforeach
 						</div>
 					</div>
+	//--------------------//-----------------//-----------------//----------------------//---------------------//-------------------//-			
 		
 		
+		//--------------------------------------- Left - right arrow sign design by rasel vai -----------------------------------------------------------
+					//------------------------------------- public/img/chevron-left.svg ----------------------------------------
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg> 
+
+					//------------------------------------- public/img/chevron-right.svg ----------------------------------------
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg> 
+
+					//------------------------------------- resources/css/app.css ------------------------------------------------
+										.slick-arrow {
+											position: absolute;
+											left: 20px;
+											top: 50%;
+											background-color: #fff;
+											width: 30px;
+											height: 30px;
+											display: flex;
+											padding: 4px;
+											border-radius: 50%;
+											cursor: pointer;
+											z-index: 9;
+											margin-top: -15px;
+										}
+
+										.slick-arrow.right-icon {
+											left: auto;
+											right: 50px;
+										}
+
+										.single-thumbnail-item {
+											padding-left: 5px;
+											padding-right: 5px;
+											cursor: pointer;
+										}
+
+										.single-thumbnail-item > div {
+											opacity: .5;
+										}
+
+										.single-thumbnail-item.slick-center > div {
+											opacity: 1;
+										}
+					//------------------------------------- resources/js/app.js ----------------------------------------------------
+										jQuery(document).ready(function ($) {
+											$('.gallery-slider').slick({
+												asNavFor: '.thumbnail-slider',
+												//centerMode: true,
+												prevArrow: '<div class="left-icon"><img src="/img/chevron-left.svg"/></div>',
+												nextArrow: '<div class="right-icon"><img src="/img/chevron-right.svg"/></div>',
+												dots: false
+											});
+											$('.thumbnail-slider').slick({
+												slidesToShow: 7,
+												asNavFor: '.gallery-slider',
+												centerMode: true,
+												focusOnSelect: true,
+												prevArrow: '<div class="left-icon"><img src="/img/chevron-left.svg"/></div>',
+												nextArrow: '<div class="right-icon"><img src="/img/chevron-right.svg"/></div>',
+												dots: false,
+												responsive: [
+													// {
+													//     breakpoint: 1024,
+													//     settings: {
+													//         slidesToShow: 3,
+													//         slidesToScroll: 3,
+													//         infinite: true,
+													//         dots: true
+													//     }
+													// },
+													{
+														breakpoint: 600,
+														settings: {
+															slidesToShow: 4
+														}
+													},
+													{
+														breakpoint: 480,
+														settings: {
+															slidesToShow: 3
+														}
+													}
+												]
+											});
+										});
 							
-							
-							
-							
+//-----------------------//-------------------------//--------------------------------//------------------------------//-------------------------//------------------//-------------------------//--		
+			
+
+
+
+
+
+			
 //=================================================================================================
 												//-------------------- Class #7 --------------------
 //=================================================================================================
@@ -7782,22 +7875,172 @@
 
 
 
-
-
-//===============================================================================================================
+//=========================================================================================================================
 												//-------------------- Class #29 || Cloudways deployment --------------------
-//===============================================================================================================
-		//--------------------------------------------- database/migrations/pages_table.php ---------------------------------------------------------------------
+//=========================================================================================================================
+			-- YouTube Rasel_vai: https://www.youtube.com/watch?v=kE7HK8nY1x4&list=PLhPBqF--77ImGEZE6xSS62UVegQOIgP4g&index=30
+			-- YouTube: https://www.youtube.com/watch?v=VpIyUGsvPNU
+			-- Doc blog: https://www.cloudways.com/en/
+			-- Doc blog: https://platform.cloudways.com/server/create
+			-- Doc blog: https://trendslearner.com/how-to-verify-a-new-cloudways-account-simple-verification-process/
+			
+			-- At first "Cloudways" e account kore login korle amra( https://platform.cloudways.com/server ) navbar e kicho option/menu dekte pabo, segula holo: 'Servers', 'Applications' etc, ekn 1st e amader k "Servers" e giye ekta server launch/create korte hobe, then "Applications" e eshe ekta project create kore nibo, erpor amader make kora oi "Applications" e 'project' tai click korbo, onno ekta details page e niye jabe, jekhane amader k Database er DBname, username, password etc show korbo onnanno details info shoho, ekn amra GitHub er sathe eta k connect korbo, tai left-side er menu-bar theke "Deployment Via Git" option e click korbo, tkn oi page e amader k ekta SSH key generate korte bolbe ja oikahne thaka "Generate SSH Key" button e click kore "View SSH Key" button e click korlei show hobe, amra ota(SSH key ta) copy kore nibo. erpor amra GitHub er project-repository(property-listing) te jabo amader, then horizontal nav-bar theke jabo "Settings" then jabo left-bar theke "Deploy Keys" option e, then "Add Deploy Key" button e click kore title(cloudways) + copy kora SSH key ta input box e diye & niche "allow write access" checkbox tai uncheck obostai rekhe save korbo. erpor amra abar amader project-repository(property-listing) e jabo okhane "code" button(jekha tkeke amra repository ta clone korar link copy kori) theke "SSH" option theke link ta copy korbo, then now amra abar amader "Cloudways" er oi "Deployment Via Git" er "View SSH Key" generate korechilam oi page e giye "Git Remote Address" option e amader github-project-repository theke copy kore ana SSH link ta bosiye "authenticate" button e click korbo. then "Start Deployment" button e click korbo. 
+			-- ekn amader k ei server e SSH diye login korte hobe, ei jonno amra ekn amader project directory er pc er command_prompt/terminal e jabo, 
+					-- er aghe amader k ei server er project er Credential mane Username, Password gula lagbe, egula amra left-bar er 1st menu ta "Master Credential" OR  Application_Management er "Access Details" option er "Application Credential" e pabo, okhan credential gula make kora na thakle amra add new kore username+password make kore nibo.
+					-- then laft-bar er nicher dikhe "Application Settings" option e giye "SSH Access" enable kore dibo.
+								-- doc_link: https://support.cloudways.com/en/articles/5121251-how-to-enable-ssh-access-for-application-users
+					-- ekn amader project directory er  pc er command_prompt/terminal e jabo okhane giye comman dibo:
+								-- command: ssh suzan@178.62.95.226		//command tar syntex holo: sss username@public_ip 	//ei creadintial gula "Application Credential" theke paowa creadintial gula
+								-- erpor password chaibe, password dibo	(Suzancse#16)	//password will not become visible due to security reasons.
+											-- doc_link: https://support.cloudways.com/en/articles/5119485-guide-to-connecting-to-your-application-using-ssh-sftp
+								-- ekn command: ls 	//dile amara amader laravel er project file gula dekte pabo, mane amra ekn project directory tei achi, tai amra ekn ekhane laravel install kore pelte parbo.
+								-- ekn laravel install er aghe amader k .env make korte hobe, env amra 2vabe korte pari, SFTP login kore korte pari OR terminal theke pari, 
+											--  pc er command_prompt/terminal e: nano .env
+														-- ei command deyar fole amader terminal e amader .env file ta show hobe okhane amra amader server(cloudways) theke (Applications/Access Details) Database er Name, Username, Password sob niye copy kore .env file e bosai dibo. ekhane jodio amra env te opore project url, project name egulao bosiye diyechi.
+														-- then exit er jonno command dibo: CTRL+x
+														-- then yes er jonno y
+														-- then enter button
+											-- erpor abar terminal/command_prompt/terminal e dibo: composer install
+											-- erpor abar terminal/command_prompt/terminal e dibo: php artisan optimize:clear	//jeto env change korechi, route cache jeno clear hoye jai.
+											-- erpor abar terminal/command_prompt/terminal e dibo: php artisan migrate:fresh --seed
+			-- ekn amra amader oi "Application URL"( http://phplaravel-724963-2416001.cloudwaysapps.com/ ) e gele amader project ta live dekte parbo,
+			
+			-- ekn jodi amra laravel project tai github repository te kono kicho code edit/change kore push kori & ta amader ie live server e dekte hole amader ei cloudways server e pull kore nicthe hobe, er jonno "Applications" er left-bar theke "Deployment Via Git" option e giye "Pull" button click kore pull kore nicthe hobe,
+
+//------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
 
 
 
 
 
-//=================================================================================================
-												//-------------------- Class #7 --------------------
-//=================================================================================================
-		
-		//--------------------------------------------- HomeController ---------------------------------------------------------------------
 
+
+//=====================================================================================================================
+												//-------------------- Class #30 - Cloudways github action automatic --------------------
+//=====================================================================================================================
+
+			-- YouTube Resel_vai: https://www.youtube.com/watch?v=xeHbptzpXSE&list=PLhPBqF--77ImGEZE6xSS62UVegQOIgP4g&index=30
+			-- Website: https://github.com/features/actions
+			
+			-- ekhane amra cloudways er sathe github action kivabe automated korbo ta dekbo, amra jodi ekn github er nav er "marketplace" ( https://github.com/marketplace ) e giye okhane search bar e 'cloudways' likhe search dei taile "Cloudways API Git Pull" ( https://github.com/marketplace/actions/cloudways-api-git-pull ) eita pabo,
+			
+			-- Nicher kaj gula ei ektu aghe paowa "cloudways-api-git-pull" page e ache( link: https://github.com/marketplace/actions/cloudways-api-git-pull ), ekn amra amader project e giye root e ".github" name e ekta folder create korbo github er jonno, then er moddhe "workflows" name e ekta folder create kore er moddhe "cloudways-deploy.yml" name e ekta file create korbo, mane flow/directory ta holo: ( .github/workflows/cloudways-deploy.yml )
+			-- ekn ei "cloudways-deploy.yml" file er vitore amader code likte hobe documentation theke
+			-- ekn amra github e "secrets" add korbo, eita ektu privacy royeche, onnora pele problem, ei 'secrets'  add korte gele amader "github-project-repo-->top-nav theke "settings"-->left-nav theke "secrets/actions secret" e jabo, then "new repository secret" button e click kore "Name" field e "CLOUDWAYS_EMAIL" dibo, & "Value" field e "amar oi cloudways er email ta dibo" then add korbo, evabe baki secrets gulao add kore nithe hobe,
+			-- ekn project er ".github/workflows/cloudways-deploy.yml" e giye nicher code likhe dibo
+						//--------------------------------- .github/workflows/cloudways-deploy.yml ---------------------------------------------
+									name: Cloudways API Git Pull
+
+									on: push
+
+									jobs:
+									  tag:
+										name: New Tag
+
+										runs-on: ubuntu-latest
+
+										steps:
+										  - name: Checkout Code
+											uses: actions/checkout@v2
+
+										  - name: Cloudways API Git Pull
+											uses: roelmagdaleno/cloudways-api-git-pull-action@stable
+											with:
+											  email: ${{ secrets.CLOUDWAYS_EMAIL }}
+											  api-key: ${{ secrets.CLOUDWAYS_API_KEY }}
+											  server-id: ${{ secrets.CLOUDWAYS_SERVER_ID }}
+											  app-id: ${{ secrets.CLOUDWAYS_APP_ID }}
+											  branch-name: ${{ secrets.CLOUDWAYS_BRANCH_NAME }}
+											  deploy-path: ''
+											  
+			-- ekn kicho change kore push korle ta direct automatic push hobe server e.
+
+//------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
+
+
+
+
+
+
+//=======================================================================================================================
+																//-------------------- Class #31 || feather Icons || Lity lightbox --------------------
+//=======================================================================================================================
+
+			//-----------------------------------------------------------------------------------------------------------
+													//-------- feather Icons -------// 
+			//-----------------------------------------------------------------------------------------------------------
+				-- amra Icon er jonno ei "feather icon" use korte pari, eta font-awesome er motho or font-awesome er alternative,
+				-- link: https://feathericons.com/
+				-- link: https://github.com/feathericons/feather#feather
+				-- YouTube Rasel_vai: https://www.youtube.com/watch?v=ubiKiesns4E&list=PLhPBqF--77ImGEZE6xSS62UVegQOIgP4g&index=31
+				
+				//---------- Usages: -------------------------------
+						-- 1 -- npm install feather-icons --save
+						-- 2 -- project/resources/js/app.js
+											require('./bootstrap');
+											import feather from 'feather-icons/dist/feather.min'
+											feather.replace();
+						-- 3 -- in blade file: <i data-feather="circle"></i>
+						-- 4 -- in resources/css/app.css file: 
+											.feather {
+												@apply inline-block
+											}
+						-- 5 -- npm run watch
+
+
+			//-----------------------------------------------------------------------------------------------------------
+													//-------- Lity lightbox -------// 
+			//-----------------------------------------------------------------------------------------------------------
+						-- image/play youtube video te click korle Boro kore pop-up er moto open hoye play/open hobe erkom er kaje amra eta use korte pari.(example hisebe), its a lightbox.
+						-- link: https://sorgalla.com/lity/
+						-- link: https://www.npmjs.com/package/lity
+						
+						//---------- Usages: -------------------------------
+								-- 1 -- lity er file download korte hobe, ekhane oi file er moddhe dist folder er moddhe 3ta file thakbe(lity.css, lity.js, jquery.js)
+								-- 2 -- ekn amader jquery.js aghe theke project e install chilo(resources/js/app.js e), tai eta new vabe link kore nai, baki lity.css+lity.js file 2ta link korate hobe, ekn lity.css file ta ene amader project er "resources/css" folder e rekhe "resources/css/app.css" e link mane import(@import 'lity.min.css';) kore dithe pari, or ei "lity.css" file er code gula direct ei "resources/css/app.css" e paste kore dithe pari taile ar abar extra vabe link/import kora laglo na,........... ekn lity.js file ta ene amader project er "resources/js" folder e rekhe "resources/css/app.js" e link mane require (require('./lity.min');) kore dithe pari,
+								-- 3 -- project/resources/js/app.css -----------
+												-- ekn lity.css file ta ene amader project er "resources/css" folder e rekhe "resources/css/app.css" e link mane import(@import 'lity.min.css';) kore dithe pari, or ei "lity.css" file er code gula direct ei "resources/css/app.css" e paste kore dithe pari taile ar abar extra vabe link/import kora laglo na,
+														-- @import 'lity.min.css';
+								-- 4 -- in resources/css/app.js file --------------
+												-- ekn lity.js file ta ene amader project er "resources/js" folder e rekhe "resources/css/app.js" e link mane require (require('./lity.min');) kore dithe pari,
+								-- 5 -- npm run watch
+								-- 6 -- in blade file: ------------
+													<a href="https://www.youtube.com/watch?v=XSGBVzeBUbk" data-lity>iFrame Youtube</a>
+								-- 6 -- baki useage gula documentation e bola ache.
+								
+//------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
+
+
+
+
+
+
+//=======================================================================================================================
+																//-------------------- Class #32 #33 || Responsive --------------------
+//=======================================================================================================================
+			-- responsive ami apatoto apply kori nai, time er jonno.
+
+
+
+
+
+//------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
+//------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
+//------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
+//------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
+//------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
+//------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
+//------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
+//------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
+//------------------//---------------------//---------------------//------------------------//-------------------------//-------------------------//------------------------//--------------------
+
+
+
+
+
+//=======================================================================================================================
+																//-------------------- The End --------------------
+//=======================================================================================================================
+								
 
 
