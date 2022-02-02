@@ -4,7 +4,8 @@
         <div class="flex -mx-4">
             <div class="flex-1 px-4">
                 <div class="bg-white rounded-xl flex">
-                    <div style="min-width:130px" class="bg-gray-500"></div>
+                    <div style="min-width:130px; background-image: url(/img/6.jpg)" class="bg-cover bg-center"></div>
+                    {{-- <div style="min-width:130px; background-image: url(https://picsum.photos/1200/800)" class="bg-cover bg-center"></div> --}}
                     <div class="p-4">
                         <h3 class="mb-4 text-xl">Lorem ipsum dolor sit amet, consectetur</h3>
                         <a href="" class="fullwidth-btn">Read More</a>
@@ -14,7 +15,7 @@
 
             <div class="flex-1 px-4">
                 <div class="bg-white rounded-xl flex">
-                    <div style="min-width:130px" class="bg-gray-500"></div>
+                    <div style="min-width:130px; background-image: url(/img/3.jpg)" class="bg-cover bg-center"></div>
                     <div class="p-4">
                         <h3 class="mb-4 text-xl">Lorem ipsum dolor sit amet, consectetur</h3>
                         <a href="" class="fullwidth-btn">Read More</a>
@@ -24,7 +25,7 @@
 
             <div class="flex-1 px-4">
                 <div class="bg-white rounded-xl flex">
-                    <div style="min-width:130px" class="bg-gray-500"></div>
+                    <div style="min-width:130px; background-image: url(/img/6.jpg)" class="bg-cover bg-center"></div>
                     <div class="p-4">
                         <h3 class="mb-4 text-xl">Lorem ipsum dolor sit amet, consectetur</h3>
                         <a href="" class="fullwidth-btn">Read More</a>
