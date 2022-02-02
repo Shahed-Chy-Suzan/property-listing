@@ -1,17 +1,22 @@
+<div align="center">
+  
 ## Civanoglu - Property Listing (Laravel Project)
 
+> Technology Used : Laravel-8, Tailwind CSS, JavaScript, jQuery
+</div>
+
 ## What I have done
-    - Completed property search by Rent/Sale, Type, Bedrooms, Price range.
-    - Applied 3 Language(English, Bangla, Turkish) support through Laravel Localization.
-    - Applied Laravel Queue for sending/enquiring/contacting User Email.
-    - 3 Types Currency Converter System Added (USD(Dollar), BDT(Taka), TR(Turkish Lira))
-    - Hosted it Cloudways Server.
-    - Used form as Component
-    - Used property item as Component
-    - Display search result in the property page with query message under the title
-    - Display the count of the total search property
-    - Use TailWind grid box to design the "property card" (each item height is equal)
-    - Use Tailwind @apply css to style the search form
+   - Completed property search by Rent/Sale, Type, Bedrooms, Price range.
+   - Applied 3 Language(English, Bangla, Turkish) support through Laravel Localization.
+   - Applied Laravel Queue for sending/enquiring/contacting User Email.
+   - 3 Types Currency Converter System Added (USD(Dollar), BDT(Taka), TR(Turkish Lira))
+   - Hosted it Cloudways Server.
+   - Used form as Component
+   - Used property item as Component
+   - Display search result in the property page with query message under the title
+   - Display the count of the total search property
+   - Use TailWind grid box to design the "property card" (each item height is equal)
+   - Use Tailwind @apply css to style the search form
 
 ## Demo
 ## Search Result Summary Demo
@@ -50,14 +55,14 @@ Some screenshots can be found <a target="blank" href="https://drive.google.com/d
    - Added Location delete function
 
 ## Part #24,25,26
-    - Back end controllers converted into Resource Route 
-    - (Properties, Locations, Pages, Users and Messages)
-    - User's Messages/Mail/Contact/Enquires listed
-    - Destroy method for Messages/Enquires
-    - Install Php Flasher
-    - Added flash message for all operations (Store, Update, Destroy) of all Admin Controller
-    - Generated "Queue" table and work with jobs
-    - Created jobs for enquire email sending
+   - Back end controllers converted into Resource Route 
+   - (Properties, Locations, Pages, Users and Messages)
+   - User's Messages/Mail/Contact/Enquires listed
+   - Destroy method for Messages/Enquires
+   - Install Php Flasher
+   - Added flash message for all operations (Store, Update, Destroy) of all Admin Controller
+   - Generated "Queue" table and work with jobs
+   - Created jobs for enquire email sending
 
 ## Additional Work
     - Design Dashboard for summery of the site

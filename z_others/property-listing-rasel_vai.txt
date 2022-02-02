@@ -1,7 +1,7 @@
 
 //======================================================================================
 
-					******	Project Name :  property-listing	*******
+					******	Project Name :  property-listing (civanoglu)	*******
 										-- From	 	 : Rasel Vai
 										-- Laravel-8
 						
@@ -10,9 +10,9 @@
 
 
 
-//-----------------------------------------Serial----------------------------------------------------
+//----------------------------------------- Serial(Breadcum) ----------------------------------------------------
 //======================================================================================================================
-		##-->Authentication,//-->
+		## ----> New in this project ----> Using Custom Font (Transfonter) ----> Flasher ----> Start Project ----> Authentication (Laravel Breeze) ----> Custom Font  || Transfonter ----> Class #4 - (jQuery) ----> Class #5 ----> Class #6 (jQuery) ----> Slick Slider ----> Class #7 (eloquent relation) ----> Class #8  ||  Factory ----> Class #9 ----> Class #10 + #11 + #12 (search)  ----> Class #13 + #14 (static page + seeder) ----> Class #15 || Contact form ----> Class #16 || mail send -- Class #27 || Laravel Queue (applied in mail) ----> Class #17 || localization (language) ----> going to Admin-Panel ----> Class #18 + #19 + #20 (admin property crud) ----> Class #21 + #22 + #23 (admin property CRUD) ----> Class after #23 || Home Work || Location CRUD ----> Class #24 + #26 || resource route(Page, User, Location, Message, Property(admin/user), Dashboard) || flasher notification ----> Class #27 || Laravel Queue (applied in mail) ----> Class #28 || Currency Change ----> Class #29 || Cloudways deployment ----> Class #30 - Cloudways github action automatic ----> Class #31 || feather Icons || Lity lightbox ----> Class #32 #33 || Responsive ----> The End
 //======================================================================================================================
 
 
@@ -33,26 +33,31 @@
 
 
 //---------------------------------------------------------------------------------------------------------------------------------------------
-		-- My_GitHub_repo: https://github.com/Shahed-Chy-Suzan/property-listing
+			-- My_GitHub_repo: https://github.com/Shahed-Chy-Suzan/property-listing
+//---------------------------------------------------------------------------------------------------------------------------------------------
+
+//---------------------------------------------------------------------------------------------------------------------------------------------
+			-- Cloudways live link: http://phplaravel-724963-2416001.cloudwaysapps.com/
 //---------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------
-			-- Project run korar jonno url holo('php artisan serve' command diye):  " http://127.0.0.1:8000 "
-			-- Dashboad/Admin panel er dhokar jonno url holo: " http://127.0.0.1:8000/dashboard "
-					-- Url: http://127.0.0.1:8000/dashboard
-					-- email: admin@gmail.com
-					-- password: admin
+			//------------------------ Project Credential ------------------------
+						-- Project run korar jonno url holo('php artisan serve' command diye):  " http://127.0.0.1:8000 "
+						-- Dashboad/Admin panel er dhokar jonno url holo: " http://127.0.0.1:8000/dashboard "
+								-- Url: http://127.0.0.1:8000/dashboard
+								-- email: admin@gmail.com
+								-- password: admin
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
 
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-														//------ New in this project ------//
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//======================================================================================================================
+														//----------- New in this project -----------//
+//======================================================================================================================
 
 		//-- amra jodi buildin css e kono edit/customize korte chai taile amader k "resources/css/app.css" e giye CSS-Code likte hobe, "public/css/app.css" e likle hobe na, because ota build howa css, && "resources/css/app.css" e css-code add/customize korar build korar jonno obossoy abar "npm run watch" or "npm run dev" chalate hobe.
 							//------------------------------------- resources/css/app.css -----------------------------------------------
@@ -66,7 +71,7 @@
 										}
 
 		//------------------------------------------------------------------------------------------------------------------------------------------------
-															//-------------- Using Custom Font -----------------
+															//-------------- Using Custom Font (Transfonter) -----------------
 		//------------------------------------------------------------------------------------------------------------------------------------------------
 		//-- Using custom fonts on a website is one of the easiest ways to drastically change the aesthetics of a website. The only problem is that the boilerplate setup can be tedious when working with multiple fonts. That is where the site Transfonter.org comes in. This site makes converting fonts and setting up the boilerplate CSS incredibly easy. In this video I will be demonstrating how to use Transfonter.org to simplify your custom font process. 
 								-- Link: ( https://transfonter.org/ )
@@ -174,7 +179,7 @@
 										$table->foreign('location_id')->references('id')->on('locations');
 								});
 
-		//--	--1--	
+		//--	--1--  View file e patanor vibonno niyom:--
 					 $latest_properties = Property::all();			//--query
 							return view('welcome',[
 								'latest_properties' => $latest_properties
@@ -288,8 +293,8 @@
 						 }, 2000);
 
 
-//------------//------------//------------//---------------//---------------//-------------//-----------//------------//--------------//---------
-//------------//------------//------------//---------------//---------------//-------------//-----------//------------//--------------//---------
+//----------------------//-------------------------//------------------//------------------//------------------//-----------------//---------------//----------------//-----------------//---------
+//--------------------//--------------------//--------------------//----------------------//-------------------//---------------------//--------------//---------------//---------------//---------
 
 
 
@@ -298,12 +303,12 @@
 
 
 
-//==================================================================================================
-											------------------ Start Project -----------------------
-//==================================================================================================
-		-- 1 --install laravel-8 command : composer create-project laravel/laravel property-listing
-				-- php artisan serve
-				-- php artisan migrate
+//=======================================================================================================================
+											//------------------ Start Project ------------------//
+//=======================================================================================================================
+			-- 1 --install laravel-8 command : composer create-project laravel/laravel property-listing
+					-- php artisan serve
+					-- php artisan migrate
 		
 		
 //--------------------------------------------------- .ENV -------------------------------------------------------------------------------------------
@@ -312,9 +317,9 @@
 
 
 
-//==================================================================================================
-											------------------ Authentication -----------------------
-//==================================================================================================
+//=======================================================================================================================
+											//------------ Authentication (Laravel Breeze) -----------------//
+//=======================================================================================================================
 //------------------------------------------------- Authentication ----------------------------------------------------------------------------------
 		-- ekhane amra authentication er jonno Laravel-breeze use korbo, Link: ( https://laravel.com/docs/8.x/starter-kits ) ,
 	
@@ -372,7 +377,7 @@
 								
 								
 //==================================================================================================
-											------------------ Custom Font  || Transfonter -----------------------
+											//----------- Custom Font  || Transfonter ---------------//
 //==================================================================================================
 		//----------------------------------------------- Custom Font || Transfonter -------------------------------------------------------------
 				-- Using custom fonts on a website is one of the easiest ways to drastically change the aesthetics of a website. The only problem is that the boilerplate setup can be tedious when working with multiple fonts. That is where the site Transfonter.org comes in. This site makes converting fonts and setting up the boilerplate CSS incredibly easy. In this video I will be demonstrating how to use Transfonter.org to simplify your custom font process. 
@@ -462,7 +467,7 @@
 
 
 //=================================================================================================
-												//-------------------- Class #4 --------------------
+												//-------------------- Class #4 - (jQuery) --------------------
 //=================================================================================================
 
 
@@ -793,9 +798,9 @@
 							
 							
 							
-//=================================================================================================
-												//-------------------- Class #6 --------------------
-//=================================================================================================
+//=================================================================================================================
+																//------------- Class #6 (jQuery) -------------//
+//=================================================================================================================
 
 		//--------------------------------------------- header.blade.php ---------------------------------------------------------------------
 				//-- <div class="fixed top-0 w-full py-4 px-12 flex justify-between items-center z-30 sticky-header {{request()->routeIs('home') ? '' : 'general-header'}}">
@@ -1030,9 +1035,9 @@
 
 
 			
-//=================================================================================================
-												//-------------------- Class #7 --------------------
-//=================================================================================================
+//==================================================================================================================
+												//---------- Class #7 (eloquent relation) -------------//
+//==================================================================================================================
 		-- command: php artisan make:model Media -mc
 		-- command: php artisan make:model Location -mc
 		
@@ -1110,55 +1115,31 @@
 
 
 
-//=================================================================================================
-												//-------------------- Class #8  ||  Factory --------------------
-//=================================================================================================
-		-- eikhane amra laravel factory R seeder er maddhome database e dummy data insert korbo.
-		
-		-- amader ekhane "PropertyFactory" te 'location_id' lagbe abar "MediaFactory" te 'property_id' lagbe, So ejnno migration/Factory/seeder e jeno jamela na hoy sejonno amara database-migration file gula rename kore sorting kore nibo jathe  opore "LocationFactory" then "PropertyFactory" then "MediaFactory" thake.
-		
-		//-- Command:  php artisan make:factory MediaFactory
-		//-- Command:  php artisan make:factory LocationFactory
-		//-- Command:  php artisan make:factory PropertyFactory
-		
-		//-- Ei link theke amra amader seeder er jonno random image nibo, mane oder url ta use korbo, Link: https://picsum.photos/
-		
-		//-- Sob factory file + DatabaseSeeder file e code likha shesh hole sobar shesh amader k database e data insert/dhokanor jonno ei command chalate hobe, taile oporer file e code e likha 3ta table eei eksathe random/dummy data create/insert hoye jabe,, 
-						-- Now run command: php artisan migrate:fresh --seed
-		
-		
-		//----------------------------------------------------- database/factories/LocationFactory.php ----------------------------------------------------
-							<?php
-
-							namespace Database\Factories;
-
-							use Illuminate\Database\Eloquent\Factories\Factory;
-
-							class LocationFactory extends Factory
-							{
-								/**
-								 * Define the model's default state.
-								 *
-								 * @return array
-								 */
-								public function definition()
-								{
-									return [									//----------------------------------------
-										'name' => $this->faker->word
-									];
-								}
-							}
-
-
-		//----------------------------------------------------- database/factories/PropertyFactory.php ----------------------------------------------------
+//=================================================================================================================
+												//---------------- Class #8  ||  Factory -----------------//
+//=================================================================================================================
+				-- amader ekhane "PropertyFactory" te 'location_id' lagbe abar "MediaFactory" te 'property_id' lagbe, So ejnno migration/Factory/seeder e jeno jamela na hoy sejonno amara database-migration file gula rename kore sorting kore nibo jathe  opore "LocationFactory" then "PropertyFactory" then "MediaFactory" thake.
+				
+				//-- Command:  php artisan make:factory MediaFactory
+				//-- Command:  php artisan make:factory LocationFactory
+				//-- Command:  php artisan make:factory PropertyFactory
+				//-- Command:  php artisan make:factory PropertyEnquireFactory
+				//-- Command:  php artisan make:factory UserFactory
+				
+				//-- Ei link theke amra amader seeder er jonno random image nibo, mane oder url ta use korbo, Link: https://picsum.photos/
+				
+				//-- Sob factory file + DatabaseSeeder file e code likha shesh hole sobar shesh amader k database e data insert/dhokanor jonno ei command chalate hobe, taile oporer file e code e likha 3ta table eei eksathe random/dummy data create/insert hoye jabe,, 
+								-- Now run command: php artisan migrate:fresh --seed
+				
+				
+				//----------------------------------------------------- database/factories/LocationFactory.php ----------------------------------------------------
 									<?php
 
 									namespace Database\Factories;
 
 									use Illuminate\Database\Eloquent\Factories\Factory;
-									use App\Models\Location;											//---------------------------------
 
-									class PropertyFactory extends Factory
+									class LocationFactory extends Factory
 									{
 										/**
 										 * Define the model's default state.
@@ -1167,96 +1148,185 @@
 										 */
 										public function definition()
 										{
-											return [																		//---------------------------------
-												'name' => $this->faker->sentence,
-												'featured_image' => 'https://picsum.photos/1200/800',
-												'location_id' => Location::all()->random()->id,
-												'price' => rand(100000,500000),
-												'sale' => rand(0,1),
-												'type' => rand(0,2),
-												'bedrooms' => rand(1,6),
-												'bathrooms' => rand(1,5),
-												'net_sqm' => rand(55,300),
-												'gross_sqm' => rand(65,450),
-												'pool' => rand(0,3),
-												'overview' => $this->faker->text(100),
-												'why_buy' => $this->faker->text(1000),
-												'description' => $this->faker->text(500)
+											return [									//----------------------------------------
+												'name' => $this->faker->word
 											];
 										}
 									}
 
 
+				//----------------------------------------------------- database/factories/PropertyFactory.php ----------------------------------------------------
+											<?php
 
-		//----------------------------------------------------- database/factories/MediaFactory.php ----------------------------------------------------
-								<?php
+											namespace Database\Factories;
 
-								namespace Database\Factories;
+											use Illuminate\Database\Eloquent\Factories\Factory;
+											use App\Models\Location;											//---------------------------------
 
-								use Illuminate\Database\Eloquent\Factories\Factory;
-								use App\Models\Property;											//---------------------------------
-
-								class MediaFactory extends Factory
-								{
-									/**
-									 * Define the model's default state.
-									 *
-									 * @return array
-									 */
-									public function definition()
-									{
-										return [															//---------------------------------
-											'name' => 'https://picsum.photos/1200/800',
-											'property_id' => Property::all()->random()->id
-										];
-									}
-								}
-								
-								//---------------------- optional added -----------------------------------
-											public function definition()
+											class PropertyFactory extends Factory
 											{
-												$image = ['https://picsum.photos/1200/800','https://source.unsplash.com/random/1200x800'];
-
-												return [
-													'name'  => $image[rand(0,1)],
-													'property_id'   => Property::all()->random()->id
-												];
+												/**
+												 * Define the model's default state.
+												 *
+												 * @return array
+												 */
+												public function definition()
+												{
+													return [																		//---------------------------------
+														'name' => $this->faker->sentence,
+														'featured_image' => 'https://picsum.photos/1200/800',
+														'location_id' => Location::all()->random()->id,
+														'price' => rand(100000,500000),
+														'sale' => rand(0,1),
+														'type' => rand(0,2),
+														'bedrooms' => rand(1,6),
+														'bathrooms' => rand(1,5),
+														'net_sqm' => rand(55,300),
+														'gross_sqm' => rand(65,450),
+														'pool' => rand(0,3),
+														'overview' => $this->faker->text(100),
+														'why_buy' => $this->faker->text(1000),
+														'description' => $this->faker->text(500)
+													];
+												}
 											}
 
+				//----------------------------------------------------- database/factories/MediaFactory.php ----------------------------------------------------
+										<?php
 
-		//----------------------------------------------------- database/seeders/DatabaseSeeder.php ----------------------------------------------------
-								<?php
+										namespace Database\Factories;
 
-								namespace Database\Seeders;
+										use Illuminate\Database\Eloquent\Factories\Factory;
+										use App\Models\Property;											//---------------------------------
 
-								use Illuminate\Database\Seeder;
+										class MediaFactory extends Factory
+										{
+											/**
+											 * Define the model's default state.
+											 *
+											 * @return array
+											 */
+											public function definition()
+											{
+												return [															//---------------------------------
+													'name' => 'https://picsum.photos/1200/800',
+													'property_id' => Property::all()->random()->id
+												];
+											}
+										}
+										
+										//---------------------- optional added -----------------------------------
+													public function definition()
+													{
+														$image = ['https://picsum.photos/1200/800','https://source.unsplash.com/random/1200x800'];
 
-								class DatabaseSeeder extends Seeder
-								{
-									/**
-									 * Seed the application's database.
-									 *
-									 * @return void
-									 */
-									public function run()
-									{
-										// \App\Models\User::factory(10)->create();
-										\App\Models\Location::factory(10)->create();
-										\App\Models\Property::factory(50)->create();
-										\App\Models\Media::factory(500)->create();
-									}
-								}
+														return [
+															'name'  => $image[rand(0,1)],
+															'property_id'   => Property::all()->random()->id
+														];
+													}
+
+				//----------------------------------------------------- database/factories/PropertyEnquireFactory.php ----------------------------------------------------
+										public function definition()
+										{
+											return [
+												'name'  => $this->faker->name(),
+												'email'  => $this->faker->email(),
+												'phone'  => $this->faker->phoneNumber(),
+												'message'  => $this->faker->paragraph($nbSentences = 5, $variableNbSentences = true),
+											];
+										}
+			
+				//----------------------------------------------------- database/factories/UserFactory.php ------------------------------------------------------------------
+										public function definition()
+										{
+											return [
+												'name' => $this->faker->name(),
+												'email' => $this->faker->unique()->safeEmail(),
+												'email_verified_at' => now(),
+												'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+												'remember_token' => Str::random(10),
+											];
+										}
+										
+				//----------------------------------------------------- database/seeders/DatabaseSeeder.php ------------------------------------------------------------
+										<?php
+
+										namespace Database\Seeders;
+
+										use Illuminate\Database\Seeder;
+										use App\Models\Page;
+										use App\Models\User;
+										use App\Models\PropertyEnquire;
+										use Illuminate\Support\Facades\Hash;
+										use Illuminate\Support\Str;
+
+										class DatabaseSeeder extends Seeder
+										{
+											/**
+											 * Seed the application's database.
+											 *
+											 * @return void
+											 */
+											public function run()
+											{
+												// \App\Models\User::factory(10)->create();
+												\App\Models\Location::factory(10)->create();
+												\App\Models\Property::factory(50)->create();
+												\App\Models\Media::factory(500)->create();
+												\App\Models\PropertyEnquire::factory(50)->create();
+
+												//-------- for static page ---------------
+													$user = new User();
+													$user->name = 'Admin';
+													$user->email = 'admin@gmail.com';
+													$user->email_verified_at = now();
+													$user->password = Hash::make('admin');
+													$user->remember_token = Str::random(10);
+													$user->save();
+
+													$page = new Page();
+													$page->name = 'Contact Us';
+													$page->slug = 'contact-us';
+													$page->content = 'Lorem ipsum dolor, sit amet llam quae rem cumque aliquam';
+													$page->save();
+
+													$page = new Page();
+													$page->name = 'About Us';
+													$page->slug = 'about-us';
+													$page->content = 'Lorem ipsum dolor, sit amet rem cumque aliquam dolorem veritatis';
+													$page->save();
+												//------------ or ------------------
+													// User::create([
+													//     'name'  => 'Shadhin Ahmed',
+													//     'email' => 'shadhinplanet@gmail.com',
+													//     'password'=> Hash::make('123'),
+													// ]);
+
+													// Page::create([
+													//     'name'  => 'Contact Us',
+													//     'slug'  => 'contact-us',
+													//     'content'=> 'Lorem ipsum dolor, sit amet llam quae incidunt quos dolor, totam rem cumque aliquam,'
+													// ]);
+													// Page::create([
+													//     'name'  => 'About Us',
+													//     'slug'  => 'about-us',
+													//     'content'=> 'Lorem ipsum dolor, sit possimus assumenda dolorem veritatis aperiam! Necessitatibus.'
+													// ]);
+											}
+										}
 
 
-		//-- Now run command: php artisan migrate:fresh --seed
-					-- taile oporer file e code e likha 3ta table eei eksathe random/dummy data create/insert hoye jabe,, 
+				//-- Now run command: php artisan migrate:fresh --seed
+							-- taile oporer file e code e likha 3ta/sobgula table eei eksathe random/dummy data create/insert hoye jabe,, 
 
 
 
 
-//=================================================================================================
-												//-------------------- Class #9 --------------------
-//=================================================================================================
+
+//=========================================================================================================================
+														//-------------------- Class #9 --------------------//
+//=========================================================================================================================
 		
 		//-- eikhan amra single property page ta thik korbo, slick slider e image gula database theke data(image) ene fix korbo.
 		
@@ -1516,11 +1586,11 @@
 
 
 
-//=================================================================================================
-												//-------------------- Class #10 + #11 + #12 --------------------
-//=================================================================================================
+//====================================================================================================================
+												//--------------- Class #10 + #11 + #12 (search) ----------------//
+//====================================================================================================================
 		
-		//--------------------------------------------- routes/web.php ---------------------------------------------------------------------
+		//--------------------------------------------- routes/web.php -------------------------------------------------------------------------------------
 					Route::get('/properties/', [PropertyController::class, 'index'])->name('properties');
 					
 					
@@ -1948,9 +2018,9 @@
 
 
 
-//=================================================================================================
-												//-------------------- Class #13 + #14 --------------------
-//=================================================================================================
+//======================================================================================================================
+												//----------------- Class #13 + #14 (static page + seeder) -----------------//
+//======================================================================================================================
 		-- for static page ->> create Page Model,Controller, & Migration file.
 		-- command: php artisan make:model Page -mc
 		
@@ -2248,9 +2318,9 @@
 
 
 
-//=================================================================================================
+//========================================================================================================================
 												//-------------------- Class #15 || Contact form --------------------
-//=================================================================================================
+//========================================================================================================================
 		--  php artisan make:model PropertyEnquire -mc
 		-- php artisan migrate
 		
@@ -2557,7 +2627,9 @@
 							'message',
 						];
 		
-		//-----------------//-----------------//---------------------//--------------------//------------------//-----------------//----------------------//----------------//-------------------//----------------------//----------------------//--------------------//----------------------------//----------------------//---
+//-----------------//-----------------//---------------------//--------------------//------------------//-----------------//----------------------//----------------//-------------------//----------------------//----------------------//--------------------//----------------------------//----------------------//---
+		
+		
 		
 		
 		
@@ -2884,9 +2956,9 @@
 
 
 
-//==============================================================================================================
-												//-------------------- Class #17 || localization --------------------
-//==============================================================================================================
+//===================================================================================================================
+												//---------------- Class #17 || localization (language) ----------------//
+//===================================================================================================================
 		-- laravel localization e amra amader language-switching er bepar ta korbo flag e click kore, laravel e default vabe localization( https://laravel.com/docs/8.x/localization ) deya thake, but amara ekhane localization er ekta package use korbo because ei package e kicho extra feature deya ache ja amader ei project requirement e lagbe tai,
 				-- laravel localization package link: https://github.com/mcamara/laravel-localization
 				
@@ -2895,7 +2967,7 @@
 				
 				
 		//--------------------------------------------- config/laravellocalization.php ---------------------------------------------------------------------
-				-- ei file e giye dekbo j default vabe ekhan english & spanish er option er code ache baki gula comment obostai ache, amra ekn ekhane giye spanish ta comment kore dibo && english er sathe bangla tar comment remove kore dibo.
+				-- ei file e giye dekbo j default vabe ekhan english & spanish er option er code ache baki gula comment obostai ache, amra ekn ekhane giye spanish ta comment kore dibo && English er sathe Bangla, Turkish tar comment remove kore dibo mane amra je je language er convertion rakte chai shei shei language gula rekhe bakigula comment kore dibo.
 				
 		//----------------------------------------------- app/Http/Kernel.php ----------------------------------------------------------------------------------
 				    protected $routeMiddleware = [
@@ -2943,7 +3015,7 @@
 						
 		//--- ekn amra jodi project manually ( http://127.0.0.1:8000/bn ) mane sheshe amader language 'bn' likhe project run kori taile dekbo j project run hocche & ta bangla language e run hocche, amra view-page-source e click korle dekbo j html er language er code e 'bn' likha royeche, evabe amara eta pore flag gulate linking korbo.
 		
-		//-- ekn amra laravel er documentation er localization part e jabo. link: https://laravel.com/docs/8.x/localization  //--okhane rules bola ache kicho, ota follo kore amra ekn amader project er  "resources/lang/bn/header.php" or ""resources/lang/bn.json" name e ekta file nibo.
+		//-- ekn amra laravel er documentation er localization part e jabo. link: https://laravel.com/docs/8.x/localization  //--okhane rules bola ache kicho, ota follow kore amra ekn amader project er  "resources/lang/bn/header.php" or ""resources/lang/bn.json" name e ekta file nibo.
 						/resources
 								/lang
 										/en
@@ -2954,8 +3026,8 @@
 				//------------------- or -----------------------
 						/resources
 							/lang
-								en.json
 								bn.json
+								tr.json
 
 
 		//---------------------------------------------------------------- resources/lang/bn.json -----------------------------------------------------------------------
@@ -3002,9 +3074,59 @@
 						"More details":"বিস্তারিত"
 					}
 							
+		//--------------------------------------------- resources/lang/tr.json ----------------------------------------------------------------------------------------------------
+						{
+							"TL":"TL",
+							"Tl":"TL",
+							"tl":"TL",
+							"land":"Kara",
+							"Land":"Kara",
+							"Villa":"Villa",
+							"villa":"Villa",
+							"apartment":"apartman",
+							"Apartment":"apartman",
+							"About Us":"Hakkımızda",
+							"Contact Us":"Bizimle iletişime geçin",
+							"Guide Property - your guide to the primary real estate market in dubai.":"Rehber Mülk - dubai'deki birincil emlak piyasasına rehberiniz.",
+							"The most convenient real estate search portal in Dubai, start searching now!":"Dubai'deki en uygun emlak arama portalı, şimdi aramaya başlayın!",
+							"Properties":"Özellikler",
+							"More Filter":"Daha Fazla Filtre",
+							"Location":"Konum",
+							"Rent":"Kira",
+							"Sale":"Satış",
+							"Type":"Tip",
+							"Bedrooms":"yatak odaları",
+							"Bedroom":"yatak odaları",
+							"Price":"Fiyat",
+							"Search here":"Burada ara",
+							"Search":"Aramak",
+							"bed":"yatak",
+							"Bathrooms":"banyolar",
+							"bath":"banyolar",
+							"ft":"ft",
+							"No Property Found":"Mülk Bulunamadı",
+							"Overview":"genel bakış",
+							"Property Features":"mülk özellikleri",
+							"Why buy this Property":"Neden bu Mülkü satın almalısınız?",
+							"Living space sqm":"Yaşam alanı m2",
+							"Pool":"Havuz",
+							"Private":"Özel",
+							"Public":"Halk",
+							"Both":"Her ikisi de",
+							"Article & Advices":"Makale ve Tavsiyeler",
+							"Additional services":"Ek hizmetler",
+							"Enquire about this property":"Bu mülk hakkında bilgi alın",
+							"Request Details":"İstek detayları",
+							"More details":"Daha fazla detay"
+						}
+
+
 		//--------------------------------------------- resources/views/components/footer.blade.php ---------------------------------------------------------------------
 					<h2 class="section-title langBN">{{ __('Article & Advices') }}</h2>
 					<h2 class="section-title langBN">{{ __('Additional services') }}</h2>
+					
+					<div style="min-width:130px; background-image: url(/img/6.jpg)" class="bg-cover bg-center"></div>
+                    {{-- <div style="min-width:130px; background-image: url(https://picsum.photos/1200/800)" class="bg-cover bg-center"></div> --}}
 					
 					
 		//--------------------------------------------- resources/views/components/header.blade.php ---------------------------------------------------------------------
@@ -3033,6 +3155,7 @@
 				<div class="min-w-max text-3xl">
 					<a href="{{ LaravelLocalization::getLocalizedURL('en') }}" title="English">🏁</a>
 					<a href="{{ LaravelLocalization::getLocalizedURL('bn') }}" title="Bangla">🚩</a>
+					<a href="{{ LaravelLocalization::getLocalizedURL('tr') }}" title="Turkish"><🏳️</a>
 					{{-- &#127482;&#127480; --}}
 				</div>
 		
@@ -3159,7 +3282,7 @@
 
 
 //==============================================================================================================
-												//-------------------- Class #18 + #19 + #20 --------------------//
+												//-------------------- Class #18 + #19 + #20 (admin property crud) --------------------//
 //==============================================================================================================
 		//--------------------------------------------- resources/css/app.css ---------------------------------------------------------------------		
 					@import 'tailwindcss/base';
@@ -4326,7 +4449,7 @@
 
 
 //===================================================================================================================
-												//-------------------- Class #21 + #22 + #23 || property CRUD --------------------
+												//-------------------- Class #21 + #22 + #23 (admin property CRUD) --------------------
 //===================================================================================================================
 					
 		//--------------------------------------------- database/migrations/2021_12_05_092834_create_properties_table.php ------------------------------------------------
@@ -4989,6 +5112,8 @@
 
 
 
+
+
 //=================================================================================================================
 												//------------- Class after #23 || Home Work || Location CRUD --------------------
 //=================================================================================================================
@@ -5244,9 +5369,11 @@
 
 
 
-//=============================================================================================================
-							//--------- Class #24 + #26 || resource route(Page, User, Location, Message) || flasher notification ---------
-//=============================================================================================================
+
+
+//==========================================================================================================================
+							//--------- resource route(Page, User, Location, Message, Property(admin/user), Dashboard) || flasher notification ---------//
+//===========================================================================================================================
 			-- Ei part e amra route/controller gula Admin/User onosare alada alada vag kore pelechi, for example amra admin controller gula new kore ekta admin folder niye er vitor admin er sob controller gula rekehchi, route e o same vabe admin/user route gula alada korechi + resource route use korechi,
 			
 			-- Flasher Notification link: https://php-flasher.github.io/
@@ -5284,7 +5411,57 @@
 					}
 					
 		//------------------------------------------------- resources/js/app.js ----------------------------------------------------------------------------------------------------
-						// Open Reply Box
+					require('./bootstrap');
+					import Alpine from 'alpinejs';
+					// import jQuery from './jquery-3.6.0.slim.min';  //deleted later, and installed with NPM
+					window.Alpine = Alpine;
+					Alpine.start();
+
+					window.$ = window.jQuery = require('jquery'); //jquery added here after appling npm install --save jquery
+
+					require('./slick-1.8.1.min');       //slick added here
+
+					jQuery(window).scroll(function() {        //for navbar
+						const scroll = jQuery(window).scrollTop();
+
+						if (scroll >= 50) {
+							jQuery('.sticky-header').addClass('sticky-header-active');
+						} else {
+							jQuery('.sticky-header').removeClass('sticky-header-active');
+						}
+					});
+
+					jQuery(document).ready(function ($) {   //for slick slider
+						$('.gallery-slider').slick({
+								asNavFor: '.thumbnail-slider',
+								slidesToShow: 1,
+								slidesToScroll: 1,
+								dots: false,
+								arrows: true,
+								prevArrow: '<svg class="prevArrowBtn" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M20 40C8.9543 40 -2.7141e-06 31.0457 -1.74846e-06 20C-7.8281e-07 8.9543 8.95431 -2.7141e-06 20 -1.74846e-06C31.0457 -7.8281e-07 40 8.9543 40 20C40 31.0457 31.0457 40 20 40ZM16.1206 13.5198C15.7554 13.1055 15.1632 13.1055 14.798 13.5198L9.58704 19.4308C9.22182 19.8451 9.22182 20.5168 9.58704 20.931L14.798 26.8421C15.1632 27.2563 15.7554 27.2563 16.1206 26.8421C16.4858 26.4278 16.4858 25.7561 16.1206 25.3418L12.4912 21.2248L29.6865 21.2248C30.2388 21.2248 30.6865 20.7771 30.6865 20.2248C30.6865 19.6725 30.2388 19.2248 29.6865 19.2248L12.4138 19.2248L16.1206 15.02C16.4858 14.6057 16.4858 13.934 16.1206 13.5198Z" fill="#ffffff"/></svg>',
+								nextArrow: '<svg class="nextArrowBtn" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M20 3.49691e-06C31.0457 5.4282e-06 40 8.95431 40 20C40 31.0457 31.0457 40 20 40C8.9543 40 1.56562e-06 31.0457 3.49691e-06 20C5.4282e-06 8.95431 8.95431 1.56562e-06 20 3.49691e-06ZM23.8794 26.4802C24.2446 26.8945 24.8368 26.8945 25.202 26.4802L30.413 20.5692C30.7782 20.1549 30.7782 19.4833 30.413 19.069L25.202 13.1579C24.8368 12.7437 24.2446 12.7437 23.8794 13.1579C23.5142 13.5722 23.5142 14.2439 23.8794 14.6582L27.5088 18.7752L10.3135 18.7752C9.7612 18.7752 9.31348 19.2229 9.31348 19.7752C9.31348 20.3275 9.76119 20.7752 10.3135 20.7752L27.5862 20.7752L23.8794 24.98C23.5142 25.3943 23.5142 26.066 23.8794 26.4802Z" fill="#ffffff"/></svg>', //fill="#7C8B9C"
+						});
+						$('.thumbnail-slider').slick({
+								asNavFor: '.gallery-slider',
+								slidesToShow: 5,
+								slidesToScroll: 1,
+								dots: false,
+								arrows: true,
+								centerMode: true,
+								focusOnSelect: true,
+								centerPadding: '30px',
+								prevArrow: '<i class="fa fa-angle-left slick-prev prevArrowBtn"></i>',
+								nextArrow: '<i class="fa fa-angle-right slick-next nextArrowBtn"></i>'
+						});
+
+
+						// Notice Panel
+						setTimeout(() => {
+							$("#notice").slideUp("slow");
+						 }, 2000);
+
+
+						// Open Reply Box														//----------------------------------------------
 						$('#reply-box-open').on('click', function(){
 							$(this).fadeOut();
 							$("#reply-delete-btn").fadeOut();
@@ -5295,6 +5472,11 @@
 							$('#reply-box-open').fadeIn();
 							$("#reply-box").slideUp('slow');
 						});
+
+					});
+
+
+
 
 		//--------------------------------------------- resources/views/layouts/app.blade.php ---------------------------------------------------------------------
 						<body>
@@ -7916,7 +8098,7 @@
 
 
 //=====================================================================================================================
-												//-------------------- Class #30 - Cloudways github action automatic --------------------
+												//------------- Class #30 - Cloudways github action automatic --------------//
 //=====================================================================================================================
 
 			-- YouTube Resel_vai: https://www.youtube.com/watch?v=xeHbptzpXSE&list=PLhPBqF--77ImGEZE6xSS62UVegQOIgP4g&index=30
@@ -7963,7 +8145,7 @@
 
 
 //=======================================================================================================================
-																//-------------------- Class #31 || feather Icons || Lity lightbox --------------------
+													//----------- Class #31 || feather Icons || Lity lightbox --------------//
 //=======================================================================================================================
 
 			//-----------------------------------------------------------------------------------------------------------
