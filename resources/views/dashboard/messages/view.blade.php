@@ -34,7 +34,7 @@
                     </div>
 
                     <div class="flex">
-                        <button id="reply-box-open" type="button" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-purple-700 text-white px-3 py-2 text-sm rounded-md">Reply</button>
+                        <button type="button" class="mx-1 hover:bg-black hover:text-white duration-200 leading-none bg-purple-700 text-white px-3 py-2 text-sm rounded-md"><a href="https://wa.me/26{{$enquiry->phone}}">Reply on WhastApp</a></button>
 
                         <form id="reply-delete-btn" action="{{ route('message.destroy', $enquiry->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete?')">
                             @csrf

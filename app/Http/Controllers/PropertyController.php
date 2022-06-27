@@ -83,7 +83,7 @@ class PropertyController extends Controller
             'name'  => $request->name,
             'phone'  => $request->phone,
             'email'  => $request->email,
-            'message'  => $request->message . '\nThis message was sent from '. route('property.show',$propertyID) . ' website.',
+            'message'  => $request->message . '\r\n This message was sent from '. route('property.show',$propertyID) . ' website.',
         ]);
 
         // Send User & Admin mail/message
